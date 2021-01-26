@@ -78,19 +78,22 @@ function Rgv(props) {
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
       if (prop.layout === "/rgv" && prop.requireAuth) {
+        const Compo = prop.component
         return (
           <Route
             path={prop.layout + prop.path}
-            component={requireAuth(prop.component)}
+            content={prop.content}
+            component={requireAuth(() => (<Compo content={prop.content} />))}
             key={key}
           />
         );
       }
       else if (prop.layout === "/rgv" && prop.requireAuth === false) {
+        const Compo = prop.component
         return (
           <Route
             path={prop.layout + prop.path}
-            component={prop.component}
+            component={() => (<Compo content={prop.content} />)}
             key={key}
           />
         );

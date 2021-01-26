@@ -54,7 +54,7 @@ class NavbarComponent extends Component {
 
     return (
       <div>
-        <MDBNavbar color="indigo" dark expand="md">
+        <MDBNavbar color="default-color" dark expand="md">
           <MDBContainer>
             <Link to="/rgv/home"><MDBNavbarBrand>
               <strong className="white-text">RGV</strong>

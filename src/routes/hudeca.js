@@ -24,8 +24,6 @@ import Home from "../views/Home";
 import Signup from "../views/Signup";
 import DatasetPage from '../views/Datasets/Datasets'
 import AboutPage from '../views/About'
-import InstitutionsPage from '../views/Institutions'
-import RessourcesPage from '../views/Ressources'
 import DataPage from '../views/Data'
 
 import AboutContent from "../contents/hudeca/about.md"
@@ -118,7 +116,8 @@ var routes = [
     path: "/institutions",
     name: "Institution and founders",
     icon: "tim-icons icon-single-02",
-    component: InstitutionsPage,
+    component: AboutPage,
+    content: AboutContent,
     layout: "/hudeca",
     requireAuth: false,
   },
@@ -126,7 +125,8 @@ var routes = [
     path: "/ressources",
     name: "Ressources",
     icon: "tim-icons icon-single-02",
-    component: RessourcesPage,
+    component: AboutPage,
+    content: AboutContent,
     layout: "/hudeca",
     requireAuth: false,
   },
