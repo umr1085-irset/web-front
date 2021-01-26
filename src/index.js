@@ -18,12 +18,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Route, Switch, Redirect } from "react-router-dom";
 import Root from "./Root";
-import AdminLayout from "./layouts/Admin/Admin.js";
+import RgvLayout from "./layouts/RGV.js";
+import HudecaLayout from "./layouts/Hudeca.js";
 
-import "./assets/scss/black-dashboard-react.scss";
-import "./assets/demo/demo.css";
-import "./assets/css/nucleo-icons.css";
-import "@fortawesome/fontawesome-free/css/all.min.css";
+import '@fortawesome/fontawesome-free/css/all.min.css'; 
+import 'bootstrap-css-only/css/bootstrap.min.css'; 
+import 'mdbreact/dist/css/mdb.css';
 
 import ThemeContextWrapper from "./components/ThemeWrapper/ThemeWrapper";
 import BackgroundColorWrapper from "./components/BackgroundColorWrapper/BackgroundColorWrapper";
@@ -43,9 +43,8 @@ ReactDOM.render(
     <ToastContainer hideProgressBar={true} newestOnTop={true} />
       <Root>
         <Switch>
-          <Route path="/app" render={(props) => <AdminLayout {...props} />} />
-          <Redirect from='/' to='/app/home' />
-
+          <Route path="/rgv" render={(props) => <RgvLayout {...props} />} />
+          <Route path="/hudeca" render={(props) => <HudecaLayout {...props} />} />
         </Switch>
       </Root>
     </BackgroundColorWrapper>
