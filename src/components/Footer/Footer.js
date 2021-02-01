@@ -20,33 +20,17 @@ import React from "react";
 
 // reactstrap components
 import { Container, Nav, NavItem, NavLink } from "reactstrap";
+import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
 
 function Footer() {
   return (
-    <footer className="footer">
-      <Container fluid>
-        <Nav>
-          <NavItem>
-            <NavLink href="https://www.scilicium.com">
-              SciLicium
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="https://www.scilicium.com">
-              About SciLicium
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="https://www.scilicium.com">
-              Blog
-            </NavLink>
-          </NavItem>
-        </Nav>
-        <div className="copyright">
-          © {new Date().getFullYear()} SciLicium{" "}
-        </div>
-      </Container>
-    </footer>
+    <MDBFooter className="font-small pt-4 mt-4">
+      <div className="footer-copyright text-center py-3">
+        <MDBContainer fluid>
+          &copy; {new Date().getFullYear()} Copyright: <a href="https://www.scilicium.com"> SciLicium </a>
+        </MDBContainer>
+      </div>
+    </MDBFooter>
   );
 }
 

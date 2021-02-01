@@ -105,7 +105,7 @@ var routes = [
     requireAuth: false,
   },
   {
-    path: "/datasets",
+    path: "/view/:browse_by",
     name: "Datasets",
     icon: "tim-icons icon-single-02",
     component: DatasetPage,
