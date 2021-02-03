@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import _ from 'lodash'
 
 import { MDBRow, MDBCol, MDBCollapse } from "mdbreact"; 
 import TextField from '@material-ui/core/TextField';
@@ -27,32 +28,39 @@ class FilterComponentStudies extends Component {
   }
 
   onTitleChange = (event, values) => {
-    this.setState({type: values})
-    this.props.parentCallback("title",values)
+    //this.setState({type: values})
+    const title_val = _.map(values, 'title');
+    this.props.parentCallback("title",title_val)
   }
   onTechnoChange = (event, values) => {
-    this.setState({technology: values})
-    this.props.parentCallback("technology",values)
+    //this.setState({technology: values})
+    const title_val = _.map(values, 'technology');
+    this.props.parentCallback("technology",title_val)
   }
   onTissuesChange = (event, values) => {
-    this.setState({tissues: values})
-    this.props.parentCallback("tissues",values)
+    //this.setState({tissues: values})
+    const title_val = _.map(values, 'tissues');
+    this.props.parentCallback("tissues",title_val)
   }
   onAuthorChange = (event, values) => {
-    this.setState({devstage: values})
-    this.props.parentCallback("author",values)
+    //this.setState({devstage: values})
+    const title_val = _.map(values, 'author');
+    this.props.parentCallback("author",title_val)
   }
   onPubdateChange = (event, values) => {
-    this.setState({gender: values})
-    this.props.parentCallback("pub_date",values)
+    //this.setState({gender: values})
+    const title_val = _.map(values, 'pub_date');
+    this.props.parentCallback("pub_date",title_val)
   }
   onPmidChange = (event, values) => {
-    this.setState({gender: values})
-    this.props.parentCallback("pmid",values)
+    //this.setState({gender: values})
+    const title_val = _.map(values, 'pmid');
+    this.props.parentCallback("pmid",title_val)
   }
   onSpeciesChange = (event, values) => {
-    this.setState({gender: values})
-    this.props.parentCallback("species",values)
+    //this.setState({gender: values})
+    const title_val = _.map(values, 'species');
+    this.props.parentCallback("species",title_val)
   }
 
 

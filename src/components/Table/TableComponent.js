@@ -15,58 +15,97 @@
 
 */
 import React, { Component } from "react";
-
-import { MDBRow, MDBContainer, MDBCol } from "mdbreact";
-import { useTable } from 'react-table'
-
-function Table({ columns, data }) {
-  // Use the state and functions returned from useTable to build your UI
-  const {
-    getTableProps,
-    getTableBodyProps,
-    headerGroups,
-    rows,
-    prepareRow,
-  } = useTable({
-    columns,
-    data,
-  })
-
-  // Render the UI for your table
-  return (
-    <table {...getTableProps()}>
-      <thead>
-        {headerGroups.map(headerGroup => (
-          <tr {...headerGroup.getHeaderGroupProps()}>
-            {headerGroup.headers.map(column => (
-              <th {...column.getHeaderProps()}>{column.render('Header')}</th>
-            ))}
-          </tr>
-        ))}
-      </thead>
-      <tbody {...getTableBodyProps()}>
-        {rows.map((row, i) => {
-          prepareRow(row)
-          return (
-            <tr {...row.getRowProps()}>
-              {row.cells.map(cell => {
-                return <td {...cell.getCellProps()}>{cell.render('Cell')}</td>
-              })}
-            </tr>
-          )
-        })}
-      </tbody>
-    </table>
-  )
-}
+import {Spinner} from '../Loading/LoadingComponent'
+import { MDBRow, MDBContainer, MDBCol, MDBDataTableV5,MDBBtn } from "mdbreact";
 
 class TableComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state ={
+      data:null,
+      filters:{
+        type:[],
+        tissues: [],
+        technology:[],
+        pmid: [],
+        title: [],
+        author:[],
+        pub_date:[],
+        devstage:[],
+        gender: []
+      }
+    };
+  }
+  
+
+  filterPlainArray(array, filters) {
+    if(filters===null) return array
+    const getValue = value => (typeof value === 'string' ? value.toUpperCase() : value);
+    const filterKeys = Object.keys(filters);
+    return array.filter(item => {
+      // validates all filter criteria
+      return filterKeys.every(key => {
+        // ignores an empty filter
+        if (!filters[key].length) return true;
+        return filters[key].find(filter => getValue(filter) === getValue(item[key]));
+      });
+    });
+  }
+
+  
+
   render() {
+    const data = {
+      columns: [
+        {
+          label: 'Title',
+          field: 'title',
+          width: 150,
+          attributes: {
+            'aria-controls': 'DataTable',
+            'aria-label': 'Title',
+          },
+        },
+        {
+          label: 'Year',
+          field: 'year',
+          width: 270,
+        },
+      ],
+      rows: this.filterPlainArray(this.props.data,this.props.filters)
+    };
+
+    const badgesData = {
+      columns: [
+        ...data.columns,
+        {
+          label: 'Actions',
+          field: 'actions',
+        },
+        
+      ],
+      rows: [
+        ...data.rows.map((row, order) => ({
+          ...row,
+          actions: (
+            <>
+              <MDBBtn className='hudeca-btn p-2' key={'view_'+order} searchvalue={row.title}>
+                View
+              </MDBBtn>
+              <MDBBtn className='hudeca-btn p-2' key={order} searchvalue={row.title}>
+                Download
+              </MDBBtn>
+            </>
+          ),
+        })),
+      ],
+    };
     return (
           <MDBContainer className="mt-5">
             <MDBRow>
                 <MDBCol md="12">
-                  <Table columns={this.props.columns} data={this.props.data} />
+                {data.rows ? <MDBDataTableV5 hover entriesOptions={[5, 20, 25, 50]} entries={15} pagesAmount={4} data={badgesData} fullPagination /> : <Spinner/>}
+                  
                 </MDBCol>
             </MDBRow>
 

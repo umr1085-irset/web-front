@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import _ from 'lodash'
 import { MDBRow, MDBCol } from "mdbreact"; 
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
@@ -25,24 +25,29 @@ class FilterComponent extends Component {
   }
 
   onTypeChange = (event, values) => {
-    this.setState({type: values})
-    this.props.parentCallback("type",values)
+    //this.setState({type: values})
+    const title_val = _.map(values, 'type');
+    this.props.parentCallback("type",title_val)
   }
   onTechnoChange = (event, values) => {
-    this.setState({technology: values})
-    this.props.parentCallback("technology",values)
+    //this.setState({technology: values})
+    const title_val = _.map(values, 'technology');
+    this.props.parentCallback("technology",title_val)
   }
   onTissuesChange = (event, values) => {
-    this.setState({tissues: values})
-    this.props.parentCallback("tissues",values)
+    //this.setState({tissues: values})
+    const title_val = _.map(values, 'tissues');
+    this.props.parentCallback("tissues",title_val)
   }
   onDevStageChange = (event, values) => {
-    this.setState({devstage: values})
-    this.props.parentCallback("devstage",values)
+    //this.setState({devstage: values})
+    const title_val = _.map(values, 'devstage');
+    this.props.parentCallback("devstage",title_val)
   }
   onGenderChange = (event, values) => {
-    this.setState({gender: values})
-    this.props.parentCallback("gender",values)
+    //this.setState({gender: values})
+    const title_val = _.map(values, 'gender');
+    this.props.parentCallback("gender",title_val)
   }
 
 
