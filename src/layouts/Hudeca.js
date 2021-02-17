@@ -80,7 +80,7 @@ function Hudeca(props) {
       if (prop.layout === "/hudeca" && prop.requireAuth) {
         const Compo = prop.component
         return (
-          <Route
+          <Route exact
             path={prop.layout + prop.path}
             content={prop.content}
             component={requireAuth(() => (<Compo content={prop.content} />))}
@@ -91,7 +91,7 @@ function Hudeca(props) {
       else if (prop.layout === "/hudeca" && prop.requireAuth === false) {
         const Compo = prop.component
         return (
-          <Route
+          <Route exact
             path={prop.layout + prop.path}
             component={() => (<Compo content={prop.content} />)}
             key={key}

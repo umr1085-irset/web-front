@@ -20,6 +20,28 @@ class FilterComponentStudies extends Component {
         pmid: []
     };
   }
+  setOption(array){
+    const uniqueTechnology = [];
+    const uniqueType = [];
+    const uniqueTissue = [];
+    const uniqueDevstage = [];
+    const uniqueGender = [];
+    array.map(obj => {
+          uniqueTechnology.concat(obj.technology)
+          uniqueType.concat(obj.type)
+          uniqueTissue.concat(obj.tissue)
+          uniqueDevstage.concat(obj.devstage)
+          uniqueGender.concat(obj.gender)
+    });
+    const uniqOptions = {
+      technology: _.uniqBy(uniqueTechnology),
+      type: _.uniqBy(uniqueType),
+      tissue: _.uniqBy(uniqueTissue),
+      devstage: _.uniqBy(uniqueDevstage),
+      gender: _.uniqBy(uniqueGender),
+    }
+    return(uniqOptions)
+  }
 
   toggleCollapse = collapseID => () => {
     this.setState(prevState => ({

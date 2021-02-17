@@ -24,10 +24,33 @@ class FilterComponent extends Component {
     }));
   }
 
+  setOption(array){
+    const uniqueTechnology = [];
+    const uniqueType = [];
+    const uniqueTissue = [];
+    const uniqueDevstage = [];
+    const uniqueGender = [];
+    array.map(obj => {
+          uniqueTechnology.concat(obj.technology)
+          uniqueType.concat(obj.type)
+          uniqueTissue.concat(obj.tissue)
+          uniqueDevstage.concat(obj.devstage)
+          uniqueGender.concat(obj.gender)
+    });
+    const uniqOptions = {
+      technology: _.uniqBy(uniqueTechnology),
+      type: _.uniqBy(uniqueType),
+      tissue: _.uniqBy(uniqueTissue),
+      devstage: _.uniqBy(uniqueDevstage),
+      gender: _.uniqBy(uniqueGender),
+    }
+    return(uniqOptions)
+  }
+
   onTypeChange = (event, values) => {
     //this.setState({type: values})
-    const title_val = _.map(values, 'type');
-    this.props.parentCallback("type",title_val)
+    const title_val = _.map(values, 'title');
+    this.props.parentCallback("title",title_val)
   }
   onTechnoChange = (event, values) => {
     //this.setState({technology: values})
@@ -55,7 +78,7 @@ class FilterComponent extends Component {
   
   render() {
 
-    const option = this.props.data
+    const option = this.setOption(this.props.data)
 
     return (
           <MDBRow>
@@ -73,7 +96,7 @@ class FilterComponent extends Component {
                               title="type"
                               size="small"
                               onChange={this.onTypeChange}
-                              options={option}
+                              options={option.type}
                               getOptionLabel={(option) => option.title}
                               renderInput={(params) => (
                               <TextField {...params} variant="standard" label="type" placeholder="Type" />
@@ -85,7 +108,7 @@ class FilterComponent extends Component {
                               multiple
                               id="technology"
                               size="small"
-                              options={option}
+                              options={option.technology}
                               onChange={this.onTechnoChange}
                               getOptionLabel={(option) => option.title}
                               renderInput={(params) => (
@@ -98,7 +121,7 @@ class FilterComponent extends Component {
                               multiple
                               id="tissues"
                               size="small"
-                              options={option}
+                              options={option.tissue}
                               onChange={this.onTissuesChange}
                               getOptionLabel={(option) => option.title}
                               renderInput={(params) => (
@@ -111,7 +134,7 @@ class FilterComponent extends Component {
                               multiple
                               id="devstage"
                               size="small"
-                              options={option}
+                              options={option.devstage}
                               onChange={this.onDevStageChange}
                               getOptionLabel={(option) => option.title}
                               renderInput={(params) => (
@@ -124,7 +147,7 @@ class FilterComponent extends Component {
                               multiple
                               id="gender"
                               size="small"
-                              options={option}
+                              options={option.gender}
                               onChange={this.onGenderChange}
                               getOptionLabel={(option) => option.title}
                               renderInput={(params) => (

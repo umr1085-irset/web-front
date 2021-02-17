@@ -15,8 +15,12 @@
 
 */
 import React, { Component } from "react";
+import { Link  } from "react-router-dom";
+
 import {Spinner} from '../Loading/LoadingComponent'
-import { MDBRow, MDBContainer, MDBCol, MDBDataTableV5,MDBBtn } from "mdbreact";
+import { MDBRow, MDBContainer, MDBCol, MDBDataTableV5 } from "mdbreact";
+import { Button } from '@material-ui/core';
+
 
 class TableComponent extends Component {
   constructor(props) {
@@ -52,9 +56,11 @@ class TableComponent extends Component {
     });
   }
 
-  
 
   render() {
+    const withMargin = {
+      margin: '10px'
+     };
     const data = {
       columns: [
         {
@@ -89,12 +95,12 @@ class TableComponent extends Component {
           ...row,
           actions: (
             <>
-              <MDBBtn className='hudeca-btn p-2' key={'view_'+order} searchvalue={row.title}>
+              <Link to={"/hudeca/study/"+row.id}><Button variant="contained" color="primary" style={withMargin} className='p-2' key={'view_'+order} searchvalue={row.title}>
                 View
-              </MDBBtn>
-              <MDBBtn className='hudeca-btn p-2' key={order} searchvalue={row.title}>
+              </Button></Link>
+              <Button variant="contained" color="primary" style={withMargin} className='p-2' key={order} searchvalue={row.title}>
                 Download
-              </MDBBtn>
+              </Button>
             </>
           ),
         })),

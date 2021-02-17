@@ -25,6 +25,7 @@ import Signup from "../views/Signup";
 import DatasetPage from '../views/Datasets/Datasets'
 import AboutPage from '../views/About'
 import DataPage from '../views/Data'
+import StudyPage from '../views/Study'
 
 import AboutContent from "../contents/hudeca/about.md"
 
@@ -106,11 +107,11 @@ var routes = [
   },
   {
     path: "/view/:browse_by",
-    name: "Datasets",
+    name: "Browse",
     icon: "tim-icons icon-single-02",
     component: DatasetPage,
     layout: "/hudeca",
-    requireAuth: true,
+    requireAuth: false,
   },
   {
     path: "/institutions",
@@ -135,6 +136,14 @@ var routes = [
     name: "Data",
     icon: "tim-icons icon-single-02",
     component: DataPage,
+    layout: "/hudeca",
+    requireAuth: false,
+  },
+  {
+    path: "/study/:sid",
+    name: "Study",
+    icon: "tim-icons icon-single-02",
+    component: StudyPage,
     layout: "/hudeca",
     requireAuth: false,
   },
