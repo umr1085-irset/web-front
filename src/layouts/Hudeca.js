@@ -78,21 +78,22 @@ function Hudeca(props) {
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
       if (prop.layout === "/hudeca" && prop.requireAuth) {
+        const Compo = prop.component
         return (
-          <Route
+          <Route exact
             path={prop.layout + prop.path}
             content={prop.content}
-            component={requireAuth(prop.component)}
+            component={requireAuth(() => (<Compo content={prop.content} />))}
             key={key}
           />
         );
       }
       else if (prop.layout === "/hudeca" && prop.requireAuth === false) {
+        const Compo = prop.component
         return (
-          <Route
+          <Route exact
             path={prop.layout + prop.path}
-            component={prop.component}
-            content={prop.content}
+            component={() => (<Compo content={prop.content} />)}
             key={key}
           />
         );

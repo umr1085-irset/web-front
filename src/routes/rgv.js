@@ -24,11 +24,12 @@ import Home from "../views/Home";
 import Signup from "../views/Signup";
 import DatasetPage from '../views/Datasets/Datasets'
 import AboutPage from '../views/About'
-import InstitutionsPage from '../views/Institutions'
-import RessourcesPage from '../views/Ressources'
 import DataPage from '../views/Data'
 
-import AboutContent from "../contents/about.md"
+import AboutContent from "../contents/rgv/about.md"
+import InstitutionContent from "../contents/rgv/institutions.md"
+import RessourcesContent from "../contents/rgv/ressources.md"
+
 
 var routes = [
   {
@@ -116,7 +117,8 @@ var routes = [
     path: "/institutions",
     name: "Institution and founders",
     icon: "tim-icons icon-single-02",
-    component: InstitutionsPage,
+    content: InstitutionContent,
+    component: AboutPage,
     layout: "/rgv",
     requireAuth: false,
   },
@@ -124,7 +126,8 @@ var routes = [
     path: "/ressources",
     name: "Ressources",
     icon: "tim-icons icon-single-02",
-    component: RessourcesPage,
+    content: RessourcesContent,
+    component: AboutPage,
     layout: "/rgv",
     requireAuth: false,
   },

@@ -16,21 +16,23 @@
 */
 import React from "react";
 import ReactDOM from "react-dom";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Root from "./Root";
 import RgvLayout from "./layouts/RGV.js";
 import HudecaLayout from "./layouts/Hudeca.js";
+import { ThemeProvider } from '@material-ui/core/styles';
+
 
 import '@fortawesome/fontawesome-free/css/all.min.css'; 
 import 'bootstrap-css-only/css/bootstrap.min.css'; 
 import 'mdbreact/dist/css/mdb.css';
+import './assets/scss/hugodeca.scss'
 
-import ThemeContextWrapper from "./components/ThemeWrapper/ThemeWrapper";
-import BackgroundColorWrapper from "./components/BackgroundColorWrapper/BackgroundColorWrapper";
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+import theme from './theme';
 
 
 
@@ -38,8 +40,7 @@ import axios from "axios";
 axios.defaults.baseURL = "http://127.0.0.1:8000";
 
 ReactDOM.render(
-  <ThemeContextWrapper>
-    <BackgroundColorWrapper>
+  <ThemeProvider theme={theme}>
     <ToastContainer hideProgressBar={true} newestOnTop={true} />
       <Root>
         <Switch>
@@ -47,7 +48,6 @@ ReactDOM.render(
           <Route path="/hudeca" render={(props) => <HudecaLayout {...props} />} />
         </Switch>
       </Root>
-    </BackgroundColorWrapper>
-  </ThemeContextWrapper>,
+  </ThemeProvider>,
   document.getElementById("root")
 );

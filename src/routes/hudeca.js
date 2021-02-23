@@ -24,9 +24,9 @@ import Home from "../views/Home";
 import Signup from "../views/Signup";
 import DatasetPage from '../views/Datasets/Datasets'
 import AboutPage from '../views/About'
-import InstitutionsPage from '../views/Institutions'
-import RessourcesPage from '../views/Ressources'
 import DataPage from '../views/Data'
+import StudyPage from '../views/Study'
+import ResultPage from '../views/Results'
 
 import AboutContent from "../contents/hudeca/about.md"
 
@@ -107,18 +107,19 @@ var routes = [
     requireAuth: false,
   },
   {
-    path: "/datasets",
-    name: "Datasets",
+    path: "/view/:browse_by",
+    name: "Browse",
     icon: "tim-icons icon-single-02",
     component: DatasetPage,
     layout: "/hudeca",
-    requireAuth: true,
+    requireAuth: false,
   },
   {
     path: "/institutions",
     name: "Institution and founders",
     icon: "tim-icons icon-single-02",
-    component: InstitutionsPage,
+    component: AboutPage,
+    content: AboutContent,
     layout: "/hudeca",
     requireAuth: false,
   },
@@ -126,7 +127,8 @@ var routes = [
     path: "/ressources",
     name: "Ressources",
     icon: "tim-icons icon-single-02",
-    component: RessourcesPage,
+    component: AboutPage,
+    content: AboutContent,
     layout: "/hudeca",
     requireAuth: false,
   },
@@ -135,6 +137,22 @@ var routes = [
     name: "Data",
     icon: "tim-icons icon-single-02",
     component: DataPage,
+    layout: "/hudeca",
+    requireAuth: false,
+  },
+  {
+    path: "/study/:sid",
+    name: "Study",
+    icon: "tim-icons icon-single-02",
+    component: StudyPage,
+    layout: "/hudeca",
+    requireAuth: false,
+  },
+  {
+    path: "/datasets/:did",
+    name: "Study",
+    icon: "tim-icons icon-single-02",
+    component: ResultPage,
     layout: "/hudeca",
     requireAuth: false,
   },

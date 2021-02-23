@@ -54,16 +54,25 @@ class NavbarComponent extends Component {
 
     return (
       <div>
-        <MDBNavbar color="indigo" dark expand="md">
+        <MDBNavbar light expand="md">
           <MDBContainer>
             <Link to="/hudeca/home"><MDBNavbarBrand>
-              <strong className="white-text">HuDeCA</strong>
+              <strong className="black-text">HuDeCA</strong>
             </MDBNavbarBrand></Link>
             <MDBNavbarToggler onClick={this.toggleCollapse} />
               <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
                 <MDBNavbarNav left>
-                  <MDBNavItem>
-                    <MDBNavLink to={"/hudeca/datasets"}>Browse</MDBNavLink>
+                    <MDBNavItem>
+                    <MDBDropdown>
+                      <MDBDropdownToggle nav caret>
+                        Browse
+                      </MDBDropdownToggle>
+                      <MDBDropdownMenu className="dropdown-default" right>
+                        <Link to="/hudeca/view/studies"><MDBDropdownItem>By studies</MDBDropdownItem></Link>
+                        <Link to="/hudeca/view/datasets"><MDBDropdownItem>By datasets</MDBDropdownItem></Link>
+                        <Link to="/hudeca/view/genomes"><MDBDropdownItem>By genomes</MDBDropdownItem></Link>
+                      </MDBDropdownMenu>
+                    </MDBDropdown>
                   </MDBNavItem>
                   <MDBNavItem>
                     <MDBDropdown>
