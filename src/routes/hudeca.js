@@ -26,6 +26,7 @@ import DatasetPage from '../views/Datasets/Datasets'
 import AboutPage from '../views/About'
 import DataPage from '../views/Data'
 import StudyPage from '../views/Study'
+import ResultPage from '../views/Results'
 
 import AboutContent from "../contents/hudeca/about.md"
 
@@ -144,6 +145,14 @@ var routes = [
     name: "Study",
     icon: "tim-icons icon-single-02",
     component: StudyPage,
+    layout: "/hudeca",
+    requireAuth: false,
+  },
+  {
+    path: "/datasets/:did",
+    name: "Study",
+    icon: "tim-icons icon-single-02",
+    component: ResultPage,
     layout: "/hudeca",
     requireAuth: false,
   },

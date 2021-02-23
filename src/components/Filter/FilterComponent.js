@@ -1,3 +1,21 @@
+/*!
+
+=========================================================
+* SciLicium Genomics Platform v0.0.1
+=========================================================
+
+* Copyright 2021 SciLicium (https://www.scilicium.com)
+
+* Coded by SciLicium
+* Author: Thomas Darde
+
+* TO DO:
+  - Fit variables to dataset model
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+*/
 import React, { Component } from "react";
 import _ from 'lodash'
 import { MDBRow, MDBCol } from "mdbreact"; 
@@ -97,7 +115,6 @@ class FilterComponent extends Component {
                               size="small"
                               onChange={this.onTypeChange}
                               options={option.type}
-                              getOptionLabel={(option) => option.title}
                               renderInput={(params) => (
                               <TextField {...params} variant="standard" label="type" placeholder="Type" />
                               )}
@@ -110,7 +127,6 @@ class FilterComponent extends Component {
                               size="small"
                               options={option.technology}
                               onChange={this.onTechnoChange}
-                              getOptionLabel={(option) => option.title}
                               renderInput={(params) => (
                               <TextField {...params} variant="standard" label="Technology" placeholder="Technology" />
                               )}
@@ -123,7 +139,6 @@ class FilterComponent extends Component {
                               size="small"
                               options={option.tissue}
                               onChange={this.onTissuesChange}
-                              getOptionLabel={(option) => option.title}
                               renderInput={(params) => (
                               <TextField {...params} variant="standard" label="Tissues" placeholder="Tissues" />
                               )}
@@ -136,7 +151,6 @@ class FilterComponent extends Component {
                               size="small"
                               options={option.devstage}
                               onChange={this.onDevStageChange}
-                              getOptionLabel={(option) => option.title}
                               renderInput={(params) => (
                               <TextField {...params} variant="standard" label="Developmental stage" placeholder="Developmental stage" />
                               )}
@@ -149,7 +163,6 @@ class FilterComponent extends Component {
                               size="small"
                               options={option.gender}
                               onChange={this.onGenderChange}
-                              getOptionLabel={(option) => option.title}
                               renderInput={(params) => (
                               <TextField {...params} variant="standard" label="Gender" placeholder="Gender" />
                               )}

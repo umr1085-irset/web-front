@@ -27,7 +27,7 @@ import axios from "axios";
 import { toastOnError } from "../utils/Utils";
 import { trackPromise } from 'react-promise-tracker';
 
-class StudyPage extends Component {
+class ResultsPage extends Component {
     constructor(props) {
         super(props);
         this.state ={
@@ -142,4 +142,4 @@ class StudyPage extends Component {
   }
 }
 
-export default withRouter(StudyPage);
+export default withRouter(ResultsPage);

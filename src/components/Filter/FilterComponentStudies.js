@@ -1,3 +1,21 @@
+/*!
+
+=========================================================
+* SciLicium Genomics Platform v0.0.1
+=========================================================
+
+* Copyright 2021 SciLicium (https://www.scilicium.com)
+
+* Coded by SciLicium
+* Author: Thomas Darde
+
+* TO DO:
+  - Fit variables to study model
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+*/
 import React, { Component } from "react";
 import _ from 'lodash'
 
@@ -21,24 +39,31 @@ class FilterComponentStudies extends Component {
     };
   }
   setOption(array){
+    const uniqueTitle = [];
+    const uniqueAuthor = [];
+    const uniquePub_date = [];
     const uniqueTechnology = [];
-    const uniqueType = [];
-    const uniqueTissue = [];
-    const uniqueDevstage = [];
-    const uniqueGender = [];
+    const uniqueSpecies = [];
+    const uniqueTissues = [];
+    const uniquePmid = [];
     array.map(obj => {
-          uniqueTechnology.concat(obj.technology)
-          uniqueType.concat(obj.type)
-          uniqueTissue.concat(obj.tissue)
-          uniqueDevstage.concat(obj.devstage)
-          uniqueGender.concat(obj.gender)
+      console.log(obj.title)
+        uniqueTitle.push(obj.title)
+        uniqueAuthor.concat(obj.author)
+        uniquePub_date.concat(obj.pub_date)
+        uniqueTechnology.concat(obj.technology)
+        uniqueSpecies.concat(obj.species)
+        uniqueTissues.concat(obj.tissues)
+        uniquePmid.concat(obj.pmid)
     });
     const uniqOptions = {
+      title: _.uniqBy(uniqueTitle),
+      author: _.uniqBy(uniqueAuthor),
+      pub_date: _.uniqBy(uniquePub_date),
       technology: _.uniqBy(uniqueTechnology),
-      type: _.uniqBy(uniqueType),
-      tissue: _.uniqBy(uniqueTissue),
-      devstage: _.uniqBy(uniqueDevstage),
-      gender: _.uniqBy(uniqueGender),
+      species: _.uniqBy(uniqueSpecies),
+      tissues:_.uniqBy(uniqueTissues),
+      pmid: _.uniqBy(uniquePmid)
     }
     return(uniqOptions)
   }
@@ -49,10 +74,24 @@ class FilterComponentStudies extends Component {
     }));
   }
 
+  filterPlainArray(array, filters) {
+    if(filters===null) return array
+    const getValue = value => (typeof value === 'string' ? value.toUpperCase() : value);
+    const filterKeys = Object.keys(filters);
+    return array.filter(item => {
+      // validates all filter criteria
+      return filterKeys.every(key => {
+        // ignores an empty filter
+        if (!filters[key].length) return true;
+        return filters[key].find(filter => getValue(filter) === getValue(item[key]));
+      });
+    });
+  }
+
   onTitleChange = (event, values) => {
     //this.setState({type: values})
     const title_val = _.map(values, 'title');
-    this.props.parentCallback("title",title_val)
+    this.props.parentCallback("title",values)
   }
   onTechnoChange = (event, values) => {
     //this.setState({technology: values})
@@ -89,9 +128,9 @@ class FilterComponentStudies extends Component {
   
   
   render() {
-
-    const option = this.props.data
-
+    const data = this.filterPlainArray(this.props.data,this.props.filters)
+    const option = this.setOption(data)
+    console.log(option)
     return (
       <>
           <MDBRow>
@@ -108,8 +147,7 @@ class FilterComponentStudies extends Component {
                               id="title"
                               size="small"
                               onChange={this.onTitleChange}
-                              options={option}
-                              getOptionLabel={(option) => option.title}
+                              options={option.title}
                               renderInput={(params) => (
                               <TextField {...params} variant="standard" label="Title" placeholder="Title" />
                               )}
@@ -120,9 +158,8 @@ class FilterComponentStudies extends Component {
                               multiple
                               id="author"
                               size="small"
-                              options={option}
+                              options={option.author}
                               onChange={this.onAuthorChange}
-                              getOptionLabel={(option) => option.title}
                               renderInput={(params) => (
                               <TextField {...params} variant="standard" label="Author" placeholder="Author" />
                               )}
@@ -133,9 +170,8 @@ class FilterComponentStudies extends Component {
                               multiple
                               id="pub_date"
                               size="small"
-                              options={option}
+                              options={option.pub_date}
                               onChange={this.onPubdateChange}
-                              getOptionLabel={(option) => option.title}
                               renderInput={(params) => (
                               <TextField {...params} variant="standard" label="Publication date" placeholder="Publication date" />
                               )}
@@ -146,9 +182,8 @@ class FilterComponentStudies extends Component {
                               multiple
                               id="technology"
                               size="small"
-                              options={option}
+                              options={option.technology}
                               onChange={this.onTechnoChange}
-                              getOptionLabel={(option) => option.title}
                               renderInput={(params) => (
                               <TextField {...params} variant="standard" label="Technology" placeholder="Technology" />
                               )}
@@ -159,9 +194,8 @@ class FilterComponentStudies extends Component {
                               multiple
                               id="species"
                               size="small"
-                              options={option}
+                              options={option.species}
                               onChange={this.onSpeciesChange}
-                              getOptionLabel={(option) => option.title}
                               renderInput={(params) => (
                               <TextField {...params} variant="standard" label="Species" placeholder="Species" />
                               )}
@@ -186,9 +220,8 @@ class FilterComponentStudies extends Component {
                           multiple
                           id="tissues"
                           size="small"
-                          options={option}
+                          options={option.tissues}
                           onChange={this.onTissuesChange}
-                          getOptionLabel={(option) => option.title}
                           renderInput={(params) => (
                           <TextField {...params} variant="standard" label="Tissue" placeholder="Tissue" />
                           )}
@@ -199,9 +232,8 @@ class FilterComponentStudies extends Component {
                           multiple
                           id="pmid"
                           size="small"
-                          options={option}
+                          options={option.pmid}
                           onChange={this.onPmidChange}
-                          getOptionLabel={(option) => option.title}
                           renderInput={(params) => (
                           <TextField {...params} variant="standard" label="Pmid" placeholder="Pmid" />
                           )}

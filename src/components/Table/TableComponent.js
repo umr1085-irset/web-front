@@ -9,6 +9,8 @@
 * Coded by SciLicium
 * Author: Thomas Darde
 
+* TO DO:
+  - Fit datatable to data (accordding dataset or studies)
 =========================================================
 
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.

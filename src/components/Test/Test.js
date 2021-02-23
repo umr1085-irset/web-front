@@ -1,13 +1,11 @@
 import React from 'react';
-import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import { emphasize, withStyles, makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
-import { Button, ButtonGroup, Badge, Box, Chip, Paper, Tabs, Tab, Divider, Grid, CardContent, CardHeader, Card , Breadcrumbs} from '@material-ui/core';
+import { Button, ButtonGroup, Badge, Box, Chip, Divider, Grid, CardContent, CardHeader, Card , Breadcrumbs} from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import GetAppOutlinedIcon from '@material-ui/icons/GetAppOutlined';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
 import HexaIcon from '../../assets/Icons/Hexa';

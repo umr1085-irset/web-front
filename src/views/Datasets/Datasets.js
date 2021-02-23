@@ -1,7 +1,7 @@
 /*!
 
 =========================================================
-* SciLicium Platform v0.0.1
+* SciLicium Genomics Platform v0.0.1
 =========================================================
 
 * Copyright 2021 SciLicium (https://www.scilicium.com)
@@ -48,7 +48,8 @@ class DatasetPage extends Component {
           .then(response => {
             this.setState({data : response.data}); 
             console.log(this.state.data)
-            this.setState({loading : false}); 
+            this.setState({loading : false});
+            this.setState({loading2 : false});  
           })
           .catch(error => {
             toastOnError("Error loading public datasets");
@@ -66,8 +67,8 @@ class DatasetPage extends Component {
       this.setState({ filters:{ [key]:val} })
     }
 
-    displayFilter = (KeysToComponentDisplay,key,data,callback) =>{
-      return React.createElement(KeysToComponentDisplay[key],{key:"filterDisplay_by_"+key,data: data, parentCallback: callback})
+    displayFilter = (KeysToComponentDisplay,key,data,callback,filters) =>{
+      return React.createElement(KeysToComponentDisplay[key],{key:"filterDisplay_by_"+key,data: data, parentCallback: callback, filters: filters})
     }
   render() {
   
@@ -83,7 +84,7 @@ class DatasetPage extends Component {
             <h2>Browse by {this.props.match.params.browse_by}</h2>
             <MDBRow>
                 <MDBCol md="12">
-                    {this.state.loading2 ? <Spinner/> : this.displayFilter(KeysToComponentDisplay,this.props.match.params.browse_by,this.state.data,this.callbackFunction)}
+                    {this.state.loading2 ? <Spinner/> : this.displayFilter(KeysToComponentDisplay,this.props.match.params.browse_by,this.state.data,this.callbackFunction,this.state.filters)}
                 </MDBCol>
             </MDBRow>
             <MDBRow className="z-depth-1 filter-box mt-5">
