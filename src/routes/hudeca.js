@@ -149,7 +149,7 @@ var routes = [
     requireAuth: false,
   },
   {
-    path: "/datasets/:did",
+    path: "/dataset/:did",
     name: "Study",
     icon: "tim-icons icon-single-02",
     component: ResultPage,

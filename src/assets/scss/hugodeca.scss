@@ -44,4 +44,11 @@
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
       monospace;
   }
-  
+
+.capitalize {
+  text-transform: capitalize;
+}
+.capitalize:first-letter,
+.capitalize:first-line {
+  text-transform: uppercase;
+}

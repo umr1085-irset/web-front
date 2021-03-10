@@ -17,42 +17,35 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 
-import { MDBRow, MDBContainer, MDBCol } from "mdbreact";
-import { CardContent, CardHeader, Card} from '@material-ui/core';
-
-import Breadcrumbs from '../components/Breadcrumbs/Breadcrumbs';
-
-import PlotComponent from "../components/Plots/PlotComponent"
+import { MDBContainer } from "mdbreact";
+import ResultsLayout from '../components/Results/ResultsLayoutHudeca'
 import {Spinner} from '../components/Loading/LoadingComponent'
 
 import axios from "axios";
 import { toastOnError } from "../utils/Utils";
 import { trackPromise } from 'react-promise-tracker';
 
+
 class ResultsPage extends Component {
     constructor(props) {
         super(props);
         this.state ={
           loading:true,
-          study:{},
+          dataset:{},
         };
         this.getData = this.getData.bind(this)
       }
     
     async getData(id){
         await trackPromise(
-          axios.get("/api/v1/data/count?id=" + id)
+          axios.get("/api/v1/datasets/"+id+"/view")
           .then(response => {
-              console.log(response)
-            this.setState(
-                {
-                    name : response.data.name,
-                    chart : response.data.chart, 
-                    loading:false
-                });            
+            this.setState({dataset:response.data});
+            this.setState({loading:false});
+
           })
           .catch(error => {
-            toastOnError("Error loading study");
+            toastOnError("Error loading dataset");
           })
         )
       }
@@ -64,39 +57,9 @@ class ResultsPage extends Component {
 
   render() {
     return (
-          <MDBContainer className="mt-5">         
-            <MDBRow>
-                <MDBCol md="12">
-                    <Card variant="outlined">
-                        <CardHeader title={<Breadcrumbs/>}>
-                            
-                        </CardHeader>
-                        <CardContent>
-                        {this.state.loading ? <Spinner/> : <h2>{this.state.name}</h2>}
-                        </CardContent>
-                    </Card>
-                </MDBCol>
-            </MDBRow>
-            <MDBRow>
-                <MDBCol md="12">
-                    <Card variant="outlined">
-                        <CardContent>
-                            {this.state.loading ? <Spinner/> : <PlotComponent data={this.state.chart.data} layout={this.state.chart.layout}/>}
-                        </CardContent>
-                    </Card>
-                </MDBCol>
-            </MDBRow>
-            <MDBRow>
-                <MDBCol md="12">
-                    <Card variant="outlined">
-                        <CardHeader title="Datasets"></CardHeader>
-                        <CardContent>
-                           
-                        </CardContent>
-                    </Card>
-                </MDBCol>
-            </MDBRow>
-          </MDBContainer>
+      <MDBContainer className="mt-5">         
+        {this.state.loading ? <Spinner/> : <ResultsLayout dataset={this.state.dataset} />}
+      </MDBContainer>
     );
   }
 }
