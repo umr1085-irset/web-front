@@ -26,7 +26,7 @@ import {Spinner} from '../Loading/LoadingComponent'
 import { CardContent, CardHeader, Card} from '@material-ui/core';
 
 
-import { MDBRow, MDBCol } from "mdbreact";
+import { MDBRow, MDBCol, MDBCollapse, MDBIcon } from "mdbreact";
 
 class LoomPlotComponent extends Component {
       constructor(props) {
@@ -55,11 +55,36 @@ class LoomPlotComponent extends Component {
           this.getDataPlot(this.props.url,this.props.loom,this.props.style)
       }
 
+      state = {
+        collapseID: ""
+      }
+      
+      toggleCollapse = collapseID => () => {
+        this.setState(prevState => ({
+          collapseID: prevState.collapseID !== collapseID ? collapseID : ""
+        }));
+      }
+
 
     render() {
       return (
         <Card className="card-chart">
+            <CardHeader title={<a onClick={this.toggleCollapse("basicCollapse")}><MDBIcon icon="cog"  /></a>}>
+              
+              
+            </CardHeader>
             <CardContent>
+              <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID}>
+                  <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
+                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat. Duis aute irure dolor in
+                    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                    culpa qui officia deserunt mollit anim id est laborum
+                  </p>
+              </MDBCollapse>
                 <MDBRow>
                     <MDBCol md="12" sm="12" className="text-center">
                         {this.state.loading ? <Spinner/> : <PlotComponent data={this.state.plot.chart.data} layout={this.state.plot.chart.layout} frames={this.state.plot.chart.frames} config={this.state.plot.chart.config}/>}
