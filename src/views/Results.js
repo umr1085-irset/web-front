@@ -57,7 +57,7 @@ class ResultsPage extends Component {
 
   render() {
     return (
-      <MDBContainer className="mt-5">         
+      <MDBContainer fluid className="mt-5">         
         {this.state.loading ? <Spinner/> : <ResultsLayout dataset={this.state.dataset} />}
       </MDBContainer>
     );

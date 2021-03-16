@@ -21,6 +21,7 @@ import { trackPromise } from 'react-promise-tracker';
 import PlotComponent from "../Plots/PlotComponent"
 import {Spinner} from '../Loading/LoadingComponent'
 
+import { Doughnut, Pie, Bar } from 'react-chartjs-2';
 
 // reactstrap components
 import { CardContent, CardHeader, Card} from '@material-ui/core';
@@ -41,9 +42,10 @@ class LoomPlotComponent extends Component {
         await trackPromise(
           axios.get(url+"?id="+id+"&style="+style+"&attrs="+attrs)
           .then(response => {
-            this.setState({plot:response.data});
-            this.setState({loading:false});
-
+            this.setState({
+              chart:response.data.chart,
+              style:response.data.style,
+              loading:false});
           })
           .catch(error => {
             toastOnError("Error loading dataset");
@@ -52,7 +54,7 @@ class LoomPlotComponent extends Component {
       }
 
       async componentDidMount() {
-          this.getDataPlot(this.props.url,this.props.loom,this.props.style)
+          this.getDataPlot(this.props.url,this.props.loom,this.props.style,this.props.attrs)
       }
 
       state = {
@@ -65,8 +67,22 @@ class LoomPlotComponent extends Component {
         }));
       }
 
+      displayPlot = (plot_type,KeysToComponentDisplay,data) =>{
+        if(plot_type === "scatter"){
+          return React.createElement(KeysToComponentDisplay[plot_type],{key:"plot_"+plot_type ,data: data.data, layout:data.layout})
+        } else {
+          return React.createElement(KeysToComponentDisplay[plot_type],{key:"plot_"+plot_type ,data: data})
+        }
+        
+      }
 
     render() {
+      const KeysToComponentDisplay = {
+          pie:Pie,
+          doughnut:Doughnut,
+          bar:Bar,
+          scatter:PlotComponent
+      };
       return (
         <Card className="card-chart">
             <CardHeader title={<a onClick={this.toggleCollapse("basicCollapse")}><MDBIcon icon="cog"  /></a>}>
@@ -85,11 +101,7 @@ class LoomPlotComponent extends Component {
                     culpa qui officia deserunt mollit anim id est laborum
                   </p>
               </MDBCollapse>
-                <MDBRow>
-                    <MDBCol md="12" sm="12" className="text-center">
-                        {this.state.loading ? <Spinner/> : <PlotComponent data={this.state.plot.chart.data} layout={this.state.plot.chart.layout} frames={this.state.plot.chart.frames} config={this.state.plot.chart.config}/>}
-                    </MDBCol>
-                </MDBRow>
+              {this.state.loading ? <Spinner/> : this.displayPlot(this.state.style,KeysToComponentDisplay,this.state.chart)}
             </CardContent>
         </Card>
       );
