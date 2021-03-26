@@ -99,7 +99,7 @@ var routes = [
     requireAuth: false,
   },
   {
-    path: "/home",
+    path: "/",
     name: "Home",
     icon: "tim-icons icon-single-02",
     component: Home,

@@ -16,12 +16,10 @@
 */
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import _ from 'lodash';
 
 import { CardContent, CardHeader, Card} from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
-
 import { MDBRow, MDBCol } from "mdbreact";
 
 import update from 'immutability-helper'
@@ -31,28 +29,25 @@ class ResultsFilterLayout extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            attrs:undefined
+            attrs:undefined,
+            filters:{}
         };
       }
-
-    onTypeChangeCell = (event, values) => {
-        this.props.setStateParent({
-            filters: update(this.props.filters, {
-                celltype: { $set: values },
-            }),
-        });
+        callbackFunction = (key,val) => { 
+            this.setState(() => ({ filters: {[key]:val} }))
+            console.log(this.state)
+        }
+      onTypeChange = (event, values,key) => {
+        //  this.props.setStateParent({
+        //      filters: update(this.props.filters, {
+        //          [key]: { $set: values },
+        //      }),
+        //  });
+        console.log(event, values,key)
     }
-    onTypeChangeGene = (event, values) => {
-        this.props.setStateParent({
-            filters: update(this.props.filters, {
-                genes: { $set: values },
-            }),
-        });
-    }
-
   render() {
-    const genes = this.props.genes
-    const cell_type = this.props.celltype
+        let subset_visible = this.props.metadata.slice(0, 2)
+        let subset_hidden = this.props.metadata.slice(2, this.props.metadata.length)
     return (
         <div>         
             <Card variant="outlined">
@@ -61,33 +56,29 @@ class ResultsFilterLayout extends Component {
                 </CardHeader>
                 <CardContent>
                     <MDBRow>
-                        <MDBCol md="6" sm="12">
-                            <Autocomplete
-                                    id="gene"
-                                    title="gene"
-                                    size="small"
-                                    onChange={this.onTypeChangeGene}
-                                    options={genes}
-                                    renderInput={(params) => (
-                                    <TextField {...params} variant="standard" label="Filter by gene" placeholder="Filter by gene" />
-                                    )}
-                                />
-                        </MDBCol>
-                        <MDBCol md="6" sm="12">
-                            <Autocomplete multiple
-                                id="celltype"
-                                title="celltype"
-                                size="small"
-                                onChange={this.onTypeChangeCell}
-                                options={cell_type}
-                                renderInput={(params) => (
-                                <TextField {...params} variant="standard" label="Select cell type" placeholder="Select cell type" />
-                                )}
-                            />
-                        </MDBCol>
+                        {subset_visible.map(function(filter,idx){
+                            return(
+                                <MDBCol md="6">
+                                    <Autocomplete multiple
+                                        key={idx}
+                                        limitTags={2}
+                                        id={filter.name}
+                                        title={filter.name}
+                                        size="small"
+                                        onChange={(event, newValue) => {
+                                            console.log(filter.name)
+                                            console.log(newValue);
+                                          }}
+                                        options={filter.values}
+                                        renderInput={(params) => (
+                                        <TextField key={'TF_'+idx} {...params} variant="outlined" label={"Filter by "+ filter.name} placeholder={"Filter by "+ filter.name} />
+                                        )}
+                                    />
+                                </MDBCol>
+                            )
+                        },this)}
+ 
                     </MDBRow>
-                    
-                    
                 </CardContent>
             </Card>
         </div>

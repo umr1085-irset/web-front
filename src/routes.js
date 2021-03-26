@@ -15,9 +15,9 @@
 
 */
 
-import RGVroutes from './routes/rgv'
+//import RGVroutes from './routes/rgv'
 import Hudecaroutes from './routes/hudeca'
 
 
-var routes = RGVroutes.concat(Hudecaroutes);
+var routes = Hudecaroutes;
 export default routes;

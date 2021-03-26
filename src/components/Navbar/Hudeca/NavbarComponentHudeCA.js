@@ -32,8 +32,8 @@ class NavbarComponent extends Component {
             <MDBIcon icon="user" className="mr-1" />{user.username}
             </MDBDropdownToggle>
             <MDBDropdownMenu>
-              <Link to="/hudeca/user-profile"><MDBDropdownItem>Profile</MDBDropdownItem></Link>
-              <Link to="/hudeca/dashboard"><MDBDropdownItem>Dashboard</MDBDropdownItem></Link>
+              <Link to="/user-profile"><MDBDropdownItem>Profile</MDBDropdownItem></Link>
+              <Link to="/dashboard"><MDBDropdownItem>Dashboard</MDBDropdownItem></Link>
               <MDBDropdownItem onClick={this.onLogout}>Logout</MDBDropdownItem>
             </MDBDropdownMenu>
           </MDBDropdown>
@@ -44,10 +44,10 @@ class NavbarComponent extends Component {
     const user_not_logged = (
       <MDBNavbarNav right>
         <MDBNavItem>
-          <MDBNavLink to={"/hudeca/signup"}>Register</MDBNavLink>
+          <MDBNavLink to={"/signup"}>Register</MDBNavLink>
         </MDBNavItem>
         <MDBNavItem>
-          <MDBNavLink to={"/hudeca/login"}>Login</MDBNavLink>
+          <MDBNavLink to={"/login"}>Login</MDBNavLink>
         </MDBNavItem>
       </MDBNavbarNav>
     )
@@ -56,7 +56,7 @@ class NavbarComponent extends Component {
       <div>
         <MDBNavbar light expand="md">
           <MDBContainer>
-            <Link to="/hudeca/home"><MDBNavbarBrand>
+            <Link to="/"><MDBNavbarBrand>
               <strong className="black-text">HuDeCA</strong>
             </MDBNavbarBrand></Link>
             <MDBNavbarToggler onClick={this.toggleCollapse} />
@@ -68,9 +68,9 @@ class NavbarComponent extends Component {
                         Browse
                       </MDBDropdownToggle>
                       <MDBDropdownMenu className="dropdown-default" right>
-                        <Link to="/hudeca/view/studies"><MDBDropdownItem>By studies</MDBDropdownItem></Link>
-                        <Link to="/hudeca/view/datasets"><MDBDropdownItem>By datasets</MDBDropdownItem></Link>
-                        <Link to="/hudeca/view/genomes"><MDBDropdownItem>By genomes</MDBDropdownItem></Link>
+                        <Link to="/view/studies"><MDBDropdownItem>By studies</MDBDropdownItem></Link>
+                        <Link to="/view/datasets"><MDBDropdownItem>By datasets</MDBDropdownItem></Link>
+                        <Link to="/view/genomes"><MDBDropdownItem>By genomes</MDBDropdownItem></Link>
                       </MDBDropdownMenu>
                     </MDBDropdown>
                   </MDBNavItem>
@@ -80,8 +80,8 @@ class NavbarComponent extends Component {
                         Help
                       </MDBDropdownToggle>
                       <MDBDropdownMenu className="dropdown-default" right>
-                        <Link to="/hudeca/tutorial"><MDBDropdownItem>Tutorial</MDBDropdownItem></Link>
-                        <Link to="/hudeca/technical-corner"><MDBDropdownItem>Technical corner</MDBDropdownItem></Link>
+                        <Link to="/tutorial"><MDBDropdownItem>Tutorial</MDBDropdownItem></Link>
+                        <Link to="/technical-corner"><MDBDropdownItem>Technical corner</MDBDropdownItem></Link>
                       </MDBDropdownMenu>
                     </MDBDropdown>
                   </MDBNavItem>
@@ -91,9 +91,9 @@ class NavbarComponent extends Component {
                         About
                       </MDBDropdownToggle>
                       <MDBDropdownMenu className="dropdown-default" right>
-                        <Link to="/hudeca/about"><MDBDropdownItem>About Hudeca</MDBDropdownItem></Link>
-                        <Link to="/hudeca/institutions"><MDBDropdownItem>Institutions and founders</MDBDropdownItem></Link>
-                        <Link to="/hudeca/ressources"><MDBDropdownItem>Other ressources</MDBDropdownItem></Link>
+                        <Link to="/about"><MDBDropdownItem>About Hudeca</MDBDropdownItem></Link>
+                        <Link to="/institutions"><MDBDropdownItem>Institutions and founders</MDBDropdownItem></Link>
+                        <Link to="/ressources"><MDBDropdownItem>Other ressources</MDBDropdownItem></Link>
                       </MDBDropdownMenu>
                     </MDBDropdown>
                   </MDBNavItem>

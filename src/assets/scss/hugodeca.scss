@@ -52,3 +52,13 @@
 .capitalize:first-line {
   text-transform: uppercase;
 }
+.result-title {
+  display: inline;
+}
+.MuiPaper-root.ddb-result{
+  background: linear-gradient(90, #ffffff 80%, #2BBBAD 80%) !important;
+}
+.center-col {
+  height:100px;
+  overflow-y: scroll;
+}

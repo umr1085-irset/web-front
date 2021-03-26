@@ -39,7 +39,7 @@ class TableStudiesComponent extends Component {
              
                     <tr key={"row_"+i}>
                         <td key={"ID_"+i}><Typography variant="body1">{row.studyId.toString()}</Typography></td>
-                        <td key={"title_"+i}><Typography variant="body1"><Link to={"/hudeca/study/"+row.studyId}><Button color="primary">{row.title.toString()}</Button></Link></Typography></td>
+                        <td key={"title_"+i}><Typography variant="body1"><Link to={"/study/"+row.studyId}><Button color="primary">{row.title.toString()}</Button></Link></Typography></td>
                         <td key={"authors_"+i}><Typography variant="body1">{row.authors.toString()}</Typography></td>
                         <td key={"pub_date_"+i}><Typography variant="body1">{row.pub_date.toString()}</Typography></td>
                         <td key={"topics_"+i}><Typography variant="body1">{row.topics.toString()}</Typography></td>

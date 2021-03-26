@@ -16,15 +16,14 @@
 */
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import _ from 'lodash';
 
-import { MDBRow, MDBCol  } from "mdbreact";
+import { MDBRow, MDBCol, MDBCollapse  } from "mdbreact";
 import { CardContent, CardHeader, Card} from '@material-ui/core';
 import LoomPlotComponent from './LoomPlotComponent'
 import ResultsFilterLayout from './ResultFilterComponent'
 import SelectedFilterResults from './SelectedFilterResultComponent'
-
-
+import Typography from '@material-ui/core/Typography';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 
@@ -33,13 +32,18 @@ class ResultsLayout extends Component {
         super(props);
         this.state = {
             attrs:undefined,
-            filters:{
-                genes:"",
-                celltype:""
-        
-            }
         };
-      }
+    }
+    
+    state = {
+        collapseID: ""
+    }
+    
+    toggleCollapse = collapseID => () => {
+        this.setState(prevState => ({
+            collapseID: prevState.collapseID !== collapseID ? collapseID : ""
+        }));
+    }
 
     callbackFunction = (key,val) => { 
         this.setState(() => ({ filters: {[key]:val} }))
@@ -48,21 +52,56 @@ class ResultsLayout extends Component {
 
   render() {
       const dataset = this.props.dataset
+      console.log(this.props.filters)
     return (
         <div>         
             <MDBRow>
                 <MDBCol md="8" sm="12">
-                    <Card variant="outlined">
+                    <Card variant="outlined" className="ddb-result">
                         <CardHeader title={<Breadcrumbs/>}>
                             
                         </CardHeader>
-                        <CardContent>
-                            <h2>{dataset.datasetId} - {dataset.title}</h2>
+                        <CardContent >
+                            <MDBRow>
+                                <MDBCol md="11">
+                                    <Typography gutterBottom variant="h2" component="h2"  className="result-title">
+                                        {dataset.title}
+                                    </Typography>
+                                    <Typography variant="body2" color="textSecondary" component="p"  className="result-title">
+                                           {dataset.metadata.cell_number} {dataset.metadata.col_name} | {dataset.metadata.gene_number} {dataset.metadata.row_name}
+                                    </Typography>
+                                </MDBCol>
+                                <MDBCol md="1">
+                                    {dataset.rel_datasets.datasets.length?<ExpandMoreIcon fontSize="large" onClick={this.toggleCollapse("basicCollapse")}/>:<p></p>}
+                                </MDBCol>
+                            </MDBRow>
                         </CardContent>
+                        <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID} className="center-col">
+                            <CardContent >
+                                <MDBRow>
+                                    <MDBCol md="12">
+                                    <hr/>
+                                        {dataset.rel_datasets.datasets.map(function(data,idx){
+                                            return(
+                                            <div>
+                                                <Typography gutterBottom variant="h3" component="h3"  className="result-title">
+                                                    {data.title}
+                                                </Typography>
+                                                <Typography variant="body2" color="textSecondary" component="p"  className="result-title">
+                                                    {data.cell_number} {data.col_name} | {data.gene_number} {data.row_name}
+                                                </Typography>
+                                                <hr/>
+                                            </div>
+                                            )
+                                        })}
+                                    </MDBCol>
+                                </MDBRow>
+                            </CardContent>
+                        </MDBCollapse>
                     </Card>
                 </MDBCol>
                 <MDBCol md="4" sm="12">
-                   <ResultsFilterLayout genes={dataset.metadata.genes} celltype={dataset.metadata.celltype}  filters={this.state.filters} setStateParent={(p, cb) => this.setState(p, cb)} />
+                   <ResultsFilterLayout  metadata={dataset.metadata.filters} filters={this.state.filters} setStateParent={(p, cb) => this.setState(p, cb)} />
                 </MDBCol>
             </MDBRow>
             <MDBRow>

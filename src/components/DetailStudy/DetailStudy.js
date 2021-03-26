@@ -136,7 +136,6 @@ class DetailStudyPage extends Component {
                             </Card>
                         </MDBCol>
                     </MDBRow>
-                   
                 </MDBCol>
             </MDBRow>
             <MDBRow>
@@ -157,7 +156,7 @@ class DetailStudyPage extends Component {
                                             <td className="capitalize" key={"omics_"+idx}>{data.sop.omics.toLowerCase()}</td>
                                             <td className="capitalize" key={"technology_"+idx}>{data.sop.technoGrain.toLowerCase()} {data.sop.technology.toLowerCase()}</td>
                                             <td key={"btn_"+idx}>
-                                                    <Link to={"/hudeca/dataset/"+data.datasetId}><Button key={"display_btn"+idx} color="primary" style={{borderWidth: '2px'}}><ScatterPLotIcon color="primary"></ScatterPLotIcon></Button></Link>
+                                                    <Link to={"/dataset/"+data.datasetId}><Button key={"display_btn"+idx} color="primary" style={{borderWidth: '2px'}}><ScatterPLotIcon color="primary"></ScatterPLotIcon></Button></Link>
                                             </td>
                                             <td key={"download_"+idx}>
                                                 <Button variant="contained" color="primary" className='p-2' key={"download_btn"+idx}>
