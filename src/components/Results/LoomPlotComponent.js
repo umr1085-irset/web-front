@@ -16,6 +16,7 @@
 */
 import React, { Component } from "react";
 import axios from "axios";
+import GraphSelector from './GraphSelector'
 import { toastOnError } from "../../utils/Utils";
 import { trackPromise } from 'react-promise-tracker';
 import PlotComponent from "../Plots/PlotComponent"
@@ -90,16 +91,8 @@ class LoomPlotComponent extends Component {
               
             </CardHeader>
             <CardContent>
-              <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID}>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-                    ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                    aliquip ex ea commodo consequat. Duis aute irure dolor in
-                    reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                    pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                    culpa qui officia deserunt mollit anim id est laborum
-                  </p>
+              <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID} className="filtertools">
+                 <GraphSelector />
               </MDBCollapse>
               {this.state.loading ? <Spinner/> : this.displayPlot(this.state.style,KeysToComponentDisplay,this.state.chart)}
             </CardContent>

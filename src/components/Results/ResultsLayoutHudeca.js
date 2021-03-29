@@ -32,6 +32,10 @@ class ResultsLayout extends Component {
         super(props);
         this.state = {
             attrs:undefined,
+            filters:{
+                row_attributes:{},
+                col_attributes:{}
+            }
         };
     }
     
@@ -52,7 +56,6 @@ class ResultsLayout extends Component {
 
   render() {
       const dataset = this.props.dataset
-      console.log(this.props.filters)
     return (
         <div>         
             <MDBRow>
@@ -106,23 +109,23 @@ class ResultsLayout extends Component {
             </MDBRow>
             <MDBRow>
                 <MDBCol md="12">
-                   {this.state.filters? <SelectedFilterResults filters={this.state.filters}/>:<div></div>}
+                   {(Object.keys(this.state.filters.col_attributes)==0 && Object.keys(this.state.filters.row_attributes)==0)? null : <SelectedFilterResults filters={this.state.filters}/>}
                 </MDBCol>
             </MDBRow>
             <MDBRow>
                 <MDBCol md="4">
-                    <LoomPlotComponent loom={dataset.loom.id} url="/api/v1/dataset/attributes" style="pie" attrs={this.state.attrs}></LoomPlotComponent>
+                    <LoomPlotComponent loom={dataset.loom.id} url="/api/v1/dataset/attributes" filters={this.state.filters} style="pie" attrs={this.state.attrs}></LoomPlotComponent>
                 </MDBCol>
                 <MDBCol md="4">
-                    <LoomPlotComponent loom={dataset.loom.id} url="/api/v1/dataset/attributes" style="bar" attrs={this.state.attrs}></LoomPlotComponent>
+                    <LoomPlotComponent loom={dataset.loom.id} url="/api/v1/dataset/attributes" filters={this.state.filters} style="bar" attrs={this.state.attrs}></LoomPlotComponent>
                 </MDBCol>
                 <MDBCol md="4">
-                    <LoomPlotComponent loom={dataset.loom.id} url="/api/v1/dataset/attributes" style="bar" attrs={this.state.attrs} ></LoomPlotComponent>
+                    <LoomPlotComponent loom={dataset.loom.id} url="/api/v1/dataset/attributes" filters={this.state.filters} style="bar" attrs={this.state.attrs} ></LoomPlotComponent>
                 </MDBCol>
             </MDBRow>
             <MDBRow>
                 <MDBCol md="12">
-                    <LoomPlotComponent loom={dataset.loom.id} url="/api/v1/dataset/attributes" style="scatter" attrs={this.state.attrs}></LoomPlotComponent>
+                    <LoomPlotComponent loom={dataset.loom.id} url="/api/v1/dataset/attributes" filters={this.state.filters} style="scatter" attrs={this.state.attrs}></LoomPlotComponent>
                 </MDBCol>
             </MDBRow>
         </div>

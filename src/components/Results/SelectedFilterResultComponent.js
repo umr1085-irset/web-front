@@ -36,32 +36,43 @@ class SelectedFilterResults extends Component {
       }
 
   render() {
-    const genes = this.props.filters.genes
-    const cell_type = this.props.filters.celltype
+    const col_attributes = this.props.filters.col_attributes
+    const row_attributes = this.props.filters.row_attributes
     return (
         <div>         
             <Card variant="outlined">
                 <CardHeader title="Selected filters">
                     
                 </CardHeader>
-                <CardContent>                    
-                    {genes ?
-                        <Chip
-                        icon={<CompareArrowsIcon />}
-                        label={genes}
-                        color="primary"
-                        />
-                    :<p>No selected gene</p>}
-                    {cell_type ? 
-                        cell_type.map(function(celltype,index){
-                            return(<Chip
-                                icon={<FingerprintIcon />}
-                                color="primary"
-                                label={celltype}
-                                key={index}
-                                />)
-                        })
-                    :<p>No selected cell type</p>}
+                <CardContent>
+                    {Object.entries(col_attributes).map(([key,value])=>{
+                        return(
+                            value.map(function(val,idx){
+                                return(
+                                    <Chip
+                                        key={'col_'+idx}
+                                        icon={<CompareArrowsIcon />}
+                                        label={val}
+                                        color="primary"
+                                    />
+                                )
+                            })
+                    )})
+                    } 
+                    {Object.entries(row_attributes).map(([key,value])=>{
+                        return(
+                            value.map(function(val,idx){
+                                return(
+                                    <Chip
+                                        key={'row_'+idx}
+                                        icon={<FingerprintIcon />}
+                                        label={val}
+                                        color="primary"
+                                    />
+                                )
+                            })
+                    )})
+                    }                    
                 </CardContent>
             </Card>
         </div>
