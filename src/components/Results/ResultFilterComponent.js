@@ -21,6 +21,8 @@ import { CardContent, CardHeader, Card} from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
 import { MDBRow, MDBCol,MDBCollapse } from "mdbreact";
+import { Button} from '@material-ui/core';
+
 
 import update from 'immutability-helper'
 
@@ -32,15 +34,17 @@ class ResultsFilterLayout extends Component {
             collapseID: "",
             attrs:undefined,
             filters:{
-                row_attributes:{},
-                col_attributes:{}
+                ra:{},
+                ca:{}
             }
         };
       }
 
-    onTypeChange = (event, values,key) => {
-          
-        console.log(event, values,key)
+    onTypeChange = () => {
+        console.log(this.state)
+        this.props.setStateParent({
+            filters: update(this.props.filters, {$set: this.state.filters}),
+        });
     }
 
     toggleCollapse = collapseID => () => {
@@ -52,10 +56,18 @@ class ResultsFilterLayout extends Component {
   render() {
         let subset_visible = this.props.metadata.slice(0, 2)
         let subset_hidden = this.props.metadata.slice(2, this.props.metadata.length)
+        const header=(
+            <div>
+                <span className="MuiCardHeader-title">Filter(s)</span>
+                <Button variant="outlined" color="primary" style={{float: 'right'}} onClick={this.onTypeChange}>
+                    Apply filter(s)
+                </Button>
+            </div>
+        )
     return (
         <div>         
             <Card variant="outlined">
-                <CardHeader title="Filters">
+                <CardHeader title={header}>
                     
                 </CardHeader>
                 <CardContent>
@@ -70,8 +82,8 @@ class ResultsFilterLayout extends Component {
                                         title={filter.name}
                                         size="small"
                                         onChange={(event, newValue) => {
-                                            this.props.setStateParent({
-                                                filters: update(this.props.filters, {
+                                            this.setState({
+                                                filters: update(this.state.filters, {
                                                     [filter.attributes]:{[filter.name]: {$set: newValue}},
                                                 }),
                                             });
@@ -100,12 +112,12 @@ class ResultsFilterLayout extends Component {
                                             title={filter.name}
                                             size="small"
                                             onChange={(event, newValue) => {
-                                                this.props.setStateParent({
-                                                    filters: update(this.props.filters, {
+                                                this.setState({
+                                                    filters: update(this.state.filters, {
                                                         [filter.attributes]:{[filter.name]: {$set: newValue}},
                                                     }),
                                                 });
-                                              }}
+                                            }}
                                             options={filter.values}
                                             renderInput={(params) => (
                                             <TextField key={'TFH_'+idx} {...params} variant="outlined" label={"Filter by "+ filter.name} placeholder={"Filter by "+ filter.name} />

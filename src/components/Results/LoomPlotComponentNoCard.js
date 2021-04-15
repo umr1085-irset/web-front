@@ -27,7 +27,6 @@ import {Spinner} from '../Loading/LoadingComponent'
 import { Doughnut, Pie, HorizontalBar  } from 'react-chartjs-2';
 
 // reactstrap components
-import { CardContent, CardHeader, Card, ThemeProvider} from '@material-ui/core';
 
 
 import { MDBCollapse, MDBIcon } from "mdbreact";
@@ -72,15 +71,15 @@ class LoomPlotComponent extends Component {
       }
 
       async componentDidMount() {
-        this.setState({chart_type:this.props.chart_type,filters:this.props.filters,attrs:this.props.attrs})
-        this.getDataPlot(this.props.url,this.props.loom,this.props.chart_type,this.props.attrs,this.props.menu,this.props.filters)
-    }
-    async componentWillReceiveProps(nextProps) {
-      if( nextProps.filters !== this.props.filters ){
-        this.setState({filters:nextProps.filters})
-        this.getDataPlot(this.props.url,this.props.loom,this.state.chart_type,this.state.attrs,this.props.menu,nextProps.filters)
+          this.setState({chart_type:this.props.chart_type,filters:this.props.filters,attrs:this.props.attrs})
+          this.getDataPlot(this.props.url,this.props.loom,this.props.chart_type,this.props.attrs,this.props.menu,this.props.filters)
       }
-    }
+      async componentWillReceiveProps(nextProps) {
+        if( nextProps.filters !== this.props.filters ){
+          this.setState({filters:nextProps.filters})
+          this.getDataPlot(this.props.url,this.props.loom,this.state.chart_type,this.state.attrs,this.props.menu,nextProps.filters)
+        }
+      }
 
       
       state = {
@@ -122,18 +121,16 @@ class LoomPlotComponent extends Component {
         scatter:"Scatter plot"
     };
       return (
-        <Card className="card-chart">
-              <CardHeader title={<span><a onClick={this.toggleCollapse("basicCollapse")}><MDBIcon icon="cog"  /></a>   {KeysToNameDisplay[this.props.chart_type]} {this.props.attrs}</span>}/>
-            <CardContent>
-                <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID} className="filtertools">
-                  {this.state.genes_menu? 
-                    <GraphSelector chart_type={this.state.chart_type} filters={this.state.filters} genes_menu={this.state.genes_menu} setStateParent={(p, cb) => this.setState(p, cb)}/> : 
-                    <GraphSelectorLight chart_type={this.state.chart_type} filters={this.state.filters} selected_attrs={this.state.attrs} attrs={this.props.all_attrs} callbackUpdateGraph={this.callbackUpdateGraph} name={this.props.name}/>
-                  }
-                </MDBCollapse>
-              {this.state.loading ? <Spinner/> : this.displayPlot(this.state.style,KeysToComponentDisplay,this.state.chart)}
-            </CardContent>
-        </Card>
+        <div>
+            <span><a onClick={this.toggleCollapse("basicCollapse")}><MDBIcon icon="cog"  /></a>   {KeysToNameDisplay[this.props.chart_type]} {this.props.attrs}</span>
+              <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID} className="filtertools">
+                {this.state.genes_menu? 
+                  <GraphSelector chart_type={this.state.chart_type} filters={this.state.filters} genes_menu={this.state.genes_menu} setStateParent={(p, cb) => this.setState(p, cb)}/> : 
+                  <GraphSelectorLight chart_type={this.state.chart_type} filters={this.state.filters} selected_attrs={this.state.attrs} attrs={this.props.all_attrs} callbackUpdateGraph={this.callbackUpdateGraph} name={this.props.name}/>
+                }
+              </MDBCollapse>
+            {this.state.loading ? <Spinner/> : this.displayPlot(this.state.style,KeysToComponentDisplay,this.state.chart)}
+        </div>
       );
     }
   }

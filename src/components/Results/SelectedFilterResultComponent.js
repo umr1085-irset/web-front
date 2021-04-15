@@ -36,8 +36,9 @@ class SelectedFilterResults extends Component {
       }
 
   render() {
-    const col_attributes = this.props.filters.col_attributes
-    const row_attributes = this.props.filters.row_attributes
+    const col_attributes = this.props.filters.ca
+    const row_attributes = this.props.filters.ra
+    console.log( this.props.filters)
     return (
         <div>         
             <Card variant="outlined">
