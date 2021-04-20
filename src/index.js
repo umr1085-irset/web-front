@@ -44,8 +44,7 @@ ReactDOM.render(
     <ToastContainer hideProgressBar={true} newestOnTop={true} />
       <Root>
         <Switch>
-          <Route path="/rgv" render={(props) => <RgvLayout {...props} />} />
-          <Route path="/hudeca" render={(props) => <HudecaLayout {...props} />} />
+          <Route path="/" render={(props) => <HudecaLayout {...props} />} />
         </Switch>
       </Root>
   </ThemeProvider>,

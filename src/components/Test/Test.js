@@ -1,16 +1,44 @@
 import React from 'react';
+import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
+import clsx from 'clsx';
+import Collapse from '@material-ui/core/Collapse';
 import { emphasize, withStyles, makeStyles } from '@material-ui/core/styles';
+import Box from '@material-ui/core/Box';
+import Chip from '@material-ui/core/Chip';
 import IconButton from '@material-ui/core/IconButton';
-import { Button, ButtonGroup, Badge, Box, Chip, Divider, Grid, CardContent, CardHeader, Card , Breadcrumbs} from '@material-ui/core';
+import Badge from '@material-ui/core/Badge';
+import { Button, ButtonGroup,Paper, Tabs, Tab, Divider, Grid, CardContent, CardHeader, Card , Breadcrumbs} from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import GetAppOutlinedIcon from '@material-ui/icons/GetAppOutlined';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 
 import HexaIcon from '../../assets/Icons/Hexa';
 import HexaOutlinedIcon from '../../assets/Icons/HexaOutlined';
 import HexaTwoToneIcon from '../../assets/Icons/HexaTwoTone';
+import SquareOutlinedIcon from '../../assets/Icons/SquareOutlined';
+
+import CurvesIcon from '../../assets/Icons/Curves';
+import CurvesTwoToneIcon from '../../assets/Icons/CurvesTwoTone';
+
+import ScatterPlotIcon from '../../assets/Icons/ScatterPlot';
+import ScatterPlotOutlinedIcon from '../../assets/Icons/ScatterPlotOutlined';
+import ScatterPlotTwoToneIcon from '../../assets/Icons/ScatterPlotTwoTone';
+
+import PieOutlinedIcon from '../../assets/Icons/PieOutlined';
+import PieTwoToneIcon from '../../assets/Icons/PieTwoTone';
+
+import BarchartIcon from '../../assets/Icons/Barchart';
+import BarchartOutlinedIcon from '../../assets/Icons/BarchartOutlined';
+import BarchartTwoToneIcon from '../../assets/Icons/BarchartTwoTone';
+
+import DoughnutIcon from '../../assets/Icons/Doughnut';
+import DoughnutOutlinedIcon from '../../assets/Icons/DoughnutOutlined';
+import DoughnutTwoToneIcon from '../../assets/Icons/DoughnutTwoTone';
+
+import SettingsIcon from '../../assets/Icons/Settings';
 
 import Alert from '@material-ui/lab/Alert';
 import Slider from '@material-ui/core/Slider';
@@ -43,11 +71,27 @@ function handleClick(event) {
 
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: 300,
   },
-});
+  expand: {
+    transform: 'rotate(0deg)',
+    marginLeft: 'auto',
+    transition: theme.transitions.create('transform', {
+      duration: theme.transitions.duration.shortest,
+    }),
+  },
+  expandOpen: {
+    transform: 'rotate(180deg)',
+  },
+  borderl: {
+	borderRight: '1px solid #CCCCCC',
+  },
+   minW: {
+	minWidth: '300px',
+  },
+}));
 
 function valuetext(value) {
   return `${value}`;
@@ -76,21 +120,44 @@ function RangeSlider() {
 }
 
 
+
+
+
 function TestApp() {
 	
-
+  const classes = useStyles();
+	const [expanded, setExpanded] = React.useState(true);
+	const [expanded2, setExpanded2] = React.useState(true);
+	const handleExpandClick = () => {
+    setExpanded(!expanded);
+  };
+  const handleExpandClick2 = () => {
+    setExpanded2(!expanded2);
+  };
   return (
 
-	<Box className="App" maxWidth="m" m={2}>
+	<Box className="App"  m={2}>
 
 	        <Typography variant="h1" gutterBottom>
           Style Guide (H1)
         </Typography>
 
-  <Grid container spacing={3}>
-        <Grid item xs={12}>
-           <Card variant="outlined">
-		   <CardHeader title="Typography"></CardHeader>
+
+           <Card variant="outlined" >
+		   <CardHeader title="Typography"  action={
+<IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded,
+          })}
+          onClick={handleExpandClick}
+          aria-expanded={expanded}
+          aria-label="show more"
+        >
+          <ExpandMoreIcon />
+        </IconButton>
+        }>
+</CardHeader>
+		<Collapse in={expanded} timeout="auto" unmountOnExit>
       <CardContent>
 		   <Typography variant="h2" gutterBottom>
         h2. For dataset/study name as main titles
@@ -118,16 +185,61 @@ function TestApp() {
         overline text
       </Typography>
 	  </CardContent>
+	   </Collapse>
 		  </Card>
+
+		 
+		 
+
+           <Card variant="outlined">
+		   <CardHeader title="Repartition by cell metadata" subheader="% expressed in nb of cells" action={
+<IconButton
+          className={clsx(classes.expand, {
+            [classes.expandOpen]: expanded2,
+          })}
+          onClick={handleExpandClick2}
+          aria-expanded={expanded2}
+          aria-label="show more"
+        >
+          <ExpandMoreIcon />
+        </IconButton>
+        }>
+</CardHeader>
+		<Collapse in={expanded2} timeout="auto" unmountOnExit>
+      <CardContent>
+	  
+	  
+	  
+ <Grid container direction="row" xs={12}>
+        
+		 
+		  <Grid item xs={12} sm={4}  className={classes.minW}>
+          <Box  padding={2}>graph1<br /> Avec du blablblablablba lblablb<br /> Avec du blablblablablba lblablb</Box>
         </Grid>
-		 </Grid>
-		 
-		 
-		 
-		 
+        <Grid item xs={12} sm={4}  className={classes.minW}>
+            <Box  padding={2}>graph2</Box>
+        </Grid>
+        <Grid item xs={12} sm={4} className={classes.minW}>
+           <Box padding={2}>graph3</Box>
+        </Grid>
+		       
+
 		
-  <Grid container spacing={3}>
-        <Grid item xs={12}>
+		
+		 </Grid>
+	  
+	  </CardContent>
+	   </Collapse>
+		  </Card>
+   
+
+
+
+
+		 
+
+		
+
            <Card variant="outlined">
 		   <CardHeader title="Buttons and icons"></CardHeader>
       <CardContent>
@@ -241,6 +353,36 @@ function TestApp() {
 <HexaOutlinedIcon color="action"></HexaOutlinedIcon>
 <HexaTwoToneIcon color="action"></HexaTwoToneIcon>
 
+<CurvesIcon color="primary"></CurvesIcon>
+<CurvesTwoToneIcon color="primary"></CurvesTwoToneIcon>
+<ScatterPlotOutlinedIcon color="primary"></ScatterPlotOutlinedIcon>
+<ScatterPlotIcon color="primary"></ScatterPlotIcon>
+<ScatterPlotTwoToneIcon color="primary"></ScatterPlotTwoToneIcon>
+
+<PieOutlinedIcon color="primary"></PieOutlinedIcon>
+<PieTwoToneIcon color="primary"></PieTwoToneIcon>
+
+<DoughnutOutlinedIcon color="primary"></DoughnutOutlinedIcon>
+<DoughnutIcon color="primary"></DoughnutIcon>
+<DoughnutTwoToneIcon color="primary"></DoughnutTwoToneIcon>
+
+<BarchartOutlinedIcon color="primary"></BarchartOutlinedIcon>
+<BarchartIcon color="primary"></BarchartIcon>
+<BarchartTwoToneIcon color="primary"></BarchartTwoToneIcon>
+
+<ButtonGroup style={withMargin}
+        color="primary" variant="contained" disableElevation
+        aria-label="outlined primary button group"
+      >
+        <Button><ScatterPlotTwoToneIcon tyle={{ color: "#ffffff" }}  fontSize="large"></ScatterPlotTwoToneIcon></Button>
+      </ButtonGroup>
+	  
+	<ButtonGroup style={withMargin}
+        color="primary" variant="contained" disableElevation
+        aria-label="outlined primary button group"
+      >
+        <Button><SettingsIcon tyle={{ color: "#ffffff" }}  fontSize="large"></SettingsIcon></Button>
+      </ButtonGroup>
 
 
 
@@ -280,14 +422,9 @@ function TestApp() {
 
 	 </CardContent>
 		  </Card>
-        </Grid>
-		</Grid>
+
 	  
-	
-		
-		
-	  <Grid container spacing={3}>
-        <Grid item xs={12}>
+
            <Card variant="outlined">
 		   <CardHeader title="Breadcrumbs"></CardHeader>
 		   
@@ -307,11 +444,9 @@ function TestApp() {
 </Breadcrumbs>
  </CardContent>
 		  </Card>
-        </Grid>
-		</Grid>
 
-  <Grid container spacing={3}>
-        <Grid item xs={12}>
+
+
            <Card variant="outlined">
 		   <CardHeader title="Alert messages"></CardHeader>
       <CardContent>
@@ -326,14 +461,10 @@ function TestApp() {
 
  </CardContent>
 		  </Card>
-        </Grid>
-		</Grid>
+
 		
 		
-		
-		
-		  <Grid container spacing={3}>
-        <Grid item xs={12}>
+
            <Card variant="outlined">
 		   <CardHeader title="Slider"></CardHeader>
       <CardContent>
@@ -347,8 +478,7 @@ function TestApp() {
 
  </CardContent>
 		  </Card>
-        </Grid>
-		</Grid>
+ 
 		
 
 		</Box>

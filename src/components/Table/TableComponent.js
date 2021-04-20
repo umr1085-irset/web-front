@@ -17,11 +17,9 @@
 
 */
 import React, { Component } from "react";
-import { Link  } from "react-router-dom";
 
-import {Spinner} from '../Loading/LoadingComponent'
-import { MDBRow, MDBContainer, MDBCol, MDBDataTableV5 } from "mdbreact";
-import { Button } from '@material-ui/core';
+import { MDBRow, MDBContainer, MDBCol, MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
+import StudyTable from './TableStudies'
 
 
 class TableComponent extends Component {
@@ -58,62 +56,21 @@ class TableComponent extends Component {
     });
   }
 
-
+  displayTable = (KeysToTable,key,columns,rows) =>{
+    return React.createElement(KeysToTable[key],{columns:columns,rows: rows})
+  }
   render() {
-    const withMargin = {
-      margin: '10px'
-     };
-    const data = {
-      columns: [
-        {
-          label: 'Title',
-          field: 'title',
-          width: 150,
-          attributes: {
-            'aria-controls': 'DataTable',
-            'aria-label': 'Title',
-          },
-        },
-        {
-          label: 'Year',
-          field: 'year',
-          width: 270,
-        },
-      ],
-      rows: this.filterPlainArray(this.props.data,this.props.filters)
-    };
-
-    const badgesData = {
-      columns: [
-        ...data.columns,
-        {
-          label: 'Actions',
-          field: 'actions',
-        },
-        
-      ],
-      rows: [
-        ...data.rows.map((row, order) => ({
-          ...row,
-          actions: (
-            <>
-              <Link to={"/hudeca/study/"+row.id}><Button variant="contained" color="primary" style={withMargin} className='p-2' key={'view_'+order} searchvalue={row.title}>
-                View
-              </Button></Link>
-              <Button variant="contained" color="primary" style={withMargin} className='p-2' key={order} searchvalue={row.title}>
-                Download
-              </Button>
-            </>
-          ),
-        })),
-      ],
-    };
+    const KeysToTable ={
+      studies:StudyTable,
+      datasets:StudyTable,
+    }
+    const columns = this.props.columns;
+    const rows = this.filterPlainArray(this.props.data,this.props.filters);
     return (
           <MDBContainer className="mt-5">
             <MDBRow>
                 <MDBCol md="12">
-                {data.rows ? <MDBDataTableV5 hover entriesOptions={[5, 20, 25, 50]} entries={15} pagesAmount={4} data={badgesData} fullPagination /> : <Spinner/>}
-                  
+                  {this.displayTable(KeysToTable,this.props.type,columns,rows)}
                 </MDBCol>
             </MDBRow>
 

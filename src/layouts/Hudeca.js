@@ -77,22 +77,22 @@ function Hudeca(props) {
 
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
-      if (prop.layout === "/hudeca" && prop.requireAuth) {
+      if (prop.requireAuth) {
         const Compo = prop.component
         return (
           <Route exact
-            path={prop.layout + prop.path}
+            path={prop.path}
             content={prop.content}
             component={requireAuth(() => (<Compo content={prop.content} />))}
             key={key}
           />
         );
       }
-      else if (prop.layout === "/hudeca" && prop.requireAuth === false) {
+      else if (prop.requireAuth === false) {
         const Compo = prop.component
         return (
           <Route exact
-            path={prop.layout + prop.path}
+            path={prop.path}
             component={() => (<Compo content={prop.content} />)}
             key={key}
           />
@@ -111,7 +111,6 @@ function Hudeca(props) {
               <NavbarComponent/>
               <Switch>
                 {getRoutes(routes)}
-                <Redirect from="/hudeca/*" to="/hudeca/home" />
               </Switch>
               
               <Footer fluid />

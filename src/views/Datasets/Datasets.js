@@ -15,7 +15,7 @@
 
 */
 import React, { Component } from "react";
-import { withRouter, Link  } from "react-router-dom";
+import { withRouter  } from "react-router-dom";
 
 import { MDBRow, MDBContainer, MDBCol } from "mdbreact";
 
@@ -29,6 +29,7 @@ import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import axios from "axios";
 import { toastOnError } from "../../utils/Utils";
 import { trackPromise } from 'react-promise-tracker';
+import { add, delay } from "lodash";
 
 class DatasetPage extends Component {
     constructor(props) {
@@ -47,7 +48,6 @@ class DatasetPage extends Component {
           axios.get("/api/v1/studies/public")
           .then(response => {
             this.setState({data : response.data}); 
-            console.log(this.state.data)
             this.setState({loading : false});
             this.setState({loading2 : false});  
           })
@@ -70,14 +70,87 @@ class DatasetPage extends Component {
     displayFilter = (KeysToComponentDisplay,key,data,callback,filters) =>{
       return React.createElement(KeysToComponentDisplay[key],{key:"filterDisplay_by_"+key,data: data, parentCallback: callback, filters: filters})
     }
+
   render() {
-  
+    
+    const col_names = {
+      studies:[
+        {
+          label: 'ID',
+          field: 'studyId',
+        },
+        {
+          label: 'Title',
+          field: 'title',
+        },
+        {
+          label: 'Authors',
+          field: 'authors',
+        },
+        {
+          label: 'Publication date',
+          field: 'pub_date',
+        },
+        {
+          label: 'Topics',
+          field: 'topics',
+        },
+        {
+          label: 'Technology',
+          field: 'technology',
+        },
+        {
+          label: 'Species',
+          field: 'species',
+        },
+        {
+          label: 'Tissues',
+          field: 'tissues',
+        },
+      ],
+    datasets:[
+        {
+          label: 'ID',
+          field: 'datasetId',
+        },
+        {
+          label: 'Title',
+          field: 'title',
+        },
+        {
+          label: 'Type',
+          field: 'type',
+        },
+        {
+          label: 'Developmental stage',
+          field: 'dev_stage',
+        },
+        {
+          label: 'Species',
+          field: 'species',
+        },
+        {
+          label: 'Gender',
+          field: 'gender',
+        },
+        {
+          label: 'Tissues',
+          field: 'tissues',
+        },
+      ]
+    }
+    
+
+    
+
     const KeysToComponentDisplay = {
         datasets:FilterComponentDataset,
         studies:FilterComponentStudies,
         genomes:""
 
     };
+
+    
     return (
           <MDBContainer className="mt-5">
             <Breadcrumbs/>
@@ -89,7 +162,7 @@ class DatasetPage extends Component {
             </MDBRow>
             <MDBRow className="z-depth-1 filter-box mt-5">
                 <MDBCol md="12">
-                  {this.state.loading ? <Spinner/> : <TableComponent data={this.state.data} filters={this.state.filters} />}
+                  {this.state.loading ? <Spinner/> : <TableComponent data={this.state.data} filters={this.state.filters} columns={col_names[this.props.match.params.browse_by]} type={this.props.match.params.browse_by} />}
                 </MDBCol>
             </MDBRow>
           </MDBContainer>
