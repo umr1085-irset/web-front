@@ -6,8 +6,10 @@ import { MDBRow, MDBCol, MDBContainer  } from "mdbreact";
 
 import Tooltip from '@material-ui/core/Tooltip';
 
-import BarIcon from '../../assets/Icons/Barchart';
+import BarchartIcon from '../../assets/Icons/Barchart';
 import PieIcon from '../../assets/Icons/PieTwoTone';
+import ScatterPlotIcon from "../../assets/Icons/ScatterPlot";
+import HexbinIcon from "../../assets/Icons/Hexa";
 
 class GraphSelectorLight extends Component {
     constructor(props) {
@@ -18,36 +20,42 @@ class GraphSelectorLight extends Component {
       this.updateGraph = this.updateGraph.bind(this)
     }
 
-    updateGraph2(event){ 
-        console.log(event.currentTarget.value)
-        console.log(event.currentTarget.value[0])
-        console.log(event.currentTarget.value[1])
-        //this.props.callbackUpdateGraph(event.currentTarget.value,)
-    }
 
     updateGraph(attr, chart_type, event){
         this.props.callbackUpdateGraph(attr, chart_type)
     }
 
+    displayIcon = (plot_type,KeysToIconDisplay,key) =>{
+        return React.createElement(KeysToIconDisplay[plot_type],{key:key ,fontSize:"large"})
+    }
+
+
 
     render() {
       const attributes = this.props.attrs
+      const display_type = this.props.display_type
+      
+      const KeysToIconDisplay = {
+        pie:PieIcon,
+        bar:BarchartIcon ,
+        scatter:ScatterPlotIcon,
+        hexbin:HexbinIcon,
+        //density:DensityIcon
+    };
+
       let tagList = attributes.map((attribute,idx)  => 
         <MDBCol md="12" className="mt-2" key={this.props.name+"_col1_btn"+idx}>
             <MDBRow middle key={this.props.name+"_col1_r1"+idx}>
-                <MDBCol md="6" className="mb-2" key={this.props.name+"_col1_r1_col1"+idx}>
+                <MDBCol md="6" className="mb-2" key={this.props.name+"_col1_r1_col1"+idx} style={{ textTransform: 'capitalize' }}>
                     {attribute}
                 </MDBCol>
-                <MDBCol md="2" className="mb-2" key={this.props.name+"_col1_r1_col2"+idx}>
-                    <Tooltip title="barchart" aria-label="barchart" key={this.props.name+"_col1_r1_col2_tool"+idx}>
-                        <Button onClick={(e) => this.updateGraph(attribute, "bar")}  id={this.props.name+"_barchart_btn"+idx} variant="outlined" color="primary"><BarIcon key={this.props.name+"_col1_r1_col2_tool_btn_hex"+idx}  fontSize="large"></BarIcon></Button>
-                    </Tooltip>
-                </MDBCol>
-                <MDBCol md="2" className="mb-2" key={this.props.name+"_col1_r1_col2_pie"+idx}>
-                    <Tooltip title="pie" aria-label="pie" key={this.props.name+"_col1_r1_col2_tool_pie"+idx}>
-                        <Button onClick={(e) => this.updateGraph(attribute, "pie")}  id={this.props.name+"_pie_btn"+idx} variant="outlined" color="primary"><PieIcon key={this.props.name+"_col1_r1_col2_tool_btn_hex_pie"+idx}  fontSize="large"></PieIcon></Button>
-                    </Tooltip>
-                </MDBCol>
+                {display_type.map((type,idxt) =>
+                    <MDBCol md="2" className="mb-2" key={this.props.name+"_col1_r1_col2"+idxt}>
+                        <Tooltip title={type} aria-label={type} key={type+"_col1_r1_col2_tool"+idxt}>
+                            <Button onClick={(e) => this.updateGraph(attribute, type)}  id={this.props.name+"_barchart_btn"+idxt} variant="outlined" color="primary">{this.displayIcon(type,KeysToIconDisplay,this.props.name+"_col1_r1_col2_tool_btn_hex"+idxt)}</Button>
+                        </Tooltip>
+                    </MDBCol>
+                )}
             </MDBRow>
             <Divider/>
         </MDBCol>        

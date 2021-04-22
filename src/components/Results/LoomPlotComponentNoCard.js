@@ -29,9 +29,9 @@ import { Doughnut, Pie, HorizontalBar  } from 'react-chartjs-2';
 // reactstrap components
 
 
-import { MDBCollapse, MDBIcon } from "mdbreact";
+import { MDBCol, MDBCollapse, MDBIcon, MDBRow } from "mdbreact";
 
-class LoomPlotComponent extends Component {
+class LoomPlotComponentCard extends Component {
       constructor(props) {
         super(props);
         this.state = {
@@ -93,7 +93,7 @@ class LoomPlotComponent extends Component {
       }
 
       displayPlot = (plot_type,KeysToComponentDisplay,data) =>{
-        if(plot_type === "scatter"){
+        if(plot_type === "scatter" || plot_type === "hexbin" || plot_type === "violin" ){
           return React.createElement(KeysToComponentDisplay[plot_type],{key:"plot_"+plot_type ,data: data.data, layout:data.layout})
         } else {
           return React.createElement(KeysToComponentDisplay[plot_type],{key:"plot_"+plot_type ,data: data, options:data.options})
@@ -112,27 +112,32 @@ class LoomPlotComponent extends Component {
           pie:Pie,
           doughnut:Doughnut,
           bar:HorizontalBar ,
-          scatter:PlotComponent
+          scatter:PlotComponent,
+          violin:PlotComponent,
+          hexbin:PlotComponent,
       };
-      const KeysToNameDisplay = {
-        pie:"Piechart",
-        doughnut:"Doughnut chart",
-        bar:"Barchart" ,
-        scatter:"Scatter plot"
-    };
       return (
         <div>
-            <span><a onClick={this.toggleCollapse("basicCollapse")}><MDBIcon icon="cog"  /></a>   {KeysToNameDisplay[this.props.chart_type]} {this.props.attrs}</span>
-              <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID} className="filtertools">
-                {this.state.genes_menu? 
-                  <GraphSelector chart_type={this.state.chart_type} filters={this.state.filters} genes_menu={this.state.genes_menu} setStateParent={(p, cb) => this.setState(p, cb)}/> : 
-                  <GraphSelectorLight chart_type={this.state.chart_type} filters={this.state.filters} selected_attrs={this.state.attrs} attrs={this.props.all_attrs} callbackUpdateGraph={this.callbackUpdateGraph} name={this.props.name}/>
-                }
-              </MDBCollapse>
-            {this.state.loading ? <Spinner/> : this.displayPlot(this.state.style,KeysToComponentDisplay,this.state.chart)}
+          <MDBRow>
+            <MDBCol md="12">
+              <a style={{ textTransform: 'capitalize' }} onClick={this.toggleCollapse("basicCollapse")}>{this.state.attrs} <MDBIcon className="ml-2" icon="angle-down" /></a>
+            </MDBCol>
+          </MDBRow>
+          <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID} className="filtertools">
+            {this.state.genes_menu? 
+              <GraphSelector chart_type={this.state.chart_type} filters={this.state.filters} genes_menu={this.state.genes_menu} setStateParent={(p, cb) => this.setState(p, cb)}/> : 
+              <GraphSelectorLight display_type={this.props.display_type} chart_type={this.state.chart_type} filters={this.state.filters} selected_attrs={this.state.attrs} attrs={this.props.all_attrs} callbackUpdateGraph={this.callbackUpdateGraph} name={this.props.name}/>
+            }
+          </MDBCollapse>
+          <MDBRow>
+            <MDBCol md="12">
+              {this.state.loading ? <Spinner/> : this.displayPlot(this.state.style,KeysToComponentDisplay,this.state.chart)}  
+            </MDBCol>
+          </MDBRow>
+            
         </div>
       );
     }
   }
   
-export default LoomPlotComponent;
+export default LoomPlotComponentCard;

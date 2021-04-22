@@ -20,10 +20,12 @@ import { withRouter } from "react-router-dom";
 import { CardContent, CardHeader, Card} from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import TextField from '@material-ui/core/TextField';
-import { MDBRow, MDBCol,MDBCollapse } from "mdbreact";
+import { MDBRow, MDBCol } from "mdbreact";
 import { Button} from '@material-ui/core';
-
-
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
 import update from 'immutability-helper'
 
 
@@ -40,30 +42,40 @@ class ResultsFilterLayout extends Component {
         };
       }
 
-    onTypeChange = () => {
-        console.log(this.state)
+    applyFilters = () => {
         this.props.setStateParent({
             filters: update(this.props.filters, {$set: this.state.filters}),
         });
     }
 
-    toggleCollapse = collapseID => () => {
-        this.setState(prevState => ({
-          collapseID: prevState.collapseID !== collapseID ? collapseID : ""
-        }));
+    handleChangeFilterBy = (event) => {
+        this.setState({filter_by:event.target.value})
+    };
+
+    getDefaultValues = (attr,name) => {
+        console.log(attr,name)
+        console.log(this.state.filters)
+        const val = this.state.filters[attr][name]
+        console.log(val)
+        if(val === undefined){
+            return([])
+        }
+        return(val)
     }
 
+
   render() {
-        let subset_visible = this.props.metadata.slice(0, 2)
-        let subset_hidden = this.props.metadata.slice(2, this.props.metadata.length)
+        const filters_keys = this.props.filters_keys
+        const filter = this.props.metadata
         const header=(
             <div>
                 <span className="MuiCardHeader-title">Filter(s)</span>
-                <Button variant="outlined" color="primary" style={{float: 'right'}} onClick={this.onTypeChange}>
+                <Button variant="outlined" color="primary" style={{float: 'right'}} onClick={this.applyFilters}>
                     Apply filter(s)
                 </Button>
             </div>
         )
+        
     return (
         <div>         
             <Card variant="outlined">
@@ -72,62 +84,51 @@ class ResultsFilterLayout extends Component {
                 </CardHeader>
                 <CardContent>
                     <MDBRow>
-                        {subset_visible.map(function(filter,idx){
-                            return(
-                                <MDBCol key={'col_'+idx} md="6">
-                                    <Autocomplete multiple
-                                        key={idx}
-                                        limitTags={1}
-                                        id={filter.name}
-                                        title={filter.name}
-                                        size="small"
-                                        onChange={(event, newValue) => {
-                                            this.setState({
-                                                filters: update(this.state.filters, {
-                                                    [filter.attributes]:{[filter.name]: {$set: newValue}},
-                                                }),
-                                            });
-                                          }}
-                                        options={filter.values}
-                                        renderInput={(params) => (
-                                        <TextField key={'TF_'+idx} {...params} variant="outlined" label={"Filter by "+ filter.name} placeholder={"Filter by "+ filter.name} />
-                                        )}
-                                    />
-                                </MDBCol>
-                            )
-                        },this)}
-                    <MDBCol className="align-self-center">
-                      <span className="highlight-text" onClick={this.toggleCollapse("filterCollapse")}>more filters</span>
-                    </MDBCol>
-                    </MDBRow>
-                    <MDBCollapse className="" id="filterCollapse" isOpen={this.state.collapseID}>
-                        <MDBRow>
-                            {subset_hidden.map(function(filter,idx){
-                                return(
-                                    <MDBCol key={'colH_'+idx} md="6" className="mt-3">
-                                        <Autocomplete multiple
-                                            key={"hiddenFilter_"+idx}
-                                            limitTags={1}
-                                            id={filter.name}
-                                            title={filter.name}
-                                            size="small"
-                                            onChange={(event, newValue) => {
-                                                this.setState({
-                                                    filters: update(this.state.filters, {
-                                                        [filter.attributes]:{[filter.name]: {$set: newValue}},
-                                                    }),
-                                                });
-                                            }}
-                                            options={filter.values}
-                                            renderInput={(params) => (
-                                            <TextField key={'TFH_'+idx} {...params} variant="outlined" label={"Filter by "+ filter.name} placeholder={"Filter by "+ filter.name} />
-                                            )}
-                                        />
-                                    </MDBCol>
-                                )
-                            },this)}
-                        </MDBRow>
-                    </MDBCollapse>
+                        <MDBCol md="6">
+                            <FormControl className="control-filter">
+                                <InputLabel className="control-filter" id="demo-simple-select-label">Filter by</InputLabel>
+                                <Select className="control-filter"
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={this.state.filter_by}
+                                onChange={this.handleChangeFilterBy}
+                                >
+                                {filters_keys.map(function(filter, idx){
+                                    return(<MenuItem value={filter} key={idx}>{filter}</MenuItem>)
+                                })}
+                                </Select>
+                            </FormControl>
+                        </MDBCol>                   
+                        {this.state.filter_by?
+                        <MDBCol md="6">
+                            <Autocomplete multiple
+                                limitTags={1}
+                                id={this.state.filter_by}
+                                title={this.state.filter_by}
+                                size="small"
+                                value={this.getDefaultValues(filter[this.state.filter_by]['attributes'],filter[this.state.filter_by]['name'])}
+                                onChange={(event, newValue) => {
+                                    if (newValue.length==0){
+                                        this.setState({
+                                            filters: update(this.state.filters, {
+                                                [filter[this.state.filter_by]['attributes']]:{$unset: [filter[this.state.filter_by]['name']]},
+                                            }),
+                                        });
+                                    } else {
+                                        this.setState({
+                                            filters: update(this.state.filters, {
+                                                [filter[this.state.filter_by]['attributes']]:{[filter[this.state.filter_by]['name']]: {$set: newValue}},
+                                            }),
+                                        });
+                                    }
+                                    }}
+                                options={filter[this.state.filter_by]['values']}
+                                renderInput={(params) => (
+                                <TextField  {...params} variant="outlined" label={"Filter by "+ this.props.metadata[this.state.filter_by]['name']} placeholder={"Filter by "+ this.props.metadata[this.state.filter_by]['name']} />
+                                )}
+                            />
+                        </MDBCol> : null }
+                     </MDBRow>
                 </CardContent>
             </Card>
         </div>

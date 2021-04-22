@@ -25,14 +25,9 @@ import PlotComponent from "../Plots/PlotComponent"
 import {Spinner} from '../Loading/LoadingComponent'
 
 import { Doughnut, Pie, HorizontalBar  } from 'react-chartjs-2';
+import { MDBCol, MDBCollapse, MDBIcon, MDBRow } from "mdbreact";
 
-// reactstrap components
-import { CardContent, CardHeader, Card, ThemeProvider} from '@material-ui/core';
-
-
-import { MDBCollapse, MDBIcon } from "mdbreact";
-
-class LoomPlotComponent extends Component {
+class GeneExpPlotComponent extends Component {
       constructor(props) {
         super(props);
         this.state = {
@@ -72,7 +67,7 @@ class LoomPlotComponent extends Component {
         )
       }
 
-      async componentDidMount() {
+    async componentDidMount() {
         this.setState({chart_type:this.props.chart_type,filters:this.props.filters,attrs:this.props.attrs})
         this.getDataPlot(this.props.url,this.props.loom,this.props.chart_type,this.props.attrs,this.props.menu,this.props.filters)
     }
@@ -120,20 +115,21 @@ class LoomPlotComponent extends Component {
       };
 
       return (
-        <Card className="card-chart">
-              <CardHeader title={<span><a style={{ textTransform: 'capitalize' }} onClick={this.toggleCollapse("basicCollapse")}>{this.state.attrs} <MDBIcon className="ml-2" icon="angle-down" /></a></span>}/>
-            <CardContent>
-                <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID} className="filtertools">
-                  {this.state.genes_menu? 
-                    <GraphSelector chart_type={this.state.chart_type} filters={this.state.filters} genes_menu={this.state.genes_menu} setStateParent={(p, cb) => this.setState(p, cb)}/> : 
-                    <GraphSelectorLight display_type={this.props.display_type} chart_type={this.state.chart_type} filters={this.state.filters} selected_attrs={this.state.attrs} attrs={this.props.all_attrs} callbackUpdateGraph={this.callbackUpdateGraph} name={this.props.name}/>
-                  }
-                </MDBCollapse>
-              {this.state.loading ? <Spinner/> : this.displayPlot(this.state.style,KeysToComponentDisplay,this.state.chart)}
-            </CardContent>
-        </Card>
+        <div>
+          <MDBRow>
+            <MDBCol md="12">
+              Menu
+            </MDBCol>
+          </MDBRow>
+          <MDBRow>
+            <MDBCol md="12">
+                display accoding menu selection (use displayPlot & KeysToComponentDisplay)
+            </MDBCol>
+          </MDBRow>
+            
+        </div>
       );
     }
   }
   
-export default LoomPlotComponent;
+export default GeneExpPlotComponent;
