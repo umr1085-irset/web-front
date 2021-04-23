@@ -26,6 +26,7 @@ import {Spinner} from '../Loading/LoadingComponent'
 
 import { Doughnut, Pie, HorizontalBar  } from 'react-chartjs-2';
 
+
 // reactstrap components
 
 

@@ -71,6 +71,7 @@
   margin-right: 15px;
   height: 70%;
   z-index: 2;
+  overflow-y: scroll;
 }
 
 .colDivider{
@@ -80,4 +81,13 @@
 
 .control-filter{
   min-width: 200px;
+}
+
+.plot_resize{
+  width: 100%;
+  height: 100%;
+}
+
+.spatialCollapse{
+  height: 600px;
 }

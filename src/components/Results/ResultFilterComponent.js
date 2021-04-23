@@ -52,11 +52,12 @@ class ResultsFilterLayout extends Component {
         this.setState({filter_by:event.target.value})
     };
 
+    handleChangeFilterByRa = (event) => {
+        this.setState({filter_by_ra:event.target.value})
+    };
+
     getDefaultValues = (attr,name) => {
-        console.log(attr,name)
-        console.log(this.state.filters)
         const val = this.state.filters[attr][name]
-        console.log(val)
         if(val === undefined){
             return([])
         }
@@ -84,24 +85,25 @@ class ResultsFilterLayout extends Component {
                 </CardHeader>
                 <CardContent>
                     <MDBRow>
-                        <MDBCol md="6">
-                            <FormControl className="control-filter">
-                                <InputLabel className="control-filter" id="demo-simple-select-label">Filter by</InputLabel>
+                        <MDBCol md="6" className="align-middle">
+                            <FormControl className="control-filter align-middle">
+                                <InputLabel className="control-filter align-middle" id="demo-simple-select-label">Filter by columns</InputLabel>
                                 <Select className="control-filter"
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 value={this.state.filter_by}
                                 onChange={this.handleChangeFilterBy}
                                 >
-                                {filters_keys.map(function(filter, idx){
+                                {filters_keys['ca'].map(function(filter, idx){
                                     return(<MenuItem value={filter} key={idx}>{filter}</MenuItem>)
                                 })}
                                 </Select>
                             </FormControl>
                         </MDBCol>                   
                         {this.state.filter_by?
-                        <MDBCol md="6">
+                        <MDBCol md="6" className="align-middle">
                             <Autocomplete multiple
+                                className="align-middle"
                                 limitTags={1}
                                 id={this.state.filter_by}
                                 title={this.state.filter_by}
@@ -124,7 +126,53 @@ class ResultsFilterLayout extends Component {
                                     }}
                                 options={filter[this.state.filter_by]['values']}
                                 renderInput={(params) => (
-                                <TextField  {...params} variant="outlined" label={"Filter by "+ this.props.metadata[this.state.filter_by]['name']} placeholder={"Filter by "+ this.props.metadata[this.state.filter_by]['name']} />
+                                <TextField  {...params} label={"Filter by "+ this.props.metadata[this.state.filter_by]['name']} />
+                                )}
+                            />
+                        </MDBCol> : null }
+                     </MDBRow>
+                     <MDBRow>
+                        <MDBCol md="6">
+                            <FormControl className="control-filter">
+                                <InputLabel className="control-filter" id="demo-simple-select-label">Filter by rows</InputLabel>
+                                <Select className="control-filter"
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                value={this.state.filter_by_ra}
+                                onChange={this.handleChangeFilterByRa}
+                                >
+                                {filters_keys['ra'].map(function(filter, idx){
+                                    return(<MenuItem value={filter} key={idx}>{filter}</MenuItem>)
+                                })}
+                                </Select>
+                            </FormControl>
+                        </MDBCol>                   
+                        {this.state.filter_by_ra?
+                        <MDBCol md="6">
+                            <Autocomplete multiple
+                                limitTags={1}
+                                id={this.state.filter_by_ra}
+                                title={this.state.filter_by_ra}
+                                size="small"
+                                value={this.getDefaultValues(filter[this.state.filter_by_ra]['attributes'],filter[this.state.filter_by_ra]['name'])}
+                                onChange={(event, newValue) => {
+                                    if (newValue.length==0){
+                                        this.setState({
+                                            filters: update(this.state.filters, {
+                                                [filter[this.state.filter_by_ra]['attributes']]:{$unset: [filter[this.state.filter_by_ra]['name']]},
+                                            }),
+                                        });
+                                    } else {
+                                        this.setState({
+                                            filters: update(this.state.filters, {
+                                                [filter[this.state.filter_by_ra]['attributes']]:{[filter[this.state.filter_by_ra]['name']]: {$set: newValue}},
+                                            }),
+                                        });
+                                    }
+                                    }}
+                                options={filter[this.state.filter_by_ra]['values']}
+                                renderInput={(params) => (
+                                <TextField  {...params} label={"Filter by "+ this.props.metadata[this.state.filter_by_ra]['name']} />
                                 )}
                             />
                         </MDBCol> : null }

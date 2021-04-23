@@ -20,17 +20,19 @@ import Plot from 'react-plotly.js';
 class PlotComponent extends Component {
     constructor(props) {
         super(props);
-        this.state = {data: [], layout: {}, frames: [], config: {}};
+        this.state = {data: [], layout: {}, frames: [], config: {responsive: true}};
     }
   render() {
     return (
       <Plot
+        style={{width: "100%", height: "100%"}}
         data={this.props.data}
         layout={this.props.layout}
         frames={this.props.frames}
-        config={this.props.config}
+        config={this.state.config}
         onInitialized={(figure) => this.setState(figure)}
         onUpdate={(figure) => this.setState(figure)}
+        useResizeHandler={true}
       />
     );
   }

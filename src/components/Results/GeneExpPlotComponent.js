@@ -16,13 +16,14 @@
 */
 import React, { Component } from "react";
 import axios from "axios";
-import GraphSelector from './GraphSelector'
-import GraphSelectorLight from './GraphSelectorLight'
+import GeneExpPlotMenuComponent from './GeneExpressionMenuComponent'
 
 import { toastOnError } from "../../utils/Utils";
 import { trackPromise } from 'react-promise-tracker';
 import PlotComponent from "../Plots/PlotComponent"
 import {Spinner} from '../Loading/LoadingComponent'
+
+import Divider from '@material-ui/core/Divider';
 
 import { Doughnut, Pie, HorizontalBar  } from 'react-chartjs-2';
 import { MDBCol, MDBCollapse, MDBIcon, MDBRow } from "mdbreact";
@@ -34,7 +35,7 @@ class GeneExpPlotComponent extends Component {
           loading:true,
           filters:{},
           attrs:"",
-          chart_type: "pie",
+          chart_type: "",
           selector:{
             ra:{},
             ca:{}
@@ -118,9 +119,10 @@ class GeneExpPlotComponent extends Component {
         <div>
           <MDBRow>
             <MDBCol md="12">
-              Menu
+              <GeneExpPlotMenuComponent display_type={this.props.display_type} chart_type={this.state.chart_type} filters={this.state.filters} selected_attrs={this.state.attrs} attrs={this.props.all_attrs} callbackUpdateGraph={this.callbackUpdateGraph} name={this.props.name}/>
             </MDBCol>
           </MDBRow>
+          <Divider />
           <MDBRow>
             <MDBCol md="12">
                 display accoding menu selection (use displayPlot & KeysToComponentDisplay)

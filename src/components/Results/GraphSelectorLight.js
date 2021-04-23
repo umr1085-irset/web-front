@@ -11,6 +11,7 @@ import PieIcon from '../../assets/Icons/PieTwoTone';
 import ScatterPlotIcon from "../../assets/Icons/ScatterPlot";
 import HexbinIcon from "../../assets/Icons/Hexa";
 
+
 class GraphSelectorLight extends Component {
     constructor(props) {
       super(props);
@@ -32,7 +33,8 @@ class GraphSelectorLight extends Component {
 
 
     render() {
-      const attributes = this.props.attrs
+      const attributes = this.props.attrs['ca']
+      console.log(attributes)
       const display_type = this.props.display_type
       
       const KeysToIconDisplay = {

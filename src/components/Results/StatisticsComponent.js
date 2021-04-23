@@ -57,6 +57,9 @@ class StatisticsComponent extends Component {
       const row_tot = this.props.row_tot
       const col_tot = this.props.col_tot
 
+      const percent_row = Math.round((row_val/row_tot)*100)
+      const percent_col = Math.round((col_val/col_tot)*100)
+
     return (
         <Card variant="outlined">
             {this.state.loading? null:
@@ -70,7 +73,7 @@ class StatisticsComponent extends Component {
                                 Number of {row_name} display
                             </Typography>
                             <Typography variant="h5" component="p">
-                                {row_val}/{row_tot}
+                                {row_val}/{row_tot} ({percent_row}%)
                             </Typography>
                         </MDBCol>
                     </MDBRow>
@@ -80,7 +83,7 @@ class StatisticsComponent extends Component {
                                 Number of {col_name} display
                             </Typography>
                             <Typography variant="h5" component="p">
-                                {col_val}/{col_tot}
+                                {col_val}/{col_tot} ({percent_col}%)
                             </Typography>
                         </MDBCol>
                     </MDBRow>
