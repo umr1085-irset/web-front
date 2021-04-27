@@ -15,117 +15,72 @@
 
 */
 import React, { Component } from "react";
-import axios from "axios";
 import GeneExpPlotMenuComponent from './GeneExpressionMenuComponent'
-
-import { toastOnError } from "../../utils/Utils";
-import { trackPromise } from 'react-promise-tracker';
 import PlotComponent from "../Plots/PlotComponent"
-import {Spinner} from '../Loading/LoadingComponent'
+import { Doughnut, Pie, HorizontalBar  } from 'react-chartjs-2';
 
 import Divider from '@material-ui/core/Divider';
+import { MDBCol, MDBRow } from "mdbreact";
 
-import { Doughnut, Pie, HorizontalBar  } from 'react-chartjs-2';
-import { MDBCol, MDBCollapse, MDBIcon, MDBRow } from "mdbreact";
+import _ from 'lodash'
 
 class GeneExpPlotComponent extends Component {
       constructor(props) {
         super(props);
         this.state = {
           loading:true,
-          filters:{},
-          attrs:"",
-          chart_type: "",
+          filters:{
+            ra:{},
+            ca:{}
+          },
           selector:{
             ra:{},
             ca:{}
-          }
+          },
+          attrs:"",
+          gene_selection:"first",
+          gene_list:[],
+          chart_type: "",
         };
       }
 
-      async getDataPlot(url,id,style,attrs,menu,filters){
-        this.setState({loading:true});
-        const plotData={
-          id:id,
-          style:style,
-          attrs:attrs,
-          menu:menu,
-          filters:filters
-        }
-        await trackPromise(
-          axios.post(url,plotData)
-          .then(response => {
-            console.log(response.data)
-            this.setState({
-              chart:response.data.chart,
-              style:response.data.style,
-              genes_menu:response.data.genes_menu,
-              loading:false});
-          })
-          .catch(error => {
-            toastOnError("Error loading dataset");
-          })
-        )
-      }
-
-    async componentDidMount() {
-        this.setState({chart_type:this.props.chart_type,filters:this.props.filters,attrs:this.props.attrs})
-        this.getDataPlot(this.props.url,this.props.loom,this.props.chart_type,this.props.attrs,this.props.menu,this.props.filters)
+    componentDidMount() {
+        this.setState({chart_type:this.props.chart_type,filters:this.props.filters,selector:this.props.filters,attrs:this.props.attrs})
     }
-    async componentWillReceiveProps(nextProps) {
+    componentWillReceiveProps(nextProps) {
       if( nextProps.filters !== this.props.filters ){
         this.setState({filters:nextProps.filters})
-        this.getDataPlot(this.props.url,this.props.loom,this.state.chart_type,this.state.attrs,this.props.menu,nextProps.filters)
+        const new_selector = _.merge(nextProps.filters, this.state.selector);
+        console.log("UPDATE SELECTOR")
+        console.log(new_selector)
+        this.setState({selector:new_selector})
       }
     }
 
-      
-      state = {
-        collapseID: ""
-      }
-      
-      toggleCollapse = collapseID => () => {
-        this.setState(prevState => ({
-          collapseID: prevState.collapseID !== collapseID ? collapseID : ""
-        }));
-      }
-
-      displayPlot = (plot_type,KeysToComponentDisplay,data) =>{
-        if(plot_type === "scatter" || plot_type === "hexbin" || plot_type === "violin" ){
-          return React.createElement(KeysToComponentDisplay[plot_type],{key:"plot_"+plot_type ,data: data.data, layout:data.layout})
-        } else {
-          return React.createElement(KeysToComponentDisplay[plot_type],{key:"plot_"+plot_type ,data: data, options:data.options})
-        }
-        
-      }
-
-      callbackUpdateGraph = (attr,chart_type) => { 
-        this.setState({collapseID: "",attrs:attr,chart_type:chart_type})
-        this.getDataPlot(this.props.url,this.props.loom,chart_type,attr,this.props.menu,this.state.filters)
-      }
-
-
+    
     render() {
-      const KeysToComponentDisplay = {
-          pie:Pie,
-          doughnut:Doughnut,
-          bar:HorizontalBar ,
-          scatter:PlotComponent,
-          violin:PlotComponent,
-          hexbin:PlotComponent,
-      };
-
       return (
         <div>
           <MDBRow>
             <MDBCol md="12">
-              <GeneExpPlotMenuComponent display_type={this.props.display_type} chart_type={this.state.chart_type} filters={this.state.filters} selected_attrs={this.state.attrs} attrs={this.props.all_attrs} callbackUpdateGraph={this.callbackUpdateGraph} name={this.props.name}/>
+              <GeneExpPlotMenuComponent loom={this.props.loom} display_type={this.props.display_type} chart_type={this.state.chart_type} selector={this.state.selector} selected_attrs={this.props.attrs} attrs={this.props.all_attrs} setStateParent={(p, cb) => this.setState(p, cb)}/>
             </MDBCol>
           </MDBRow>
           <Divider />
           <MDBRow>
             <MDBCol md="12">
                 display accoding menu selection (use displayPlot & KeysToComponentDisplay)
+                {this.state.selector.ra.Symbol?
+                  <ul>
+                    {this.state.selector.ra.Symbol.map(function(gene,idx){
+                      return(
+                        <li key={idx}>{gene}</li>
+                      )
+                    })}
+                </ul>
+              :null  
+              }
+                
             </MDBCol>
           </MDBRow>
             

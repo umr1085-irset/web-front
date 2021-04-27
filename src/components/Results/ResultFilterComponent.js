@@ -27,7 +27,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import InputLabel from '@material-ui/core/InputLabel';
 import update from 'immutability-helper'
-
+import { UncontrolledCollapse } from 'reactstrap';
 
 class ResultsFilterLayout extends Component {
     constructor(props) {
@@ -132,51 +132,58 @@ class ResultsFilterLayout extends Component {
                         </MDBCol> : null }
                      </MDBRow>
                      <MDBRow>
-                        <MDBCol md="6">
-                            <FormControl className="control-filter">
-                                <InputLabel className="control-filter" id="demo-simple-select-label">Filter by rows</InputLabel>
-                                <Select className="control-filter"
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={this.state.filter_by_ra}
-                                onChange={this.handleChangeFilterByRa}
-                                >
-                                {filters_keys['ra'].map(function(filter, idx){
-                                    return(<MenuItem value={filter} key={idx}>{filter}</MenuItem>)
-                                })}
-                                </Select>
-                            </FormControl>
-                        </MDBCol>                   
-                        {this.state.filter_by_ra?
-                        <MDBCol md="6">
-                            <Autocomplete multiple
-                                limitTags={1}
-                                id={this.state.filter_by_ra}
-                                title={this.state.filter_by_ra}
-                                size="small"
-                                value={this.getDefaultValues(filter[this.state.filter_by_ra]['attributes'],filter[this.state.filter_by_ra]['name'])}
-                                onChange={(event, newValue) => {
-                                    if (newValue.length==0){
-                                        this.setState({
-                                            filters: update(this.state.filters, {
-                                                [filter[this.state.filter_by_ra]['attributes']]:{$unset: [filter[this.state.filter_by_ra]['name']]},
-                                            }),
-                                        });
-                                    } else {
-                                        this.setState({
-                                            filters: update(this.state.filters, {
-                                                [filter[this.state.filter_by_ra]['attributes']]:{[filter[this.state.filter_by_ra]['name']]: {$set: newValue}},
-                                            }),
-                                        });
-                                    }
-                                    }}
-                                options={filter[this.state.filter_by_ra]['values']}
-                                renderInput={(params) => (
-                                <TextField  {...params} label={"Filter by "+ this.props.metadata[this.state.filter_by_ra]['name']} />
-                                )}
-                            />
-                        </MDBCol> : null }
-                     </MDBRow>
+                        <MDBCol className="align-self-center">
+                            <span className="highlight-text"id="togglerfilter">more filters</span>
+                        </MDBCol>
+                    </MDBRow>
+                    <UncontrolledCollapse toggler="#togglerfilter">
+                        <MDBRow>
+                            <MDBCol md="6">
+                                <FormControl className="control-filter">
+                                    <InputLabel className="control-filter" id="demo-simple-select-label">Filter by rows</InputLabel>
+                                    <Select className="control-filter"
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={this.state.filter_by_ra}
+                                    onChange={this.handleChangeFilterByRa}
+                                    >
+                                    {filters_keys['ra'].map(function(filter, idx){
+                                        return(<MenuItem value={filter} key={idx}>{filter}</MenuItem>)
+                                    })}
+                                    </Select>
+                                </FormControl>
+                            </MDBCol>                   
+                            {this.state.filter_by_ra?
+                            <MDBCol md="6">
+                                <Autocomplete multiple
+                                    limitTags={1}
+                                    id={this.state.filter_by_ra}
+                                    title={this.state.filter_by_ra}
+                                    size="small"
+                                    value={this.getDefaultValues(filter[this.state.filter_by_ra]['attributes'],filter[this.state.filter_by_ra]['name'])}
+                                    onChange={(event, newValue) => {
+                                        if (newValue.length==0){
+                                            this.setState({
+                                                filters: update(this.state.filters, {
+                                                    [filter[this.state.filter_by_ra]['attributes']]:{$unset: [filter[this.state.filter_by_ra]['name']]},
+                                                }),
+                                            });
+                                        } else {
+                                            this.setState({
+                                                filters: update(this.state.filters, {
+                                                    [filter[this.state.filter_by_ra]['attributes']]:{[filter[this.state.filter_by_ra]['name']]: {$set: newValue}},
+                                                }),
+                                            });
+                                        }
+                                        }}
+                                    options={filter[this.state.filter_by_ra]['values']}
+                                    renderInput={(params) => (
+                                    <TextField  {...params} label={"Filter by "+ this.props.metadata[this.state.filter_by_ra]['name']} />
+                                    )}
+                                />
+                            </MDBCol> : null }
+                        </MDBRow>
+                    </UncontrolledCollapse>
                 </CardContent>
             </Card>
         </div>

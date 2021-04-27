@@ -7,6 +7,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { MDBRow, MDBCol} from "mdbreact";
+import {Spinner} from '../Loading/LoadingComponent'
 
 class StatisticsComponent extends Component {
     constructor(props) {
@@ -62,7 +63,7 @@ class StatisticsComponent extends Component {
 
     return (
         <Card variant="outlined">
-            {this.state.loading? null:
+            {this.state.loading? <Spinner/>:
                 <CardContent>
                     <Typography color="textSecondary" gutterBottom>
                         Statistics

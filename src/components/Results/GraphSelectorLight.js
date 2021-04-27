@@ -34,7 +34,6 @@ class GraphSelectorLight extends Component {
 
     render() {
       const attributes = this.props.attrs['ca']
-      console.log(attributes)
       const display_type = this.props.display_type
       
       const KeysToIconDisplay = {

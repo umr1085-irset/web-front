@@ -23,14 +23,16 @@ import { toastOnError } from "../../utils/Utils";
 import { trackPromise } from 'react-promise-tracker';
 import PlotComponent from "../Plots/PlotComponent"
 import {Spinner} from '../Loading/LoadingComponent'
-
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
 import { Doughnut, Pie, HorizontalBar  } from 'react-chartjs-2';
 
 
 // reactstrap components
 
 
-import { MDBCol, MDBCollapse, MDBIcon, MDBRow } from "mdbreact";
+import { MDBCol, MDBIcon, MDBRow } from "mdbreact";
 
 class LoomPlotComponentCard extends Component {
       constructor(props) {
@@ -38,6 +40,7 @@ class LoomPlotComponentCard extends Component {
         this.state = {
           loading:true,
           filters:{},
+          anchorEl:null,
           attrs:"",
           chart_type: "pie",
           selector:{
@@ -93,6 +96,13 @@ class LoomPlotComponentCard extends Component {
         }));
       }
 
+      handleClick = (event) => {
+        this.setState({anchorEl:event.currentTarget});
+      };
+      handleClose = () => {
+        this.setState({anchorEl:null});
+      };
+
       displayPlot = (plot_type,KeysToComponentDisplay,data) =>{
         if(plot_type === "scatter" || plot_type === "hexbin" || plot_type === "violin" ){
           return React.createElement(KeysToComponentDisplay[plot_type],{key:"plot_"+plot_type ,data: data.data, layout:data.layout})
@@ -119,17 +129,27 @@ class LoomPlotComponentCard extends Component {
       };
       return (
         <div>
-          <MDBRow>
-            <MDBCol md="12">
-              <a style={{ textTransform: 'capitalize' }} onClick={this.toggleCollapse("basicCollapse")}>{this.state.attrs} <MDBIcon className="ml-2" icon="angle-down" /></a>
-            </MDBCol>
-          </MDBRow>
-          <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID} className="filtertools">
-            {this.state.genes_menu? 
-              <GraphSelector chart_type={this.state.chart_type} filters={this.state.filters} genes_menu={this.state.genes_menu} setStateParent={(p, cb) => this.setState(p, cb)}/> : 
-              <GraphSelectorLight display_type={this.props.display_type} chart_type={this.state.chart_type} filters={this.state.filters} selected_attrs={this.state.attrs} attrs={this.props.all_attrs} callbackUpdateGraph={this.callbackUpdateGraph} name={this.props.name}/>
-            }
-          </MDBCollapse>
+          <Button disableRipple style={{ textTransform: 'capitalize' }} aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}>
+                {this.state.attrs} <MDBIcon className="ml-2" icon="angle-down" />
+              </Button>
+              <Menu
+                id="simple-menu"
+                anchorEl={this.state.anchorEl}
+                keepMounted
+                open={Boolean(this.state.anchorEl)}
+                onClose={this.handleClose}
+              >
+                <MenuItem
+                onMouseEnter={(e) => e.target.style.backgroundColor= '#ffffff'}
+                onMouseLeave={(e) => e.target.style.backgroundColor = '#ffffff'}
+                onClick={this.handleClose}
+                >
+                    {this.state.genes_menu? 
+                      <GraphSelector chart_type={this.state.chart_type} filters={this.state.filters} genes_menu={this.state.genes_menu} setStateParent={(p, cb) => this.setState(p, cb)}/> : 
+                      <GraphSelectorLight display_type={this.props.display_type} chart_type={this.state.chart_type} filters={this.state.filters} selected_attrs={this.state.attrs} attrs={this.props.all_attrs} callbackUpdateGraph={this.callbackUpdateGraph} name={this.props.name}/>
+                    }
+                </MenuItem>
+              </Menu>
           <MDBRow>
             <MDBCol md="12">
               {this.state.loading ? <Spinner/> : this.displayPlot(this.state.style,KeysToComponentDisplay,this.state.chart)}  
