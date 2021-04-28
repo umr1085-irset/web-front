@@ -23,7 +23,7 @@ import {Spinner} from '../Loading/LoadingComponent'
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-import { MDBCol, MDBRow, MDBIcon, } from "mdbreact";
+import { MDBCol, MDBRow } from "mdbreact";
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
@@ -39,6 +39,7 @@ import ScatterPlotIconDouble from "../../assets/Icons/ScatterPlotOutlined";
 import HexbinIcon from "../../assets/Icons/Hexa";
 import DensityIcon from "../../assets/Icons/Curves";
 import DotPlotIcon from "../../assets/Icons/Square";
+import Chip from '@material-ui/core/Chip';
 
 
 import update from 'immutability-helper'
@@ -57,15 +58,15 @@ class GeneExpPlotMenuComponent extends Component {
             ra:{},
             ca:{}
           },
+          input:"",
           scale: false,
           method:"first",
           chart_type: "",
-          genes_list: [],
           genes:[],
-          filtered_genes:[],
-          selected_genes:[],
           url:"/api/v1/dataset/genes/",
         };
+        this.handleDelete = this.handleDelete.bind(this)
+        this.updateGraph = this.updateGraph.bind(this)
       }
     
     async getGenes(id,selector){
@@ -96,7 +97,7 @@ class GeneExpPlotMenuComponent extends Component {
         await trackPromise(
           axios.post(this.state.url,genes)
           .then(response => {
-            this.setState({selected_genes:response.data.genes});
+            this.setState({selector:{ra:{Symbol:response.data.genes}}})
             this.props.setStateParent({
                 selector: update(this.props.selector, {
                     ra:{Symbol: {$set: response.data.genes}},
@@ -112,7 +113,12 @@ class GeneExpPlotMenuComponent extends Component {
     handleChangeGeneSelection = (event) => {
         this.setState({method:event.target.value})
         if(event.target.value==="custom"){
-            this.getGenes(this.props.loom,this.props.selector)
+            this.setState({selector:{ra:{Symbol:[]}}})
+            this.props.setStateParent({
+                selector: update(this.props.selector, {
+                    ra:{Symbol: {$set: []}},
+                }),
+            })
         } else{
             this.getSelectedGenes(this.props.loom,this.props.selector,event.target.value)
         }
@@ -120,12 +126,25 @@ class GeneExpPlotMenuComponent extends Component {
 
     handleChangeAttributes = (event) => {
         this.setState({selected_attrs: event.target.value });
+        this.props.callbackUpdateGraph("selected_attrs",event.target.value)
     };
-
     handleChange = (event) => {
+        console.log(event.target.checked)
         this.setState({ ...this.state, [event.target.name]: event.target.checked });
+        this.props.callbackUpdateGraph("scale",event.target.checked)
     };
-
+    handleDelete = (gene) => () => {
+        var index = this.state.selector.ra.Symbol.indexOf(gene)
+        if (index !== -1) {
+            this.state.selector.ra.Symbol.splice(index, 1);
+            this.props.setStateParent({
+                selector: update(this.props.selector, {
+                    ra:{Symbol: {$set: this.state.selector.ra.Symbol}},
+                }),
+            });
+        }
+        
+    }
     componentDidMount() {
         this.setState({
             display_type:this.props.display_type,
@@ -133,25 +152,42 @@ class GeneExpPlotMenuComponent extends Component {
             selector:this.props.selector,
             selected_attrs:this.props.selected_attrs,
             attrs:this.props.attrs,
+            scale:this.props.scale,
         })
         this.getSelectedGenes(this.props.loom,this.props.selector,this.state.method)
+        this.getGenes(this.props.loom,this.props.selector)
         
     }
 
     componentWillReceiveProps(nextProps) {
         if( nextProps.filters !== this.props.filters ){
-            console.log("UPDATE COMPONENT")
-            if(this.state.method =='custom'){
                 this.getGenes(this.props.loom,nextProps.selector)
-            } else {
-                this.getSelectedGenes(this.props.loom,nextProps.selector,this.state.method)
-            }
+                if(this.state.method !== "custom"){
+                    this.getSelectedGenes(this.props.loom,nextProps.selector,this.state.method)
+                }
         }
         
+    }
+    addgene = () =>{
+        if(this.state.selector.ra.Symbol.indexOf(this.state.input) === -1 ){
+            this.setState({selector:{ra:{Symbol:this.state.selector.ra.Symbol.concat(this.state.input)}}})
+            this.props.setStateParent({
+                selector: update(this.props.selector, {
+                    ra:{Symbol: {$push: [this.state.input]}},
+                }),
+            });
+            this.setState({input:""})
+        }
+        
+    
     }
 
     displayIcon = (plot_type,KeysToIconDisplay,key) =>{
         return React.createElement(KeysToIconDisplay[plot_type],{key:key ,fontSize:"large"})
+    }
+
+    updateGraph(chart, event){
+        this.props.callbackUpdateGraph("chart_type",chart)
     }
 
     render() {
@@ -185,36 +221,6 @@ class GeneExpPlotMenuComponent extends Component {
                         </FormControl>
                     
                     </MDBCol>
-                    {this.state.method==="custom"?
-                        <>
-                            {this.state.gene?<Spinner/> :
-                                    <MDBCol md="3">
-                                        <MDBRow className="mt-3">
-                                            <MDBCol md="6">
-                                                <Autocomplete multiple
-                                                    limitTags={2}
-                                                    id="genes"
-                                                    title="genes"
-                                                    size="small"
-                                                    onChange={(event, newValue) => {
-                                                        this.props.setStateParent({
-                                                            selector: update(this.props.selector, {
-                                                                ra:{Symbol: {$set: newValue}},
-                                                            }),
-                                                        });
-                                                    }}
-                                                    options={this.state.genes}
-                                                    renderInput={(params) => (
-                                                    <TextField  {...params} label="Select genes" placeholder="Select genes" />
-                                                    )}
-                                                />
-                                            </MDBCol>
-                                        </MDBRow>
-                                    </MDBCol>
-                                }
-                        </>
-                        :null
-                     }
                     <MDBCol md="3">
                         <FormControl className="control-filter">
                             <InputLabel className="control-filter"  id="selected_attrs">Display by</InputLabel>
@@ -237,7 +243,7 @@ class GeneExpPlotMenuComponent extends Component {
                         {display_type.map((type,idxt) =>
                             <ButtonGroup className="mb-2" key={this.props.name+"_col1_r1_col2"+idxt}>
                                 <Tooltip title={type} aria-label={type} key={type+"_col1_r1_col2_tool"+idxt}>
-                                    <Button id={this.props.name+"_barchart_btn"+idxt} variant="outlined" color="primary">{this.displayIcon(type,KeysToIconDisplay,this.props.name+"_col1_r1_col2_tool_btn_hex"+idxt)}</Button>
+                                    <Button onClick={(e) => this.updateGraph(type)} id={this.props.name+"_barchart_btn"+idxt} variant="outlined" color="primary">{this.displayIcon(type,KeysToIconDisplay,this.props.name+"_col1_r1_col2_tool_btn_hex"+idxt)}</Button>
                                 </Tooltip>
                             </ButtonGroup>
                         )}
@@ -258,7 +264,54 @@ class GeneExpPlotMenuComponent extends Component {
                         
                     </MDBCol>
                 </MDBRow>
-                
+                {this.state.selector.ra.Symbol?
+                    <MDBRow className="mt-3">
+                        {this.state.gene?<Spinner/> :
+                            
+                            <MDBCol md="3">
+                                <MDBRow>
+                                    <MDBCol md="6">
+                                        <Autocomplete
+                                            limitTags={2}
+                                            id="genes"
+                                            title="genes"
+                                            size="small"
+                                            onChange={(event, newValue) => {
+                                                this.setState({input:newValue})
+                                            }}
+                                            options={this.state.genes}
+                                            renderInput={(params) => (
+                                            <TextField  {...params} label="Select genes" placeholder="Select genes" />
+                                            )}
+                                        />
+                                    </MDBCol>
+                                   
+                                    <MDBCol md="4">
+                                        {this.state.input === ""?
+                                            <Button variant="outlined" color="primary" disabled>Add gene</Button>:
+                                            <Button onClick={this.addgene} variant="outlined" color="primary">Add gene</Button>
+                                        }
+                                    </MDBCol>
+                                </MDBRow>
+                            </MDBCol>
+                           
+                        }
+                        <MDBCol md="9">
+                            {this.state.selector.ra.Symbol.map(function(gene,idx){
+                                return(
+                                    <Chip
+                                        key={'row_'+idx}
+                                        label={gene}
+                                        color="primary"
+                                        onDelete={this.handleDelete(gene)}
+                                    />
+                                )
+                            },this)}
+                        </MDBCol>
+                    </MDBRow>
+                    :null
+                }
+                    
             </div>
         );
     }
