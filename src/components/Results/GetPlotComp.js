@@ -45,8 +45,6 @@ class GetPlotComponent extends Component {
           attrs:symbol,
           filters:filters
         }
-        console.log(plotData)
-        console.log(url,id,style,attrs,filters,symbol)
         await trackPromise(
           axios.post(url,plotData)
           .then(response => {
@@ -63,8 +61,14 @@ class GetPlotComponent extends Component {
       }
 
       async componentDidMount() {
-          console.log(this.props)
           this.getDataPlot(this.props.url,this.props.id,"scatter",this.props.attrs,this.props.filters,this.props.gene)
+      }
+
+      componentWillReceiveProps(nextProps) {
+        if( nextProps.filters !== this.props.filters ){
+          this.getDataPlot(this.props.url,this.props.id,"scatter",this.props.attrs,nextProps.filters,this.props.gene)
+        }
+        
       }
 
 

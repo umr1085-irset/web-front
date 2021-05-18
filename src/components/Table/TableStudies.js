@@ -17,40 +17,118 @@
 
 */
 import React, { Component } from "react";
-import { Link  } from "react-router-dom";
 
-import {MDBTable, MDBTableBody } from "mdbreact";
-
-import Typography from '@material-ui/core/Typography';
-import { Button} from '@material-ui/core';
+import { Link } from "react-router-dom";
+import { Button } from '@material-ui/core';
+import MUIDataTable from "mui-datatables";
 
 
 
 class TableStudiesComponent extends Component {
   render() {
       const rows = this.props.rows
-      //const columns = this.props.columns
-      console.log("STUDYTABLE")
+      const columns = [
+        {
+         name: "id",
+         label: "Id",
+         options: {
+          filter: true,
+          sort: true,
+         }
+        },
+        {
+          name: "title",
+          options: {
+            filter: true,
+            sort: true,
+            customBodyRenderLite: (dataIndex, rowIndex) => {
+              console.log("ROW")
+              console.log(this.props.rows[rowIndex])
+              return (
+                <Link to={"/study/"+this.props.rows[rowIndex].studyId}>
+                  <Button >
+                    {this.props.rows[rowIndex].title}
+                  </Button>
+                </Link>
+              );
+            }
+          }
+        },
+        {
+          name: "title",
+          label: "Title",
+          options: {
+           filter: true,
+           sort: true,
+          }
+         },        {
+         name: "authors",
+         label: "Authors",
+         options: {
+          filter: true,
+          sort: false,
+         }
+        },
+        {
+         name: "pub_date",
+         label: "Publication Date",
+         options: {
+          filter: true,
+          sort: false,
+         }
+        },
+        {
+         name: "technology",
+         label: "Technology",
+         options: {
+          filter: true,
+          sort: false,
+         }
+        },
+        {
+          name: "species",
+          label: "Species",
+          options: {
+           filter: true,
+           sort: false,
+          }
+         },
+         {
+          name: "dev_stage",
+          label: "Developmental Stage",
+          options: {
+           filter: true,
+           sort: false,
+          }
+         },
+         {
+          name: "tissues",
+          label: "Tissues",
+          options: {
+           filter: true,
+           sort: false,
+          }
+         },
+         {
+          name: "pmids",
+          label: "PMID",
+          options: {
+           filter: true,
+           sort: false,
+          }
+         },
+       ];
+
+       const options = {
+         filterType: 'checkbox',
+       };
     return (
-        <MDBTable hover responsive> 
-            <MDBTableBody>
-            {rows.map(function(row,i) {
-                return(
-             
-                    <tr key={"row_"+i}>
-                        <td key={"ID_"+i}><Typography variant="body1">{row.studyId.toString()}</Typography></td>
-                        <td key={"title_"+i}><Typography variant="body1"><Link to={"/study/"+row.studyId}><Button color="primary">{row.title.toString()}</Button></Link></Typography></td>
-                        <td key={"authors_"+i}><Typography variant="body1">{row.authors.toString()}</Typography></td>
-                        <td key={"pub_date_"+i}><Typography variant="body1">{row.pub_date.toString()}</Typography></td>
-                        <td key={"topics_"+i}><Typography variant="body1">{row.topics.toString()}</Typography></td>
-                        <td key={"technology_"+i}><Typography variant="body1">{row.technology.toString()}</Typography></td>
-                        <td key={"species_"+i}><Typography variant="body1">{row.species.toString()}</Typography></td>
-                        <td key={"tissues_"+i}><Typography variant="body1"  className="capitalize">{row.tissues.toString()}</Typography></td>
-                    </tr>
-)
-                })}
-            </MDBTableBody>
-        </MDBTable>
+
+        <MUIDataTable
+          data={rows}
+          columns={columns}
+          options={options}
+        />
   
     );
   }

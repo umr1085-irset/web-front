@@ -69,7 +69,16 @@ class GeneExpPlotComponent extends Component {
         hexbin:PlotComponent,
         dot:PlotComponent
       };
-      const element = <VerticalTabs selector={this.state.selector} url={this.props.url} loom={this.props.loom} selected_attrs={this.state.selected_attrs}  scale={this.props.scale} />;
+      const element = (
+        <MDBRow>
+          <MDBCol md="6" sm="12" className="colDivider">
+            <VerticalTabs selector={this.state.selector} url={this.props.url} loom={this.props.loom} selected_attrs={this.state.selected_attrs}  scale={this.props.scale} />
+          </MDBCol>
+          <MDBCol md="6" sm="12">
+            <VerticalTabs selector={this.state.selector} url={this.props.url} loom={this.props.loom} selected_attrs={this.state.selected_attrs}  scale={this.props.scale} />
+          </MDBCol>
+        </MDBRow>
+      )
       return (
         <div>
           <MDBRow>

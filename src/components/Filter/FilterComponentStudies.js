@@ -47,14 +47,15 @@ class FilterComponentStudies extends Component {
     const uniqueTissues = [];
     const uniquePmid = [];
     array.map(obj => {
-      console.log(obj.title)
+        const authors = (obj.authors.includes(',') ? obj.authors.split(',') : [obj.authors] )
+        console.log(authors)
         uniqueTitle.push(obj.title)
-        uniqueAuthor.concat(obj.author)
-        uniquePub_date.concat(obj.pub_date)
-        uniqueTechnology.concat(obj.technology)
-        uniqueSpecies.concat(obj.species)
-        uniqueTissues.concat(obj.tissues)
-        uniquePmid.concat(obj.pmid)
+        uniqueAuthor.push.apply(uniqueAuthor,authors)
+        uniquePub_date.push.apply(uniquePub_date,obj.pub_date)
+        uniqueTechnology.push.apply(uniqueTechnology,obj.technology)
+        uniqueSpecies.push.apply(uniqueSpecies,obj.species)
+        uniqueTissues.push.apply(uniqueTissues,obj.tissues)
+        uniquePmid.push.apply(uniquePmid,obj.pmids)
     });
     const uniqOptions = {
       title: _.uniqBy(uniqueTitle),
@@ -89,39 +90,25 @@ class FilterComponentStudies extends Component {
   }
 
   onTitleChange = (event, values) => {
-    //this.setState({type: values})
-    const title_val = _.map(values, 'title');
     this.props.parentCallback("title",values)
   }
   onTechnoChange = (event, values) => {
-    //this.setState({technology: values})
-    const title_val = _.map(values, 'technology');
-    this.props.parentCallback("technology",title_val)
+    this.props.parentCallback("technology",values)
   }
   onTissuesChange = (event, values) => {
-    //this.setState({tissues: values})
-    const title_val = _.map(values, 'tissues');
-    this.props.parentCallback("tissues",title_val)
+    this.props.parentCallback("tissues",values)
   }
   onAuthorChange = (event, values) => {
-    //this.setState({devstage: values})
-    const title_val = _.map(values, 'author');
-    this.props.parentCallback("author",title_val)
+    this.props.parentCallback("authors",values)
   }
   onPubdateChange = (event, values) => {
-    //this.setState({gender: values})
-    const title_val = _.map(values, 'pub_date');
-    this.props.parentCallback("pub_date",title_val)
+    this.props.parentCallback("pub_date",values)
   }
   onPmidChange = (event, values) => {
-    //this.setState({gender: values})
-    const title_val = _.map(values, 'pmid');
-    this.props.parentCallback("pmid",title_val)
+    this.props.parentCallback("pmids",values)
   }
   onSpeciesChange = (event, values) => {
-    //this.setState({gender: values})
-    const title_val = _.map(values, 'species');
-    this.props.parentCallback("species",title_val)
+    this.props.parentCallback("species",values)
   }
 
 
@@ -130,7 +117,6 @@ class FilterComponentStudies extends Component {
   render() {
     const data = this.filterPlainArray(this.props.data,this.props.filters)
     const option = this.setOption(data)
-    console.log(option)
     return (
       <>
           <MDBRow>
@@ -171,6 +157,7 @@ class FilterComponentStudies extends Component {
                               id="pub_date"
                               size="small"
                               options={option.pub_date}
+                              getOptionLabel={(option) => option.toString()}
                               onChange={this.onPubdateChange}
                               renderInput={(params) => (
                               <TextField {...params} variant="standard" label="Publication date" placeholder="Publication date" />
@@ -233,6 +220,7 @@ class FilterComponentStudies extends Component {
                           id="pmid"
                           size="small"
                           options={option.pmid}
+                          getOptionLabel={(option) => option.toString()}
                           onChange={this.onPmidChange}
                           renderInput={(params) => (
                           <TextField {...params} variant="standard" label="Pmid" placeholder="Pmid" />

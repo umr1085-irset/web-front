@@ -69,7 +69,7 @@ class LoomPlotComponentCard extends Component {
               loading:false});
           })
           .catch(error => {
-            toastOnError("Error loading dataset");
+            toastOnError("Error loading dataset LOOMNOCARD");
           })
         )
       }

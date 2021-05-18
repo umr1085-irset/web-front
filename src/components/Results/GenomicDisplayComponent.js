@@ -38,31 +38,42 @@ class GenomicDisplayComponent extends Component {
       }
 
       async getDataPlot(url,id,style,attrs,filters){
-        this.setState({loading:true});
-        const plotData={
-          id:id,
-          style:style,
-          attrs:attrs,
-          filters:filters
+        if(attrs){
+          this.setState({loading:true});
+          const plotData={
+            id:id,
+            style:style,
+            attrs:attrs,
+            filters:filters
+          }
+          await trackPromise(
+            axios.post(url,plotData)
+            .then(response => {
+              this.setState({
+                chart:response.data.chart,
+                style:response.data.style,
+                genes_menu:response.data.genes_menu,
+                loading:false});
+            })
+            .catch(error => {
+              toastOnError("Error loading dataset");
+            })
+          )
         }
-        await trackPromise(
-          axios.post(url,plotData)
-          .then(response => {
-            this.setState({
-              chart:response.data.chart,
-              style:response.data.style,
-              genes_menu:response.data.genes_menu,
-              loading:false});
-          })
-          .catch(error => {
-            toastOnError("Error loading dataset");
-          })
-        )
+
       }
 
       async componentDidMount() {
           this.setState({chart_type:this.props.chart_type,scale:this.props.scale,selector:this.props.selector,selected_attrs:this.props.selected_attrs})
           this.getDataPlot(this.props.url,this.props.loom,this.props.chart_type,this.props.selected_attrs,this.props.selector)
+      }
+
+      componentWillReceiveProps(nextProps) {
+        if( nextProps.chart_type !== this.props.chart_type || nextProps.selected_attrs !== this.props.selected_attrs  ){
+          this.setState({chart_type:nextProps.chart_type,scale:this.props.scale,selector:this.props.selector,selected_attrs:nextProps.selected_attrs})
+          this.getDataPlot(this.props.url,this.props.loom,nextProps.chart_type,nextProps.selected_attrs,this.props.selector)
+        }
+        
       }
 
       displayPlot = (plot_type,KeysToComponentDisplay,data) =>{

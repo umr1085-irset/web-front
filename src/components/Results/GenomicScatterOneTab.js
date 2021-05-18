@@ -94,7 +94,7 @@ export default function VerticalTabs(props) {
       </Tabs>
       {selector.ra.Symbol.map((gene,idx) => (
           <TabPanel value={value} index={idx} style={{width:"100%"}}>
-            Panel Gene : {gene} / ID: {loom}
+              Displayed Gene : {gene}
             <GetPlotComponent url={url} id={loom} attrs={selected_attrs} filters={selector} gene={gene}/>
           </TabPanel>
         ))}

@@ -43,6 +43,10 @@ class TableComponent extends Component {
   
 
   filterPlainArray(array, filters) {
+    console.log("################# filterPlainArray #################")
+    console.log(array)
+    console.log(filters)
+    console.log("################# filterPlainArray #################")
     if(filters===null) return array
     const getValue = value => (typeof value === 'string' ? value.toUpperCase() : value);
     const filterKeys = Object.keys(filters);
@@ -56,25 +60,20 @@ class TableComponent extends Component {
     });
   }
 
-  displayTable = (KeysToTable,key,columns,rows) =>{
-    return React.createElement(KeysToTable[key],{columns:columns,rows: rows})
+  displayTable = (KeysToTable,key,rows) =>{
+    return React.createElement(KeysToTable[key],{rows: rows})
   }
   render() {
     const KeysToTable ={
       studies:StudyTable,
       datasets:StudyTable,
     }
-    const columns = this.props.columns;
-    const rows = this.filterPlainArray(this.props.data,this.props.filters);
+    const rows = this.props.data
     return (
-          <MDBContainer className="mt-5">
-            <MDBRow>
-                <MDBCol md="12">
-                  {this.displayTable(KeysToTable,this.props.type,columns,rows)}
-                </MDBCol>
-            </MDBRow>
+        <div>
+          {this.displayTable(KeysToTable,this.props.type,rows)}
+        </div>
 
-          </MDBContainer>
     );
   }
 }

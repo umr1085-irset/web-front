@@ -64,6 +64,8 @@ class DatasetPage extends Component {
   
 
     callbackFunction = (key,val) => { 
+      console.log("Filters")
+      console.log(key,val)
       this.setState({ filters:{ [key]:val} })
     }
 
@@ -149,18 +151,12 @@ class DatasetPage extends Component {
         genomes:""
 
     };
-
     
     return (
           <MDBContainer className="mt-5">
             <Breadcrumbs/>
             <h2>Browse by {this.props.match.params.browse_by}</h2>
-            <MDBRow>
-                <MDBCol md="12">
-                    {this.state.loading2 ? <Spinner/> : this.displayFilter(KeysToComponentDisplay,this.props.match.params.browse_by,this.state.data,this.callbackFunction,this.state.filters)}
-                </MDBCol>
-            </MDBRow>
-            <MDBRow className="z-depth-1 filter-box mt-5">
+            <MDBRow className="mt-5">
                 <MDBCol md="12">
                   {this.state.loading ? <Spinner/> : <TableComponent data={this.state.data} filters={this.state.filters} columns={col_names[this.props.match.params.browse_by]} type={this.props.match.params.browse_by} />}
                 </MDBCol>
