@@ -111,7 +111,6 @@ class TableStudiesComponent extends Component {
        const options = {
          print: false,
          download: false,
-         selectableRows:'none',
        };
     return (
 

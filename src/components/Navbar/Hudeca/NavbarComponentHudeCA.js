@@ -70,7 +70,6 @@ class NavbarComponent extends Component {
                       <MDBDropdownMenu className="dropdown-default" right>
                         <Link to="/view/studies"><MDBDropdownItem>By studies</MDBDropdownItem></Link>
                         <Link to="/view/datasets"><MDBDropdownItem>By datasets</MDBDropdownItem></Link>
-                        <Link to="/view/genomes"><MDBDropdownItem>By genomes</MDBDropdownItem></Link>
                       </MDBDropdownMenu>
                     </MDBDropdown>
                   </MDBNavItem>
