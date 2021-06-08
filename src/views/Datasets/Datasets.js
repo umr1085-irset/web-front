@@ -35,16 +35,21 @@ class DatasetPage extends Component {
         super(props);
         this.state ={
           loading:true,
-          loading2:true,
           browse_by:"",
           filters:null
         };
         this.getData = this.getData.bind(this)
       }
     
-    async getData(){
+    async getData(browse){
+        let url=""
+        if(browse=="studies"){
+          url = "/api/v1/studies/public"
+        }else{
+          url = "/api/v1/datasets/public"
+        }
         await trackPromise(
-          axios.get("/api/v1/studies/public")
+          axios.get(url)
           .then(response => {
             this.setState({data : response.data}); 
             this.setState({loading : false});
@@ -58,7 +63,7 @@ class DatasetPage extends Component {
 
     async componentDidMount() {
       this.setState({browse_by : this.props.match.params.browse_by});
-      this.getData()
+      this.getData(this.props.match.params.browse_by)
     }
 
     displayFilter = (KeysToComponentDisplay,key,data,callback,filters) =>{

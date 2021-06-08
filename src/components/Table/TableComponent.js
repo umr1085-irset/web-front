@@ -18,8 +18,8 @@
 */
 import React, { Component } from "react";
 
-import { MDBRow, MDBContainer, MDBCol, MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 import StudyTable from './TableStudies'
+import DatasetTable from './TableDatasets'
 
 
 class TableComponent extends Component {
@@ -30,7 +30,7 @@ class TableComponent extends Component {
   render() {
     const KeysToTable ={
       studies:StudyTable,
-      datasets:StudyTable,
+      datasets:DatasetTable,
     }
     const rows = this.props.data
     return (

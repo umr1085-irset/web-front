@@ -97,7 +97,7 @@ class NavbarComponent extends Component {
                     </MDBDropdown>
                   </MDBNavItem>
                 </MDBNavbarNav>
-                  {user.username? user_logged : user_not_logged}
+                  {/* {user.username? user_logged : user_not_logged} */}
               </MDBCollapse>
           </MDBContainer>
         </MDBNavbar>

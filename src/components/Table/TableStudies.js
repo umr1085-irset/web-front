@@ -22,16 +22,15 @@ import { Link } from "react-router-dom";
 import MUIDataTable from "mui-datatables";
 
 
-
 class TableStudiesComponent extends Component {
   render() {
       const rows = this.props.rows
       const columns = [
         {
-         name: "id",
+         name: "studyId",
          label: "Id",
          options: {
-          filter: true,
+          filter: false,
           sort: true,
          }
         },
@@ -56,6 +55,9 @@ class TableStudiesComponent extends Component {
          options: {
           filter: true,
           sort: false,
+          customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
          }
         },
         {
@@ -64,6 +66,9 @@ class TableStudiesComponent extends Component {
          options: {
           filter: true,
           sort: false,
+          customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
          }
         },
         {
@@ -72,6 +77,9 @@ class TableStudiesComponent extends Component {
          options: {
           filter: true,
           sort: false,
+          customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
          }
         },
         {
@@ -80,6 +88,9 @@ class TableStudiesComponent extends Component {
           options: {
            filter: true,
            sort: false,
+           customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
           }
          },
          {
@@ -88,6 +99,9 @@ class TableStudiesComponent extends Component {
           options: {
            filter: true,
            sort: false,
+           customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
           }
          },
          {
@@ -96,6 +110,9 @@ class TableStudiesComponent extends Component {
           options: {
            filter: true,
            sort: false,
+           customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
           }
          },
          {
@@ -104,14 +121,19 @@ class TableStudiesComponent extends Component {
           options: {
            filter: true,
            sort: false,
+           customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
           }
          },
+
        ];
 
        const options = {
          print: false,
          download: false,
          selectableRows:'none',
+         filterType: 'dropdown',
        };
     return (
 
