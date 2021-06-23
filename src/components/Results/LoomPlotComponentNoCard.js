@@ -104,7 +104,7 @@ class LoomPlotComponentCard extends Component {
       };
 
       displayPlot = (plot_type,KeysToComponentDisplay,data) =>{
-        if(plot_type === "scatter" || plot_type === "hexbin" || plot_type === "violin" ){
+        if(plot_type === "scatter" || plot_type === "hexbin" || plot_type === "violin" || plot_type === "density" ){
           return React.createElement(KeysToComponentDisplay[plot_type],{key:"plot_"+plot_type ,data: data.data, layout:data.layout})
         } else {
           return React.createElement(KeysToComponentDisplay[plot_type],{key:"plot_"+plot_type ,data: data, options:data.options})
@@ -125,6 +125,7 @@ class LoomPlotComponentCard extends Component {
           bar:HorizontalBar ,
           scatter:PlotComponent,
           violin:PlotComponent,
+          density:PlotComponent,
           hexbin:PlotComponent,
       };
       return (

@@ -48,6 +48,7 @@ class DetailStudyPage extends Component {
       }
   render() {
       const study = this.props.study
+      console.log(study)
     return (
           <div>         
             <MDBRow>
@@ -167,11 +168,11 @@ class DetailStudyPage extends Component {
                                         <tr key={idx}>
                                             <td key={"id_"+idx}>{data.datasetId}</td>
                                             <td key={"title_"+idx}>{data.title}</td>
-                                            {data.bioMeta.tissue? <td key={"tissue_"+idx}>{_.map(data.bioMeta.tissue, 'name').toString()}</td>:<td key={"tissue_"+idx}>{_.map(data.bioMeta.cell, 'name').toString()}</td>}
+                                            {data.bioMeta.tissue? <td key={"tissue_"+idx}>{_.map(data.bioMeta.tissue, 'ontologyLabel').toString()}</td>:<td key={"tissue_"+idx}>{_.map(data.bioMeta.cell, 'name').toString()}</td>}
                                             <td className="capitalize" key={"gender_"+idx}>{data.bioMeta.gender.join(", ")}</td>
-                                            {data.bioMeta.dev_stage? <td key={"dev_stage_"+idx}>{_.map(data.bioMeta.dev_stage, 'name').toString()}</td>:<td key={"dev_stage_"+idx}>No information provided</td>}
-                                            <td className="capitalize" key={"omics_"+idx}>{data.sop.omics.toLowerCase()}</td>
-                                            <td className="capitalize" key={"technology_"+idx}>{data.sop.technoGrain.toLowerCase()} {data.sop.technology.toLowerCase()}</td>
+                                            {data.bioMeta.dev_stage? <td key={"dev_stage_"+idx}>{_.map(data.bioMeta.dev_stage, 'ontologyLabel').toString()}</td>:<td key={"dev_stage_"+idx}>No information provided</td>}
+                                            <td className="capitalize" key={"omics_"+idx}>{_.map(data.sop.omics, 'ontologyLabel').toString()}</td>
+                                            <td className="capitalize" key={"technology_"+idx}>{_.map(data.sop.technoGrain,'ontologyLabel').toString()} {_.map(data.sop.technology,'ontologyLabel').toString()}</td>
                                             <td key={"btn_"+idx}>
                                                     <Link to={"/dataset/"+data.datasetId}><Button key={"display_btn"+idx} color="primary" style={{borderWidth: '2px'}}><ScatterPLotIcon color="primary"></ScatterPLotIcon></Button></Link>
                                             </td>

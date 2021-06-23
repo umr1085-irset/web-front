@@ -63,12 +63,7 @@ class GeneExpPlotComponent extends Component {
 
     
     render() {
-      const KeysToComponentDisplay = {
-        scatter:PlotComponent,
-        violin:PlotComponent,
-        hexbin:PlotComponent,
-        dot:PlotComponent
-      };
+
       const element = (
         <MDBRow>
           <MDBCol md="6" sm="12" className="colDivider">

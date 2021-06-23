@@ -10,6 +10,8 @@ import BarchartIcon from '../../assets/Icons/Barchart';
 import PieIcon from '../../assets/Icons/PieTwoTone';
 import ScatterPlotIcon from "../../assets/Icons/ScatterPlot";
 import HexbinIcon from "../../assets/Icons/Hexa";
+import DensityIcon from "../../assets/Icons/Curves";
+
 
 
 class GraphSelectorLight extends Component {
@@ -41,7 +43,7 @@ class GraphSelectorLight extends Component {
         bar:BarchartIcon ,
         scatter:ScatterPlotIcon,
         hexbin:HexbinIcon,
-        //density:DensityIcon
+        density:DensityIcon
     };
 
       let tagList = attributes.map((attribute,idx)  => 

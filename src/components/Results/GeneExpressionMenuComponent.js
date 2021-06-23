@@ -39,6 +39,7 @@ import ScatterPlotIconDouble from "../../assets/Icons/ScatterPlotOutlined";
 import HexbinIcon from "../../assets/Icons/Hexa";
 import DensityIcon from "../../assets/Icons/Curves";
 import DotPlotIcon from "../../assets/Icons/DotPlot";
+import ViolinIcon from "../../assets/Icons/CurvesTwoTone";
 import Chip from '@material-ui/core/Chip';
 
 
@@ -195,6 +196,7 @@ class GeneExpPlotMenuComponent extends Component {
             scatter:ScatterPlotIcon,
             hexbin:HexbinIcon,
             density:DensityIcon,
+            violin:ViolinIcon,
             dot:DotPlotIcon,
             scatter_d:ScatterPlotIconDouble
         };

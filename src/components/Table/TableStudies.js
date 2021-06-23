@@ -24,6 +24,7 @@ import MUIDataTable from "mui-datatables";
 
 class TableStudiesComponent extends Component {
   render() {
+      console.log(this.props.rows)
       const rows = this.props.rows
       const columns = [
         {
