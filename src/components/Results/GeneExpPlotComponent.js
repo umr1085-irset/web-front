@@ -30,7 +30,8 @@ class GeneExpPlotComponent extends Component {
           loading:true,
           filters:{
             ra:{},
-            ca:{}
+            ca:{},
+            reduction:{}
           },
           selector:{
             ra:{},

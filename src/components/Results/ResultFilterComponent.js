@@ -37,7 +37,8 @@ class ResultsFilterLayout extends Component {
             attrs:undefined,
             filters:{
                 ra:{},
-                ca:{}
+                ca:{},
+                reduction:''
             }
         };
       }
@@ -52,6 +53,10 @@ class ResultsFilterLayout extends Component {
         this.setState({filter_by:event.target.value})
     };
 
+    handleChangeReductionBy = (event) => {
+        this.setState({reduction:event.target.value})
+    };
+
     handleChangeFilterByRa = (event) => {
         this.setState({filter_by_ra:event.target.value})
     };
@@ -64,10 +69,10 @@ class ResultsFilterLayout extends Component {
         return(val)
     }
 
-
   render() {
         const filters_keys = this.props.filters_keys
         const filter = this.props.metadata
+        const reductions = this.props.reductions
         const header=(
             <div>
                 <span className="MuiCardHeader-title">Filter(s)</span>
@@ -84,15 +89,40 @@ class ResultsFilterLayout extends Component {
                     
                 </CardHeader>
                 <CardContent>
+                 <MDBRow>
+                        <MDBCol md="12" className="align-middle">
+                            <FormControl className="control-filter align-middle">
+                                <InputLabel className="control-filter align-middle" id="demo-simple-select-label">Select reduction</InputLabel>
+                                <Select className="control-filter"
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={this.state.reduction}
+                                    defaultValue = {this.props.default_display}
+                                    onChange={(event, newValue) => {
+                                        this.setState({reduction: event.target.value});
+                                        this.setState({
+                                            filters: update(this.state.filters, {
+                                                'reduction': {$set: event.target.value},
+                                            }),
+                                        });
+                                    }}
+                                >
+                                {reductions.map(function(filter, idx){
+                                    return(<MenuItem value={filter} key={idx}>{filter}</MenuItem>)
+                                })}
+                                </Select>
+                            </FormControl>
+                        </MDBCol>
+                    </MDBRow>
                     <MDBRow>
                         <MDBCol md="6" className="align-middle">
                             <FormControl className="control-filter align-middle">
                                 <InputLabel className="control-filter align-middle" id="demo-simple-select-label">Filter by columns</InputLabel>
                                 <Select className="control-filter"
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                value={this.state.filter_by}
-                                onChange={this.handleChangeFilterBy}
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={this.state.filter_by}
+                                    onChange={this.handleChangeFilterBy}
                                 >
                                 {filters_keys['ca'].map(function(filter, idx){
                                     return(<MenuItem value={filter} key={idx}>{filter}</MenuItem>)

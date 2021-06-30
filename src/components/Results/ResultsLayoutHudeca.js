@@ -48,7 +48,8 @@ class ResultsLayout extends Component {
             expanded:true,
             filters:{
                 ra:{},
-                ca:{}
+                ca:{},
+                reduction:''
             }
         };
     }
@@ -62,7 +63,7 @@ class ResultsLayout extends Component {
                     <DatasetTitleComponent dataset={dataset}/>
                 </MDBCol>
                 <MDBCol md="4" sm="12">
-                   <ResultsFilterLayout  metadata={dataset.metadata.filters} filters_keys={dataset.metadata.filters_keys} filters={this.state.filters} setStateParent={(p, cb) => this.setState(p, cb)} />
+                   <ResultsFilterLayout  metadata={dataset.metadata.filters} default_display={dataset.default_display} reductions={dataset.reductions} filters_keys={dataset.metadata.filters_keys} filters={this.state.filters} setStateParent={(p, cb) => this.setState(p, cb)} />
                 </MDBCol>
             </MDBRow>
             <MDBRow>
