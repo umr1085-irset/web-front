@@ -39,11 +39,22 @@ class GetPlotComponent extends Component {
 
       async getDataPlot(url,id,style,attrs,filters,symbol){
         this.setState({loading:true});
-        const plotData={
-          id:id,
-          style:style,
-          attrs:symbol,
-          filters:filters
+        var plotData = {}
+        if(style==='violin'){
+          plotData={
+            id:id,
+            style:style,
+            attrs:attrs,
+            symbols:[symbol],
+            filters:filters
+          }
+        } else{
+          plotData={
+            id:id,
+            style:style,
+            attrs:symbol,
+            filters:filters
+          }
         }
         await trackPromise(
           axios.post(url,plotData)
@@ -61,12 +72,12 @@ class GetPlotComponent extends Component {
       }
 
       async componentDidMount() {
-          this.getDataPlot(this.props.url,this.props.id,"scatter",this.props.attrs,this.props.filters,this.props.gene)
+          this.getDataPlot(this.props.url,this.props.id,this.props.type,this.props.attrs,this.props.filters,this.props.gene)
       }
 
       componentWillReceiveProps(nextProps) {
-        if( nextProps.filters !== this.props.filters ){
-          this.getDataPlot(this.props.url,this.props.id,"scatter",this.props.attrs,nextProps.filters,this.props.gene)
+        if( nextProps.filters !== this.props.filters || nextProps.attrs !== this.props.attrs  ){
+          this.getDataPlot(this.props.url,this.props.id,this.props.type,nextProps.attrs,nextProps.filters,this.props.gene)
         }
         
       }

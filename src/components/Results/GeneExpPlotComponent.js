@@ -16,7 +16,6 @@
 */
 import React, { Component } from "react";
 import GeneExpPlotMenuComponent from './GeneExpressionMenuComponent'
-import PlotComponent from "../Plots/PlotComponent"
 import GenomicDisplayComponent from './GenomicDisplayComponent'
 import VerticalTabs from "./GenomicScatterOneTab"
 import Divider from '@material-ui/core/Divider';
@@ -68,10 +67,10 @@ class GeneExpPlotComponent extends Component {
       const element = (
         <MDBRow>
           <MDBCol md="6" sm="12" className="colDivider">
-            <VerticalTabs selector={this.state.selector} url={this.props.url} loom={this.props.loom} selected_attrs={this.state.selected_attrs}  scale={this.props.scale} />
+            <VerticalTabs selector={this.state.selector} type={this.state.chart_type} url={this.props.url} loom={this.props.loom} selected_attrs={this.state.selected_attrs}  scale={this.props.scale} />
           </MDBCol>
           <MDBCol md="6" sm="12">
-            <VerticalTabs selector={this.state.selector} url={this.props.url} loom={this.props.loom} selected_attrs={this.state.selected_attrs}  scale={this.props.scale} />
+            <VerticalTabs selector={this.state.selector} type={this.state.chart_type} url={this.props.url} loom={this.props.loom} selected_attrs={this.state.selected_attrs}  scale={this.props.scale} />
           </MDBCol>
         </MDBRow>
       )
@@ -85,11 +84,11 @@ class GeneExpPlotComponent extends Component {
           <Divider />
           <MDBRow>
             <MDBCol md="12">
-              {this.state.chart_type==="scatter" ?
+              {this.state.chart_type==="scatter" || this.state.chart_type==="violin" ?
                 this.state.selector.ra.Symbol?
                 element:null
                 :
-                <GenomicDisplayComponent url={this.props.url} loom={this.props.loom} scale={this.state.scale} chart_type={this.state.chart_type} selector={this.state.selector} selected_attrs={this.state.selected_attrs}/>
+                <GenomicDisplayComponent url={this.props.url} loom={this.props.loom} type={this.props.chart_type} scale={this.state.scale} chart_type={this.state.chart_type} selector={this.state.selector} selected_attrs={this.state.selected_attrs}/>
               }     
             </MDBCol>
           </MDBRow>

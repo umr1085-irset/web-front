@@ -77,7 +77,7 @@ export default function VerticalTabs(props) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const { selector, url, loom,selected_attrs,scale, ...other } = props;
+  const { selector, url, loom,selected_attrs,scale,type, ...other } = props;
   return (
     <div className={classes.root}>
       <Tabs
@@ -94,8 +94,8 @@ export default function VerticalTabs(props) {
       </Tabs>
       {selector.ra.Symbol.map((gene,idx) => (
           <TabPanel value={value} index={idx} style={{width:"100%"}}>
-              Displayed Gene : {gene}
-            <GetPlotComponent url={url} id={loom} attrs={selected_attrs} filters={selector} gene={gene}/>
+              Displayed Gene : {gene} - {type} - {selected_attrs}
+            <GetPlotComponent url={url} id={loom} attrs={selected_attrs} type={type} filters={selector} gene={gene}/>
           </TabPanel>
         ))}
     </div>
