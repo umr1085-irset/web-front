@@ -39,7 +39,7 @@ import ScatterPlotIconDouble from "../../assets/Icons/ScatterPlotOutlined";
 import HexbinIcon from "../../assets/Icons/Hexa";
 import DensityIcon from "../../assets/Icons/Curves";
 import DotPlotIcon from "../../assets/Icons/DotPlot";
-import ViolinIcon from "../../assets/Icons/CurvesTwoTone";
+import ViolinIcon from "../../assets/Icons/ViolinPlot";
 import Chip from '@material-ui/core/Chip';
 
 
