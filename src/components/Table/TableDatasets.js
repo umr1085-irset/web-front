@@ -20,18 +20,36 @@ import React, { Component } from "react";
 
 import { Link } from "react-router-dom";
 import MUIDataTable from "mui-datatables";
+import { Button,} from '@material-ui/core';
+import axios from "axios";
 
+var fileDownload = require('js-file-download');
+class TableDatasetsComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.downloadDataset = this.downloadDataset.bind(this)
+  }
+  
+  async downloadDataset(id) {
+        console.log('/api/v1/datasets/'+id+'/download')
+        axios.get('/api/v1/datasets/'+id+'/download', { 
+            responseType: 'blob',
+        }).then(res => {
+            fileDownload(res.data, id+'.zip');
+            console.log(res);
+        }).catch(err => {
+            console.log(err);
+        })
+  }
 
-class TableStudiesComponent extends Component {
   render() {
-      console.log(this.props.rows)
       const rows = this.props.rows
       const columns = [
         {
-         name: "studyId",
+         name: "datasetId",
          label: "Id",
          options: {
-          filter: false,
+          filter: true,
           sort: true,
          }
         },
@@ -43,7 +61,7 @@ class TableStudiesComponent extends Component {
             sort: true,
             customBodyRenderLite: (dataIndex, rowIndex) => {
               return (
-                <Link to={"/study/"+this.props.rows[rowIndex].studyId} className="primary">
+                <Link to={"/dataset/"+this.props.rows[rowIndex].datasetId} className="primary">
                     {this.props.rows[rowIndex].title}
                 </Link>
               );
@@ -51,90 +69,74 @@ class TableStudiesComponent extends Component {
           }
         },
         {
-         name: "authors",
-         label: "Authors",
+         name: "type",
+         label: "Type",
          options: {
           filter: true,
-          sort: false,
-          customBodyRender: (value, tableMeta, updateValue) => (
-              value.join(", ")
-            )
+          sort: true,
          }
         },
         {
-         name: "pub_date",
-         label: "Publication Date",
-         options: {
-          filter: true,
-          sort: false,
-          customBodyRender: (value, tableMeta, updateValue) => (
-              value.join(", ")
-            )
-         }
-        },
-        {
-         name: "technology",
-         label: "Technology",
-         options: {
-          filter: true,
-          sort: false,
-          customBodyRender: (value, tableMeta, updateValue) => (
-              value.join(", ")
-            )
-         }
-        },
-        {
-          name: "species",
-          label: "Species",
+          name: "technology",
+          label: "Technology",
           options: {
            filter: true,
-           sort: false,
+           sort: true,
+          }
+         },
+         {
+          name: "gender",
+          label: "Gender",
+          options: {
+           filter: true,
+           sort: true,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
           }
          },
          {
-          name: "dev_stage",
-          label: "Developmental Stage",
+          name: "tissue",
+          label: "Tissue",
           options: {
            filter: true,
-           sort: false,
+           sort: true,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
           }
          },
          {
-          name: "tissues",
-          label: "Tissues",
+          name: "devStage",
+          label: "Dev. Stage",
           options: {
            filter: true,
-           sort: false,
+           sort: true,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
           }
          },
          {
-          name: "pmids",
-          label: "PMID",
+          name: "id",
+          label: "Download",
           options: {
-           filter: true,
+           filter: false,
            sort: false,
-           customBodyRender: (value, tableMeta, updateValue) => (
-              value.join(", ")
-            )
+          customBodyRenderLite: (dataIndex, rowIndex) => {
+            return (
+              <Button onClick={() => {this.downloadDataset(this.props.rows[rowIndex].datasetId)}} variant="contained" color="primary" className='p-2'>
+                  Download
+              </Button>
+            );
+          }
           }
          },
-
        ];
 
        const options = {
          print: false,
          download: false,
-         selectableRows:'none',
-         filterType: 'dropdown',
        };
     return (
 
@@ -148,4 +150,4 @@ class TableStudiesComponent extends Component {
   }
 }
 
-export default TableStudiesComponent;
+export default TableDatasetsComponent;

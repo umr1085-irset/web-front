@@ -20,5 +20,3 @@ function DotPlotIcon(props) {
 }
 
 export default DotPlotIcon;
-
-

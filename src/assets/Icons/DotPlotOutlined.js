@@ -37,5 +37,3 @@ function DotPlotOutlinedIcon(props) {
 }
 
 export default DotPlotOutlinedIcon;
-
-

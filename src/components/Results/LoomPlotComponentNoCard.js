@@ -23,20 +23,24 @@ import { toastOnError } from "../../utils/Utils";
 import { trackPromise } from 'react-promise-tracker';
 import PlotComponent from "../Plots/PlotComponent"
 import {Spinner} from '../Loading/LoadingComponent'
-
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import Button from '@material-ui/core/Button';
 import { Doughnut, Pie, HorizontalBar  } from 'react-chartjs-2';
+
 
 // reactstrap components
 
 
-import { MDBCollapse, MDBIcon } from "mdbreact";
+import { MDBCol, MDBIcon, MDBRow } from "mdbreact";
 
-class LoomPlotComponent extends Component {
+class LoomPlotComponentCard extends Component {
       constructor(props) {
         super(props);
         this.state = {
           loading:true,
           filters:{},
+          anchorEl:null,
           attrs:"",
           chart_type: "pie",
           selector:{
@@ -65,7 +69,8 @@ class LoomPlotComponent extends Component {
               loading:false});
           })
           .catch(error => {
-            toastOnError("Error loading dataset");
+            toastOnError("Error loading dataset LOOMNOCARD");
+            console.log(filters)
           })
         )
       }
@@ -92,8 +97,15 @@ class LoomPlotComponent extends Component {
         }));
       }
 
+      handleClick = (event) => {
+        this.setState({anchorEl:event.currentTarget});
+      };
+      handleClose = () => {
+        this.setState({anchorEl:null});
+      };
+
       displayPlot = (plot_type,KeysToComponentDisplay,data) =>{
-        if(plot_type === "scatter"){
+        if(plot_type === "scatter" || plot_type === "hexbin" || plot_type === "violin" || plot_type === "density" ){
           return React.createElement(KeysToComponentDisplay[plot_type],{key:"plot_"+plot_type ,data: data.data, layout:data.layout})
         } else {
           return React.createElement(KeysToComponentDisplay[plot_type],{key:"plot_"+plot_type ,data: data, options:data.options})
@@ -112,27 +124,43 @@ class LoomPlotComponent extends Component {
           pie:Pie,
           doughnut:Doughnut,
           bar:HorizontalBar ,
-          scatter:PlotComponent
+          scatter:PlotComponent,
+          violin:PlotComponent,
+          density:PlotComponent,
+          hexbin:PlotComponent,
       };
-      const KeysToNameDisplay = {
-        pie:"Piechart",
-        doughnut:"Doughnut chart",
-        bar:"Barchart" ,
-        scatter:"Scatter plot"
-    };
       return (
         <div>
-            <span><a onClick={this.toggleCollapse("basicCollapse")}><MDBIcon icon="cog"  /></a>   {KeysToNameDisplay[this.props.chart_type]} {this.props.attrs}</span>
-              <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID} className="filtertools">
-                {this.state.genes_menu? 
-                  <GraphSelector chart_type={this.state.chart_type} filters={this.state.filters} genes_menu={this.state.genes_menu} setStateParent={(p, cb) => this.setState(p, cb)}/> : 
-                  <GraphSelectorLight chart_type={this.state.chart_type} filters={this.state.filters} selected_attrs={this.state.attrs} attrs={this.props.all_attrs} callbackUpdateGraph={this.callbackUpdateGraph} name={this.props.name}/>
-                }
-              </MDBCollapse>
-            {this.state.loading ? <Spinner/> : this.displayPlot(this.state.style,KeysToComponentDisplay,this.state.chart)}
+          <Button disableRipple style={{ textTransform: 'capitalize' }} aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}>
+                {this.state.attrs} <MDBIcon className="ml-2" icon="angle-down" />
+              </Button>
+              <Menu
+                id="simple-menu"
+                anchorEl={this.state.anchorEl}
+                keepMounted
+                open={Boolean(this.state.anchorEl)}
+                onClose={this.handleClose}
+              >
+                <MenuItem
+                onMouseEnter={(e) => e.target.style.backgroundColor= '#ffffff'}
+                onMouseLeave={(e) => e.target.style.backgroundColor = '#ffffff'}
+                onClick={this.handleClose}
+                >
+                    {this.state.genes_menu? 
+                      <GraphSelector chart_type={this.state.chart_type} filters={this.state.filters} genes_menu={this.state.genes_menu} setStateParent={(p, cb) => this.setState(p, cb)}/> : 
+                      <GraphSelectorLight display_type={this.props.display_type} chart_type={this.state.chart_type} filters={this.state.filters} selected_attrs={this.state.attrs} attrs={this.props.all_attrs} callbackUpdateGraph={this.callbackUpdateGraph} name={this.props.name}/>
+                    }
+                </MenuItem>
+              </Menu>
+          <MDBRow>
+            <MDBCol md="12">
+              {this.state.loading ? <Spinner/> : this.displayPlot(this.state.style,KeysToComponentDisplay,this.state.chart)}  
+            </MDBCol>
+          </MDBRow>
+            
         </div>
       );
     }
   }
   
-export default LoomPlotComponent;
+export default LoomPlotComponentCard;

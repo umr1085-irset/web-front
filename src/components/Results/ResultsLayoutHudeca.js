@@ -16,21 +16,19 @@
 */
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import clsx from 'clsx';
 
-import { MDBRow, MDBCol, MDBCollapse  } from "mdbreact";
+import DatasetTitleComponent from'./DatasetTitleComponent'
+
+import { MDBRow, MDBCol } from "mdbreact";
 import { CardContent, CardHeader, Card} from '@material-ui/core';
-import LoomPlotComponent from './LoomPlotComponent'
 import LoomPlotComponentNoCard from './LoomPlotComponentNoCard'
 import ResultsFilterLayout from './ResultFilterComponent'
 import SelectedFilterResults from './SelectedFilterResultComponent'
-import Typography from '@material-ui/core/Typography';
-
+import StatisticsComponent from './StatisticsComponent'
+import GeneExpPlotComponent from './GeneExpPlotComponent'
 import IconButton from '@material-ui/core/IconButton';
-
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-
-import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
+import { UncontrolledCollapse } from 'reactstrap';
 
 class ResultsLayout extends Component {
     constructor(props) {
@@ -43,92 +41,33 @@ class ResultsLayout extends Component {
                 chart4:"clusters",
                 chart5:"cell type",
                 chart6:"Sox9",
+                chart7:"clusters",
+                chart8:"clusters",
             },
+            
             expanded:true,
             filters:{
                 ra:{},
-                ca:{}
+                ca:{},
+                reduction:''
             }
         };
     }
-    
-    state = {
-        collapseID: "metaCollapse"
-    }
-
-
-    handleExpandClick = () => {
-        this.setState({expanded:!this.state.expanded});
-    };
-
-    toggleCollapse = collapseID => () => {
-        this.setState(prevState => ({
-            collapseID: prevState.collapseID !== collapseID ? collapseID : ""
-        }));
-    }
-
-    callbackFunction = (val) => { 
-        //this.setState({ filters:val })
-        console.log(this.state)
-    }
-
 
   render() {
       const dataset = this.props.dataset
-      const { collapseID } = this.state;
     return (
         <div>         
             <MDBRow>
                 <MDBCol md="8" sm="12">
-                    <Card variant="outlined" className="ddb-result">
-                        <CardHeader title={<Breadcrumbs/>}>
-                            
-                        </CardHeader>
-                        <CardContent >
-                            <MDBRow>
-                                <MDBCol md="11">
-                                    <Typography gutterBottom variant="h2" component="h2"  className="result-title">
-                                        {dataset.title}
-                                    </Typography>
-                                    <Typography variant="body2" color="textSecondary" component="p"  className="result-title">
-                                           {dataset.metadata.cell_number} {dataset.metadata.col_name} | {dataset.metadata.gene_number} {dataset.metadata.row_name}
-                                    </Typography>
-                                </MDBCol>
-                                <MDBCol md="1">
-                                    {dataset.rel_datasets.datasets.length?<ExpandMoreIcon fontSize="large" onClick={this.toggleCollapse("basicCollapse")}/>:<p></p>}
-                                </MDBCol>
-                            </MDBRow>
-                        </CardContent>
-                        <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID} className="center-col">
-                            <CardContent >
-                                <MDBRow>
-                                    <MDBCol md="12">
-                                    <hr/>
-                                        {dataset.rel_datasets.datasets.map(function(data,idx){
-                                            return(
-                                            <div>
-                                                <Typography gutterBottom variant="h3" component="h3"  className="result-title">
-                                                    {data.title}
-                                                </Typography>
-                                                <Typography variant="body2" color="textSecondary" component="p"  className="result-title">
-                                                    {data.cell_number} {data.col_name} | {data.gene_number} {data.row_name}
-                                                </Typography>
-                                                <hr/>
-                                            </div>
-                                            )
-                                        })}
-                                    </MDBCol>
-                                </MDBRow>
-                            </CardContent>
-                        </MDBCollapse>
-                    </Card>
+                    <DatasetTitleComponent dataset={dataset}/>
                 </MDBCol>
                 <MDBCol md="4" sm="12">
-                   <ResultsFilterLayout  metadata={dataset.metadata.filters} filters={this.state.filters} setStateParent={(p, cb) => this.setState(p, cb)} />
+                   <ResultsFilterLayout  metadata={dataset.metadata.filters} default_display={dataset.default_display} reductions={dataset.reductions} filters_keys={dataset.metadata.filters_keys} filters={this.state.filters} setStateParent={(p, cb) => this.setState(p, cb)} />
                 </MDBCol>
             </MDBRow>
             <MDBRow>
-                <MDBCol md="8">
+                <MDBCol md="12">
                    {(Object.keys(this.state.filters.ca) == 0 && Object.keys(this.state.filters.ra) == 0)? null : <SelectedFilterResults filters={this.state.filters}/>}
                 </MDBCol>
             </MDBRow>
@@ -138,42 +77,83 @@ class ResultsLayout extends Component {
                     <Card className="card-chart">
                         <CardHeader title="Overview"  action={
                             <IconButton
-                                onClick={this.toggleCollapse("metaCollapse")}
+                                id="togglerMO"
                                 aria-label="show more"
                                 >
                                 <ExpandMoreIcon />
                                 </IconButton>
                             }>
                         </CardHeader>
-                        <MDBCollapse id="metaCollapse" isOpen={collapseID}>
+                        <UncontrolledCollapse toggler="#togglerMO" defaultOpen={true}>
                             <CardContent>
                                 <MDBRow>
-                                    <MDBCol md="4" className="colDivider">
-                                        <LoomPlotComponentNoCard loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="pie" attrs={this.state.attrs.chart1} all_attrs={dataset.metadata.filters_keys} name="C1"></LoomPlotComponentNoCard>
+                                    <MDBCol lg="3" md="12" sm="12" className="colDivider">
+                                        <LoomPlotComponentNoCard datachart="" display_type={['bar','pie']} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="pie" attrs={this.state.attrs.chart1} all_attrs={dataset.metadata.filters_keys} name="C1"></LoomPlotComponentNoCard>
                                     </MDBCol>
-                                    <MDBCol md="4" className="colDivider">
-                                        <LoomPlotComponentNoCard loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="bar" attrs={this.state.attrs.chart2} all_attrs={dataset.metadata.filters_keys}   name="C2"></LoomPlotComponentNoCard>
+                                    <MDBCol lg="3" md="12" sm="12" className="colDivider">
+                                        <LoomPlotComponentNoCard datachart="" display_type={['bar','pie']} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="bar" attrs={this.state.attrs.chart2} all_attrs={dataset.metadata.filters_keys}   name="C2"></LoomPlotComponentNoCard>
                                     </MDBCol>
-                                    <MDBCol md="4">
-                                        <LoomPlotComponentNoCard loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="bar" attrs={this.state.attrs.chart3} all_attrs={dataset.metadata.filters_keys}  name="C3"></LoomPlotComponentNoCard>
+                                    <MDBCol lg="3" md="12" sm="12" className="colDivider">
+                                        <LoomPlotComponentNoCard datachart="" display_type={['bar','pie']} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="bar" attrs={this.state.attrs.chart3} all_attrs={dataset.metadata.filters_keys}  name="C3"></LoomPlotComponentNoCard>
+                                    </MDBCol>
+                                    <MDBCol lg="3" md="12" sm="12">
+                                        <StatisticsComponent loom={dataset.loom.id} row_name={dataset.metadata.row_name} col_name={dataset.metadata.col_name} url="/api/v1/dataset/statistics/" filters={this.state.filters} row_tot={dataset.metadata.gene_number} col_tot={dataset.metadata.cell_number} />
                                     </MDBCol>
                                 </MDBRow>
                             </CardContent>
-                        </MDBCollapse>
+                        </UncontrolledCollapse>
                     </Card>
                 </MDBCol>
             </MDBRow>
             <MDBRow>
-                <MDBCol md="6">
-                    <LoomPlotComponent loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="scatter" attrs={this.state.attrs.chart4} menu="yes" all_attrs={dataset.metadata.filters_keys} name="C4"></LoomPlotComponent>
-                </MDBCol>
-                <MDBCol md="6">
-                    <LoomPlotComponent loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="scatter" attrs={this.state.attrs.chart5} menu="yes" all_attrs={dataset.metadata.filters_keys} name="C5"></LoomPlotComponent>
+                <MDBCol md="12">
+                    <Card className="card-chart">
+                        <CardHeader title="Spatial overview"  action={
+                            <IconButton
+                                id="togglerSO"
+                                aria-label="show more"
+                                >
+                                <ExpandMoreIcon />
+                                </IconButton>
+                            }>
+                        </CardHeader>
+                        <UncontrolledCollapse className="spatialCollapse" toggler="#togglerSO" defaultOpen={true}>
+                            <CardContent className="spatialCollapse">
+                                <MDBRow>
+                                    <MDBCol md="6" className="colDivider spatialCollapse">
+                                        <LoomPlotComponentNoCard className="spatialCollapse" display_type={['scatter','hexbin','density']} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="scatter" attrs={this.state.attrs.chart4} all_attrs={dataset.metadata.filters_keys} name="C4"></LoomPlotComponentNoCard>
+                                    </MDBCol>
+                                    <MDBCol md="6" className="spatialCollapse">
+                                        <LoomPlotComponentNoCard className="spatialCollapse" display_type={['scatter','hexbin','density']} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="scatter" attrs={this.state.attrs.chart5} all_attrs={dataset.metadata.filters_keys}   name="C5"></LoomPlotComponentNoCard>
+                                    </MDBCol>
+                                </MDBRow>
+                            </CardContent>
+                        </UncontrolledCollapse>
+                    </Card>
                 </MDBCol>
             </MDBRow>
             <MDBRow>
                 <MDBCol md="12">
-                    <LoomPlotComponent loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="scatter" attrs={this.state.attrs.chart6} menu="yes" all_attrs={dataset.metadata.filters_keys} name="C6"></LoomPlotComponent>
+                    <Card className="card-chart">
+                        <CardHeader title={dataset.metadata.row_name+" expression"}  action={
+                            <IconButton
+                                id="togglerGE"
+                                aria-label="show more"
+                                >
+                                <ExpandMoreIcon />
+                                </IconButton>
+                            }>
+                        </CardHeader>
+                        <UncontrolledCollapse id="GECollapse" toggler="#togglerGE" defaultOpen={true}>
+                            <CardContent>
+                                <MDBRow>
+                                    <MDBCol md="12">
+                                        <GeneExpPlotComponent display_type={['scatter','hexbin','dot','violin']} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="scatter" attrs={this.state.attrs.chart4} all_attrs={dataset.metadata.filters_keys} name="C4"/>
+                                    </MDBCol>
+                                </MDBRow>
+                            </CardContent>
+                        </UncontrolledCollapse>
+                    </Card>
                 </MDBCol>
             </MDBRow>
         </div>

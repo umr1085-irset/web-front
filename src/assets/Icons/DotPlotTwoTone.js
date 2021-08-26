@@ -27,5 +27,3 @@ function DotPlotTwoToneIcon(props) {
 }
 
 export default DotPlotTwoToneIcon;
-
-

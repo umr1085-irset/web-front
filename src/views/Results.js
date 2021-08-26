@@ -45,7 +45,7 @@ class ResultsPage extends Component {
 
           })
           .catch(error => {
-            toastOnError("Error loading dataset");
+            toastOnError("Error loading dataset Results");
           })
         )
       }

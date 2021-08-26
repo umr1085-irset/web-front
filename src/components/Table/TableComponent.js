@@ -18,63 +18,26 @@
 */
 import React, { Component } from "react";
 
-import { MDBRow, MDBContainer, MDBCol, MDBTable, MDBTableBody, MDBTableHead } from "mdbreact";
 import StudyTable from './TableStudies'
+import DatasetTable from './TableDatasets'
 
 
 class TableComponent extends Component {
-  constructor(props) {
-    super(props);
-    this.state ={
-      data:null,
-      filters:{
-        type:[],
-        tissues: [],
-        technology:[],
-        pmid: [],
-        title: [],
-        author:[],
-        pub_date:[],
-        devstage:[],
-        gender: []
-      }
-    };
-  }
-  
 
-  filterPlainArray(array, filters) {
-    if(filters===null) return array
-    const getValue = value => (typeof value === 'string' ? value.toUpperCase() : value);
-    const filterKeys = Object.keys(filters);
-    return array.filter(item => {
-      // validates all filter criteria
-      return filterKeys.every(key => {
-        // ignores an empty filter
-        if (!filters[key].length) return true;
-        return filters[key].find(filter => getValue(filter) === getValue(item[key]));
-      });
-    });
-  }
-
-  displayTable = (KeysToTable,key,columns,rows) =>{
-    return React.createElement(KeysToTable[key],{columns:columns,rows: rows})
+  displayTable = (KeysToTable,key,rows) =>{
+    return React.createElement(KeysToTable[key],{rows: rows})
   }
   render() {
     const KeysToTable ={
       studies:StudyTable,
-      datasets:StudyTable,
+      datasets:DatasetTable,
     }
-    const columns = this.props.columns;
-    const rows = this.filterPlainArray(this.props.data,this.props.filters);
+    const rows = this.props.data
     return (
-          <MDBContainer className="mt-5">
-            <MDBRow>
-                <MDBCol md="12">
-                  {this.displayTable(KeysToTable,this.props.type,columns,rows)}
-                </MDBCol>
-            </MDBRow>
+        <div>
+          {this.displayTable(KeysToTable,this.props.type,rows)}
+        </div>
 
-          </MDBContainer>
     );
   }
 }

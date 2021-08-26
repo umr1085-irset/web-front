@@ -18,6 +18,7 @@ import React, { Component } from "react";
 import { Link, withRouter } from "react-router-dom";
 import moment from 'moment';
 import _ from 'lodash';
+import axios from "axios";
 
 import { MDBRow, MDBCol, MDBTable, MDBTableBody,MDBTableHead } from "mdbreact";
 import { Button, CardContent, CardHeader, Card} from '@material-ui/core';
@@ -27,10 +28,27 @@ import ScatterPLotIcon from '../../assets/Icons/ScatterPlot';
 
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
 
+var fileDownload = require('js-file-download');
 class DetailStudyPage extends Component {
-
+    constructor(props) {
+        super(props);
+        this.downloadDataset = this.downloadDataset.bind(this)
+      }
+      
+      async downloadDataset(id) {
+            console.log('/api/v1/datasets/'+id+'/download')
+            axios.get('/api/v1/datasets/'+id+'/download', { 
+                responseType: 'blob',
+            }).then(res => {
+                fileDownload(res.data, id+'.zip');
+                console.log(res);
+            }).catch(err => {
+                console.log(err);
+            })
+      }
   render() {
       const study = this.props.study
+      console.log(study)
     return (
           <div>         
             <MDBRow>
@@ -96,7 +114,7 @@ class DetailStudyPage extends Component {
                                         </tr>
                                         <tr>
                                             <td><b>Last update</b></td>
-                                            <td>{moment(study.project.updated_at).fromNow()}</td>
+                                            <td>{moment(study.project.updated_at).calendar()}</td>
                                         </tr>
                                         </MDBTableBody>
                                     </MDBTable>
@@ -150,22 +168,22 @@ class DetailStudyPage extends Component {
                                         <tr key={idx}>
                                             <td key={"id_"+idx}>{data.datasetId}</td>
                                             <td key={"title_"+idx}>{data.title}</td>
-                                            {data.bioMeta.tissue? <td key={"tissue_"+idx}>{_.map(data.bioMeta.tissue, 'name').toString()}</td>:<td key={"tissue_"+idx}>{_.map(data.bioMeta.cell, 'name').toString()}</td>}
-                                            <td className="capitalize" key={"gender_"+idx}>{data.bioMeta.gender.toLowerCase()}</td>
-                                            {data.bioMeta.dev_stage? <td key={"dev_stage_"+idx}>{_.map(data.bioMeta.dev_stage, 'name').toString()}</td>:<td key={"dev_stage_"+idx}>No information provided</td>}
-                                            <td className="capitalize" key={"omics_"+idx}>{data.sop.omics.toLowerCase()}</td>
-                                            <td className="capitalize" key={"technology_"+idx}>{data.sop.technoGrain.toLowerCase()} {data.sop.technology.toLowerCase()}</td>
+                                            {data.bioMeta.tissue? <td key={"tissue_"+idx}>{_.map(data.bioMeta.tissue, 'ontologyLabel').toString()}</td>:<td key={"tissue_"+idx}>{_.map(data.bioMeta.cell, 'name').toString()}</td>}
+                                            <td className="capitalize" key={"gender_"+idx}>{data.bioMeta.gender.join(", ")}</td>
+                                            {data.bioMeta.dev_stage? <td key={"dev_stage_"+idx}>{_.map(data.bioMeta.dev_stage, 'ontologyLabel').toString()}</td>:<td key={"dev_stage_"+idx}>No information provided</td>}
+                                            <td className="capitalize" key={"omics_"+idx}>{_.map(data.sop.omics, 'ontologyLabel').toString()}</td>
+                                            <td className="capitalize" key={"technology_"+idx}>{_.map(data.sop.technoGrain,'ontologyLabel').toString()} {_.map(data.sop.technology,'ontologyLabel').toString()}</td>
                                             <td key={"btn_"+idx}>
                                                     <Link to={"/dataset/"+data.datasetId}><Button key={"display_btn"+idx} color="primary" style={{borderWidth: '2px'}}><ScatterPLotIcon color="primary"></ScatterPLotIcon></Button></Link>
                                             </td>
                                             <td key={"download_"+idx}>
-                                                <Button variant="contained" color="primary" className='p-2' key={"download_btn"+idx}>
+                                                <Button onClick={() => {this.downloadDataset(data.datasetId)}} variant="contained" color="primary" className='p-2' key={"download_btn"+idx}>
                                                     Download
                                                 </Button>
                                             </td>
                                         </tr>
                                     )
-                                })}
+                                },this)}
                                 </MDBTableBody>
                             </MDBTable>
                         </CardContent>

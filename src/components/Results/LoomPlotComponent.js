@@ -59,6 +59,7 @@ class LoomPlotComponent extends Component {
         await trackPromise(
           axios.post(url,plotData)
           .then(response => {
+            console.log(response.data)
             this.setState({
               chart:response.data.chart,
               style:response.data.style,
@@ -66,7 +67,7 @@ class LoomPlotComponent extends Component {
               loading:false});
           })
           .catch(error => {
-            toastOnError("Error loading dataset");
+            toastOnError("Error loading dataset LOOMPLOTCOMPONENT");
           })
         )
       }
@@ -94,7 +95,7 @@ class LoomPlotComponent extends Component {
       }
 
       displayPlot = (plot_type,KeysToComponentDisplay,data) =>{
-        if(plot_type === "scatter"){
+        if(plot_type === "scatter" || plot_type === "hexbin" || plot_type === "violin" ){
           return React.createElement(KeysToComponentDisplay[plot_type],{key:"plot_"+plot_type ,data: data.data, layout:data.layout})
         } else {
           return React.createElement(KeysToComponentDisplay[plot_type],{key:"plot_"+plot_type ,data: data, options:data.options})
@@ -113,22 +114,19 @@ class LoomPlotComponent extends Component {
           pie:Pie,
           doughnut:Doughnut,
           bar:HorizontalBar ,
-          scatter:PlotComponent
+          scatter:PlotComponent,
+          violin:PlotComponent,
+          hexbin:PlotComponent,
       };
-      const KeysToNameDisplay = {
-        pie:"Piechart",
-        doughnut:"Doughnut chart",
-        bar:"Barchart" ,
-        scatter:"Scatter plot"
-    };
+
       return (
         <Card className="card-chart">
-              <CardHeader title={<span><a onClick={this.toggleCollapse("basicCollapse")}><MDBIcon icon="cog"  /></a>   {KeysToNameDisplay[this.props.chart_type]} {this.props.attrs}</span>}/>
+              <CardHeader title={<span><a style={{ textTransform: 'capitalize' }} onClick={this.toggleCollapse("basicCollapse")}>{this.state.attrs} <MDBIcon className="ml-2" icon="angle-down" /></a></span>}/>
             <CardContent>
                 <MDBCollapse id="basicCollapse" isOpen={this.state.collapseID} className="filtertools">
                   {this.state.genes_menu? 
                     <GraphSelector chart_type={this.state.chart_type} filters={this.state.filters} genes_menu={this.state.genes_menu} setStateParent={(p, cb) => this.setState(p, cb)}/> : 
-                    <GraphSelectorLight chart_type={this.state.chart_type} filters={this.state.filters} selected_attrs={this.state.attrs} attrs={this.props.all_attrs} callbackUpdateGraph={this.callbackUpdateGraph} name={this.props.name}/>
+                    <GraphSelectorLight display_type={this.props.display_type} chart_type={this.state.chart_type} filters={this.state.filters} selected_attrs={this.state.attrs} attrs={this.props.all_attrs} callbackUpdateGraph={this.callbackUpdateGraph} name={this.props.name}/>
                   }
                 </MDBCollapse>
               {this.state.loading ? <Spinner/> : this.displayPlot(this.state.style,KeysToComponentDisplay,this.state.chart)}

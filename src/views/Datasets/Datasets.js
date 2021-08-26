@@ -29,23 +29,27 @@ import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
 import axios from "axios";
 import { toastOnError } from "../../utils/Utils";
 import { trackPromise } from 'react-promise-tracker';
-import { add, delay } from "lodash";
 
 class DatasetPage extends Component {
     constructor(props) {
         super(props);
         this.state ={
           loading:true,
-          loading2:true,
           browse_by:"",
           filters:null
         };
         this.getData = this.getData.bind(this)
       }
     
-    async getData(){
+    async getData(browse){
+        let url=""
+        if(browse=="studies"){
+          url = "/api/v1/studies/public"
+        }else{
+          url = "/api/v1/datasets/public"
+        }
         await trackPromise(
-          axios.get("/api/v1/studies/public")
+          axios.get(url)
           .then(response => {
             this.setState({data : response.data}); 
             this.setState({loading : false});
@@ -59,12 +63,7 @@ class DatasetPage extends Component {
 
     async componentDidMount() {
       this.setState({browse_by : this.props.match.params.browse_by});
-      this.getData()
-    }
-  
-
-    callbackFunction = (key,val) => { 
-      this.setState({ filters:{ [key]:val} })
+      this.getData(this.props.match.params.browse_by)
     }
 
     displayFilter = (KeysToComponentDisplay,key,data,callback,filters) =>{
@@ -73,83 +72,7 @@ class DatasetPage extends Component {
 
   render() {
     
-    const col_names = {
-      studies:[
-        {
-          label: 'ID',
-          field: 'studyId',
-        },
-        {
-          label: 'Title',
-          field: 'title',
-        },
-        {
-          label: 'Authors',
-          field: 'authors',
-        },
-        {
-          label: 'Publication date',
-          field: 'pub_date',
-        },
-        {
-          label: 'Topics',
-          field: 'topics',
-        },
-        {
-          label: 'Technology',
-          field: 'technology',
-        },
-        {
-          label: 'Species',
-          field: 'species',
-        },
-        {
-          label: 'Tissues',
-          field: 'tissues',
-        },
-      ],
-    datasets:[
-        {
-          label: 'ID',
-          field: 'datasetId',
-        },
-        {
-          label: 'Title',
-          field: 'title',
-        },
-        {
-          label: 'Type',
-          field: 'type',
-        },
-        {
-          label: 'Developmental stage',
-          field: 'dev_stage',
-        },
-        {
-          label: 'Species',
-          field: 'species',
-        },
-        {
-          label: 'Gender',
-          field: 'gender',
-        },
-        {
-          label: 'Tissues',
-          field: 'tissues',
-        },
-      ]
-    }
     
-
-    
-
-    const KeysToComponentDisplay = {
-        datasets:FilterComponentDataset,
-        studies:FilterComponentStudies,
-        genomes:""
-
-    };
-
     
     return (
           <MDBContainer className="mt-5">
@@ -157,12 +80,7 @@ class DatasetPage extends Component {
             <h2>Browse by {this.props.match.params.browse_by}</h2>
             <MDBRow>
                 <MDBCol md="12">
-                    {this.state.loading2 ? <Spinner/> : this.displayFilter(KeysToComponentDisplay,this.props.match.params.browse_by,this.state.data,this.callbackFunction,this.state.filters)}
-                </MDBCol>
-            </MDBRow>
-            <MDBRow className="z-depth-1 filter-box mt-5">
-                <MDBCol md="12">
-                  {this.state.loading ? <Spinner/> : <TableComponent data={this.state.data} filters={this.state.filters} columns={col_names[this.props.match.params.browse_by]} type={this.props.match.params.browse_by} />}
+                  {this.state.loading ? <Spinner/> : <TableComponent data={this.state.data} filters={this.state.filters} type={this.props.match.params.browse_by} />}
                 </MDBCol>
             </MDBRow>
           </MDBContainer>
