@@ -48,9 +48,10 @@ class GeneExpPlotComponent extends Component {
         this.setState({chart_type:this.props.chart_type,filters:this.props.filters,selector:this.props.filters,selected_attrs:this.props.attrs})
     }
     componentWillReceiveProps(nextProps) {
-      if( nextProps.filters !== this.props.filters ){
+      if( nextProps.filters !== this.props.filters || nextProps.chart_type !== this.state.chart_type){
         this.setState({filters:nextProps.filters})
         this.setState({selector:nextProps.filters})
+        this.setState({chart_type:nextProps.chart_type})
       }
     }
     callbackUpdateGraph = (key,val) => { 
