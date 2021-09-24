@@ -76,8 +76,8 @@ class GetPlotComponent extends Component {
       }
 
       componentWillReceiveProps(nextProps) {
-        if( nextProps.filters !== this.props.filters || nextProps.attrs !== this.props.attrs  ){
-          this.getDataPlot(this.props.url,this.props.id,this.props.type,nextProps.attrs,nextProps.filters,this.props.gene)
+        if( nextProps.filters !== this.props.filters || nextProps.attrs !== this.props.attrs || nextProps.type !== this.props.type  ){
+          this.getDataPlot(this.props.url,this.props.id,nextProps.type,nextProps.attrs,nextProps.filters,this.props.gene)
         }
         
       }

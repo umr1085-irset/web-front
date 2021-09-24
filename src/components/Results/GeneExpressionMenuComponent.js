@@ -250,7 +250,7 @@ class GeneExpPlotMenuComponent extends Component {
                             </ButtonGroup>
                         )}
                     </MDBCol>
-                    <MDBCol md="3">
+                    {/*<MDBCol md="3">
                         <FormControlLabel
                             control={
                                 <Switch
@@ -264,7 +264,7 @@ class GeneExpPlotMenuComponent extends Component {
                             label="Scale "
                         />
                         
-                    </MDBCol>
+                    </MDBCol>*/}
                 </MDBRow>
                 {this.state.selector.ra.Symbol?
                     <MDBRow className="mt-3">
