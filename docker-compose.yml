@@ -3,7 +3,7 @@ version: '3'
 services:
 
   genoapp-front-static-prod:
-    image: scilicium/geno_app_front:latest
+    image: scilicium/geno_app_front:dev
     container_name: genoapp_front-static-prod
     labels:
       - traefik.enable=true
