@@ -8,7 +8,7 @@ services:
     labels:
       - traefik.enable=true
       - traefik.http.routers.genoapp-front-static-prod.entrypoints=websecure
-      - traefik.http.routers.genoapp-front-static-prod.rule=Host(`genoapp.genouest.org`)
+      - traefik.http.routers.genoapp-front-static-prod.rule=Host(`genoapp.scilicium.com`)
     networks:
       - web
 
