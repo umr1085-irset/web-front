@@ -76,9 +76,9 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
         git checkout develop; git pull
 
 2. Build docker image
-        docker build -t tdarde/geno_app_front:dev .
+        docker build -t scilicium/geno_app-front:dev .
 
 3. Push docker image on registry
 
-        docker push tdarde/geno_app_front:dev
+        docker push scilicium/geno_app-front:dev
 
