@@ -41,14 +41,14 @@ var routes = [
     layout: "/hudeca",
     requireAuth: true,
   },
-  {
+  /*{
     path: "/login",
     name: "Login",
     icon: "tim-icons icon-atom",
     component: Login,
     layout: "/hudeca",
     requireAuth: false,
-  },
+  },*/
   {
     path: "/signup",
     name: "Register",
