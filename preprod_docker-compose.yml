@@ -5,6 +5,8 @@ services:
   genoapp-front-static-prod:
     image: scilicium/geno_app-front:dev
     container_name: genoapp_front-static-prod
+    ports:
+      - "80:80"
     networks:
       - web
       - genoapp
