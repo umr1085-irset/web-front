@@ -17,8 +17,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-import { MDBRow, MDBCol  } from "mdbreact";
-import { CardContent, CardHeader, Card} from '@material-ui/core';
+import { MDBContainer, MDBRow, MDBCol  } from "mdbreact";
+import { Box, CardContent, CardHeader, Card} from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
@@ -30,53 +30,51 @@ class DatasetTitleComponent extends Component {
   render() {
       const dataset = this.props.dataset
     return (
-        <Card variant="outlined" className="ddb-result">
-            <CardHeader title={<Breadcrumbs/>}>
-                
-            </CardHeader>
-            <CardContent >
-                <MDBRow>
-                    <MDBCol md="11">
-                        <Typography gutterBottom variant="h2" component="h2"  className="result-title">
-                            {dataset.title}
-                        </Typography>
+	<Box>
+
+                       <MDBContainer fluid> 
+	    <MDBRow>
+                    <MDBCol md="10">
+                          
+                          <Typography variant="h2"> {dataset.title} 
+	    <Box className="MuiTypography-colorTextSecondary" style={{ fontSize: "0.9rem", display: "inline"}}>  {dataset.metadata.cell_number} {dataset.metadata.col_name} | {dataset.metadata.gene_number} {dataset.metadata.row_name}</Box>
+	    </Typography>
+                        
+	                 
                     </MDBCol>
-                    <MDBCol md="1">
-                        {dataset.rel_datasets.datasets.length?<ExpandMoreIcon fontSize="large" id="togglerdatasets"/>:<p></p>}
-                    </MDBCol>
-                </MDBRow>
-                <MDBRow>
-                    <MDBCol md="11">
-                        <Typography variant="h3" color="textSecondary" component="h3"  className="result-title">
-                            {dataset.metadata.cell_number} {dataset.metadata.col_name} | {dataset.metadata.gene_number} {dataset.metadata.row_name}
-                        </Typography>
+	    
+                    <MDBCol md="2">
+                        {dataset.rel_datasets.datasets.length?  <Box>View dataset list <ExpandMoreIcon fontSize="large" id="togglerdatasets"/></Box>:<p></p>}
                     </MDBCol>
                 </MDBRow>
-            </CardContent>
-            {dataset.rel_datasets.datasets.length?
+
+                 
+	    </MDBContainer>
+                   {dataset.rel_datasets.datasets.length?
             <UncontrolledCollapse toggler="#togglerdatasets" className="center-col">
-                <CardContent >
-                    <MDBRow>
-                        <MDBCol md="12">
-                        <hr/>
+       
+		    <MDBContainer fluid>
+                
                             {dataset.rel_datasets.datasets.map(function(data,idx){
                                 return(
-                                <div key={"div"+idx}>
+			    <MDBRow key={"div"+idx}  >
+				<MDBCol md="12" className="border-bottom">
                                     <Typography key={"div_typo"+idx} gutterBottom variant="h3" component="h3"  className="result-title">
-                                        <Link key={"div_typo_link"+idx} to={"/dataset/"+data.datasetId}>{data.title}</Link>
-                                    </Typography>
-                                    <Typography key={"div_typo_info"+idx} variant="body2" color="textSecondary" component="p"  className="result-title">
+                                        <Link key={"div_typo_link"+idx} to={"/dataset/"+data.datasetId}>{data.title}
+					
+                                    <Typography key={"div_typo_info"+idx} variant="body2" color="textSecondary"   className="result-title">
                                         {data.cell_number} {data.col_name} | {data.gene_number} {data.row_name}
                                     </Typography>
-                                    <hr key={"div_hr"+idx}/>
-                                </div>
+					</Link>
+                                    </Typography>
+			           </MDBCol>
+                             </MDBRow>
                                 )
                             })}
-                        </MDBCol>
-                    </MDBRow>
-                </CardContent>
-            </UncontrolledCollapse>:null}
-        </Card>
+                        
+		    </MDBContainer>
+                   </UncontrolledCollapse>:null}
+        </Box>
     );
   }
 }

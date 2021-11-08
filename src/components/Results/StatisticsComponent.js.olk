@@ -4,7 +4,6 @@ import { trackPromise } from 'react-promise-tracker';
 import axios from "axios";
 
 import Card from '@material-ui/core/Card';
-import Box from '@material-ui/core/Box';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { MDBRow, MDBCol} from "mdbreact";
@@ -63,14 +62,35 @@ class StatisticsComponent extends Component {
       const percent_col = Math.round((col_val/col_tot)*100)
 
     return (
-	<Box> OVERVIEW   --    
-            {this.state.loading
-	? <Spinner/>
-	: <Box style={{ display: "inline" }} >
-           <b> {row_name} </b> : {row_val}/<span style={{ fontSize: 10 }}> {row_tot} </span> ({percent_row}%)  --
-            <b> {col_name} </b> :  {col_val}/ <span style={{ fontSize: 10 }}> {col_tot} </span> ({percent_col}%)
-            </Box> }
-        </Box>
+        <Card variant="outlined">
+            {this.state.loading? <Spinner/>:
+                <CardContent>
+                    <Typography color="textSecondary" gutterBottom>
+                        Statistics
+                    </Typography>
+                    <MDBRow>
+                        <MDBCol md="12">
+                            <Typography variant="body2" component="h2">
+                                Number of {row_name} display
+                            </Typography>
+                            <Typography variant="h5" component="p">
+                                {row_val}/{row_tot} ({percent_row}%)
+                            </Typography>
+                        </MDBCol>
+                    </MDBRow>
+                    <MDBRow>
+                        <MDBCol className="mt-2" md="12">
+                            <Typography variant="body2" component="h2">
+                                Number of {col_name} display
+                            </Typography>
+                            <Typography variant="h5" component="p">
+                                {col_val}/{col_tot} ({percent_col}%)
+                            </Typography>
+                        </MDBCol>
+                    </MDBRow>
+                </CardContent>
+            }
+        </Card>
 
         );
     }

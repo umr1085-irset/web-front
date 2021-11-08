@@ -18,6 +18,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 
 import { MDBContainer } from "mdbreact";
+import { Box } from "@material-ui/core";
 import ResultsLayout from '../components/Results/ResultsLayoutHudeca'
 import {Spinner} from '../components/Loading/LoadingComponent'
 
@@ -57,9 +58,9 @@ class ResultsPage extends Component {
 
   render() {
     return (
-      <MDBContainer fluid className="mt-5">         
+      <Box>         
         {this.state.loading ? <Spinner/> : <ResultsLayout dataset={this.state.dataset} />}
-      </MDBContainer>
+      </Box>
     );
   }
 }

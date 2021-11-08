@@ -51,40 +51,20 @@ class NavbarComponent extends Component {
         </MDBNavItem>
       </MDBNavbarNav>
     )
+     
+   
 
     return (
       <div>
-        <MDBNavbar light expand="md">
-          <MDBContainer>
+        <MDBNavbar light expand="md" className="shadow-none border-bottom" style={{ backgroundColor: 'white' }}>
+          <MDBContainer fluid>
             <Link to="/"><MDBNavbarBrand>
-              <strong className="black-text">HuDeCA</strong>
+              HuDeCA
             </MDBNavbarBrand></Link>
             <MDBNavbarToggler onClick={this.toggleCollapse} />
               <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
                 <MDBNavbarNav left>
                     <MDBNavItem>
-                    <MDBDropdown>
-                      <MDBDropdownToggle nav caret>
-                        Browse
-                      </MDBDropdownToggle>
-                      <MDBDropdownMenu className="dropdown-default" right>
-                        <Link to="/view/studies"><MDBDropdownItem>By studies</MDBDropdownItem></Link>
-                        <Link to="/view/datasets"><MDBDropdownItem>By datasets</MDBDropdownItem></Link>
-                      </MDBDropdownMenu>
-                    </MDBDropdown>
-                  </MDBNavItem>
-                  <MDBNavItem>
-                    <MDBDropdown>
-                      <MDBDropdownToggle nav caret>
-                        Help
-                      </MDBDropdownToggle>
-                      <MDBDropdownMenu className="dropdown-default" right>
-                        <Link to="/tutorial"><MDBDropdownItem>Tutorial</MDBDropdownItem></Link>
-                        <Link to="/technical-corner"><MDBDropdownItem>Technical corner</MDBDropdownItem></Link>
-                      </MDBDropdownMenu>
-                    </MDBDropdown>
-                  </MDBNavItem>
-                  <MDBNavItem>
                     <MDBDropdown>
                       <MDBDropdownToggle nav caret>
                         About
@@ -96,6 +76,28 @@ class NavbarComponent extends Component {
                       </MDBDropdownMenu>
                     </MDBDropdown>
                   </MDBNavItem>
+            <MDBNavItem>      
+	    <MDBDropdown>
+                      <MDBDropdownToggle nav caret>
+                        Browse
+                      </MDBDropdownToggle>
+                      <MDBDropdownMenu className="dropdown-default" right>
+                        <Link to="/view/studies"><MDBDropdownItem>By studies</MDBDropdownItem></Link>
+                        <Link to="/view/datasets"><MDBDropdownItem>By datasets</MDBDropdownItem></Link>
+                      </MDBDropdownMenu>
+                    </MDBDropdown>
+                  </MDBNavItem>
+	    {/*           <MDBNavItem>
+                    <MDBDropdown>
+                      <MDBDropdownToggle nav caret>
+                        Help
+                      </MDBDropdownToggle>
+                      <MDBDropdownMenu className="dropdown-default" right>
+                        <Link to="/tutorial"><MDBDropdownItem>Tutorial</MDBDropdownItem></Link>
+                        <Link to="/technical-corner"><MDBDropdownItem>Technical corner</MDBDropdownItem></Link>
+                      </MDBDropdownMenu>
+                    </MDBDropdown>
+                  </MDBNavItem> */}
                 </MDBNavbarNav>
                   {/* {user.username? user_logged : user_not_logged} */}
               </MDBCollapse>

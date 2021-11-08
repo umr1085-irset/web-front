@@ -1,0 +1,160 @@
+/*!
+
+=========================================================
+* SciLicium Platform v0.0.1
+=========================================================
+
+* Copyright 2021 SciLicium (https://www.scilicium.com)
+
+* Coded by SciLicium
+* Author: Thomas Darde
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+*/
+import React, { Component } from "react";
+import { Link, withRouter } from "react-router-dom";
+import moment from 'moment';
+import _ from 'lodash';
+import axios from "axios";
+
+import { MDBContainer, MDBRow, MDBCol, MDBTable, MDBTableBody,MDBTableHead } from "mdbreact";
+import { Button, CardContent, CardHeader, Card, Paper, Typography } from '@material-ui/core';
+import ScatterPLotIcon from '../../assets/Icons/ScatterPlot';
+
+
+
+import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
+
+var fileDownload = require('js-file-download');
+class DetailStudyPage extends Component {
+    constructor(props) {
+        super(props);
+        this.downloadDataset = this.downloadDataset.bind(this)
+      }
+      
+      async downloadDataset(id) {
+            console.log('/api/v1/datasets/'+id+'/download')
+            axios.get('/api/v1/datasets/'+id+'/download', { 
+                responseType: 'blob',
+            }).then(res => {
+                fileDownload(res.data, id+'.zip');
+                console.log(res);
+            }).catch(err => {
+                console.log(err);
+            })
+      }
+  render() {
+      const study = this.props.study
+      console.log(study)
+    return (
+          <div>         
+	    <Paper variant="outlined">
+            <Typography variant="h2" gutterBottom>{study.studyId} - {study.title}</Typography>
+
+	     {study.description? <Typography variant="body1">{study.description}</Typography>: <span></span> }
+	            
+            <MDBContainer fluid>
+	    <MDBRow>
+	    <MDBCol size="8">
+            
+                        <MDBTable borderless>
+                                <MDBTableBody>
+	    			{study.description?
+                                    <tr>
+                                        <td><Typography variant="h4">Description</Typography></td>
+                                        <td><Typography variant="body1">{study.description}</Typography>   </td>
+                                    </tr> : <span />}
+	                            
+	   			 {study.contributor?
+                                    <tr>
+                                        <td><Typography variant="h4">Contributors</Typography></td>
+                                        <td><Typography variant="body1">{study.contributor}</Typography>   </td>
+                                    </tr> : <span /> }
+	    			{study.created_by.username?
+                                    <tr>
+                                        <td><Typography variant="h4">Data curator</Typography></td>
+                                        <td><Typography variant="body1">{study.created_by.username}</Typography></td>
+                                    </tr> : <span />
+				     }
+                                    <tr>
+                                        <td><Typography variant="h4">Last update</Typography></td>
+                                        <td>{moment(study.updated_at).fromNow()}</td>
+                                    </tr>
+
+                                </MDBTableBody>
+                           </MDBTable>
+                       
+                    
+                </MDBCol>
+                <MDBCol md="6" sm="12" size="4">
+                  
+                          <Typography variant="body1">
+	    
+	    <div><b>Related project</b></div>{study.project.projectId} - {study.project.title}
+	    
+                      
+            {study.article.length?
+            <div> <b>Related articles</b></div>                               
+                                            {study.article.map(function(article, idx){
+                                                return(
+                                               
+                                               {article.title},{moment(article.releaseDate).format('YYYY')}
+                                               <a key={"link_"+idx} href={"https://pubmed.ncbi.nlm.nih.gov/"+article.pmid}><Button key={"btn_"+idx} color="primary">{article.pmid}</Button></a>
+                                                   
+                                                )
+                                            })}
+	    : <span />}
+             
+                            
+                        </MDBCol>
+                    </MDBRow>
+            </MDBContainer>
+
+	   </Paper>
+
+           <MDBContainer fluid>
+            <MDBRow>
+                <MDBCol md="12">
+                    <Card variant="outlined">
+                        <CardHeader title="Datasets"></CardHeader>
+                        <CardContent>
+                            <MDBTable>
+                                <MDBTableBody>
+                                {study.dataset_of.map(function(data, idx){
+                                    return (
+                                        <tr key={idx}>
+                                            <td key={"id_"+idx}>{data.datasetId}</td>
+                                            <td key={"title_"+idx}>{data.title}</td>
+                                            {data.bioMeta.tissue? <td key={"tissue_"+idx}>{_.map(data.bioMeta.tissue, 'ontologyLabel').toString()}</td>:<td key={"tissue_"+idx}>{_.map(data.bioMeta.cell, 'name').toString()}</td>}
+                                            <td className="capitalize" key={"gender_"+idx}>{data.bioMeta.gender.join(", ")}</td>
+                                            {data.bioMeta.dev_stage? <td key={"dev_stage_"+idx}>{_.map(data.bioMeta.dev_stage, 'ontologyLabel').toString()}</td>:<td key={"dev_stage_"+idx}>No information provided</td>}
+                                            <td className="capitalize" key={"omics_"+idx}>{_.map(data.sop.omics, 'ontologyLabel').toString()}</td>
+                                            <td className="capitalize" key={"technology_"+idx}>{_.map(data.sop.technoGrain,'ontologyLabel').toString()} {_.map(data.sop.technology,'ontologyLabel').toString()}</td>
+                                            <td key={"btn_"+idx}>
+                                                    <Link to={"/dataset/"+data.datasetId}><Button key={"display_btn"+idx} color="primary" style={{borderWidth: '2px'}}><ScatterPLotIcon color="primary"></ScatterPLotIcon></Button></Link>
+                                            </td>
+                                            <td key={"download_"+idx}>
+                                                <Button onClick={() => {this.downloadDataset(data.datasetId)}} variant="contained" color="primary" className='p-2' key={"download_btn"+idx}>
+                                                    Download
+                                                </Button>
+                                            </td>
+                                        </tr>
+                                    )
+                                },this)}
+                                </MDBTableBody>
+                            </MDBTable>
+                        </CardContent>
+                    </Card>
+                </MDBCol>
+            </MDBRow>
+
+	    </MDBContainer>
+          </div>
+    );
+  }
+}
+
+export default withRouter(DetailStudyPage);

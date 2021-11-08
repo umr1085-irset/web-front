@@ -71,12 +71,14 @@ typography: {
 	MuiCardHeader: {
       root: {
         backgroundColor:'#F9F9F9',
-		textTransform: 'Uppercase',
+	textTransform: 'Uppercase',
+	fontWeight: 600,
+	padding: '8px 16px'
       },
 	  title: {
         fontSize : '12px',
-		fontColor: '#666666',
-		fontFamily : 'Quicksand'
+	color: '#666666',
+	fontFamily : 'Quicksand'
       },
     },
   },

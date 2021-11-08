@@ -20,7 +20,7 @@ import { withRouter, Link  } from "react-router-dom";
 import { emphasize, withStyles } from '@material-ui/core/styles';
 import { Chip, Breadcrumbs} from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
-import { MDBRow, MDBCol } from "mdbreact";
+import { MDBContainer,MDBRow, MDBCol } from "mdbreact";
 
 
 class BreadcrumbsComponent extends Component {
@@ -34,6 +34,7 @@ class BreadcrumbsComponent extends Component {
               fontWeight: theme.typography.fontWeightRegular,
               '&:hover, &:focus': {
                 backgroundColor: theme.palette.primary.dark,
+		color:"#fafafa",
               },
               '&:active': {
                 boxShadow: theme.shadows[1],
@@ -42,10 +43,11 @@ class BreadcrumbsComponent extends Component {
             },
           }))(Chip); 
       return (
+	  <MDBContainer fluid>
           <MDBRow>
               <MDBCol md="12">
               <Breadcrumbs aria-label="breadcrumb">
-                    <Link color="inherit" to="/hudeca/home" >
+                    <Link color="inherit" to="/" >
                     <StyledBreadcrumb
                             component="a"
                             href="#"
@@ -53,13 +55,13 @@ class BreadcrumbsComponent extends Component {
                             icon={<HomeIcon fontSize="small" style={{ color: 'white' }}  />}
                         />
                     </Link>
-                    <Link color="inherit" to="/getting-started/installation/">
+                    <Link color="inherit" to="/view/studies">
                         <StyledBreadcrumb component="a" href="#" label="Study List" />
                     </Link>
                 </Breadcrumbs>
               </MDBCol>
           </MDBRow>
-        
+        </MDBContainer>
       );
     }
   }

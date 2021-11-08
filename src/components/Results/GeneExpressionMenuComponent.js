@@ -205,10 +205,44 @@ class GeneExpPlotMenuComponent extends Component {
         const default_value = this.props.selected_attrs
         return (
             <div className="mb-3">
-                <MDBRow>
-                    <MDBCol md="3">
+		<MDBRow>
+
+                    <MDBCol md="2">
                         <FormControl className="control-filter">
-                            <InputLabel className="control-filter"  id="geneList">Gene(s) selection</InputLabel>
+                            <InputLabel className="control-filter"  id="selected_attrs">Display by</InputLabel>
+                            <Select  className="control-filter"
+                            labelId="selected_attrs"
+                            id="selected_attrs"
+		            value={this.state.selected_attrs}
+                            defaultValue="cell type"
+                            onChange={this.handleChangeAttributes}
+                            >
+                            {attributes.map(function(attr,a_idx){
+                                return(
+                                    <MenuItem key={"mn_a_"+a_idx} value={attr} >{attr}</MenuItem>
+                                )
+                            })}
+                            </Select>
+                        </FormControl>
+                    
+                    </MDBCol>
+                    <MDBCol>
+                        {display_type.map((type,idxt) =>
+                            <ButtonGroup className="mb-2" key={this.props.name+"_col1_r1_col2"+idxt} size="small">
+                                <Tooltip title={type} aria-label={type} key={type+"_col1_r1_col2_tool"+idxt}>
+                                    <Button onClick={(e) => this.updateGraph(type)} id={this.props.name+"_barchart_btn"+idxt}  variant="outlined" color="primary">{this.displayIcon(type,KeysToIconDisplay,this.props.name+"_col1_r1_col2_tool_btn_hex"+idxt)}</Button>
+                                </Tooltip>
+                            </ButtonGroup>
+                        )}
+                    </MDBCol>
+		</MDBRow>
+
+
+
+                <MDBRow>
+                    <MDBCol md="2" className="border-top py-2">
+                        <FormControl className="control-filter">
+                            <InputLabel className="control-filter"  id="geneList">Gene selection</InputLabel>
                             <Select className="control-filter"
                             labelId="geneList"
                             id="geneList"
@@ -223,56 +257,32 @@ class GeneExpPlotMenuComponent extends Component {
                         </FormControl>
                     
                     </MDBCol>
-                    <MDBCol md="3">
-                        <FormControl className="control-filter">
-                            <InputLabel className="control-filter"  id="selected_attrs">Display by</InputLabel>
-                            <Select  className="control-filter"
-                            labelId="selected_attrs"
-                            id="selected_attrs"
-                            defaultValue={default_value}
-                            onChange={this.handleChangeAttributes}
-                            >
-                            {attributes.map(function(attr,a_idx){
+
+                {this.state.selector.ra.Symbol
+		    ?   
+                        <MDBCol md="7" className="d-flex align-items-center border-top py-2" >
+                        {this.state.selector.ra.Symbol.map(function(gene,idx){
                                 return(
-                                    <MenuItem key={"mn_a_"+a_idx} value={attr} >{attr}</MenuItem>
+                                    <Chip
+                                        key={'row_'+idx}
+                                        label={gene}
+                                        color="primary"
+					size="small"
+                                        onDelete={this.handleDelete(gene)}
+					style={{ marginRight: 2 }}
+                                    />
                                 )
-                            })}
-                            </Select>
-                        </FormControl>
-                    
-                    </MDBCol>
-                    <MDBCol md="3">
-                        {display_type.map((type,idxt) =>
-                            <ButtonGroup className="mb-2" key={this.props.name+"_col1_r1_col2"+idxt}>
-                                <Tooltip title={type} aria-label={type} key={type+"_col1_r1_col2_tool"+idxt}>
-                                    <Button onClick={(e) => this.updateGraph(type)} id={this.props.name+"_barchart_btn"+idxt} variant="outlined" color="primary">{this.displayIcon(type,KeysToIconDisplay,this.props.name+"_col1_r1_col2_tool_btn_hex"+idxt)}</Button>
-                                </Tooltip>
-                            </ButtonGroup>
-                        )}
-                    </MDBCol>
-                    {/*<MDBCol md="3">
-                        <FormControlLabel
-                            control={
-                                <Switch
-                                    checked={this.state.scale}
-                                    onChange={this.handleChange}
-                                    name="scale"
-                                    color="primary"
-                                    label="Scale"
-                                />
-                            }
-                            label="Scale "
-                        />
-                        
-                    </MDBCol>*/}
-                </MDBRow>
-                {this.state.selector.ra.Symbol?
-                    <MDBRow className="mt-3">
-                        {this.state.gene?<Spinner/> :
-                            
-                            <MDBCol md="3">
+                            },this)}
+                        </MDBCol>
+
+		  : null }
+
+                {this.state.gene
+			? <Spinner/>
+			:                            
+                            <MDBCol md="3" className="border-top py-2" >
                                 <MDBRow>
-                                    <MDBCol md="6">
+                                    <MDBCol md="8">
                                         <Autocomplete
                                             limitTags={2}
                                             id="genes"
@@ -290,29 +300,36 @@ class GeneExpPlotMenuComponent extends Component {
                                    
                                     <MDBCol md="4">
                                         {this.state.input === ""?
-                                            <Button variant="outlined" color="primary" disabled>Add gene</Button>:
-                                            <Button onClick={this.addgene} variant="outlined" color="primary">Add gene</Button>
+                                            <Button variant="contained" color="primary" disabled>Add</Button>:
+                                            <Button onClick={this.addgene} variant="contained" color="primary">Add</Button>
                                         }
                                     </MDBCol>
                                 </MDBRow>
                             </MDBCol>
                            
                         }
-                        <MDBCol md="9">
-                            {this.state.selector.ra.Symbol.map(function(gene,idx){
-                                return(
-                                    <Chip
-                                        key={'row_'+idx}
-                                        label={gene}
-                                        color="primary"
-                                        onDelete={this.handleDelete(gene)}
-                                    />
-                                )
-                            },this)}
-                        </MDBCol>
-                    </MDBRow>
-                    :null
-                }
+        
+
+               
+
+
+
+                    {/*<MDBCol md="3">
+                        <FormControlLabel
+                            control={
+                                <Switch
+                                    checked={this.state.scale}
+                                    onChange={this.handleChange}
+                                    name="scale"
+                                    color="primary"
+                                    label="Scale"
+                                />
+                            }
+                            label="Scale "
+                        />
+                        
+                    </MDBCol>*/}
+                </MDBRow>
                     
             </div>
         );

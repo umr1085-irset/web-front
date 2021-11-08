@@ -20,10 +20,11 @@ import moment from 'moment';
 import _ from 'lodash';
 import axios from "axios";
 
-import { MDBRow, MDBCol, MDBTable, MDBTableBody,MDBTableHead } from "mdbreact";
-import { Button, CardContent, CardHeader, Card} from '@material-ui/core';
-import ScatterPLotIcon from '../../assets/Icons/ScatterPlot';
+import { MDBContainer, MDBRow, MDBCol, MDBTable, MDBTableBody,MDBTableHead } from "mdbreact";
+import { Box, Button, CardContent, CardHeader, Card, Paper, Typography } from '@material-ui/core';
 
+import ScatterPlotTwoToneIcon from '../../assets/Icons/ScatterPlotTwoTone';
+import GetAppOutlinedIcon from '@material-ui/icons/GetAppOutlined';
 
 
 import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
@@ -51,133 +52,83 @@ class DetailStudyPage extends Component {
       console.log(study)
     return (
           <div>         
-            <MDBRow>
-                <MDBCol md="12">
-                    <Card variant="outlined">
-                        <CardHeader title={<Breadcrumbs/>}>
-                            
-                        </CardHeader>
-                        <CardContent>
-                            <h2>{study.studyId} - {study.title}</h2>
-                        </CardContent>
-                    </Card>
-                </MDBCol>
-            </MDBRow>
-            <MDBRow>
-                <MDBCol md="6" sm="12">
-                    <Card variant="outlined">
-                        <CardHeader title="Study overview"></CardHeader>
-                        <CardContent>
-                            <MDBTable borderless>
+	    <Paper variant="outlined" >
+            <Typography variant="h2" style={{ marginLeft: "2%" }} gutterBottom> {study.title} <span style={{ fontSize: "0.9rem" }}>( {study.studyId})</span></Typography>
+
+	  
+	            
+            <MDBContainer fluid>
+	    <MDBRow>
+	    <MDBCol size="9">
+            
+                        <MDBTable borderless>
                                 <MDBTableBody>
+	    			{study.description?
                                     <tr>
-                                        <td><b>Description</b></td>
-                                        <td>
-                                            {study.description? <p>{study.description}</p>: <p>No description provided</p> }
-                                        </td>
-                                    </tr>
+                                        <td><Typography variant="h4" color="textSecondary">Description</Typography></td>
+                                        <td><Typography variant="body1">{study.description}</Typography>   </td>
+                                    </tr> : <span />}
+	                            
+	   			 {study.contributor.length?
                                     <tr>
-                                        <td><b>Authors</b></td>
-                                        <td>{study.created_by.username}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Last update</b></td>
-                                        <td>{moment(study.updated_at).fromNow()}</td>
-                                    </tr>
-                                    <tr>
-                                        <td><b>Topic</b></td>
-                                        <td className="capitalize">{study.topics? <p>{study.topics.toLowerCase()}</p>: <p>No topic provided</p> }</td>
-                                    </tr>
+                                        <td><Typography variant="h4" color="textSecondary">Contributors</Typography></td>
+                                        <td><Typography variant="body1">{study.contributor}</Typography>   </td>
+                                    </tr> : <span /> }
+                                                          
 
                                 </MDBTableBody>
-                            </MDBTable>
-                        </CardContent>
-                    </Card>
+                           </MDBTable>
+	         <Typography variant="overline"> Data curated by {study.created_by.username}, last updated: {moment(study.updated_at).fromNow()}</Typography>
+                       
+                    
                 </MDBCol>
-                <MDBCol md="6" sm="12">
-                    <MDBRow>
-                        <MDBCol md="12">
-                            <Card variant="outlined">
-                                <CardHeader title="Associated project"></CardHeader>
-                                <CardContent>
-                                    <MDBTable borderless>
-                                        <MDBTableBody>
-                                        <tr>
-                                            <td><b>Title</b></td>
-                                            <td>
-                                               {study.project.projectId} - {study.project.title}
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Authors</b></td>
-                                            <td>{study.project.created_by.username}</td>
-                                        </tr>
-                                        <tr>
-                                            <td><b>Last update</b></td>
-                                            <td>{moment(study.project.updated_at).calendar()}</td>
-                                        </tr>
-                                        </MDBTableBody>
-                                    </MDBTable>
-                                </CardContent>
-                            </Card>
-                        </MDBCol>
-                        <MDBCol md="12">
-                            <Card variant="outlined">
-                                <CardHeader title="Associated publications"></CardHeader>
-                                <CardContent>
-                                    {study.article.length?
-                                    <MDBTable borderless>
-                                        <MDBTableHead>
-                                            <tr>
-                                                <th>Title</th>
-                                                <th>Pmid</th>
-                                                <th>Date</th>
-                                            </tr>
-                                        </MDBTableHead>
-                                        <MDBTableBody>
-                                            
-                                            {study.article.map(function(article, idx){
-                                                return(
-                                                    <tr key={idx}>
-                                                        <td key={"title_"+idx}>{article.title}</td>
-                                                        <td key={"pmid_"+idx}><a key={"link_"+idx} href={"https://pubmed.ncbi.nlm.nih.gov/"+article.pmid}><Button key={"btn_"+idx} color="primary">{article.pmid}</Button></a></td>
-                                                        <td key={"date_"+idx}>{moment(article.releaseDate).format('YYYY')}</td>
-                                                    </tr>
-                                                )
-                                            })}
-                                        </MDBTableBody>
-                                    </MDBTable>
-                                    :
-                                    <p>No publication associated</p>    
-                                    }
-                                </CardContent>
-                            </Card>
+                <MDBCol size="3">
+                  
+                          <Typography variant="body1">
+	    <div style={{ marginTop: 16 }}><Typography variant="h4" color="textSecondary">Related project</Typography></div> {study.project.title} ({study.project.projectId})
+	   
+	    {study.article.length?
+	          <Box>
+                  <Typography variant="h4" color="textSeondary">Related articles</Typography>
+		   {study.article.map(function(article, idx){
+				          return(
+				                   <Box>  {article.title},  {moment(article.releaseDate).format('YYYY')}  <a key={"link_"+idx} href={"https://pubmed.ncbi.nlm.nih.gov/"+article.pmid}><Button key={"btn_"+idx} color="primary">{article.pmid}</Button></a>  </Box>
+						 )
+				             })}
+		</Box>
+		:
+	       <span />
+	}
+	 			
+
+                           </Typography> 
                         </MDBCol>
                     </MDBRow>
-                </MDBCol>
-            </MDBRow>
-            <MDBRow>
-                <MDBCol md="12">
+            </MDBContainer>
+
+	   </Paper>
+
+           
                     <Card variant="outlined">
-                        <CardHeader title="Datasets"></CardHeader>
+                        <CardHeader title="Associated datasets"></CardHeader>
                         <CardContent>
                             <MDBTable>
                                 <MDBTableBody>
                                 {study.dataset_of.map(function(data, idx){
                                     return (
                                         <tr key={idx}>
-                                            <td key={"id_"+idx}>{data.datasetId}</td>
-                                            <td key={"title_"+idx}>{data.title}</td>
-                                            {data.bioMeta.tissue? <td key={"tissue_"+idx}>{_.map(data.bioMeta.tissue, 'ontologyLabel').toString()}</td>:<td key={"tissue_"+idx}>{_.map(data.bioMeta.cell, 'name').toString()}</td>}
-                                            <td className="capitalize" key={"gender_"+idx}>{data.bioMeta.gender.join(", ")}</td>
-                                            {data.bioMeta.dev_stage? <td key={"dev_stage_"+idx}>{_.map(data.bioMeta.dev_stage, 'ontologyLabel').toString()}</td>:<td key={"dev_stage_"+idx}>No information provided</td>}
-                                            <td className="capitalize" key={"omics_"+idx}>{_.map(data.sop.omics, 'ontologyLabel').toString()}</td>
-                                            <td className="capitalize" key={"technology_"+idx}>{_.map(data.sop.technoGrain,'ontologyLabel').toString()} {_.map(data.sop.technology,'ontologyLabel').toString()}</td>
-                                            <td key={"btn_"+idx}>
-                                                    <Link to={"/dataset/"+data.datasetId}><Button key={"display_btn"+idx} color="primary" style={{borderWidth: '2px'}}><ScatterPLotIcon color="primary"></ScatterPLotIcon></Button></Link>
+                                            
+                                            <td key={"id__"+idx} className="capitalize border-bottom border-top-0">{data.title} ({data.datasetId}) </td>
+                                            {data.bioMeta.tissue? <td className="border-bottom border-top-0" key={"tissue_"+idx}>{_.map(data.bioMeta.tissue, 'ontologyLabel').toString()}</td>:<td key={"tissue_"+idx} className="border-bottom border-top-0">{_.map(data.bioMeta.cell, 'name').toString()}</td>}
+                                            <td className="capitalize border-bottom border-top-0" key={"gender_"+idx}>{data.bioMeta.gender.join(", ")}</td>
+                                            {data.bioMeta.dev_stage? <td className="border-bottom border-top-0" key={"dev_stage_"+idx}>{_.map(data.bioMeta.dev_stage, 'ontologyLabel').toString()}</td>:<td className="border-bottom border-top-0" key={"dev_stage_"+idx}>No information provided</td>}
+                                            <td className="capitalize border-bottom border-top-0" key={"omics_"+idx}>{_.map(data.sop.omics, 'ontologyLabel').toString()}</td>
+                                            <td className="capitalize border-bottom border-top-0" key={"technology_"+idx}>{_.map(data.sop.technoGrain,'ontologyLabel').toString()} {_.map(data.sop.technology,'ontologyLabel').toString()}</td>
+                                            <td key={"btn_"+idx} align="right" className="border-bottom border-top-0">
+                                                    <Link to={"/dataset/"+data.datasetId}><Button key={"display_btn"+idx} color="primary" size="medium" startIcon={<ScatterPlotTwoToneIcon />} variant="outlined"> Visualize </Button></Link>
                                             </td>
-                                            <td key={"download_"+idx}>
-                                                <Button onClick={() => {this.downloadDataset(data.datasetId)}} variant="contained" color="primary" className='p-2' key={"download_btn"+idx}>
+                                            <td key={"download_"+idx} align="right" className="border-bottom border-top-0" width="64">
+                                                <Button onClick={() => {this.downloadDataset(data.datasetId)}} variant="contained" color="primary" size="medium" startIcon={<GetAppOutlinedIcon /> }  key={"download_btn"+idx}>
                                                     Download
                                                 </Button>
                                             </td>
@@ -188,8 +139,7 @@ class DetailStudyPage extends Component {
                             </MDBTable>
                         </CardContent>
                     </Card>
-                </MDBCol>
-            </MDBRow>
+       
           </div>
     );
   }

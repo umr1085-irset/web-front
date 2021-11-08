@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button,Divider} from '@material-ui/core';
+import { Button,Divider, Typography, MenuItem } from '@material-ui/core';
 
 import { MDBRow, MDBCol, MDBContainer  } from "mdbreact";
 
@@ -47,29 +47,31 @@ class GraphSelectorLight extends Component {
     };
 
       let tagList = attributes.map((attribute,idx)  => 
-        <MDBCol md="12" className="mt-2" key={this.props.name+"_col1_btn"+idx}>
+        
+	      <MDBCol  key={this.props.name+"_col1_btn"+idx}>
             <MDBRow middle key={this.props.name+"_col1_r1"+idx}>
-                <MDBCol md="6" className="mb-2" key={this.props.name+"_col1_r1_col1"+idx} style={{ textTransform: 'capitalize' }}>
-                    {attribute}
+                <MDBCol key={this.props.name+"_col1_r1_col1"+idx} style={{ textTransform: 'capitalize' }} className="d-flex align-items-center border-bottom py-2">
+                    {attribute} : 
                 </MDBCol>
                 {display_type.map((type,idxt) =>
-                    <MDBCol md="2" className="mb-2" key={this.props.name+"_col1_r1_col2"+idxt}>
+                    <MDBCol  key={this.props.name+"_col1_r1_col2"+idxt} className="border-bottom py-2">
                         <Tooltip title={type} aria-label={type} key={type+"_col1_r1_col2_tool"+idxt}>
                             <Button onClick={(e) => this.updateGraph(attribute, type)}  id={this.props.name+"_barchart_btn"+idxt} variant="outlined" color="primary">{this.displayIcon(type,KeysToIconDisplay,this.props.name+"_col1_r1_col2_tool_btn_hex"+idxt)}</Button>
                         </Tooltip>
                     </MDBCol>
                 )}
             </MDBRow>
-            <Divider/>
+           
         </MDBCol>        
+	      
     )
 
     return (
-        <MDBContainer>
-          <MDBRow middle>
+	<MDBContainer fluid>
             {tagList}
-          </MDBRow>
-        </MDBContainer>
+	   </MDBContainer>
+          
+       
 
         );
     }

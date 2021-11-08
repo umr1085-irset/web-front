@@ -25,6 +25,7 @@ import FilterComponentStudies from '../../components/Filter/FilterComponentStudi
 import {Spinner} from '../../components/Loading/LoadingComponent'
 
 import Breadcrumbs from '../../components/Breadcrumbs/Breadcrumbs';
+import { Typography, Container, Paper, Box } from '@material-ui/core';
 
 import axios from "axios";
 import { toastOnError } from "../../utils/Utils";
@@ -74,16 +75,17 @@ class DatasetPage extends Component {
     
     
     
-    return (
-          <MDBContainer className="mt-5">
-            <Breadcrumbs/>
-            <h2>Browse by {this.props.match.params.browse_by}</h2>
-            <MDBRow>
-                <MDBCol md="12">
+return (
+	<Box>
+	    <Box ml="1%">	
+            <Breadcrumbs/> 
+            </Box>
+             <Paper>
+	    <Box mx={4} mb={4} mt={-2}>
                   {this.state.loading ? <Spinner/> : <TableComponent data={this.state.data} filters={this.state.filters} type={this.props.match.params.browse_by} />}
-                </MDBCol>
-            </MDBRow>
-          </MDBContainer>
+                </Box>
+            </Paper>
+          </Box>
     );
   }
 }

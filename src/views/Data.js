@@ -21,7 +21,7 @@ import { trackPromise } from 'react-promise-tracker';
 
 import RenderCard from "../utils/JsonRenderer";
 import {Spinner} from '../components/Loading/LoadingComponent'
-
+import { Box } from "@material-ui/core";
 
 // reactstrap components
 
@@ -63,9 +63,9 @@ class DataPage extends Component {
   render() {
   
     return (
-          <MDBContainer className="mt-5">
+             <Box>
               {this.state.loading ? <Spinner/> : this.state.page_config.map(config => RenderCard(config, this.state.did)) }
-          </MDBContainer>
+            </Box>
     );
   }
 }

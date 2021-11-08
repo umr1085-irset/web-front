@@ -24,9 +24,9 @@ import PerfectScrollbar from "perfect-scrollbar";
 import Footer from "../components/Footer/Footer.js";
 
 import requireAuth from "../utils/RequireAuth";
-import NavbarComponent from '../components/Navbar/Hudeca/NavbarComponentHudeCA'
+import NavbarComponent from '../components/Navbar/Hudeca/NavbarComponentHudeCA';
 
-
+import Box from '@material-ui/core/Box';
 import routes from "../routes.js";
 
 
@@ -106,13 +106,15 @@ function Hudeca(props) {
     <BackgroundColorContext.Consumer>
       {({ color, changeColor }) => (
         <React.Fragment>
-          <div className="wrapper">
+          <div className="wrapper" style={{ backgroundColor: '#F2F2F2' }} >
             <div className="main-panel" ref={mainPanelRef} data={color}>
               <NavbarComponent/>
+	      <Box className="App" m={2}>
               <Switch>
                 {getRoutes(routes)}
               </Switch>
-              
+              </Box>
+
               <Footer fluid />
             </div>
           </div>

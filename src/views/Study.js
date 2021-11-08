@@ -17,7 +17,10 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
 
-import {  MDBContainer} from "mdbreact";
+/*import {  MDBContainer} from "mdbreact";*/
+import { Box } from '@material-ui/core';
+import Breadcrumbs from '../components/Breadcrumbs/Breadcrumbs';
+import { MDBContainer } from "mdbreact";
 
 import {Spinner} from '../components/Loading/LoadingComponent';
 import DetailStudy from '../components/DetailStudy/DetailStudy'
@@ -55,9 +58,16 @@ class ResultsPage extends Component {
 
   render() {
     return (
-          <MDBContainer className="mt-5">         
+	  
+          <Box>
+	    <Box ml="1%">
+	    <Breadcrumbs/>
+	    </Box>
+	   
             {this.state.loading ? <Spinner/> : <DetailStudy study={this.state.study} />}
-          </MDBContainer>
+          </Box>
+	  
+
     );
   }
 }

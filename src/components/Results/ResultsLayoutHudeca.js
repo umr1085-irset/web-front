@@ -19,8 +19,8 @@ import { withRouter } from "react-router-dom";
 
 import DatasetTitleComponent from'./DatasetTitleComponent'
 
-import { MDBRow, MDBCol } from "mdbreact";
-import { CardContent, CardHeader, Card} from '@material-ui/core';
+import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import { Box, CardContent, CardHeader, Card, Paper} from '@material-ui/core';
 import LoomPlotComponentNoCard from './LoomPlotComponentNoCard'
 import ResultsFilterLayout from './ResultFilterComponent'
 import SelectedFilterResults from './SelectedFilterResultComponent'
@@ -29,6 +29,8 @@ import GeneExpPlotComponent from './GeneExpPlotComponent'
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { UncontrolledCollapse } from 'reactstrap';
+import Breadcrumbs from '../Breadcrumbs/Breadcrumbs';
+
 
 class ResultsLayout extends Component {
     constructor(props) {
@@ -49,7 +51,7 @@ class ResultsLayout extends Component {
             filters:{
                 ra:{},
                 ca:{},
-                reduction:''
+                reduction:this.props.default_display,
             }
         };
     }
@@ -57,29 +59,35 @@ class ResultsLayout extends Component {
   render() {
       const dataset = this.props.dataset
     return (
-        <div>         
-            <MDBRow>
-                <MDBCol md="8" sm="12">
-                    <DatasetTitleComponent dataset={dataset}/>
-                </MDBCol>
-                <MDBCol md="4" sm="12">
-                   <ResultsFilterLayout  metadata={dataset.metadata.filters} default_display={dataset.default_display} reductions={dataset.reductions} filters_keys={dataset.metadata.filters_keys} filters={this.state.filters} setStateParent={(p, cb) => this.setState(p, cb)} />
-                </MDBCol>
-            </MDBRow>
-            <MDBRow>
+        <div>    
+	    <Box ml="1%">
+  <Breadcrumbs /> 
+           </Box>
+                    
+	    <Paper>        
+	    
+	    <DatasetTitleComponent dataset={dataset}/>
+           
+                             <ResultsFilterLayout  metadata={dataset.metadata.filters} default_display={dataset.default_display} reductions={dataset.reductions} filters_keys={dataset.metadata.filters_keys} filters={this.state.filters} setStateParent={(p, cb) => this.setState(p, cb)} />
+           
+           </Paper>
+	    {/* <MDBRow>
                 <MDBCol md="12">
                    {(Object.keys(this.state.filters.ca) == 0 && Object.keys(this.state.filters.ra) == 0)? null : <SelectedFilterResults filters={this.state.filters}/>}
                 </MDBCol>
-            </MDBRow>
+            </MDBRow> */}
+	    <MDBContainer fluid>
             <MDBRow>
                 <MDBCol md="12">
                     
                     <Card className="card-chart">
-                        <CardHeader title="Overview"  action={
+                        <CardHeader 
+	    		title={ <StatisticsComponent loom={dataset.loom.id} row_name={dataset.metadata.row_name} col_name={dataset.metadata.col_name} url="/api/v1/dataset/statistics/" filters={this.state.filters} row_tot={dataset.metadata.gene_number} col_tot={dataset.metadata.cell_number} /> }
+			action={
                             <IconButton
                                 id="togglerMO"
                                 aria-label="show more"
-                                >
+                                size="small">
                                 <ExpandMoreIcon />
                                 </IconButton>
                             }>
@@ -87,17 +95,15 @@ class ResultsLayout extends Component {
                         <UncontrolledCollapse toggler="#togglerMO" defaultOpen={true}>
                             <CardContent>
                                 <MDBRow>
-                                    <MDBCol lg="3" md="12" sm="12" className="colDivider">
+                                    <MDBCol lg="4" md="12" sm="12" className="border-right">
                                         <LoomPlotComponentNoCard datachart="" display_type={['bar','pie']} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="pie" attrs={this.state.attrs.chart1} all_attrs={dataset.metadata.filters_keys} name="C1"></LoomPlotComponentNoCard>
                                     </MDBCol>
-                                    <MDBCol lg="3" md="12" sm="12" className="colDivider">
+                                    <MDBCol lg="4" md="12" sm="12" className="border-right">
+	    
                                         <LoomPlotComponentNoCard datachart="" display_type={['bar','pie']} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="bar" attrs={this.state.attrs.chart2} all_attrs={dataset.metadata.filters_keys}   name="C2"></LoomPlotComponentNoCard>
                                     </MDBCol>
-                                    <MDBCol lg="3" md="12" sm="12" className="colDivider">
+                                    <MDBCol lg="4" md="12" sm="12" >
                                         <LoomPlotComponentNoCard datachart="" display_type={['bar','pie']} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="bar" attrs={this.state.attrs.chart3} all_attrs={dataset.metadata.filters_keys}  name="C3"></LoomPlotComponentNoCard>
-                                    </MDBCol>
-                                    <MDBCol lg="3" md="12" sm="12">
-                                        <StatisticsComponent loom={dataset.loom.id} row_name={dataset.metadata.row_name} col_name={dataset.metadata.col_name} url="/api/v1/dataset/statistics/" filters={this.state.filters} row_tot={dataset.metadata.gene_number} col_tot={dataset.metadata.cell_number} />
                                     </MDBCol>
                                 </MDBRow>
                             </CardContent>
@@ -108,10 +114,12 @@ class ResultsLayout extends Component {
             <MDBRow>
                 <MDBCol md="12">
                     <Card className="card-chart">
-                        <CardHeader title="Spatial overview"  action={
+                        <CardHeader title={  this.state.filters.reduction + " representation "}
+	    			action={
                             <IconButton
                                 id="togglerSO"
                                 aria-label="show more"
+				size="small"
                                 >
                                 <ExpandMoreIcon />
                                 </IconButton>
@@ -139,6 +147,7 @@ class ResultsLayout extends Component {
                             <IconButton
                                 id="togglerGE"
                                 aria-label="show more"
+				size="small"
                                 >
                                 <ExpandMoreIcon />
                                 </IconButton>
@@ -156,6 +165,8 @@ class ResultsLayout extends Component {
                     </Card>
                 </MDBCol>
             </MDBRow>
+
+	    </MDBContainer>
         </div>
     );
   }

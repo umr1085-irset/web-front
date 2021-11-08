@@ -20,9 +20,44 @@ import React, { Component } from "react";
 
 import { Link } from "react-router-dom";
 import MUIDataTable from "mui-datatables";
-
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { Paper } from "@material-ui/core";
 
 class TableStudiesComponent extends Component {
+
+getMuiTheme = () => createMuiTheme({
+    overrides: {
+	 MuiPaper: {
+	       elevation4: {
+		       boxShadow: "none"
+		    },
+		
+	 },
+         MUIDataTableBodyCell: {
+	          root: {
+               fontSize: "1rem",
+	       color: "black"
+	          }
+
+	        },
+	    MUIDataTableHeadCell: {
+		 fixedHeader: {
+	         backgroundColor: "#FAFAFA",
+	         textTransform: "uppercase"
+		}
+	    },
+	    MUIDataTableSelectCell : {
+		    
+		    headerCell: {
+	             background: "#DFEFEE",
+		     backgroundColor: "#DFEFEE"
+			}
+		  }
+        }
+  })
+
+
+
   render() {
       console.log(this.props.rows)
       const rows = this.props.rows
@@ -137,12 +172,14 @@ class TableStudiesComponent extends Component {
          filterType: 'dropdown',
        };
     return (
-
+	<ThemeProvider theme={this.getMuiTheme()}>
         <MUIDataTable
           data={rows}
           columns={columns}
           options={options}
+          elevation={0}
         />
+	   </ThemeProvider>
   
     );
   }

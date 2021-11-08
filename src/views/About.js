@@ -18,6 +18,8 @@ import React, { Component } from "react";
 import ReactMarkdown from "react-markdown";
 
 import { MDBRow, MDBContainer, MDBCol } from "mdbreact";
+import { Typography, Container, Paper, Grid, Box, Button } from '@material-ui/core';
+
 
 const gfm = require('remark-gfm')
 
@@ -34,9 +36,15 @@ class AboutPage extends Component {
   render() {
     const { markdown } = this.state;
     return (
-      <MDBContainer className="mt-5">
+
+      <Paper variant="outlined" >
+	   <Box mx={8} my={6}>
+      
         <ReactMarkdown plugins={[gfm]} source={markdown} />
-      </MDBContainer>
+      
+	</Box>
+     </Paper>
+
     );
   }
 }

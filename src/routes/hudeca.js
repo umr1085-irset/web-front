@@ -29,7 +29,7 @@ import StudyPage from '../views/Study'
 import ResultPage from '../views/Results'
 
 import AboutContent from "../contents/hudeca/about.md"
-
+import InstitutionContent from "../contents/hudeca/institutions.md"
 
 
 var routes = [
@@ -119,7 +119,7 @@ var routes = [
     name: "Institution and founders",
     icon: "tim-icons icon-single-02",
     component: AboutPage,
-    content: AboutContent,
+    content: InstitutionContent,
     layout: "/hudeca",
     requireAuth: false,
   },

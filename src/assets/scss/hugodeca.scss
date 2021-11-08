@@ -80,8 +80,15 @@
 }
 
 .control-filter{
-  min-width: 200px;
+  min-width: 120px;
 }
+.control-filter-small {
+  min-width: 80px;
+}
+
+.control-filter-large {
+  min-width:210px;
+ }
 
 .plot_resize{
   width: 100%;
