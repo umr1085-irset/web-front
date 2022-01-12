@@ -85,7 +85,7 @@ class DetailStudyPage extends Component {
                 <MDBCol size="3">
                   
                           <Typography variant="body1">
-	    <div style={{ marginTop: 16 }}><Typography variant="h4" color="textSecondary">Related project</Typography></div> {study.project.title} ({study.project.projectId})
+	    <div style={{ marginTop: 16 }}><Typography variant="h4" color="textSecondary">Related project</Typography></div> {study.collection.title} ({study.collection.projectId})
 	   
 	    {study.article.length?
 	          <Box>
@@ -120,7 +120,7 @@ class DetailStudyPage extends Component {
                                             
                                             <td key={"id__"+idx} className="capitalize border-bottom border-top-0">{data.title} ({data.datasetId}) </td>
                                             {data.bioMeta.tissue? <td className="border-bottom border-top-0" key={"tissue_"+idx}>{_.map(data.bioMeta.tissue, 'ontologyLabel').toString()}</td>:<td key={"tissue_"+idx} className="border-bottom border-top-0">{_.map(data.bioMeta.cell, 'name').toString()}</td>}
-                                            <td className="capitalize border-bottom border-top-0" key={"gender_"+idx}>{data.bioMeta.gender.join(", ")}</td>
+                                            <td className="capitalize border-bottom border-top-0" key={"gender_"+idx}>{data.bioMeta.sex.join(", ")}</td>
                                             {data.bioMeta.dev_stage? <td className="border-bottom border-top-0" key={"dev_stage_"+idx}>{_.map(data.bioMeta.dev_stage, 'ontologyLabel').toString()}</td>:<td className="border-bottom border-top-0" key={"dev_stage_"+idx}>No information provided</td>}
                                             <td className="capitalize border-bottom border-top-0" key={"omics_"+idx}>{_.map(data.sop.omics, 'ontologyLabel').toString()}</td>
                                             <td className="capitalize border-bottom border-top-0" key={"technology_"+idx}>{_.map(data.sop.technoGrain,'ontologyLabel').toString()} {_.map(data.sop.technology,'ontologyLabel').toString()}</td>
