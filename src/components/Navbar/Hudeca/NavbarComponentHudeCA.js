@@ -83,7 +83,7 @@ class NavbarComponent extends Component {
                       </MDBDropdownToggle>
                       <MDBDropdownMenu className="dropdown-default" right>
                         <Link to="/view/studies"><MDBDropdownItem>By studies</MDBDropdownItem></Link>
-                        <Link to="/view/datasets"><MDBDropdownItem>By datasets</MDBDropdownItem></Link>
+                        {/* <Link to="/view/datasets"><MDBDropdownItem>By datasets</MDBDropdownItem></Link> */}
                       </MDBDropdownMenu>
                     </MDBDropdown>
                   </MDBNavItem>

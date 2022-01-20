@@ -62,9 +62,11 @@ class LoomPlotComponentCard extends Component {
         await trackPromise(
           axios.post(url,plotData)
           .then(response => {
+            console.log(response.data.options)
             this.setState({
               chart:response.data.chart,
               style:response.data.style,
+              options:response.data.options,
               genes_menu:response.data.genes_menu,
               loading:false});
           })
@@ -104,11 +106,11 @@ class LoomPlotComponentCard extends Component {
         this.setState({anchorEl:null});
       };
 
-      displayPlot = (plot_type,KeysToComponentDisplay,data) =>{
+      displayPlot = (plot_type,KeysToComponentDisplay,data,data_options) =>{
         if(plot_type === "scatter" || plot_type === "hexbin" || plot_type === "violin" || plot_type === "density" ){
           return React.createElement(KeysToComponentDisplay[plot_type],{key:"plot_"+plot_type ,data: data.data, layout:data.layout})
         } else {
-          return React.createElement(KeysToComponentDisplay[plot_type],{key:"plot_"+plot_type ,data: data, options:data.options})
+          return React.createElement(KeysToComponentDisplay[plot_type],{key:"plot_"+plot_type ,data: data, options:data_options})
         }
         
       }
@@ -154,7 +156,7 @@ class LoomPlotComponentCard extends Component {
               </Menu>
           <MDBRow>
             <MDBCol md="12">
-              {this.state.loading ? <Spinner/> : this.displayPlot(this.state.style,KeysToComponentDisplay,this.state.chart)}  
+              {this.state.loading ? <Spinner/> : this.displayPlot(this.state.style,KeysToComponentDisplay,this.state.chart,this.state.options)}  
             </MDBCol>
           </MDBRow>
             

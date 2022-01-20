@@ -43,14 +43,17 @@ class DatasetPage extends Component {
       }
     
     async getData(browse){
+        const data = {
+          viewer:"HuDeCA"
+        }
         let url=""
         if(browse=="studies"){
-          url = "/api/v1/studies/public"
+          url = "/api/v1/public/studies/"
         }else{
           url = "/api/v1/datasets/public"
         }
         await trackPromise(
-          axios.get(url)
+          axios.post(url,data)
           .then(response => {
             this.setState({data : response.data}); 
             this.setState({loading : false});

@@ -58,6 +58,8 @@ class ResultsLayout extends Component {
 
   render() {
       const dataset = this.props.dataset
+      console.log(dataset.metadata.filters_keys.ca[1])
+      console.log(dataset.metadata.filters_keys.ca[0])
     return (
         <div>    
 	    <Box ml="1%">
@@ -96,14 +98,14 @@ class ResultsLayout extends Component {
                             <CardContent>
                                 <MDBRow>
                                     <MDBCol lg="4" md="12" sm="12" className="border-right">
-                                        <LoomPlotComponentNoCard datachart="" display_type={['bar','pie']} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="pie" attrs={this.state.attrs.chart1} all_attrs={dataset.metadata.filters_keys} name="C1"></LoomPlotComponentNoCard>
+                                        <LoomPlotComponentNoCard datachart="" display_type={['bar','pie']} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="pie" attrs={dataset.metadata.filters_keys.ca[0]} all_attrs={dataset.metadata.filters_keys} name="C1"></LoomPlotComponentNoCard>
                                     </MDBCol>
                                     <MDBCol lg="4" md="12" sm="12" className="border-right">
 	    
-                                        <LoomPlotComponentNoCard datachart="" display_type={['bar','pie']} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="bar" attrs={this.state.attrs.chart2} all_attrs={dataset.metadata.filters_keys}   name="C2"></LoomPlotComponentNoCard>
+                                        <LoomPlotComponentNoCard datachart="" display_type={['bar','pie']} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="bar" attrs={dataset.metadata.filters_keys.ca[1]} all_attrs={dataset.metadata.filters_keys}   name="C2"></LoomPlotComponentNoCard>
                                     </MDBCol>
                                     <MDBCol lg="4" md="12" sm="12" >
-                                        <LoomPlotComponentNoCard datachart="" display_type={['bar','pie']} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="bar" attrs={this.state.attrs.chart3} all_attrs={dataset.metadata.filters_keys}  name="C3"></LoomPlotComponentNoCard>
+                                        <LoomPlotComponentNoCard datachart="" display_type={['bar','pie']} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="bar" attrs={dataset.metadata.filters_keys.ca[0]} all_attrs={dataset.metadata.filters_keys}  name="C3"></LoomPlotComponentNoCard>
                                     </MDBCol>
                                 </MDBRow>
                             </CardContent>
@@ -129,10 +131,10 @@ class ResultsLayout extends Component {
                             <CardContent className="spatialCollapse">
                                 <MDBRow>
                                     <MDBCol md="6" className="colDivider spatialCollapse">
-                                        <LoomPlotComponentNoCard className="spatialCollapse" display_type={['scatter','hexbin','density']} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="scatter" attrs={this.state.attrs.chart4} all_attrs={dataset.metadata.filters_keys} name="C4"></LoomPlotComponentNoCard>
+                                        <LoomPlotComponentNoCard className="spatialCollapse" display_type={['scatter','hexbin','density']} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="scatter" attrs={dataset.metadata.filters_keys.ca[0]} all_attrs={dataset.metadata.filters_keys} name="C4"></LoomPlotComponentNoCard>
                                     </MDBCol>
                                     <MDBCol md="6" className="spatialCollapse">
-                                        <LoomPlotComponentNoCard className="spatialCollapse" display_type={['scatter','hexbin','density']} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="scatter" attrs={this.state.attrs.chart5} all_attrs={dataset.metadata.filters_keys}   name="C5"></LoomPlotComponentNoCard>
+                                        <LoomPlotComponentNoCard className="spatialCollapse" display_type={['scatter','hexbin','density']} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="scatter" attrs={dataset.metadata.filters_keys.ca[1]} all_attrs={dataset.metadata.filters_keys}   name="C5"></LoomPlotComponentNoCard>
                                     </MDBCol>
                                 </MDBRow>
                             </CardContent>
@@ -157,7 +159,7 @@ class ResultsLayout extends Component {
                             <CardContent>
                                 <MDBRow>
                                     <MDBCol md="12">
-                                        <GeneExpPlotComponent display_type={['scatter','hexbin','dot','violin']} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="scatter" attrs={this.state.attrs.chart4} all_attrs={dataset.metadata.filters_keys} name="C4"/>
+                                        <GeneExpPlotComponent display_type={['scatter','hexbin','dot','violin']} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="scatter" attrs={dataset.metadata.filters_keys.ca[0]} all_attrs={dataset.metadata.filters_keys} name="C4"/>
                                     </MDBCol>
                                 </MDBRow>
                             </CardContent>
