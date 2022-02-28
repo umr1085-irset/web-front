@@ -22,6 +22,7 @@ import { Link } from "react-router-dom";
 import MUIDataTable from "mui-datatables";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { Paper } from "@material-ui/core";
+import { TableRow, TableCell} from "@material-ui/core";
 
 class TableStudiesComponent extends Component {
 
@@ -68,6 +69,7 @@ getMuiTheme = () => createMuiTheme({
          options: {
           filter: false,
           sort: true,
+          display: false,
          }
         },
         {
@@ -84,35 +86,24 @@ getMuiTheme = () => createMuiTheme({
               );
             }
           }
-        },
+},
+
         {
-         name: "authors",
-         label: "Authors",
-         options: {
-          filter: true,
-          sort: false,
-          customBodyRender: (value, tableMeta, updateValue) => (
-              value.join(", ")
-            )
-         }
-        },
-        {
-         name: "pub_date",
-         label: "Publication Date",
-         options: {
-          filter: true,
-          sort: false,
-          customBodyRender: (value, tableMeta, updateValue) => (
-              value.join(", ")
-            )
-         }
-        },
+          name: "description",
+          label: "Description",
+          options: {
+            filter: false,
+            sort: false,
+            display: false,
+	}
+	},
+
         {
          name: "technology",
          label: "Technology",
          options: {
           filter: true,
-          sort: false,
+          sort: true,
           customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -123,7 +114,8 @@ getMuiTheme = () => createMuiTheme({
           label: "Species",
           options: {
            filter: true,
-           sort: false,
+           sort: true,
+           display: false,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -131,10 +123,10 @@ getMuiTheme = () => createMuiTheme({
          },
          {
           name: "dev_stage",
-          label: "Developmental Stage",
+          label: "Dev. Stage",
           options: {
            filter: true,
-           sort: false,
+           sort: true,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -142,24 +134,52 @@ getMuiTheme = () => createMuiTheme({
          },
          {
           name: "tissues",
-          label: "Tissues",
+          label: "Tissue",
           options: {
            filter: true,
-           sort: false,
+           sort: true,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
           }
          },
-         {
-          name: "pmids",
+        
+        {
+         name: "authors",
+         label: "Authors",
+         options: {
+          filter: true,
+          sort: true,
+          display: false,
+          customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
+         }
+        },
+
+        {
+         name: "pub_date",
+         label: "Pub. date",
+         options: {
+          filter: true,
+          sort: true,
+          customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
+         }
+        },
+
+	      { name: "pmids",
           label: "PMID",
           options: {
            filter: true,
            sort: false,
-           customBodyRender: (value, tableMeta, updateValue) => (
-              value.join(", ")
-            )
+           customBodyRender: (value, tableMeta, updateValue) => {
+              return (
+                <a href={"https://pubmed.ncbi.nlm.nih.gov/"+value.join(", ")+"/"} target="_blank" className="primary">pmid:{value.join(", ")} </a>
+              );
+
+	   }
           }
          },
 
@@ -170,6 +190,20 @@ getMuiTheme = () => createMuiTheme({
          download: false,
          selectableRows:'none',
          filterType: 'dropdown',
+	 expandableRows: true,
+	 expandableRowsHeader: false,
+	 renderExpandableRow: (rowData, rowMeta) => {
+         console.log(rowData, rowMeta);
+	 const colSpan = rowData.length + 1;
+         return (
+	<TableRow>
+		<TableCell colSpan={colSpan}>
+		    {JSON.stringify(rowData[2])}
+		 </TableCell>
+        </TableRow>
+	);
+
+	 },	 
        };
     return (
 	<ThemeProvider theme={this.getMuiTheme()}>
