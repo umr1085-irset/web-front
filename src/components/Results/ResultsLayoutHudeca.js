@@ -60,6 +60,7 @@ class ResultsLayout extends Component {
       const dataset = this.props.dataset
       console.log(dataset.metadata.filters_keys.ca[1])
       console.log(dataset.metadata.filters_keys.ca[0])
+      
     return (
         <div>    
 	    <Box ml="1%">
@@ -105,7 +106,8 @@ class ResultsLayout extends Component {
                                         <LoomPlotComponentNoCard datachart="" display_type={['bar','pie']} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="bar" attrs={dataset.metadata.filters_keys.ca[1]} all_attrs={dataset.metadata.filters_keys}   name="C2"></LoomPlotComponentNoCard>
                                     </MDBCol>
                                     <MDBCol lg="4" md="12" sm="12" >
-                                        <LoomPlotComponentNoCard datachart="" display_type={['bar','pie']} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="bar" attrs={dataset.metadata.filters_keys.ca[0]} all_attrs={dataset.metadata.filters_keys}  name="C3"></LoomPlotComponentNoCard>
+	                              {dataset.metadata.filters_keys.ca[2]?
+                                        <LoomPlotComponentNoCard datachart="" display_type={['bar','pie']} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="bar" attrs={dataset.metadata.filters_keys.ca[2]} all_attrs={dataset.metadata.filters_keys}  name="C3"></LoomPlotComponentNoCard> : <span /> }
                                     </MDBCol>
                                 </MDBRow>
                             </CardContent>
@@ -116,7 +118,7 @@ class ResultsLayout extends Component {
             <MDBRow>
                 <MDBCol md="12">
                     <Card className="card-chart">
-                        <CardHeader title={  this.state.filters.reduction + " representation "}
+                        <CardHeader title={  this.props.default_display + " representation "}
 	    			action={
                             <IconButton
                                 id="togglerSO"

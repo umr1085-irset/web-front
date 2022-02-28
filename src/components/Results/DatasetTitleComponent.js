@@ -29,6 +29,7 @@ class DatasetTitleComponent extends Component {
 
   render() {
       const dataset = this.props.dataset
+       console.log(dataset.rel_datasets)
     return (
 	<Box>
 
@@ -44,26 +45,26 @@ class DatasetTitleComponent extends Component {
                     </MDBCol>
 	    
                     <MDBCol md="2">
-                        {dataset.rel_datasets.datasets.length?  <Box>View dataset list <ExpandMoreIcon fontSize="large" id="togglerdatasets"/></Box>:<p></p>}
+                        {dataset.rel_datasets.datasets.length?  <Box>RELATED DATASETS <ExpandMoreIcon fontSize="large" id="togglerdatasets"/></Box>:<p></p>}
                     </MDBCol>
                 </MDBRow>
 
                  
 	    </MDBContainer>
                    {dataset.rel_datasets.datasets.length?
-            <UncontrolledCollapse toggler="#togglerdatasets" className="center-col">
+            <UncontrolledCollapse toggler="#togglerdatasets" className="center-col" style={{ overflowX: "hidden" }}>
        
-		    <MDBContainer fluid>
+		    <MDBContainer fluid style={{ marginTop: 20, marginLeft: 20 }}>
                 
                             {dataset.rel_datasets.datasets.map(function(data,idx){
                                 return(
 			    <MDBRow key={"div"+idx}  >
-				<MDBCol md="12" className="border-bottom">
+				<MDBCol md="10" className="border-bottom" style={{ paddingLeft: 0, marginLeft: 0}} >
                                     <Typography key={"div_typo"+idx} gutterBottom variant="h3" component="h3"  className="result-title">
-                                        <Link key={"div_typo_link"+idx} to={"/dataset/"+data.datasetId}>{data.title}
+                                        <Link key={"div_typo_link"+idx} to={"/dataset/"+data.id}>{data.title} 
 					
                                     <Typography key={"div_typo_info"+idx} variant="body2" color="textSecondary"   className="result-title">
-                                        {data.cell_number} {data.col_name} | {data.gene_number} {data.row_name}
+                                        <span> - </span> {data.cell_number} {data.col_name} | {data.gene_number} {data.row_name}
                                     </Typography>
 					</Link>
                                     </Typography>

@@ -19,6 +19,7 @@ import axios from "axios";
 import GraphSelector from './GraphSelector'
 import GraphSelectorLight from './GraphSelectorLight'
 
+
 import { toastOnError } from "../../utils/Utils";
 import { trackPromise } from 'react-promise-tracker';
 import PlotComponent from "../Plots/PlotComponent"
@@ -26,13 +27,18 @@ import {Spinner} from '../Loading/LoadingComponent'
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
-import { Doughnut, Pie, HorizontalBar  } from 'react-chartjs-2';
+import { Chart, Doughnut, Pie, HorizontalBar  } from 'react-chartjs-2';
+
+
+import { MDBCol, MDBIcon, MDBRow } from "mdbreact";
+//Chart.defaults.global.legend.display = false;
+
 
 
 // reactstrap components
 
 
-import { MDBCol, MDBIcon, MDBRow } from "mdbreact";
+
 
 class LoomPlotComponentCard extends Component {
       constructor(props) {
@@ -110,6 +116,7 @@ class LoomPlotComponentCard extends Component {
         if(plot_type === "scatter" || plot_type === "hexbin" || plot_type === "violin" || plot_type === "density" ){
           return React.createElement(KeysToComponentDisplay[plot_type],{key:"plot_"+plot_type ,data: data.data, layout:data.layout})
         } else {
+          console.log(data_options);
           return React.createElement(KeysToComponentDisplay[plot_type],{key:"plot_"+plot_type ,data: data, options:data_options})
         }
         
