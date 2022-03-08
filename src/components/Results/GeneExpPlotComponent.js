@@ -55,6 +55,7 @@ class GeneExpPlotComponent extends Component {
       }
     }
     callbackUpdateGraph = (key,val) => { 
+      console.log(key,val)
       this.setState({[key]:val})
     }
 

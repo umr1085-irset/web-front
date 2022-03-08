@@ -112,6 +112,7 @@ class GeneExpPlotMenuComponent extends Component {
       }
     
     handleChangeGeneSelection = (event) => {
+        this.setState({selector:{ra:{}}})
         this.setState({method:event.target.value})
         if(event.target.value==="custom"){
             this.setState({selector:{ra:{Symbol:[]}}})
@@ -317,7 +318,7 @@ class GeneExpPlotMenuComponent extends Component {
 			         )
 			       },this)}
 		       </Box>
-		       : null }
+		       : <Spinner/> }
 
 
 		</MDBCol>

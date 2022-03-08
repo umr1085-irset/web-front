@@ -58,8 +58,6 @@ class ResultsLayout extends Component {
 
   render() {
       const dataset = this.props.dataset
-      console.log(dataset.metadata.filters_keys.ca[1])
-      console.log(dataset.metadata.filters_keys.ca[0])
       
     return (
         <div>    

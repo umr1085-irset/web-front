@@ -76,8 +76,8 @@ class GetPlotComponent extends Component {
       }
 
       componentWillReceiveProps(nextProps) {
-        if( nextProps.filters !== this.props.filters || nextProps.attrs !== this.props.attrs || nextProps.type !== this.props.type  ){
-          this.getDataPlot(this.props.url,this.props.id,nextProps.type,nextProps.attrs,nextProps.filters,this.props.gene)
+        if( nextProps.filters !== this.props.filters || nextProps.attrs !== this.props.attrs || nextProps.type !== this.props.type  || nextProps.gene !== this.props.gene  ){
+          this.getDataPlot(this.props.url,this.props.id,nextProps.type,nextProps.attrs,nextProps.filters,nextProps.gene)
         }
         
       }
@@ -86,7 +86,7 @@ class GetPlotComponent extends Component {
 
 
     render() {
-
+      console.log(this.props.filters)
       return (
         <div className="spatialCollapse">
               {this.state.loading ? <Spinner/> : <PlotComponent data={this.state.chart.data} layout={this.state.chart.layout}/>} 

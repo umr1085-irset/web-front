@@ -28,6 +28,7 @@ class GenomicDisplayComponent extends Component {
         super(props);
         this.state = {
             loading:true,
+            chart:null,
             selected_attrs:"",
             chart_type: "pie",
             selector:{
@@ -39,7 +40,7 @@ class GenomicDisplayComponent extends Component {
 
       async getDataPlot(url,id,style,attrs,filters){
         if(attrs){
-          this.setState({loading:true});
+          this.setState({loading:true,chart:null});
           const plotData={
             id:id,
             style:style,
