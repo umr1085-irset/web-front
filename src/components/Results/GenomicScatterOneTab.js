@@ -62,8 +62,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
-    display: 'flex',
-    height: 700,
   },
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
@@ -81,21 +79,22 @@ export default function VerticalTabs(props) {
   return (
     <div className={classes.root}>
       <Tabs
-        orientation="vertical"
+        orientation="horizontal"
         variant="scrollable"
+        scrollButtons="auto"
+        textColor="primary"
+        indicatorColor="primary"
         value={value}
         onChange={handleChange}
-        aria-label="Vertical tabs example"
         className={classes.tabs}
       >
         {selector.ra.Symbol.map((gene,idx) => (
-          <Tab label={gene} {...a11yProps(idx)} />
+          <Tab label={gene} {...a11yProps(idx)} style={{minWidth:40,width:70}} />
         ))}
       </Tabs>
       {selector.ra.Symbol.map((gene,idx) => (
           <TabPanel value={value} index={idx} style={{width:"100%"}}>
-              Displayed Gene : {gene} - {type} - {selected_attrs}
-            <GetPlotComponent url={url} id={loom} attrs={selected_attrs} type={type} filters={selector} gene={gene}/>
+             <GetPlotComponent url={url} id={loom} attrs={selected_attrs} type={type} filters={selector} gene={gene} style={{height: 700}} />
           </TabPanel>
         ))}
     </div>

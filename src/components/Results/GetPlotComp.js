@@ -40,7 +40,7 @@ class GetPlotComponent extends Component {
       async getDataPlot(url,id,style,attrs,filters,symbol){
         this.setState({loading:true});
         var plotData = {}
-        if(style==='violin'){
+        if(style==='violin' || style==='density'){
           plotData={
             id:id,
             style:style,

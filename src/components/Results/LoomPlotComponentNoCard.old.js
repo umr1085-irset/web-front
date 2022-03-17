@@ -18,7 +18,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import GraphSelector from './GraphSelector'
 import GraphSelectorLight from './GraphSelectorLight'
-import ReductionSelector from './ReductionSelector'
+
 
 import { toastOnError } from "../../utils/Utils";
 import { trackPromise } from 'react-promise-tracker';
@@ -27,7 +27,6 @@ import {Spinner} from '../Loading/LoadingComponent'
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
-import Box from '@material-ui/core/Box';
 import { Chart, Doughnut, Pie, HorizontalBar  } from 'react-chartjs-2';
 
 
@@ -46,13 +45,8 @@ class LoomPlotComponentCard extends Component {
         super(props);
         this.state = {
           loading:true,
-          filters:{
-            ra:{},
-            ca:{},
-            reduction: ''
-        },
+          filters:{},
           anchorEl:null,
-          anchorEl2:null,
           attrs:"",
           chart_type: "pie",
           selector:{
@@ -64,7 +58,9 @@ class LoomPlotComponentCard extends Component {
 
       async getDataPlot(url,id,style,attrs,menu,filters){
         this.setState({loading:true});
-	
+	console.log("menu : " + menu);
+	console.log(attrs);
+	console.log(filters);
         const plotData={
           id:id,
           style:style,
@@ -119,14 +115,6 @@ class LoomPlotComponentCard extends Component {
         this.setState({anchorEl:null});
       };
 
-      handleClick2 = (event) => {
-        this.setState({anchorEl2:event.currentTarget});
-      };
-      handleClose2 = () => {
-        this.setState({anchorEl2:null});
-      };
-
-
       displayPlot = (plot_type,KeysToComponentDisplay,data,data_options) =>{
         if(plot_type === "scatter" || plot_type === "hexbin" || plot_type === "violin" || plot_type === "density" ){
           return React.createElement(KeysToComponentDisplay[plot_type],{key:"plot_"+plot_type ,data: data.data, layout:data.layout})
@@ -142,22 +130,8 @@ class LoomPlotComponentCard extends Component {
         this.getDataPlot(this.props.url,this.props.loom,chart_type,attr,this.props.menu,this.state.filters)
       }
 
-      callbackUpdateGraphReduc = (reduc) => { 
-
-        this.setState({collapseID: "",reduc:reduc})
-        this.state.filters.reduction = reduc
-        this.getDataPlot(this.props.url,this.props.loom,this.state.chart_type,this.state.attrs,this.props.menu,this.state.filters)
-      }
-
 
     render() {
-
-
-
-      const reductions = this.props.reductions
-      //console.log("reduction" + reductions)
-      const def_display = this.props.default_display
-      //console.log("def_display "+ def_display)
       const KeysToComponentDisplay = {
           pie:Pie,
           doughnut:Doughnut,
@@ -169,55 +143,17 @@ class LoomPlotComponentCard extends Component {
       };
       return (
         <div>
-
-<MDBRow>
-
-{this.props.chart_type ===  "pie" || this.props.chart_type === "bar" ? 
-              <span /> 
-              :
-              <MDBCol md="2">
-              <Button id="button2" disableRipple style={{ textTransform: 'capitalize' }} aria-controls="simple-menu-reduc"  aria-haspopup="true" onClick={this.handleClick2}>
-              Method<MDBIcon className="ml-2" icon="angle-down" />
-              </Button>
-              <Menu 
-                id="simple-menu-reduc"
-                anchorEl={this.state.anchorEl2}
-                keepMounted
-                open={Boolean(this.state.anchorEl2)}
-                onClose={this.handleClose2}
-                MenuListProps={{
-                  'aria-labelledby': 'button2',
-                }}
-              >
-                <MenuItem style={{ backgroundColor: "white" }}
-                onMouseEnter={(e) => e.target.style.backgroundColor= '#ffffff'}
-                onMouseLeave={(e) => e.target.style.backgroundColor = '#ffffff'}
-                onClick={this.handleClose2}
-                >
-            <ReductionSelector reduc={reductions} callbackUpdateGraphReduc={this.callbackUpdateGraphReduc} name={this.props.name} />
-                </MenuItem>
-           
-              </Menu>
-              </MDBCol>
-             }
-
-
-<MDBCol>
-
-          <Button disableRipple id="button1" style={{ textTransform: 'capitalize' }} aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}>
+          <Button disableRipple style={{ textTransform: 'capitalize' }} aria-controls="simple-menu" aria-haspopup="true" onClick={this.handleClick}>
                 {this.state.attrs} <MDBIcon className="ml-2" icon="angle-down" />
               </Button>
-              <Menu 
+              <Menu
                 id="simple-menu"
                 anchorEl={this.state.anchorEl}
                 keepMounted
                 open={Boolean(this.state.anchorEl)}
                 onClose={this.handleClose}
-                MenuListProps={{
-                  'aria-labelledby': 'button1',
-                }}
               >
-                <MenuItem style={{ backgroundColor: "white" }}
+                <MenuItem
                 onMouseEnter={(e) => e.target.style.backgroundColor= '#ffffff'}
                 onMouseLeave={(e) => e.target.style.backgroundColor = '#ffffff'}
                 onClick={this.handleClose}
@@ -227,14 +163,7 @@ class LoomPlotComponentCard extends Component {
                       <GraphSelectorLight display_type={this.props.display_type} chart_type={this.state.chart_type} filters={this.state.filters} selected_attrs={this.state.attrs} attrs={this.props.all_attrs} callbackUpdateGraph={this.callbackUpdateGraph} name={this.props.name}/>
                     }
                 </MenuItem>
-           
               </Menu>
-              
-
-              </MDBCol>
-          </MDBRow>
-
-
           <MDBRow>
             <MDBCol md="12">
               {this.state.loading ? <Spinner/> : this.displayPlot(this.state.style,KeysToComponentDisplay,this.state.chart,this.state.options)}  

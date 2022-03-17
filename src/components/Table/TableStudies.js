@@ -21,7 +21,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import MUIDataTable from "mui-datatables";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
-import { Paper } from "@material-ui/core";
+import { Paper, Box } from "@material-ui/core";
 import { TableRow, TableCell} from "@material-ui/core";
 
 class TableStudiesComponent extends Component {
@@ -37,7 +37,7 @@ getMuiTheme = () => createMuiTheme({
          MUIDataTableBodyCell: {
 	          root: {
                fontSize: "1rem",
-	       color: "black"
+	       color: "black",
 	          }
 
 	        },
@@ -80,9 +80,9 @@ getMuiTheme = () => createMuiTheme({
             sort: true,
             customBodyRenderLite: (dataIndex, rowIndex) => {
               return (
-                <Link to={"/study/"+this.props.rows[rowIndex].studyId} className="primary">
+                <Box style={{width:370, maxWidth:370}}><Link to={"/study/"+this.props.rows[rowIndex].studyId} className="primary">
                     {this.props.rows[rowIndex].title}
-                </Link>
+                </Link></Box>
               );
             }
           }
@@ -134,7 +134,7 @@ getMuiTheme = () => createMuiTheme({
          },
          {
           name: "tissues",
-          label: "Tissue",
+          label: "Organ",
           options: {
            filter: true,
            sort: true,

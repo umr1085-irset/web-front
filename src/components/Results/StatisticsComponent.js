@@ -52,23 +52,23 @@ class StatisticsComponent extends Component {
     }
 
     render() {
-      const row_name = this.props.row_name
+      //const row_name = this.props.row_name
       const col_name = this.props.col_name
-      const row_val = this.state.row_val
+      //const row_val = this.state.row_val
       const col_val = this.state.col_val
-      const row_tot = this.props.row_tot
+      //const row_tot = this.props.row_tot
       const col_tot = this.props.col_tot
 
-      const percent_row = Math.round((row_val/row_tot)*100)
+      //const percent_row = Math.round((row_val/row_tot)*100)
       const percent_col = Math.round((col_val/col_tot)*100)
 
     return (
-	<Box> OVERVIEW   --    
+	<Box> CELL REPARTITION OVERVIEW   --    
             {this.state.loading
 	? <Spinner/>
 	: <Box style={{ display: "inline" }} >
-           <b> {row_name} </b> : {row_val}/<span style={{ fontSize: 10 }}> {row_tot} </span> ({percent_row}%)  --
-            <b> {col_name} </b> :  {col_val}/ <span style={{ fontSize: 10 }}> {col_tot} </span> ({percent_col}%)
+  
+     Nb {col_name} :  {col_val}/ <span style={{ fontSize: 10 }}> {col_tot} </span> ({percent_col}%)
             </Box> }
         </Box>
 

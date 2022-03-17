@@ -66,14 +66,15 @@ class DetailStudyPage extends Component {
 	                         
                                                           
 	    {study.contributor.length?
-	<Box>		   
-	      <Typography color="textSecondary">Contributors : </Typography>   
+	<Box style={{ marginTop: 16 }}>		   
+	      <Typography color="textSecondary">Contributors :   
 	         
 		   {study.contributor.map(function(contributor, idx){
 				          return(
-				                   <Typography variant="body1" key={"contributor_"+idx}>{study.contributor.name}</Typography>
+				                   <span style={{ color: "#000000" }}  key={"contributor_"+idx}>{contributor.name} - </span>
 						 )
 				             })}
+		    </Typography>
 	</Box>	
 		: <span />
 	     
@@ -95,7 +96,7 @@ class DetailStudyPage extends Component {
                   <Typography variant="h4" color="textSecondary">Related article(s)</Typography>
 		   {study.article.map(function(article, idx){
 				          return(
-				                   <Box>  {article.title}, {article.journal}, {moment(article.releaseDate).format('YYYY')} ,  <a key={"link_"+idx} href={"https://pubmed.ncbi.nlm.nih.gov/"+article.pmid}>pmid:{article.pmid}</a>  </Box>
+				                   <Box> <span style={{ fontStyle: "italic"  }}> {article.title}</span>, {article.journal}, {moment(article.releaseDate).format('YYYY')} ,  <a key={"link_"+idx} href={"https://pubmed.ncbi.nlm.nih.gov/"+article.pmid}>pmid:{article.pmid}</a>  </Box>
 						 )
 				             })}
 		</Box>

@@ -39,6 +39,7 @@ class GenomicDisplayComponent extends Component {
       }
 
       async getDataPlot(url,id,style,attrs,filters){
+	console.log(attrs);
         if(attrs){
           this.setState({loading:true,chart:null});
           const plotData={
@@ -86,7 +87,8 @@ class GenomicDisplayComponent extends Component {
       const KeysToComponentDisplay = {
         violin:PlotComponent,
         hexbin:PlotComponent,
-        dot:PlotComponent
+        dot:PlotComponent,
+	density:PlotComponent
       };
       return (
           <MDBRow>

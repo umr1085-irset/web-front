@@ -86,11 +86,11 @@ class GeneExpPlotComponent extends Component {
           <Divider />
           <MDBRow>
             <MDBCol md="12">
-              {this.state.chart_type==="scatter" || this.state.chart_type==="violin" ?
+              {this.state.chart_type==="scatter" || this.state.chart_type==="violin" || this.state.chart_type==="density" ?
                 this.state.selector.ra.Symbol?
                 element:null
                 :
-                <GenomicDisplayComponent url={this.props.url} loom={this.props.loom} type={this.props.chart_type} scale={this.state.scale} chart_type={this.state.chart_type} selector={this.state.selector} selected_attrs={this.state.selected_attrs}/>
+                <GenomicDisplayComponent url={this.props.url} loom={this.props.loom} type={this.props.chart_type} scale={this.state.scale} chart_type={this.state.chart_type} selector={this.state.selector} selected_attrs={this.state.selected_attrs} style={{ height: 800}} />
               }     
             </MDBCol>
           </MDBRow>
