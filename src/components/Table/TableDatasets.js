@@ -107,6 +107,17 @@ class TableDatasetsComponent extends Component {
           }
          },
          {
+          name: "organ",
+          label: "Organ",
+          options: {
+           filter: true,
+           sort: true,
+           customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
+          }
+         },
+         {
           name: "devStage",
           label: "Dev. Stage",
           options: {
