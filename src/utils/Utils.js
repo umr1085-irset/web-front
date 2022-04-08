@@ -27,3 +27,15 @@ export const isEmpty = value =>
   value === null ||
   (typeof value === "object" && Object.keys(value).length === 0) ||
   (typeof value === "string" && value.trim().length === 0);
+
+
+export async function getPublicStudies() {
+    console.log("GET PUBLIC DATASET")
+    return await axios.get("/api/v1/studies/public")
+    .then(response => {
+      this.setState({datasets : response.data}); 
+    })
+    .catch(error => {
+      toastOnError("Error loading public datasets: "+error);
+    })
+}

@@ -24,7 +24,7 @@ export const Spinner = (props) => {
   return (
     promiseInProgress && (
         <div className="spinner">
-            <Loader type="Grid" color="#00BFFF" height={80} width={80} />
+            <Loader type="ThreeDots" color="#26a69a" height={40} width={40}/>
         </div>
     )
   );

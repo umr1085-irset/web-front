@@ -16,10 +16,12 @@
 */
 import React, { Component } from "react";
 import ReactMarkdown from "react-markdown";
-import AboutContent from "../contents/about.md"
 
 import { MDBRow, MDBContainer, MDBCol } from "mdbreact";
+import { Typography, Container, Paper, Grid, Box, Button } from '@material-ui/core';
 
+
+const gfm = require('remark-gfm')
 
 class AboutPage extends Component {
   constructor() {
@@ -29,14 +31,20 @@ class AboutPage extends Component {
 
   componentWillMount() {
     // Get the contents from the Markdown file and put them in the React state, so we can reference it in render() below.
-    fetch(AboutContent).then(res => res.text()).then(text => this.setState({ markdown: text }));
+    fetch(this.props.content).then(res => res.text()).then(text => this.setState({ markdown: text }));
   }
   render() {
     const { markdown } = this.state;
     return (
-      <MDBContainer className="mt-5">
-        <ReactMarkdown source={markdown} />
-      </MDBContainer>
+
+      <Paper variant="outlined" >
+	   <Box mx={8} my={6}>
+      
+        <ReactMarkdown plugins={[gfm]} source={markdown} />
+      
+	</Box>
+     </Paper>
+
     );
   }
 }

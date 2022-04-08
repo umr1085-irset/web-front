@@ -68,3 +68,17 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+# Push container image to repository
+
+1. Change branch to dev brach
+
+        git checkout develop; git pull
+
+2. Build docker image
+        docker build -t scilicium/geno_app-front:dev .
+
+3. Push docker image on registry
+
+        docker push scilicium/geno_app-front:dev
+

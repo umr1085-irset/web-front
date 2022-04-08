@@ -21,22 +21,21 @@ import { Route, Switch, Redirect, useLocation } from "react-router-dom";
 import PerfectScrollbar from "perfect-scrollbar";
 
 // core components
-import Footer from "../../components/Footer/Footer.js";
-import FixedPlugin from "../../components/FixedPlugin/FixedPlugin.js";
+import Footer from "../components/Footer/Footer.js";
 
-import requireAuth from "../../utils/RequireAuth";
-import NavbarComponent from '../../components/Navbar/NavbarComponent'
-
-
-import routes from "../../routes.js";
+import requireAuth from "../utils/RequireAuth";
+import NavbarComponent from '../components/Navbar/RGV/NavbarComponentRGV'
 
 
+import routes from "../routes.js";
 
-import { BackgroundColorContext } from "../../contexts/BackgroundColorContext";
+
+
+import { BackgroundColorContext } from "../contexts/BackgroundColorContext";
 
 var ps;
 
-function Admin(props) {
+function Rgv(props) {
   const location = useLocation();
   const mainPanelRef = React.useRef(null);
 
@@ -78,20 +77,23 @@ function Admin(props) {
 
   const getRoutes = (routes) => {
     return routes.map((prop, key) => {
-      if (prop.layout === "/app" && prop.requireAuth) {
+      if (prop.layout === "/rgv" && prop.requireAuth) {
+        const Compo = prop.component
         return (
           <Route
             path={prop.layout + prop.path}
-            component={requireAuth(prop.component)}
+            content={prop.content}
+            component={requireAuth(() => (<Compo content={prop.content} />))}
             key={key}
           />
         );
       }
-      else if (prop.layout === "/app" && prop.requireAuth === false) {
+      else if (prop.layout === "/rgv" && prop.requireAuth === false) {
+        const Compo = prop.component
         return (
           <Route
             path={prop.layout + prop.path}
-            component={prop.component}
+            component={() => (<Compo content={prop.content} />)}
             key={key}
           />
         );
@@ -109,17 +111,16 @@ function Admin(props) {
               <NavbarComponent/>
               <Switch>
                 {getRoutes(routes)}
-                <Redirect from="*" to="/app/home" />
+                <Redirect from="/rgv/*" to="/rgv/home" />
               </Switch>
               
               <Footer fluid />
             </div>
           </div>
-          <FixedPlugin bgColor={color} handleBgClick={changeColor} />
         </React.Fragment>
       )}
     </BackgroundColorContext.Consumer>
   );
 }
 
-export default Admin;
+export default Rgv;

@@ -7,7 +7,7 @@ import {
   MDBContainer, MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse,
   MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon
   } from "mdbreact";
-import { logout } from "../Login/LoginActions";
+import { logout } from "../../Login/LoginActions";
 
 class NavbarComponent extends Component {
   state = {
@@ -32,8 +32,8 @@ class NavbarComponent extends Component {
             <MDBIcon icon="user" className="mr-1" />{user.username}
             </MDBDropdownToggle>
             <MDBDropdownMenu>
-              <Link to="/app/user-profile"><MDBDropdownItem>Profile</MDBDropdownItem></Link>
-              <Link to="/app/dashboard"><MDBDropdownItem>Dashboard</MDBDropdownItem></Link>
+              <Link to="/rgv/user-profile"><MDBDropdownItem>Profile</MDBDropdownItem></Link>
+              <Link to="/rgv/dashboard"><MDBDropdownItem>Dashboard</MDBDropdownItem></Link>
               <MDBDropdownItem onClick={this.onLogout}>Logout</MDBDropdownItem>
             </MDBDropdownMenu>
           </MDBDropdown>
@@ -44,26 +44,26 @@ class NavbarComponent extends Component {
     const user_not_logged = (
       <MDBNavbarNav right>
         <MDBNavItem>
-          <MDBNavLink to={"/app/signup"}>Register</MDBNavLink>
+          <MDBNavLink to={"/rgv/signup"}>Register</MDBNavLink>
         </MDBNavItem>
         <MDBNavItem>
-          <MDBNavLink to={"/app/login"}>Login</MDBNavLink>
+          <MDBNavLink to={"/rgv/login"}>Login</MDBNavLink>
         </MDBNavItem>
       </MDBNavbarNav>
     )
 
     return (
       <div>
-        <MDBNavbar color="indigo" dark expand="md">
+        <MDBNavbar color="default-color" dark expand="md">
           <MDBContainer>
-            <Link to="/app/home"><MDBNavbarBrand>
-              <strong className="white-text">SciLicium</strong>
+            <Link to="/rgv/home"><MDBNavbarBrand>
+              <strong className="white-text">RGV</strong>
             </MDBNavbarBrand></Link>
             <MDBNavbarToggler onClick={this.toggleCollapse} />
               <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
                 <MDBNavbarNav left>
                   <MDBNavItem>
-                    <MDBNavLink to={"/app/datasets"}>Browse datasets</MDBNavLink>
+                    <MDBNavLink to={"/rgv/datasets"}>Browse datasets</MDBNavLink>
                   </MDBNavItem>
                   <MDBNavItem>
                     <MDBDropdown>
@@ -71,8 +71,8 @@ class NavbarComponent extends Component {
                         Help
                       </MDBDropdownToggle>
                       <MDBDropdownMenu className="dropdown-default" right>
-                        <Link to="/app/tutorial"><MDBDropdownItem>Tutorial</MDBDropdownItem></Link>
-                        <Link to="/app/technical-corner"><MDBDropdownItem>Technical corner</MDBDropdownItem></Link>
+                        <Link to="/rgv/tutorial"><MDBDropdownItem>Tutorial</MDBDropdownItem></Link>
+                        <Link to="/rgv/technical-corner"><MDBDropdownItem>Technical corner</MDBDropdownItem></Link>
                       </MDBDropdownMenu>
                     </MDBDropdown>
                   </MDBNavItem>
@@ -82,9 +82,9 @@ class NavbarComponent extends Component {
                         About
                       </MDBDropdownToggle>
                       <MDBDropdownMenu className="dropdown-default" right>
-                        <Link to="/app/about"><MDBDropdownItem>About</MDBDropdownItem></Link>
-                        <Link to="/app/institutions"><MDBDropdownItem>Institutions and founders</MDBDropdownItem></Link>
-                        <Link to="/app/ressources"><MDBDropdownItem>Other ressources</MDBDropdownItem></Link>
+                        <Link to="/rgv/about"><MDBDropdownItem>About</MDBDropdownItem></Link>
+                        <Link to="/rgv/institutions"><MDBDropdownItem>Institutions and founders</MDBDropdownItem></Link>
+                        <Link to="/rgv/ressources"><MDBDropdownItem>Other ressources</MDBDropdownItem></Link>
                       </MDBDropdownMenu>
                     </MDBDropdown>
                   </MDBNavItem>

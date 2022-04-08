@@ -16,39 +16,40 @@
 */
 import React from "react";
 import ReactDOM from "react-dom";
-import { Route, Switch, Redirect } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Root from "./Root";
-import AdminLayout from "./layouts/Admin/Admin.js";
+import RgvLayout from "./layouts/RGV.js";
+import HudecaLayout from "./layouts/Hudeca.js";
+import { ThemeProvider } from '@material-ui/core/styles';
 
-import "./assets/scss/black-dashboard-react.scss";
-import "./assets/demo/demo.css";
-import "./assets/css/nucleo-icons.css";
-import "@fortawesome/fontawesome-free/css/all.min.css";
 
-import ThemeContextWrapper from "./components/ThemeWrapper/ThemeWrapper";
-import BackgroundColorWrapper from "./components/BackgroundColorWrapper/BackgroundColorWrapper";
+import '@fortawesome/fontawesome-free/css/all.min.css'; 
+import 'bootstrap-css-only/css/bootstrap.min.css'; 
+import 'mdbreact/dist/css/mdb.css';
+import './assets/scss/hugodeca.scss'
+
 import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css"
+import theme from './theme';
 
 
 
 import axios from "axios";
-axios.defaults.baseURL = "http://127.0.0.1:8000";
+axios.defaults.baseURL = process.env.DJANGO_APP_SERVER_URL;
+//axios.defaults.baseURL = "http://localhost:8000";
+//axios.defaults.baseURL = "https://django-192-168-101-109.vm.openstack.genouest.org/";
+
 
 ReactDOM.render(
-  <ThemeContextWrapper>
-    <BackgroundColorWrapper>
+  <ThemeProvider theme={theme}>
     <ToastContainer hideProgressBar={true} newestOnTop={true} />
       <Root>
         <Switch>
-          <Route path="/app" render={(props) => <AdminLayout {...props} />} />
-          <Redirect from='/' to='/app/home' />
-
+          <Route path="/" render={(props) => <HudecaLayout {...props} />} />
         </Switch>
       </Root>
-    </BackgroundColorWrapper>
-  </ThemeContextWrapper>,
+  </ThemeProvider>,
   document.getElementById("root")
 );
