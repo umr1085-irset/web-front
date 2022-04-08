@@ -132,9 +132,21 @@ getMuiTheme = () => createMuiTheme({
             )
           }
          },
+	 {
+
+          name: "organs",
+          label: "Organ",
+          options: {
+           filter: true,
+           sort: true,
+           customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
+	  }
+	  },
          {
           name: "tissues",
-          label: "Organ",
+          label: "Tissue",
           options: {
            filter: true,
            sort: true,
