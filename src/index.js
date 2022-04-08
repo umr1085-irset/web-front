@@ -37,7 +37,8 @@ import theme from './theme';
 
 
 import axios from "axios";
-axios.defaults.baseURL = "http://localhost:8000";
+axios.defaults.baseURL = process.env.DJANGO_APP_SERVER_URL;
+//axios.defaults.baseURL = "http://localhost:8000";
 //axios.defaults.baseURL = "https://django-192-168-101-109.vm.openstack.genouest.org/";
 
 
