@@ -37,19 +37,19 @@ class DetailStudyPage extends Component {
       }
       
       async downloadDataset(id) {
-            console.log('/api/v1/datasets/'+id+'/download')
+            //console.log('/api/v1/datasets/'+id+'/download')
             axios.get('/api/v1/datasets/'+id+'/download', { 
                 responseType: 'blob',
             }).then(res => {
                 fileDownload(res.data, id+'.zip');
-                console.log(res);
+                //console.log(res);
             }).catch(err => {
-                console.log(err);
+                //console.log(err);
             })
       }
   render() {
       const study = this.props.study
-      console.log(study)
+      //console.log(study)
     return (
           <div>         
 	    <Paper variant="outlined" >

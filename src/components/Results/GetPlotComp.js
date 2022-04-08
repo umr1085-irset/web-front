@@ -86,7 +86,7 @@ class GetPlotComponent extends Component {
 
 
     render() {
-      console.log(this.props.filters)
+      //console.log(this.props.filters)
       return (
         <div className="spatialCollapse">
               {this.state.loading ? <Spinner/> : <PlotComponent data={this.state.chart.data} layout={this.state.chart.layout}/>} 

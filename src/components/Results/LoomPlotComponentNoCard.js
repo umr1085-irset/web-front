@@ -75,7 +75,7 @@ class LoomPlotComponentCard extends Component {
         await trackPromise(
           axios.post(url,plotData)
           .then(response => {
-            console.log(response.data.options)
+            //console.log(response.data.options)
             this.setState({
               chart:response.data.chart,
               style:response.data.style,
@@ -85,7 +85,7 @@ class LoomPlotComponentCard extends Component {
           })
           .catch(error => {
             toastOnError("Error loading dataset LOOMNOCARD");
-            console.log(filters)
+            //console.log(filters)
           })
         )
       }
@@ -131,7 +131,7 @@ class LoomPlotComponentCard extends Component {
         if(plot_type === "scatter" || plot_type === "hexbin" || plot_type === "violin" || plot_type === "density" ){
           return React.createElement(KeysToComponentDisplay[plot_type],{key:"plot_"+plot_type ,data: data.data, layout:data.layout})
         } else {
-          console.log(data_options);
+          //console.log(data_options);
           return React.createElement(KeysToComponentDisplay[plot_type],{key:"plot_"+plot_type ,data: data, options:data_options})
         }
         

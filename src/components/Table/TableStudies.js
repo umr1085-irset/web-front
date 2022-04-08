@@ -60,7 +60,7 @@ getMuiTheme = () => createMuiTheme({
 
 
   render() {
-      console.log(this.props.rows)
+      //console.log(this.props.rows)
       const rows = this.props.rows
       const columns = [
         {
@@ -216,7 +216,7 @@ getMuiTheme = () => createMuiTheme({
 	 expandableRows: true,
 	 expandableRowsHeader: false,
 	 renderExpandableRow: (rowData, rowMeta) => {
-         console.log(rowData, rowMeta);
+         //console.log(rowData, rowMeta);
 	 const colSpan = rowData.length + 1;
          return (
 	<TableRow>
