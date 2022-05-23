@@ -84,13 +84,13 @@ function HomeContent() {
 	 <Box>
 
 <Paper variant="outlined" style={styles.imgContainer}>
-  <Box mt={17}  mx="30%" >   		
+  <Box mt={15}  mx="30%" >   		
    <Typography variant="h2"  style={styles.title}>
-        		GENOMICS VIEWER
+GENE EXPRESSION IN HUMAN DEVELOPMENTAL CELLS
    </Typography>
 	  
     <Typography variant="body1" gutterBottom>
-	Get access to a database gathering datasets about human developmental cells and use our interactive viewer to explore cell populations and marker genes.
+Use our interactive viewer to explore cell populations and marker genes.
      </Typography>
 	  <br />
 	  

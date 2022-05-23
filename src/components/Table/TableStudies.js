@@ -100,7 +100,7 @@ getMuiTheme = () => createMuiTheme({
 
         {
          name: "technology",
-         label: "Technology",
+         label: "Assay",
          options: {
           filter: true,
           sort: true,
@@ -144,17 +144,6 @@ getMuiTheme = () => createMuiTheme({
             )
 	  }
 	  },
-         {
-          name: "organs",
-          label: "Organ",
-          options: {
-           filter: true,
-           sort: true,
-           customBodyRender: (value, tableMeta, updateValue) => (
-              value.join(", ")
-            )
-          }
-         },
          {
           name: "tissues",
           label: "Tissues",
