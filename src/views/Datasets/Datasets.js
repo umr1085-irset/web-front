@@ -42,9 +42,10 @@ class DatasetPage extends Component {
         this.getData = this.getData.bind(this)
       }
     
+    
     async getData(browse){
         const data = {
-          viewer:"HuDeCA"
+          viewer:process.env.DATABASE
         }
         let url=""
         if(browse=="studies"){
