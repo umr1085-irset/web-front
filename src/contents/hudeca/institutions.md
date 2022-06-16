@@ -4,7 +4,7 @@
 
 
 
-The genomics viewer was developped by Scilicium in the context of the HuDeCA project and as part of the research carried out at IRSET. The application is hosted by Genouest.
+Uncover was developped by Scilicium  as part of the research carried out at IRSET. The application is hosted by Genouest.
 
     
 ............................

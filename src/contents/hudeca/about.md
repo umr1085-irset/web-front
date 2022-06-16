@@ -1,14 +1,14 @@
-#  About the genoViewer
+#  About the viewer 
 
 
 ............
 
-The genoViewer will enable you to browse studies related to human development and to explore transcriptomics data in an interactive way. Datasets from published articles have been gathered and preprocessed so you can actually visualize expression data and use multiple criteria to filter, compare and gain insight into single-cell data. 
+Uncover (Uro-oNCology ViewER)  will enable you to browse studies related to human development and to explore transcriptomics data in an interactive way. Datasets from published articles have been gathered and preprocessed so you can actually visualize expression data and use multiple criteria to filter, compare and gain insight into single-cell data. 
 
 ### Browse and analyse
 
-The genoViewer was designed to achieve two main goals:
-- searching, filtering and viewing information about studies and datasets related to Human Development : when entering the application, end-users are invited to browse a list of studies presented in a data grid that can be filtered and sorted according to a common set of criteria
+The viewer was designed to achieve two main goals:
+- searching, filtering and viewing information about studies and datasets related to Uro-Oncology : when entering the application, end-users are invited to browse a list of studies presented in a data grid that can be filtered and sorted according to a common set of criteria
 - Exploring, analyzing and comparing cell types according to different parameters and visualization modes : the exploration interface is constituted of four main panels that will let you filter the information, view the repartition of cells according to cell metadata, analyze cell proximity according to the dimensionality reduction method used for the analysis (UMAP, t-sne...) or analyze gene expression 
 
 
