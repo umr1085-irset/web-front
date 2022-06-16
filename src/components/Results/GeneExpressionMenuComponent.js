@@ -267,7 +267,7 @@ class GeneExpPlotMenuComponent extends Component {
 
                     <MDBCol md="8" className="pb-2 ml-4" >
                   <MDBRow >
-		   <MDBCol md="3">
+		   <MDBCol md="4">
                         <FormControl className="control-filter">
                             <InputLabel className="control-filter"  id="geneList">Gene selection</InputLabel>
                             <Select className="control-filter"
@@ -278,36 +278,15 @@ class GeneExpPlotMenuComponent extends Component {
                             onChange={this.handleChangeGeneSelection}
                             >
                             <MenuItem value="first" >first 10 genes</MenuItem>
-                            <MenuItem value="variance" >top 10 variable genes</MenuItem>
+                           // <MenuItem value="variance" >top 10 variable genes</MenuItem>
                             <MenuItem value="custom" >My selection</MenuItem>
                             </Select>
 
                         </FormControl>
 
 			</MDBCol>
-  
-            <MDBCol md="3">
 
-        
-                        <FormControl className="control-filter">
-                        <Autocomplete
-                                            limitTags={1}
-                                            id="chroms"
-                                            title="chroms"
-                                            size="small"
-                                            onChange={(event, newValue) => {
-                                                
-                                            }}
-                                            options={chroms}
-                                            renderInput={(params) => (
-                                            <TextField  {...params} label="From " placeholder="all chromosomes" style={{width:160}} />
-                                            )}
-                                        />
-                              </FormControl>
-
-			</MDBCol>
-
-			<MDBCol md="5">
+			<MDBCol md="6">
 
                 {this.state.gene
 			? <Spinner/>
