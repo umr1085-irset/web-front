@@ -16,7 +16,7 @@ HuDeCA is a programmed initiated by Inserm to build a reference atlas about huma
 [Know more](http://hudeca.genouest.org) 
 \
 The HUGODECA project is a European funded research Initiative investigating how human gonads (either an ovary or a testis) develop in the embryo in order to understand how the initially bipotential organ differentiates in a sex specific manner.
-[Know more] (http://hugodeca-project.eu)
+[Know more](http://hugodeca-project.eu)
 
 ............................
 
