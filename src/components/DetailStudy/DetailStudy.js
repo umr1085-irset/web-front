@@ -14,7 +14,7 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 */
-import React, { Component } from "react";
+import React, { Component, useState}  from "react";
 import { Link, withRouter } from "react-router-dom";
 import moment from 'moment';
 import _ from 'lodash';
@@ -38,6 +38,7 @@ class DetailStudyPage extends Component {
       
       async downloadDataset(id) {
             //console.log('/api/v1/datasets/'+id+'/download')
+	    this.isShown = true;
             axios.get('/api/v1/datasets/'+id+'/download', { 
                 responseType: 'blob',
             }).then(res => {
@@ -49,6 +50,9 @@ class DetailStudyPage extends Component {
       }
   render() {
       const study = this.props.study
+      const isShown = false;
+
+      
       //console.log(study)
     return (
           <div>         
@@ -132,9 +136,13 @@ class DetailStudyPage extends Component {
                                                     <Link to={"/dataset/"+data.datasetId}><Button key={"display_btn"+idx} color="primary" size="medium" startIcon={<ScatterPlotTwoToneIcon />} variant="outlined"> Visualize </Button></Link>
                                             </td>
                                             <td key={"download_"+idx} align="right" className="border-bottom border-top-0" width="64">
+					    {study.collection.title == "HUGODECA" ? 
+						 <span></span>
+						    :
                                                 <Button onClick={() => {this.downloadDataset(data.datasetId)}} variant="contained" color="primary" size="medium" startIcon={<GetAppOutlinedIcon /> }  key={"download_btn"+idx}>
                                                     Download
                                                 </Button>
+						   }
                                             </td>
                                         </tr>
                                     )

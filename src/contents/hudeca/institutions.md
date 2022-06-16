@@ -4,17 +4,19 @@
 
 
 
-The genomics viewer was developped by Scilicium in the context of the HuDeCA project and as part of the research carried out at IRSET. The application is hosted by Genouest.
+The genoViewer was developped by Scilicium in the context of the HuDeCA and HUGODECA projects, as part of the research carried out at IRSET. The application is hosted by Genouest.
 
     
 ............................
 
 
-### About the HuDeCA consortium
+### About the HuDeCA and HUGODECA consortium
 
 HuDeCA is a programmed initiated by Inserm to build a reference atlas about human developmental cells. The project has been designed from the outset to enable contributions to the Human Cell Atlas (HCA), an ambitious international initiative to map all normal cell states of the body at every human life stages.
-[Know more](http://hudeca.genouest.org)  
-
+[Know more](http://hudeca.genouest.org) 
+\
+The HUGODECA project is a European funded research Initiative investigating how human gonads (either an ovary or a testis) develop in the embryo in order to understand how the initially bipotential organ differentiates in a sex specific manner.
+[Know more] (http://hugodeca-project.eu)
 
 ............................
 
