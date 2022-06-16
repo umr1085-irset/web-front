@@ -132,18 +132,6 @@ getMuiTheme = () => createMuiTheme({
             )
           }
          },
-	 {
-
-          name: "organs",
-          label: "Organ",
-          options: {
-           filter: true,
-           sort: true,
-           customBodyRender: (value, tableMeta, updateValue) => (
-              value.join(", ")
-            )
-	  }
-	  },
          {
           name: "organs",
           label: "Organ",
@@ -199,7 +187,7 @@ getMuiTheme = () => createMuiTheme({
            sort: false,
            customBodyRender: (value, tableMeta, updateValue) => {
               return (
-                <a href={"https://pubmed.ncbi.nlm.nih.gov/"+value.join(", ")+"/"} target="_blank" className="primary">pmid:{value.join(", ")} </a>
+                <a href={"https://pubmed.ncbi.nlm.nih.gov/"+value.join(", ")+"/"} target="_blank" className="primary">{value.join(", ")} </a>
               );
 
 	   }
