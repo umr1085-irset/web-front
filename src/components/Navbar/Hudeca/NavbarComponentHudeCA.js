@@ -59,7 +59,7 @@ class NavbarComponent extends Component {
         <MDBNavbar light expand="md" className="shadow-none border-bottom" style={{ backgroundColor: 'white' }}>
           <MDBContainer fluid>
             <Link to="/"><MDBNavbarBrand>
-              HuDeCA
+              genoViewer
             </MDBNavbarBrand></Link>
             <MDBNavbarToggler onClick={this.toggleCollapse} />
               <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
@@ -70,9 +70,10 @@ class NavbarComponent extends Component {
                         About
                       </MDBDropdownToggle>
                       <MDBDropdownMenu className="dropdown-default" right>
-                        <Link to="/about"><MDBDropdownItem>About Hudeca</MDBDropdownItem></Link>
+                        <Link to="/about"><MDBDropdownItem>About the viewer</MDBDropdownItem></Link>
                         <Link to="/institutions"><MDBDropdownItem>Institutions and founders</MDBDropdownItem></Link>
-                        <Link to="/ressources"><MDBDropdownItem>Other ressources</MDBDropdownItem></Link>
+                        <Link to="/howtocite"><MDBDropdownItem>How to cite us</MDBDropdownItem></Link>
+
                       </MDBDropdownMenu>
                     </MDBDropdown>
                   </MDBNavItem>
