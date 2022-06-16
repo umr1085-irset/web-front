@@ -27,10 +27,10 @@ import AboutPage from '../views/About'
 import DataPage from '../views/Data'
 import StudyPage from '../views/Study'
 import ResultPage from '../views/Results'
-
+import CitePage from '../views/Cite'
 import AboutContent from "../contents/hudeca/about.md"
 import InstitutionContent from "../contents/hudeca/institutions.md"
-
+import CiteContent from "../contents/hudeca/howtocite.md"
 
 var routes = [
   {
@@ -120,6 +120,15 @@ var routes = [
     icon: "tim-icons icon-single-02",
     component: AboutPage,
     content: InstitutionContent,
+    layout: "/hudeca",
+    requireAuth: false,
+  },
+  {
+    path: "/howtocite", 
+    name: "How to cite us",
+    icon: "tim-icons icon-single-02",
+    component: CitePage,
+    content: CiteContent,
     layout: "/hudeca",
     requireAuth: false,
   },
