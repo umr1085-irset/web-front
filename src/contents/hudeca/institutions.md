@@ -4,20 +4,10 @@
 
 
 
-The genomics viewer was developped by Scilicium in the context of the HuDeCA project and as part of the research carried out at IRSET. The application is hosted by Genouest.
+RGV was developped by Scilicium  as part of the research carried out at IRSET. The application is hosted by Genouest.
 
     
 ............................
-
-
-### About the HuDeCA consortium
-
-HuDeCA is a programmed initiated by Inserm to build a reference atlas about human developmental cells. The project has been designed from the outset to enable contributions to the Human Cell Atlas (HCA), an ambitious international initiative to map all normal cell states of the body at every human life stages.
-[Know more](http://hudeca.genouest.org)  
-
-
-............................
-
 
 
 ### About IRSET 

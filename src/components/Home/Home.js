@@ -5,7 +5,7 @@ import Collapse from '@material-ui/core/Collapse';
 import { emphasize, withStyles, makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import {Grid,  List, Box, Paper, Card, CardContent, Button, ButtonGroup} from '@material-ui/core';
-import bgImg from '../../assets/img/Home_bg.png' // relative path to image 
+import bgImg from '../../assets/img/Home_bg2.jpg' // relative path to image 
 
 import { withRouter, Link } from "react-router-dom";
 
@@ -86,7 +86,7 @@ function HomeContent() {
 <Paper variant="outlined" style={styles.imgContainer}>
   <Box mt={17}  mx="30%" >   		
    <Typography variant="h2"  style={styles.title}>
-        		GENOMICS VIEWER
+                  Repro-Genomics Viewer (RGV)
    </Typography>
 	  
     <Typography variant="body1" gutterBottom>
