@@ -3,7 +3,7 @@
 
 ............
 
-Uncover (Uro-oNCology ViewER)  will enable you to browse studies related to human development and to explore transcriptomics data in an interactive way. Datasets from published articles have been gathered and preprocessed so you can actually visualize expression data and use multiple criteria to filter, compare and gain insight into single-cell data. 
+Uncover (Uro-oNCology ViewER)  will enable you to explore single-cell transcriptomics data on urological cancers in an interactive way. Datasets have been gathered and preprocessed homogeneously  so that you can  visualize expression data according to different display modes and use multiple criteria to filter, compare and gain insight into single-cell data. 
 
 ### Browse and analyse
 
