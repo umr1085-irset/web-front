@@ -44,9 +44,11 @@ class DatasetPage extends Component {
     
     
     async getData(browse){
+	//console.log(process.env.REACT_APP_DATABASE)
         const data = {
-          viewer:process.env.DATABASE
+          viewer:process.env.REACT_APP_DATABASE
         }
+	//console.log(data)
         let url=""
         if(browse=="studies"){
           url = "/api/v1/public/studies/"
