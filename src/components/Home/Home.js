@@ -90,7 +90,7 @@ function HomeContent() {
    </Typography>
 	  
     <Typography variant="body1" gutterBottom>
-	Get access to a database gathering datasets about human developmental cells and use our interactive viewer to explore cell populations and marker genes.
+	Get access to a database gathering datasets about repro-genomics and use our interactive viewer to explore cell populations and marker genes.
      </Typography>
 	  <br />
 	  
