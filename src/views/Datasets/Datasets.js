@@ -44,7 +44,7 @@ class DatasetPage extends Component {
     
     async getData(browse){
         const data = {
-          viewer:"HuDeCA"
+          viewer:process.env.REACT_APP_DATABASE
         }
         let url=""
         if(browse=="studies"){
