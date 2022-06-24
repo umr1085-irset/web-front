@@ -6,7 +6,7 @@ services:
     image: scilicium/geno_app-front:uncover
     container_name: uncover
     ports:
-      - "80:80"
+      - "6548:80"
     networks:
       - web
       - genoapp
