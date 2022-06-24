@@ -6,7 +6,7 @@ services:
     image: scilicium/geno_app-front:hudeca-viewer
     container_name: hudeca-viewer
     ports:
-      - "80:80"
+      - "6547:80"
     networks:
       - web
       - genoapp
