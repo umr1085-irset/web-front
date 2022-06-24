@@ -6,7 +6,7 @@ services:
     image: scilicium/geno_app-front:rgv-viewer
     container_name: rgv-viewer
     ports:
-      - "80:80"
+      - "6550:80"
     networks:
       - web
       - genoapp
