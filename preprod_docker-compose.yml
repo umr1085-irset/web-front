@@ -3,8 +3,8 @@ version: '3'
 services:
 
   genoapp-front-static-prod:
-    image: scilicium/geno_app-front:hudeca-viewer
-    container_name: hudeca-viewer
+    image: scilicium/geno_app-front:uncover
+    container_name: uncover
     ports:
       - "80:80"
     networks:
