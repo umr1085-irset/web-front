@@ -5,18 +5,17 @@ import Collapse from '@material-ui/core/Collapse';
 import { emphasize, withStyles, makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import {Grid,  List, Box, Paper, Card, CardContent, Button, ButtonGroup} from '@material-ui/core';
-import bgImg from '../../assets/img/Home_bg.jpg' // relative path to image 
+import bgImg from '../../assets/img/Home_bg_full_info.jpg' // relative path to image 
 
 import { withRouter, Link } from "react-router-dom";
 
 
 const styles = {
 	   imgContainer: {
-		        maxHeight: 520,
-		   	minHeight: 500,
 		   	height: 500,
 		        backgroundImage: `url(${bgImg})`,
-		        backgroundPosition: 'top',
+		        backgroundPosition: 'center',
+		        backgroundRepeat: 'no-repeat',
 		   	padding: 0
 		      },
 	    title: {
@@ -65,13 +64,14 @@ const styles = {
 	    largeButton: {
 		minHeight: 50,
 		maxHeight: 50,
-		minWidth: "100%",
-		fontSize: "1rem"
+		minWidth: "96%",
+		fontSize: "1.4rem"
 		   },
 	    butBot: {
 		    position: "relative",
 		    bottom:0,
-		    marginTop: 100
+		    marginTop: 15,
+		    marginBottom: 25
 	    }
 	  };
 
@@ -83,29 +83,16 @@ function HomeContent() {
 
 	 <Box>
 
-<Paper variant="outlined" style={styles.imgContainer}>
-  <Box mt={17}  mx="30%" >   		
-   <Typography variant="h2"  style={styles.title}>
-        		UNCOVER
-   </Typography>
-	  
-    <Typography variant="body1" gutterBottom>
-	  Browse, analyze and download single-cell and spatial transcriptomics datasets from UroOncology studies
-     </Typography>
-	  <br />
-	  
-      <ul style={styles.featureList}>
-	  <li style={styles.itemList}><span style={styles.itemText}>Visualize repartition by cell and gene metadata</span></li>
-	  <li style={styles.itemList}><span style={styles.itemText1} >Filter cells according to multiple parameters</span></li>
-	  <li style={styles.itemList}><span style={styles.itemText2}>Compare gene expression &amp; discover marker genes </span></li>
-      </ul>
-	             
-</Box>	 <Box style={styles.butBot}>
+<Paper variant="outlined" style={styles.imgContainer}>.
+	</Paper>
+
+
+	 <Box style={styles.butBot}>
 	<Link to="/view/studies">
 	  <Button variant="contained" color="primary" size="large" style={styles.largeButton}>Browse available studies</Button>
 	  </Link>
 	 </Box>
-	  </Paper>
+	
 
 
 
