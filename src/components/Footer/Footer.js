@@ -26,8 +26,8 @@ function Footer() {
   return (
     <MDBFooter className="font-small mt-4">
       <div className="text-center py-3">
-        <MDBContainer fluid>
-          HuDeCA - &copy; {new Date().getFullYear()} Copyright: <a href="https://www.scilicium.com"> SciLicium </a>
+        <MDBContainer fluid className="text-dark">
+          HuDeCA - &copy; {new Date().getFullYear()} Copyright: <a className="text-dark" href="https://www.scilicium.com"> SciLicium </a>
         </MDBContainer>
       </div>
     </MDBFooter>
