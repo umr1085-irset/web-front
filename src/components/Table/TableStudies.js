@@ -80,7 +80,7 @@ getMuiTheme = () => createMuiTheme({
             sort: true,
             customBodyRenderLite: (dataIndex, rowIndex) => {
               return (
-                <Box style={{width:370, maxWidth:370}}><Link to={"/study/"+this.props.rows[rowIndex].studyId} className="primary">
+                <Box style={{width:250, maxWidth:370}}><Link to={"/study/"+this.props.rows[rowIndex].studyId} className="primary">
                     {this.props.rows[rowIndex].title}
                 </Link></Box>
               );
@@ -100,7 +100,7 @@ getMuiTheme = () => createMuiTheme({
 
         {
          name: "technology",
-         label: "Assay",
+         label: "Technology",
          options: {
           filter: true,
           sort: true,
@@ -132,21 +132,9 @@ getMuiTheme = () => createMuiTheme({
             )
           }
          },
-	 {
-
-          name: "organs",
-          label: "Organ",
-          options: {
-           filter: true,
-           sort: true,
-           customBodyRender: (value, tableMeta, updateValue) => (
-              value.join(", ")
-            )
-	  }
-	  },
          {
-          name: "tissues",
-          label: "Tissues",
+          name: "organs",
+          label: "Biomaterial from",
           options: {
            filter: true,
            sort: true,
@@ -155,7 +143,28 @@ getMuiTheme = () => createMuiTheme({
             )
           }
          },
+         {
+          name: "tissues",
+          label: "Tissues",
+          options: {
+           filter: true,
+           sort: true,
+           display: false,
+           customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
+          }
+         },
         
+        
+        {
+         name: "nb_dataset",
+         label: "Associated to",
+         options: {
+          filter: false,
+          sort: true,
+         }
+        },
         {
          name: "authors",
          label: "Authors",
@@ -188,9 +197,7 @@ getMuiTheme = () => createMuiTheme({
            sort: false,
            customBodyRender: (value, tableMeta, updateValue) => {
               return (
-		 
                 <a href={"https://pubmed.ncbi.nlm.nih.gov/"+value.join(", ")+"/"} target="_blank" className="primary">{value.join(", ")} </a>
-		 
               );
 
 	   }
