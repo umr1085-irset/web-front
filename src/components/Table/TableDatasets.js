@@ -17,7 +17,7 @@
 
 */
 import React, { Component } from "react";
-
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles"; 
 import { Link } from "react-router-dom";
 import MUIDataTable from "mui-datatables";
 import { Button,} from '@material-ui/core';
@@ -41,16 +41,50 @@ class TableDatasetsComponent extends Component {
             console.log(err);
         })
   }
+ 
+
+getMuiTheme = () => createMuiTheme({
+    overrides: {
+	 MuiPaper: {
+	       elevation4: {
+		       boxShadow: "none"
+		    },
+		
+	 },
+         MUIDataTableBodyCell: {
+	          root: {
+               fontSize: "1rem",
+	       color: "black",
+	          }
+
+	        },
+	    MUIDataTableHeadCell: {
+		 fixedHeader: {
+	         backgroundColor: "#FAFAFA",
+	         textTransform: "uppercase"
+		}
+	    },
+	    MUIDataTableSelectCell : {
+		    
+		    headerCell: {
+	             background: "#DFEFEE",
+		     backgroundColor: "#DFEFEE"
+			}
+		  }
+        }
+  })
 
   render() {
       const rows = this.props.rows
+      console.log(this.props.rows)
       const columns = [
-        {
+       {
          name: "datasetId",
          label: "Id",
          options: {
           filter: true,
           sort: true,
+          display: false,
          }
         },
         {
@@ -68,12 +102,26 @@ class TableDatasetsComponent extends Component {
             }
           }
         },
+      	      
         {
-         name: "type",
-         label: "Type",
+         name: "loomColInfo",
+         label: "Nb",
          options: {
           filter: true,
           sort: true,
+         }
+        },
+        {
+         name: "omics",
+         label: "Omics",
+         options: {
+          filter: true,
+          sort: true,
+          display: false,
+ 
+           customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
          }
         },
         {
@@ -82,11 +130,62 @@ class TableDatasetsComponent extends Component {
           options: {
            filter: true,
            sort: true,
+	   display: false,
+           customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
+        /*	
+            customBodyRenderLite: (dataIndex, rowIndex) => {
+              return (
+                <span>
+                    {this.props.rows[rowIndex].sop.technology[0]?.displayLabel}
+                </span>
+              );
+            }*/
           }
          },
-         {
-          name: "gender",
-          label: "Gender",
+
+        {
+         name: "resolution",
+         label: "Resolution",
+         options: {
+          filter: true,
+          sort: true,
+           customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
+         }
+        },
+
+
+        {
+         name: "techno_description",
+         label: "Assay",
+         options: {
+          filter: true,
+          sort: true,
+         }
+        },
+
+
+
+        {
+         name: "molecules",
+         label: "Molecules applied",
+         options: {
+          filter: true,
+          sort: true,
+	  display: false,
+           customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
+         }
+        },
+
+
+	      {
+          name:"sex",
+          label: "Sex",
           options: {
            filter: true,
            sort: true,
@@ -95,20 +194,25 @@ class TableDatasetsComponent extends Component {
             )
           }
          },
+
+        
          {
-          name: "tissue",
-          label: "Tissue",
+          name: "species",
+          label: "Species",
           options: {
            filter: true,
            sort: true,
+           display: false,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
           }
          },
+
+
          {
           name: "organ",
-          label: "Organ",
+          label: "Biomaterial from",
           options: {
            filter: true,
            sort: true,
@@ -117,17 +221,53 @@ class TableDatasetsComponent extends Component {
             )
           }
          },
+
+
          {
-          name: "devStage",
+          name: "tissue",
+          label: "Biomaterial entity",
+          options: {
+           filter: true,
+           sort: true,
+           display: false,
+           customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
+          }
+         },
+        
+         {
+          name: "developmentStage",
           label: "Dev. Stage",
           options: {
            filter: true,
            sort: true,
+	   display: false,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
           }
          },
+
+         {
+          name: "ageRange",
+          label: "Age",
+          options: {
+           filter: true,
+           sort: true,
+          }
+         },
+
+         {
+          name: "diseaseStage",
+          label: "Disease stage",
+          options: {
+           filter: true,
+           sort: true,
+           display: false,
+          }
+         },
+
          {
           name: "id",
           label: "Download",
@@ -148,15 +288,16 @@ class TableDatasetsComponent extends Component {
        const options = {
          print: false,
          download: false,
+	 selectableRows: 'none',
        };
     return (
-
-        <MUIDataTable
+        <ThemeProvider theme={this.getMuiTheme()} >
+        <MUIDataTable 
           data={rows}
           columns={columns}
           options={options}
         />
-  
+  	</ThemeProvider>
     );
   }
 }

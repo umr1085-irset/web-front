@@ -44,12 +44,16 @@ class DatasetPage extends Component {
     
     
     async getData(browse){
+	//console.log(process.env.REACT_APP_DATABASE)
         const data = {
           viewer:process.env.REACT_APP_DATABASE
         }
+	//console.log(data)
         let url=""
         if(browse=="studies"){
           url = "/api/v1/public/studies/"
+	} else if (browse=="datasets") {
+	  url = "/api/v1/public/datasets/"
         }else{
           url = "/api/v1/datasets/public"
         }
@@ -59,9 +63,10 @@ class DatasetPage extends Component {
             this.setState({data : response.data}); 
             this.setState({loading : false});
             this.setState({loading2 : false});  
-          })
+            console.log(response.data)
+	  })
           .catch(error => {
-            toastOnError("Error loading public datasets");
+            toastOnError("Error loading data");
           })
         )
       }
