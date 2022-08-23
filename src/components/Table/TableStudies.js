@@ -80,7 +80,7 @@ getMuiTheme = () => createMuiTheme({
             sort: true,
             customBodyRenderLite: (dataIndex, rowIndex) => {
               return (
-                <Box style={{width:370, maxWidth:370}}><Link to={"/study/"+this.props.rows[rowIndex].studyId} className="primary">
+                <Box style={{width:300, maxWidth:370}}><Link to={"/study/"+this.props.rows[rowIndex].studyId} className="primary">
                     {this.props.rows[rowIndex].title}
                 </Link></Box>
               );
@@ -149,6 +149,7 @@ getMuiTheme = () => createMuiTheme({
           options: {
            filter: true,
            sort: true,
+           display: false,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -161,7 +162,7 @@ getMuiTheme = () => createMuiTheme({
          options: {
           filter: true,
           sort: true,
-          display: false,
+          display: true,
           customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
