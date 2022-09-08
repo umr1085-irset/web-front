@@ -89,7 +89,13 @@ class DetailStudyPage extends Component {
                 <MDBCol size="4">
                   
                           <Typography variant="body1">
-	    <div style={{ marginTop: 16 }}><Typography variant="h4" color="textSecondary">Related project</Typography></div> {study.collection.title} ({study.collection.projectId})
+	    
+	    {study.collection.length?
+	    <div style={{ marginTop: 16 }}>
+	    
+	    <Typography variant="h4" color="textSecondary">Related project</Typography> {study.collection.title} ({study.collection.projectId})
+</div> : <span />
+		}
 	   
 	    {study.article.length?
 	          <Box style={{ marginTop: 16 }}>
