@@ -27,7 +27,7 @@ function Footer() {
     <MDBFooter className="font-small mt-4">
       <div className="text-center py-3">
         <MDBContainer fluid className="text-dark">
-          UNCOVER - &copy; {new Date().getFullYear()} Copyright: IRSET / <a href="https://www.scilicium.com"> SciLicium </a>
+          UNCOVER - &copy; {new Date().getFullYear()} Copyright: IRSET / <a href="https://www.scilicium.com" className="text-dark"> SciLicium </a>
         </MDBContainer>
       </div>
     </MDBFooter>
