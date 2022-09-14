@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
-import logoImg from '../../../assets/img/logo_uncover_menu.png'
+import logoImg from '../../../assets/img/logo_uncover_menu_beta.png'
 
 import {
   MDBContainer, MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse,
