@@ -3,9 +3,7 @@
 ............................
 
 
-
-Uncover was developped by Scilicium  as part of the research carried out at IRSET. The application is hosted by Genouest.
-
+The Uro-oncogenomics Viewer (UncoVer) was co-developed by the Chalmel lab at the Research Institute for Environmental and Occupational health (Irset) , the Scilicium company and the the GenOuest BioInformatics core facility. The application is currently hosted by Genouest.   
     
 ............................
 
