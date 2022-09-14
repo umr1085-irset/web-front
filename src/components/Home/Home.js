@@ -5,7 +5,7 @@ import Collapse from '@material-ui/core/Collapse';
 import { emphasize, withStyles, makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import {Grid,  List, Box, Paper, Card, CardContent, Button, ButtonGroup} from '@material-ui/core';
-import bgImg from '../../assets/img/Home_bg_full_info.jpg' // relative path to image 
+import bgImg from '../../assets/img/Home_bg_full_info_beta.jpg' // relative path to image 
 
 import { withRouter, Link } from "react-router-dom";
 
