@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { withRouter, Link } from "react-router-dom";
-import logoImg from '../../../assets/img/logo_uncover_menu.png'
+//import logoImg from '../../../assets/img/logo_uncover_menu.png'
 
 import {
   MDBContainer, MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse,
@@ -60,7 +60,7 @@ class NavbarComponent extends Component {
         <MDBNavbar light expand="md" className="shadow-none border-bottom" style={{ backgroundColor: 'white' }}>
           <MDBContainer fluid>
             <Link to="/"><MDBNavbarBrand>
-              <img src={logoImg} alt="Logo Uncover" />
+              RGV
             </MDBNavbarBrand></Link>
             <MDBNavbarToggler onClick={this.toggleCollapse} />
               <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
