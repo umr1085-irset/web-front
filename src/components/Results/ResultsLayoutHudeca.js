@@ -22,6 +22,7 @@ import DatasetTitleComponent from'./DatasetTitleComponent'
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import { Box, CardContent, CardHeader, Card, Paper} from '@material-ui/core';
 import LoomPlotComponentNoCard from './LoomPlotComponentNoCard'
+import LoomPlotComponentNoCardNoSymbol from './LoomPlotComponentNoCardNoSymbol'
 import ResultsFilterLayout from './ResultFilterComponent'
 import SelectedFilterResults from './SelectedFilterResultComponent'
 import StatisticsComponent from './StatisticsComponent'
@@ -96,15 +97,15 @@ class ResultsLayout extends Component {
                             <CardContent>
                                 <MDBRow>
                                     <MDBCol lg="4" md="12" sm="12" className="border-right">
-                                        <LoomPlotComponentNoCard datachart="" display_type={['bar','pie']} default_display={dataset.default_display} reductions={dataset.reductions} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="pie" attrs={dataset.metadata.filters_keys.ca[0]} all_attrs={dataset.metadata.filters_keys} name="C1"></LoomPlotComponentNoCard>
+                                        <LoomPlotComponentNoCardNoSymbol datachart="" display_type={['bar','pie']} default_display={dataset.default_display} reductions={dataset.reductions} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="pie" attrs={dataset.metadata.filters_keys.ca[0]} all_attrs={dataset.metadata.filters_keys} name="C1"></LoomPlotComponentNoCardNoSymbol>
                                     </MDBCol>
                                     <MDBCol lg="4" md="12" sm="12" className="border-right">
 	    
-                                        <LoomPlotComponentNoCard datachart="" display_type={['bar','pie']} default_display={dataset.default_display} reductions={dataset.reductions} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="bar" attrs={dataset.metadata.filters_keys.ca[1]} all_attrs={dataset.metadata.filters_keys}   name="C2"></LoomPlotComponentNoCard>
+                                        <LoomPlotComponentNoCardNoSymbol datachart="" display_type={['bar','pie']} default_display={dataset.default_display} reductions={dataset.reductions} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="bar" attrs={dataset.metadata.filters_keys.ca[1]} all_attrs={dataset.metadata.filters_keys}   name="C2"></LoomPlotComponentNoCardNoSymbol>
                                     </MDBCol>
                                     <MDBCol lg="4" md="12" sm="12" >
 	                              {dataset.metadata.filters_keys.ca[2]?
-                                        <LoomPlotComponentNoCard datachart="" display_type={['bar','pie']} default_display={dataset.default_display} reductions={dataset.reductions} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="bar" attrs={dataset.metadata.filters_keys.ca[2]} all_attrs={dataset.metadata.filters_keys}  name="C3"></LoomPlotComponentNoCard> : <span /> }
+                                        <LoomPlotComponentNoCardNoSymbol datachart="" display_type={['bar','pie']} default_display={dataset.default_display} reductions={dataset.reductions} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="bar" attrs={dataset.metadata.filters_keys.ca[2]} all_attrs={dataset.metadata.filters_keys}  name="C3"></LoomPlotComponentNoCardNoSymbol> : <span /> }
                                     </MDBCol>
                                 </MDBRow>
                             </CardContent>

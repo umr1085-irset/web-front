@@ -24,10 +24,10 @@ import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
 
 function Footer() {
   return (
-    <MDBFooter className="font-small mt-4 bg-dark text-white">
-      <div className="footer-copyright text-center py-3">
-        <MDBContainer fluid>
-          HuDeCA - &copy; {new Date().getFullYear()} Copyright: <a href="https://www.scilicium.com"> SciLicium </a>
+    <MDBFooter className="font-small mt-4">
+      <div className="text-center py-3">
+        <MDBContainer fluid className="text-dark">
+          HuDeCA - &copy; {new Date().getFullYear()} Copyright: <a className="text-dark" href="https://www.scilicium.com"> SciLicium </a>
         </MDBContainer>
       </div>
     </MDBFooter>

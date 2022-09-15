@@ -19,6 +19,9 @@ import { withRouter } from "react-router-dom";
 
 import { CardContent, CardHeader, Card, Box, Typography } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+
+import { createFilterOptions } from '@material-ui/lab/Autocomplete';
+
 import TextField from '@material-ui/core/TextField';
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import { Button } from '@material-ui/core';
@@ -74,6 +77,17 @@ class ResultsFilterLayout extends Component {
     }
 
   render() {
+	const filterOptions = createFilterOptions({
+		ignoreCase : false,
+		stringify : (option) => String(option)
+
+	});
+	
+	const filterOptions2 = createFilterOptions({
+		ignoreCase : false,
+		stringify : (option) => String(option)
+
+	});
         const filters_keys = this.props.filters_keys
         const filter = this.props.metadata
         const reductions = this.props.reductions
@@ -126,6 +140,7 @@ class ResultsFilterLayout extends Component {
                                 limitTags={3}
                                 id={this.state.filter_by}
                                 title={this.state.filter_by}
+		                filterOptions = {filterOptions} 
                                 size="small"
                                 value={this.getDefaultValues(filter[this.state.filter_by]['attributes'],filter[this.state.filter_by]['name'])}
                                 onChange={(event, newValue) => {
@@ -143,7 +158,7 @@ class ResultsFilterLayout extends Component {
                                         });
                                     }
                                     }}
-                                options={filter[this.state.filter_by]['values']}
+                                options={ filter[this.state.filter_by]['values'] }
                                 renderInput={(params) => (
                                 <TextField  {...params} label={"Select "+ this.props.metadata[this.state.filter_by]['name']} />
                                 )}
@@ -184,6 +199,7 @@ class ResultsFilterLayout extends Component {
 				    className="control-filter-large"
                                     id={this.state.filter_by_ca2}
                                     title={this.state.filter_by_ca2}
+				    filterOptions={filterOptions2}
                                     size="small"
                                     value={this.getDefaultValues(filter[this.state.filter_by_ca2]['attributes'],filter[this.state.filter_by_ca2]['name'])}
                                     onChange={(event, newValue) => {
