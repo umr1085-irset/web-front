@@ -68,7 +68,7 @@ getMuiTheme = () => createMuiTheme({
          label: "Id",
          options: {
           filter: false,
-          sort: true,
+          sort: false,
           display: false,
          }
         },
@@ -77,7 +77,7 @@ getMuiTheme = () => createMuiTheme({
           label: "Title",
           options: {
             filter: true,
-            sort: true,
+            sort: false,
             customBodyRenderLite: (dataIndex, rowIndex) => {
               return (
                 <Box style={{width:250, maxWidth:370}}><Link to={"/study/"+this.props.rows[rowIndex].studyId} className="primary">
@@ -103,7 +103,7 @@ getMuiTheme = () => createMuiTheme({
          label: "Technology",
          options: {
           filter: true,
-          sort: true,
+          sort: false,
           customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -114,7 +114,7 @@ getMuiTheme = () => createMuiTheme({
           label: "Species",
           options: {
            filter: true,
-           sort: true,
+           sort: false,
            display: true,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
@@ -126,7 +126,7 @@ getMuiTheme = () => createMuiTheme({
           label: "Dev. Stage",
           options: {
            filter: true,
-           sort: true,
+           sort: false,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -137,7 +137,7 @@ getMuiTheme = () => createMuiTheme({
           label: "Biomaterial from",
           options: {
            filter: true,
-           sort: true,
+           sort: false,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -148,7 +148,7 @@ getMuiTheme = () => createMuiTheme({
           label: "Tissues",
           options: {
            filter: true,
-           sort: true,
+           sort: false,
            display: false,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
@@ -162,7 +162,7 @@ getMuiTheme = () => createMuiTheme({
          label: "Associated to",
          options: {
           filter: false,
-          sort: true,
+          sort: false,
          }
         },
         {
@@ -170,7 +170,7 @@ getMuiTheme = () => createMuiTheme({
          label: "Authors",
          options: {
           filter: true,
-          sort: true,
+          sort: false,
           display: false,
           customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
@@ -183,7 +183,7 @@ getMuiTheme = () => createMuiTheme({
          label: "Pub. date",
          options: {
           filter: true,
-          sort: true,
+          sort: false,
           customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
