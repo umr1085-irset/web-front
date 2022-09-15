@@ -211,7 +211,7 @@ class GeneExpPlotMenuComponent extends Component {
         //const chroms = ["all chromosomes", "chrom1"]
         //
         const meta = this.props.meta
-        console.log("META" + meta)
+        //console.log("META" + meta)
         const chroms = ["All chromosomes"]
         if (meta !== undefined && meta['Chromosome'] !== undefined) {
             chroms = meta['Chromosome']['values']
@@ -277,7 +277,7 @@ class GeneExpPlotMenuComponent extends Component {
                             value={this.state.method}
                             onChange={this.handleChangeGeneSelection}
                             >
-                            <MenuItem value="first" >first 10 genes</MenuItem>
+                            <MenuItem value="first" >first 5 genes</MenuItem>
                            // <MenuItem value="variance" >top 10 variable genes</MenuItem>
                             <MenuItem value="custom" >My selection</MenuItem>
                             </Select>

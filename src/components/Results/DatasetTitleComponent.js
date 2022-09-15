@@ -29,7 +29,7 @@ class DatasetTitleComponent extends Component {
 
   render() {
       const dataset = this.props.dataset
-       console.log(dataset.rel_datasets)
+	//console.log(dataset)
     return (
 	<Box>
 

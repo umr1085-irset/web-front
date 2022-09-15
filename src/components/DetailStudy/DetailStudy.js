@@ -49,11 +49,11 @@ class DetailStudyPage extends Component {
       }
   render() {
       const study = this.props.study
-      //console.log(study)
+      
     return (
           <div>         
 	    <Paper variant="outlined" >
-            <Typography variant="h2" style={{ marginLeft: "2%" }} gutterBottom> {study.title} <span style={{ fontSize: "0.9rem" }}>( {study.studyId})</span></Typography>
+            <Typography variant="h2" style={{ marginLeft: "2%" }} gutterBottom> {study.title} <span style={{ fontSize: "0.9rem" }}></span></Typography>
 
 	  
 	            
@@ -89,7 +89,13 @@ class DetailStudyPage extends Component {
                 <MDBCol size="4">
                   
                           <Typography variant="body1">
-	    <div style={{ marginTop: 16 }}><Typography variant="h4" color="textSecondary">Related project</Typography></div> {study.collection.title} ({study.collection.projectId})
+	    
+	    {study.collection ?
+	    <div style={{ marginTop: 16 }}>
+	    
+	    <Typography variant="h4" color="textSecondary">Collection from</Typography> {study.collection.title} ({study.collection.projectId})
+</div> : <span />
+		}
 	   
 	    {study.article.length?
 	          <Box style={{ marginTop: 16 }}>
@@ -103,7 +109,14 @@ class DetailStudyPage extends Component {
 		:
 	       <span />
 	    }	
-	 			
+
+
+        {study.externalID ?			
+	    
+	    <div style={{ marginTop: 16 }}>  <Typography variant="h4" color="textSecondary">External ID</Typography> {study.externalID} </div> 
+		 :
+<span />
+		}
 
                            </Typography> 
                         </MDBCol>
@@ -118,11 +131,12 @@ class DetailStudyPage extends Component {
                         <CardContent style={{ marginBottom: -20  }}>
                             <MDBTable>
                                 <MDBTableBody>
-                                {study.dataset_of.map(function(data, idx){
+	    
+	    {study.dataset_of.sort((a,b) => a.title.localeCompare(b.title)).map(function(data, idx){
                                     return (
                                         <tr key={idx}>
                                             
-                                            <td key={"id__"+idx} className="capitalize border-bottom border-top-0">{data.title} ({data.datasetId}) </td>
+                                            <td key={"id__"+idx} className="capitalize border-bottom border-top-0">{data.title} </td>
 
 				            <td className="border-bottom border-top-0" key={"info_"+idx}> <Typography variant="h4" color="textSecondary"> {data.loom.cellNumber?  <span>{data.loom.cellNumber} {data.loom.col_name} | </span> :<span/> }    {data.bioMeta.age_start? <span>{data.bioMeta.age_start}-{data.bioMeta.age_end} {data.bioMeta.age_unit} | </span>  :<span /> }  {_.map(data.bioMeta.organ,'ontologyLabel').toString()}  |   {_.map(data.sop.technology,'ontologyLabel').toString()}    </Typography></td>
 
@@ -132,9 +146,9 @@ class DetailStudyPage extends Component {
                                                     <Link to={"/dataset/"+data.datasetId}><Button key={"display_btn"+idx} color="primary" size="medium" startIcon={<ScatterPlotTwoToneIcon />} variant="outlined"> Visualize </Button></Link>
                                             </td>
                                             <td key={"download_"+idx} align="right" className="border-bottom border-top-0" width="64">
-                                                <Button onClick={() => {this.downloadDataset(data.datasetId)}} variant="contained" color="primary" size="medium" startIcon={<GetAppOutlinedIcon /> }  key={"download_btn"+idx}>
-                                                    Download
-                                                </Button>
+					    {/*                                         <Button onClick={() => {this.downloadDataset(data.datasetId)}} variant="contained" color="primary" size="medium" startIcon={<GetAppOutlinedIcon /> }  key={"download_btn"+idx}>
+                                           Download
+                                     </Button> */}
                                             </td>
                                         </tr>
                                     )
