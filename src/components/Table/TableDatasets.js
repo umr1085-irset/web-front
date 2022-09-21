@@ -172,6 +172,19 @@ getMuiTheme = () => createMuiTheme({
         },
 
 
+        {
+         name: "experimentalDesign",
+         label: "Exp. design",
+         options: {
+          filter: true,
+          sort: false,
+          display: true,
+ 
+           customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
+         }
+        },
 
         {
          name: "molecules",
@@ -192,7 +205,7 @@ getMuiTheme = () => createMuiTheme({
           label: "Sex",
           options: {
            filter: true,
-           sort: true,
+           sort: false,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
