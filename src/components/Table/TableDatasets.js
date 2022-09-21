@@ -173,8 +173,8 @@ getMuiTheme = () => createMuiTheme({
 
 
         {
-         name: "experimentalDesign",
-         label: "Exp. design",
+         name: "expProcess"
+         label: "Experimental design",
          options: {
           filter: true,
           sort: false,
