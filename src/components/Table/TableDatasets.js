@@ -55,7 +55,7 @@ getMuiTheme = () => createMuiTheme({
 	 },
          MUIDataTableBodyCell: {
 	          root: {
-               fontSize: "1rem",
+               fontSize: "0.8rem",
 	       color: "black",
 	          }
 
@@ -63,7 +63,8 @@ getMuiTheme = () => createMuiTheme({
 	    MUIDataTableHeadCell: {
 		 fixedHeader: {
 	         backgroundColor: "#FAFAFA",
-	         textTransform: "uppercase"
+	         textTransform: "uppercase",
+	         fontSize: "0.7em"
 		}
 	    },
 	    MUIDataTableSelectCell : {
@@ -155,6 +156,7 @@ getMuiTheme = () => createMuiTheme({
          options: {
           filter: true,
           sort: false,
+           display: false,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -206,6 +208,7 @@ getMuiTheme = () => createMuiTheme({
           options: {
            filter: true,
            sort: false,
+           display: false,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -246,7 +249,7 @@ getMuiTheme = () => createMuiTheme({
           options: {
            filter: true,
            sort: false,
-           display: false,
+           display: true,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -272,16 +275,26 @@ getMuiTheme = () => createMuiTheme({
           options: {
            filter: true,
            sort: false,
+            display: false,
           }
          },
 
+         {
+          name: "pathology",
+          label: "Pathology",
+          options: {
+           filter: true,
+           sort: false,
+           display: true,
+          }
+         },
          {
           name: "diseaseStage",
           label: "Disease stage",
           options: {
            filter: true,
            sort: false,
-           display: false,
+           display: true,
           }
          },
 

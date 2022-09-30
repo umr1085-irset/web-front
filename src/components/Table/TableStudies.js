@@ -36,7 +36,7 @@ getMuiTheme = () => createMuiTheme({
 	 },
          MUIDataTableBodyCell: {
 	          root: {
-               fontSize: "1rem",
+               fontSize: "0.8rem",
 	       color: "black",
 	          }
 
@@ -44,7 +44,8 @@ getMuiTheme = () => createMuiTheme({
 	    MUIDataTableHeadCell: {
 		 fixedHeader: {
 	         backgroundColor: "#FAFAFA",
-	         textTransform: "uppercase"
+	         textTransform: "uppercase",
+	         fontSize: "0.7em"
 		}
 	    },
 	    MUIDataTableSelectCell : {
@@ -60,7 +61,7 @@ getMuiTheme = () => createMuiTheme({
 
 
   render() {
-      //console.log(this.props.rows)
+      console.log(this.props.rows)
       const rows = this.props.rows
       const columns = [
         {
@@ -103,12 +104,28 @@ getMuiTheme = () => createMuiTheme({
          label: "Technology",
          options: {
           filter: true,
-          sort: false,
+          sort: false, 
+          display: false,
           customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
          }
         },
+
+
+        {
+         name: "experimentalDesign",
+         label: "Experimental design",
+         options: {
+          filter: true,
+          sort: false, 
+          display: true,
+          customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
+         }
+        },
+
         {
           name: "species",
           label: "Species",
@@ -127,14 +144,29 @@ getMuiTheme = () => createMuiTheme({
           options: {
            filter: true,
            sort: false,
+		  display: false,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
           }
          },
+
+         {
+          name: "biomaterialType",
+          label: "Biomaterial type",
+          options: {
+           filter: true,
+           sort: false,
+	   display : false,
+           customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
+          }
+         },
+
          {
           name: "organs",
-          label: "Organ",
+          label: "Biomaterial from",
           options: {
            filter: true,
            sort: false,
@@ -145,11 +177,11 @@ getMuiTheme = () => createMuiTheme({
          },
          {
           name: "tissues",
-          label: "Tissues",
+          label: "Biomaterial entity",
           options: {
            filter: true,
            sort: false,
-           display: false,
+           display: true,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -157,9 +189,21 @@ getMuiTheme = () => createMuiTheme({
          },
         
         
+         {
+          name: "pathology",
+          label: "Pathology",
+          options: {
+           filter: true,
+           sort: false,
+           display: true,
+           customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
+          }
+         },
         {
          name: "nb_dataset",
-         label: "Associated to",
+         label: "Nb datasets",
          options: {
           filter: false,
           sort: false,
@@ -179,11 +223,24 @@ getMuiTheme = () => createMuiTheme({
         },
 
         {
+         name: "shorthand",
+         label: "Article shorthand",
+         options: {
+          filter: true,
+          sort: false,
+          display: true,
+          customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
+         }
+        },
+        {
          name: "pub_date",
          label: "Pub. date",
          options: {
           filter: true,
           sort: false,
+	  display:false,
           customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
