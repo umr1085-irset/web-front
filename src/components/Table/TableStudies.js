@@ -36,7 +36,7 @@ getMuiTheme = () => createMuiTheme({
 	 },
          MUIDataTableBodyCell: {
 	          root: {
-               fontSize: "1rem",
+               fontSize: "0.8rem",
 	       color: "black",
 	          }
 
@@ -44,7 +44,8 @@ getMuiTheme = () => createMuiTheme({
 	    MUIDataTableHeadCell: {
 		 fixedHeader: {
 	         backgroundColor: "#FAFAFA",
-	         textTransform: "uppercase"
+	         textTransform: "uppercase",
+	         fontSize: "0.7em"
 		}
 	    },
 	    MUIDataTableSelectCell : {
@@ -103,12 +104,28 @@ getMuiTheme = () => createMuiTheme({
          label: "Technology",
          options: {
           filter: true,
-          sort: false,
+          sort: false, 
+          display: true,
           customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
          }
         },
+
+
+        {
+         name: "experimentalDesign",
+         label: "Experimental design",
+         options: {
+          filter: true,
+          sort: false, 
+          display: true,
+          customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
+         }
+        },
+
         {
           name: "species",
           label: "Species",
@@ -127,11 +144,26 @@ getMuiTheme = () => createMuiTheme({
           options: {
            filter: true,
            sort: false,
+		  display: false,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
           }
          },
+
+         {
+          name: "biomaterialType",
+          label: "Biomaterial type",
+          options: {
+           filter: true,
+           sort: false,
+	   display : false,
+           customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
+          }
+         },
+
          {
           name: "organs",
           label: "Biomaterial from",
@@ -145,7 +177,21 @@ getMuiTheme = () => createMuiTheme({
          },
          {
           name: "tissues",
-          label: "Tissues",
+          label: "Biomaterial entity",
+          options: {
+           filter: true,
+           sort: false,
+           display: true,
+           customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
+          }
+         },
+        
+        
+         {
+          name: "pathology",
+          label: "Disorder",
           options: {
            filter: true,
            sort: false,
@@ -155,11 +201,9 @@ getMuiTheme = () => createMuiTheme({
             )
           }
          },
-        
-        
         {
          name: "nb_dataset",
-         label: "Associated to",
+         label: "Nb datasets",
          options: {
           filter: false,
           sort: false,
@@ -179,28 +223,66 @@ getMuiTheme = () => createMuiTheme({
         },
 
         {
+         name: "shorthand",
+         label: "First author (et al)",
+         options: {
+          filter: true,
+          sort: false,
+          display: false,
+          customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
+         }
+        },
+        {
          name: "pub_date",
          label: "Pub. date",
          options: {
           filter: true,
           sort: false,
+	  display:false,
           customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
          }
         },
 
+        {
+         name: "articlefull",
+         label: "Article",
+         options: {
+          filter: true,
+          sort: false,
+	  display:true,
+
+            customBodyRenderLite: (dataIndex, rowIndex) => {
+              return (
+                <a href={"https://pubmed.ncbi.nlm.nih.gov/"+this.props.rows[rowIndex].pmids} className="primary" target="_blank">
+                    {this.props.rows[rowIndex].articlefull}
+                </a>
+              );
+            }
+
+
+
+	 }
+        },
 	      { name: "pmids",
           label: "PMID",
           options: {
            filter: true,
            sort: false,
-           customBodyRender: (value, tableMeta, updateValue) => {
+	   display: false,
+   
+            customBodyRenderLite: (dataIndex, rowIndex) => {
               return (
-                <a href={"https://pubmed.ncbi.nlm.nih.gov/"+value.join(", ")+"/"} target="_blank" className="primary">{value.join(", ")} </a>
+               <a href={"https://pubmed.ncbi.nlm.nih.gov/"+this.props.rows[rowIndex].pmids} className="primary" target="_blank">
+                    {this.props.rows[rowIndex].pmids}
+                </a>
               );
-
-	   }
+            }
+	      
+   
           }
          },
 
