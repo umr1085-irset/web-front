@@ -15,17 +15,21 @@
 
 */
 import React, { Component } from "react";
-import { withRouter, Link  } from "react-router-dom";
+import { withRouter, Link, useLocation  } from "react-router-dom";
 
 import { emphasize, withStyles } from '@material-ui/core/styles';
 import { Chip, Breadcrumbs} from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import { MDBContainer,MDBRow, MDBCol } from "mdbreact";
 
-
 class BreadcrumbsComponent extends Component {
+ 
     
     render() {
+	let loc = this.props.location.pathname;
+	let sub = "dataset";
+        const isDataset = loc.includes(sub);
+
         const StyledBreadcrumb = withStyles((theme) => ({
             root: {
               backgroundColor: theme.palette.primary.main,
@@ -42,6 +46,7 @@ class BreadcrumbsComponent extends Component {
               },
             },
           }))(Chip); 
+	
       return (
 	  <MDBContainer fluid>
           <MDBRow>
@@ -58,6 +63,12 @@ class BreadcrumbsComponent extends Component {
                     <Link color="inherit" to="/view/studies">
                         <StyledBreadcrumb component="a" href="#" label="Study List" />
                     </Link>
+                    {isDataset?
+                    <Link color="inherit" to="/view/datasets">
+                        <StyledBreadcrumb component="a" href="#" label="Dataset List" />
+                    </Link>
+	            :<span></span>
+	            }
                 </Breadcrumbs>
               </MDBCol>
           </MDBRow>
@@ -67,3 +78,4 @@ class BreadcrumbsComponent extends Component {
   }
   
   export default withRouter(BreadcrumbsComponent);
+	 
