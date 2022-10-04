@@ -135,7 +135,7 @@ getMuiTheme = () => createMuiTheme({
           options: {
            filter: true,
            sort: false,
-	   display: false,
+	   display: true,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -194,7 +194,7 @@ getMuiTheme = () => createMuiTheme({
          options: {
           filter: true,
           sort: false,
-	  display: true,
+	  display: false,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -229,6 +229,19 @@ getMuiTheme = () => createMuiTheme({
           }
          },
 
+
+         {
+          name: "biomaterialType",
+          label: "Biomaterial type",
+          options: {
+           filter: true,
+           sort: false,
+           display:true,
+           customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
+          }
+         },
 
          {
           name: "organ",
@@ -281,7 +294,7 @@ getMuiTheme = () => createMuiTheme({
 
          {
           name: "pathology",
-          label: "Pathology",
+          label: "Disorder",
           options: {
            filter: true,
            sort: false,

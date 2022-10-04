@@ -105,7 +105,7 @@ getMuiTheme = () => createMuiTheme({
          options: {
           filter: true,
           sort: false, 
-          display: false,
+          display: true,
           customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -157,7 +157,7 @@ getMuiTheme = () => createMuiTheme({
           options: {
            filter: true,
            sort: false,
-	   display : false,
+	   display : true,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -191,7 +191,7 @@ getMuiTheme = () => createMuiTheme({
         
          {
           name: "pathology",
-          label: "Pathology",
+          label: "Disorder",
           options: {
            filter: true,
            sort: false,
@@ -224,11 +224,11 @@ getMuiTheme = () => createMuiTheme({
 
         {
          name: "shorthand",
-         label: "Article shorthand",
+         label: "First author (et al)",
          options: {
           filter: true,
           sort: false,
-          display: true,
+          display: false,
           customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -247,17 +247,42 @@ getMuiTheme = () => createMuiTheme({
          }
         },
 
+        {
+         name: "articlefull",
+         label: "Article",
+         options: {
+          filter: true,
+          sort: false,
+	  display:true,
+
+            customBodyRenderLite: (dataIndex, rowIndex) => {
+              return (
+                <a href={"https://pubmed.ncbi.nlm.nih.gov/"+this.props.rows[rowIndex].pmids} className="primary" target="_blank">
+                    {this.props.rows[rowIndex].articlefull}
+                </a>
+              );
+            }
+
+
+
+	 }
+        },
 	      { name: "pmids",
           label: "PMID",
           options: {
            filter: true,
            sort: false,
-           customBodyRender: (value, tableMeta, updateValue) => {
+	   display: false,
+   
+            customBodyRenderLite: (dataIndex, rowIndex) => {
               return (
-                <a href={"https://pubmed.ncbi.nlm.nih.gov/"+value.join(", ")+"/"} target="_blank" className="primary">{value.join(", ")} </a>
+               <a href={"https://pubmed.ncbi.nlm.nih.gov/"+this.props.rows[rowIndex].pmids} className="primary" target="_blank">
+                    {this.props.rows[rowIndex].pmids}
+                </a>
               );
-
-	   }
+            }
+	      
+   
           }
          },
 
