@@ -55,7 +55,7 @@ getMuiTheme = () => createMuiTheme({
 	 },
          MUIDataTableBodyCell: {
 	          root: {
-               fontSize: "1rem",
+               fontSize: "0.8rem",
 	       color: "black",
 	          }
 
@@ -63,7 +63,8 @@ getMuiTheme = () => createMuiTheme({
 	    MUIDataTableHeadCell: {
 		 fixedHeader: {
 	         backgroundColor: "#FAFAFA",
-	         textTransform: "uppercase"
+	         textTransform: "uppercase",
+	         fontSize: "0.7em"
 		}
 	    },
 	    MUIDataTableSelectCell : {
@@ -134,7 +135,7 @@ getMuiTheme = () => createMuiTheme({
           options: {
            filter: true,
            sort: false,
-	   display: false,
+	   display: true,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -155,6 +156,7 @@ getMuiTheme = () => createMuiTheme({
          options: {
           filter: true,
           sort: false,
+           display: false,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -172,6 +174,19 @@ getMuiTheme = () => createMuiTheme({
         },
 
 
+        {
+         name: "expProcess",
+         label: "Experimental design",
+         options: {
+          filter: true,
+          sort: false,
+          display: true,
+ 
+           customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
+         }
+        },
 
         {
          name: "molecules",
@@ -179,7 +194,7 @@ getMuiTheme = () => createMuiTheme({
          options: {
           filter: true,
           sort: false,
-	  display: true,
+	  display: false,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -192,7 +207,8 @@ getMuiTheme = () => createMuiTheme({
           label: "Sex",
           options: {
            filter: true,
-           sort: true,
+           sort: false,
+           display: false,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -215,6 +231,19 @@ getMuiTheme = () => createMuiTheme({
 
 
          {
+          name: "biomaterialType",
+          label: "Biomaterial type",
+          options: {
+           filter: true,
+           sort: false,
+           display:true,
+           customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
+          }
+         },
+
+         {
           name: "organ",
           label: "Biomaterial from",
           options: {
@@ -233,7 +262,7 @@ getMuiTheme = () => createMuiTheme({
           options: {
            filter: true,
            sort: false,
-           display: false,
+           display: true,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -259,16 +288,26 @@ getMuiTheme = () => createMuiTheme({
           options: {
            filter: true,
            sort: false,
+            display: false,
           }
          },
 
+         {
+          name: "pathology",
+          label: "Topic",
+          options: {
+           filter: true,
+           sort: false,
+           display: true,
+          }
+         },
          {
           name: "diseaseStage",
           label: "Disease stage",
           options: {
            filter: true,
            sort: false,
-           display: false,
+           display: true,
           }
          },
 
