@@ -295,7 +295,7 @@ getMuiTheme = () => createMuiTheme({
 
          {
           name: "pathology",
-          label: "Disorder",
+          label: "Topic",
           options: {
            filter: true,
            sort: false,
