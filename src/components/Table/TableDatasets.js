@@ -23,6 +23,8 @@ import MUIDataTable from "mui-datatables";
 import { Button,} from '@material-ui/core';
 import axios from "axios";
 
+import { Box } from "@material-ui/core";
+
 var fileDownload = require('js-file-download');
 class TableDatasetsComponent extends Component {
   constructor(props) {
@@ -53,7 +55,7 @@ getMuiTheme = () => createMuiTheme({
 	 },
          MUIDataTableBodyCell: {
 	          root: {
-               fontSize: "1rem",
+               fontSize: "0.8rem",
 	       color: "black",
 	          }
 
@@ -61,7 +63,8 @@ getMuiTheme = () => createMuiTheme({
 	    MUIDataTableHeadCell: {
 		 fixedHeader: {
 	         backgroundColor: "#FAFAFA",
-	         textTransform: "uppercase"
+	         textTransform: "uppercase",
+	         fontSize: "0.7em"
 		}
 	    },
 	    MUIDataTableSelectCell : {
@@ -76,7 +79,7 @@ getMuiTheme = () => createMuiTheme({
 
   render() {
       const rows = this.props.rows
-      console.log(this.props.rows)
+      //console.log(this.props.rows)
       const columns = [
        {
          name: "datasetId",
@@ -95,9 +98,11 @@ getMuiTheme = () => createMuiTheme({
             sort: false,
             customBodyRenderLite: (dataIndex, rowIndex) => {
               return (
-                <Link to={"/dataset/"+this.props.rows[rowIndex].datasetId} className="primary">
+                
+                <Box style={{width:200, maxWidth:240}}><Link to={"/dataset/"+this.props.rows[rowIndex].datasetId} className="primary">
                     {this.props.rows[rowIndex].title}
-                </Link>
+                </Link></Box>
+		      
               );
             }
           }
@@ -130,7 +135,7 @@ getMuiTheme = () => createMuiTheme({
           options: {
            filter: true,
            sort: false,
-	   display: false,
+	   display: true,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -151,6 +156,7 @@ getMuiTheme = () => createMuiTheme({
          options: {
           filter: true,
           sort: false,
+           display: false,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -168,6 +174,19 @@ getMuiTheme = () => createMuiTheme({
         },
 
 
+        {
+         name: "expProcess",
+         label: "Experimental design",
+         options: {
+          filter: true,
+          sort: false,
+          display: true,
+ 
+           customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
+         }
+        },
 
         {
          name: "molecules",
@@ -175,7 +194,7 @@ getMuiTheme = () => createMuiTheme({
          options: {
           filter: true,
           sort: false,
-	  display: true,
+	  display: false,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -189,6 +208,7 @@ getMuiTheme = () => createMuiTheme({
           options: {
            filter: true,
            sort: false,
+           display: false,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -211,6 +231,19 @@ getMuiTheme = () => createMuiTheme({
 
 
          {
+          name: "biomaterialType",
+          label: "Biomaterial type",
+          options: {
+           filter: true,
+           sort: false,
+           display:true,
+           customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
+          }
+         },
+
+         {
           name: "organ",
           label: "Biomaterial from",
           options: {
@@ -229,7 +262,7 @@ getMuiTheme = () => createMuiTheme({
           options: {
            filter: true,
            sort: false,
-           display: false,
+           display: true,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -242,7 +275,7 @@ getMuiTheme = () => createMuiTheme({
           options: {
            filter: true,
            sort: false,
-	   display: false,
+	   display: true,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -253,11 +286,21 @@ getMuiTheme = () => createMuiTheme({
           name: "ageRange",
           label: "Age",
           options: {
-           filter: false,
-           sort: true,
+           filter: true,
+           sort: false,
+            display: true,
           }
          },
 
+         {
+          name: "pathology",
+          label: "Topic",
+          options: {
+           filter: true,
+           sort: false,
+           display: false,
+          }
+         },
          {
           name: "diseaseStage",
           label: "Disease stage",
@@ -268,21 +311,21 @@ getMuiTheme = () => createMuiTheme({
           }
          },
 
-         {
-          name: "id",
-          label: "Download",
-          options: {
-           filter: false,
-           sort: false,
-          customBodyRenderLite: (dataIndex, rowIndex) => {
-            return (
-              <Button onClick={() => {this.downloadDataset(this.props.rows[rowIndex].datasetId)}} variant="contained" color="primary" className='p-2'>
-                  Download
-              </Button>
-            );
-          }
-          }
-         },
+	//         {
+        //  name: "id",
+        //  label: "Download",
+        //  options: {
+          //  filter: false,
+          //  sort: false,
+       //   customBodyRenderLite: (dataIndex, rowIndex) => {
+         //   return (
+     //   <Button onClick={() => {this.downloadDataset(this.props.rows[rowIndex].datasetId)}} variant="contained" color="primary" className='p-2'>
+    //              Download
+     //        </Button>
+      //      );
+       //   }
+         // }
+       //  },
        ];
 
        const options = {

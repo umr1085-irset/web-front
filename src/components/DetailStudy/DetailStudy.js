@@ -141,7 +141,13 @@ class DetailStudyPage extends Component {
                                             
                                             <td key={"id__"+idx} className="capitalize border-bottom border-top-0">{data.title} ({data.datasetId}) </td>
 
-				            <td className="border-bottom border-top-0" key={"info_"+idx}> <Typography variant="h4" color="textSecondary"> {data.loom.cellNumber?  <span>{data.loom.cellNumber} cells | </span> :<span/> }    {data.bioMeta.age_start? <span>{data.bioMeta.age_start}-{data.bioMeta.age_end} {data.bioMeta.age_unit} | </span>  :<span /> }  {_.map(data.bioMeta.organ,'ontologyLabel').toString()}  |   {_.map(data.sop.technology,'ontologyLabel').toString()}    </Typography></td>
+				            <td className="border-bottom border-top-0" key={"info_"+idx}> <Typography variant="h4" color="textSecondary"> 
+					    {data.loom.cellNumber?  <span>{data.loom.cellNumber} {data.loom.col_name} | </span> :<span/> }  
+					    
+					    {data.loom.geneNumber?  <span>{data.loom.geneNumber} {data.loom.row_name}  | </span> :<span/> }  
+					    
+					    
+					    {data.bioMeta.age_start? <span>{data.bioMeta.age_start}-{data.bioMeta.age_end} {data.bioMeta.age_unit} | </span>  :<span /> }  {_.map(data.bioMeta.organ,'ontologyLabel').toString()}  |   {_.map(data.sop.technology,'ontologyLabel').toString()}    </Typography></td>
 
                                             
                                             
