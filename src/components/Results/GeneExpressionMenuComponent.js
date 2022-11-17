@@ -61,7 +61,7 @@ class GeneExpPlotMenuComponent extends Component {
           },
           input:"",
           scale: false,
-          method:"first",
+          method:"relevant",
           chart_type: "",
           genes:[],
           url:"/api/v1/dataset/genes/",
@@ -277,8 +277,8 @@ class GeneExpPlotMenuComponent extends Component {
                             value={this.state.method}
                             onChange={this.handleChangeGeneSelection}
                             >
-                            <MenuItem value="first" >first 5 genes</MenuItem>
-                           // <MenuItem value="variance" >top 10 variable genes</MenuItem>
+                            <MenuItem value="relevant" >Relevant genes</MenuItem>
+                            <MenuItem value="variance" >top 10 variable genes</MenuItem>
                             <MenuItem value="custom" >My selection</MenuItem>
                             </Select>
 
