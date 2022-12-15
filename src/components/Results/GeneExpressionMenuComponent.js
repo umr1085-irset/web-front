@@ -47,28 +47,31 @@ import update from 'immutability-helper'
 
 
 class GeneExpPlotMenuComponent extends Component {
-      constructor(props) {
-        super(props);
-        this.state = {
-          loading:true,
-          selector:{
-            ra:{},
-            ca:{}
-          },
-          filters:{
-            ra:{},
-            ca:{}
-          },
-          input:"",
-          scale: false,
-          method:"relevant",
-          chart_type: "",
-          genes:[],
-          url:"/api/v1/dataset/genes/",
-        };
-        this.handleDelete = this.handleDelete.bind(this)
-        this.updateGraph = this.updateGraph.bind(this)
-      }
+    constructor(props) {
+    super(props);
+    this.state = {
+        loading:true,
+        selector:{
+        ra:{},
+        ca:{}
+        },
+        filters:{
+        ra:{},
+        ca:{}
+        },
+        input:"",
+        scale: false,
+        method:"relevant",
+        chart_type: "",
+        genes:[],
+        url:"/api/v1/dataset/genes/",
+    };
+    this.handleDelete = this.handleDelete.bind(this)
+    this.updateGraph = this.updateGraph.bind(this)
+    }
+
+    console.log(this.state)
+    console.log(this)
 
     
     async getGenes(id,selector){
