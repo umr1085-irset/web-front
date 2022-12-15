@@ -41,9 +41,8 @@ import DensityIcon from "../../assets/Icons/Curves";
 import DotPlotIcon from "../../assets/Icons/DotPlot";
 import ViolinIcon from "../../assets/Icons/ViolinPlot";
 import Chip from '@material-ui/core/Chip';
+import update from 'immutability-helper';
 
-
-import update from 'immutability-helper'
 
 
 class GeneExpPlotMenuComponent extends Component {
@@ -70,9 +69,6 @@ class GeneExpPlotMenuComponent extends Component {
     this.updateGraph = this.updateGraph.bind(this)
     }
 
-    console.log(this.state)
-    console.log(this)
-
     
     async getGenes(id,selector){
         this.setState({loading:true});
@@ -92,6 +88,11 @@ class GeneExpPlotMenuComponent extends Component {
           })
         )
       }
+
+    componentDidMount() {
+        this.setState({chart_type:this.props.chart_type,filters:this.props.filters,selector:this.props.filters,selected_attrs:this.props.attrs})
+        console.log(this.state)
+    }
     
     async getSelectedGenes(id,selector,method){
         const genes={
@@ -164,7 +165,8 @@ class GeneExpPlotMenuComponent extends Component {
         })
         this.getSelectedGenes(this.props.loom,this.props.selector,this.state.method)
         this.getGenes(this.props.loom,this.props.selector)
-        
+        console.log(this)
+        console.log(this.state)
     }
 
     componentWillReceiveProps(nextProps) {
