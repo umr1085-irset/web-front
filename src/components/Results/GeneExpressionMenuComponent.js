@@ -259,6 +259,27 @@ class GeneExpPlotMenuComponent extends Component {
                     :
                     <span/>
                         }
+
+                    {this.state.chart_type === "scatter"?
+                    <FormControl className="control-filter">
+                    <InputLabel className="control-filter"  id="selectionreduction">Select reduction</InputLabel>
+                            <Select  className="control-filter"
+                            labelId="selected_attrs"
+                            id="selected_attrs"
+                            value={this.state.selected_attrs}
+                            defaultValue="Selection reduction"
+                            onChange={this.handleChangeAttributes}
+                            >
+                            {attributes.map(function(attr,a_idx){
+                                return(
+                                    <MenuItem key={"mn_a_"+a_idx} value={attr} >  {attr}</MenuItem>
+                                )
+                            })}
+                            </Select>
+                        </FormControl>
+                    :
+                    <span/>
+                        }
                     </MDBCol>
 
                     </MDBRow>
