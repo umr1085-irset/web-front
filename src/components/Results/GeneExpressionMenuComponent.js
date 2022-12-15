@@ -221,23 +221,21 @@ class GeneExpPlotMenuComponent extends Component {
         return (
             <div className="mb-3">
 		<MDBRow>
-
-                    <MDBCol md="3" className="pb-2 border-right">
-                    <MDBRow>
+            <MDBCol md="3" className="pb-2 border-right">
+                <MDBRow>
                     <MDBCol className="ml-4">
-                    <InputLabel className="control-filter"  id="selected_attrs" style={{fontSize: "0.75em"}}>Display type</InputLabel>
-                    {display_type.map((type,idxt) =>
-                            <ButtonGroup className="mb-2" key={this.props.name+"_col1_r1_col2"+idxt} size="small">
-                                <Tooltip title={type} aria-label={type} key={type+"_col1_r1_col2_tool"+idxt}>
-                                    <Button onClick={ (e) => this.updateGraph(type) }  id={this.props.name+"_barchart_btn"+idxt}  variant="outlined" color="primary">{this.displayIcon(type,KeysToIconDisplay,this.props.name+"_col1_r1_col2_tool_btn_hex"+idxt)}</Button>
-                                </Tooltip>
-                            </ButtonGroup>
-                        )}
+                        <InputLabel className="control-filter"  id="selected_attrs" style={{fontSize: "0.75em"}}>Display type</InputLabel>
+                        {display_type.map((type,idxt) =>
+                                <ButtonGroup className="mb-2" key={this.props.name+"_col1_r1_col2"+idxt} size="small">
+                                    <Tooltip title={type} aria-label={type} key={type+"_col1_r1_col2_tool"+idxt}>
+                                        <Button onClick={ (e) => this.updateGraph(type) }  id={this.props.name+"_barchart_btn"+idxt}  variant="outlined" color="primary">{this.displayIcon(type,KeysToIconDisplay,this.props.name+"_col1_r1_col2_tool_btn_hex"+idxt)}</Button>
+                                    </Tooltip>
+                                </ButtonGroup>
+                            )}
+                    </MDBCol>
+                </MDBRow>
 
-                    </MDBCol>    
-                    </MDBRow>
-
-                    <MDBRow>
+                <MDBRow>
                     <MDBCol className="ml-4">
                      {this.state.chart_type === "violin" || this.state.chart_type === "dot"?
                     <FormControl className="control-filter"> 
@@ -259,7 +257,8 @@ class GeneExpPlotMenuComponent extends Component {
                     :
                     <span/>
                         }
-
+                <MDBRow>
+                    <MDBCol className="ml-4">
                     {this.state.chart_type === "scatter"?
                     <FormControl className="control-filter">
                     <InputLabel className="control-filter"  id="selectionreduction">Select reduction</InputLabel>
@@ -282,6 +281,8 @@ class GeneExpPlotMenuComponent extends Component {
                         }
                     </MDBCol>
 
+                    </MDBRow>
+                    </MDBCol>
                     </MDBRow>
                     </MDBCol>
 
