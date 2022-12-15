@@ -237,6 +237,16 @@ class GeneExpPlotMenuComponent extends Component {
 
                 <MDBRow>
                     <MDBCol className="ml-4">
+                    {this.state.chart_type === "scatter"?
+                    <h1>THOMAS DARDUS LE METAL HEAD</h1>
+                    :
+                    <h1>THOMAS DARDUS LE TEKTONIK</h1>
+                        }
+                    </MDBCol>
+                </MDBRow>
+
+                <MDBRow>
+                    <MDBCol className="ml-4">
                      {this.state.chart_type === "violin" || this.state.chart_type === "dot"?
                     <FormControl className="control-filter"> 
                     <InputLabel className="control-filter"  id="groupcellsby">Group cells by</InputLabel>                      
@@ -257,39 +267,14 @@ class GeneExpPlotMenuComponent extends Component {
                     :
                     <span/>
                         }
+                    </MDBCol>
+                </MDBRow>
+            </MDBCol>
+
+
+            <MDBCol md="8" className="pb-2 ml-4" >
                 <MDBRow>
-                    <MDBCol className="ml-4">
-                    {this.state.chart_type === "scatter"?
-                    <FormControl className="control-filter">
-                    <InputLabel className="control-filter"  id="selectionreduction">Select reduction</InputLabel>
-                            <Select  className="control-filter"
-                            labelId="selected_attrs"
-                            id="selected_attrs"
-                            value={this.state.selected_attrs}
-                            defaultValue="Selection reduction"
-                            onChange={this.handleChangeAttributes}
-                            >
-                            {attributes.map(function(attr,a_idx){
-                                return(
-                                    <MenuItem key={"mn_a_"+a_idx} value={attr} >  {attr}</MenuItem>
-                                )
-                            })}
-                            </Select>
-                        </FormControl>
-                    :
-                    <span/>
-                        }
-                    </MDBCol>
-
-                    </MDBRow>
-                    </MDBCol>
-                    </MDBRow>
-                    </MDBCol>
-
-
-                    <MDBCol md="8" className="pb-2 ml-4" >
-                  <MDBRow >
-		   <MDBCol md="4">
+		            <MDBCol md="4">
                         <FormControl className="control-filter">
                             <InputLabel className="control-filter"  id="geneList">Gene selection</InputLabel>
                             <Select className="control-filter"
@@ -306,69 +291,57 @@ class GeneExpPlotMenuComponent extends Component {
 
                         </FormControl>
 
-			</MDBCol>
+			        </MDBCol>
 
-			<MDBCol md="6">
-
-                {this.state.gene
-			? <Spinner/>
-			:                            
-
-                                <MDBRow>
-                                
-                                    <MDBCol md="5">
-                                        <Autocomplete
-                                            limitTags={2}
-                                            id="genes"
-                                            title="genes"
-                                            size="small"
-                                            
-                                            onChange={(event, newValue) => {
-                                                this.setState({input:newValue})
-                                            }}
-                                            options={this.state.genes}
-                                            renderInput={(params) => (
-                                            <TextField  {...params} label="Add genes" placeholder="Add a gene" style={{width:160}} />
-                                            )}
-                                        />
-                                    </MDBCol>
+                    <MDBCol md="6">
+                        {this.state.gene
+                    ? <Spinner/>
+			            :
+                        <MDBRow>       
+                            <MDBCol md="5">
+                                <Autocomplete
+                                    limitTags={2}
+                                    id="genes"
+                                    title="genes"
+                                    size="small"
+                                    
+                                    onChange={(event, newValue) => {
+                                        this.setState({input:newValue})
+                                    }}
+                                    options={this.state.genes}
+                                    renderInput={(params) => (
+                                    <TextField  {...params} label="Add genes" placeholder="Add a gene" style={{width:160}} />
+                                    )}
+                                />
+                            </MDBCol>
                                    
-                                    <MDBCol className="align-bottom pb-0 mb-0 pt-2" >
-                                        {this.state.input === ""?
-                                            <Button variant="contained" color="primary" disabled>Add</Button>:
-                                            <Button onClick={this.addgene} variant="contained" color="primary">Add</Button>
-                                        }
-                                    </MDBCol>
-                              </MDBRow>
-                          
-                           
+                            <MDBCol className="align-bottom pb-0 mb-0 pt-2" >
+                                {this.state.input === ""?
+                                    <Button variant="contained" color="primary" disabled>Add</Button>:
+                                    <Button onClick={this.addgene} variant="contained" color="primary">Add</Button>
+                                }
+                            </MDBCol>
+                        </MDBRow>  
                         }
-
-
-		        </MDBCol>
-		</MDBRow>
-
+                    </MDBCol>
+		        </MDBRow>
         <MDBRow>
-        <MDBCol >
-
-{this.state.selector.ra.Symbol
-     ?   
-    <Box className="pt-2">
-        {this.state.selector.ra.Symbol.map(function(gene,idx){
-         return(
-            <Chip key={'row_'+idx}   label={gene} color="primary"	size="small"  onDelete={this.handleDelete(gene)}	style={{ marginRight: 6 }}   />
-             )
-           },this)}
-       </Box>
-       : <Spinner/> }
-
-
-</MDBCol>
+            <MDBCol >
+                {this.state.selector.ra.Symbol
+                    ?   
+                    <Box className="pt-2">
+                        {this.state.selector.ra.Symbol.map(function(gene,idx){
+                        return(
+                            <Chip key={'row_'+idx}   label={gene} color="primary"	size="small"  onDelete={this.handleDelete(gene)}	style={{ marginRight: 6 }}   />
+                            )
+                        },this)}
+                    </Box>
+                    : <Spinner/> }
+            </MDBCol>
 
         </MDBRow>
-
-		</MDBCol>
-		</MDBRow>
+	</MDBCol>
+</MDBRow>
                     
             </div>
         );
