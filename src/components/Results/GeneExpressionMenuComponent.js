@@ -238,9 +238,10 @@ class GeneExpPlotMenuComponent extends Component {
                 <MDBRow>
                     <MDBCol className="ml-4">
                     {this.state.chart_type === "scatter"?
-                    <h1>THOMAS DARDUS LE METAL HEAD</h1>
+                    <h1>Formulaire</h1>
+                    console.log(this.state)
                     :
-                    <h1>THOMAS DARDUS LE TEKTONIK</h1>
+                    <span/>
                         }
                     </MDBCol>
                 </MDBRow>
@@ -249,7 +250,7 @@ class GeneExpPlotMenuComponent extends Component {
                     <MDBCol className="ml-4">
                      {this.state.chart_type === "violin" || this.state.chart_type === "dot"?
                     <FormControl className="control-filter"> 
-                    <InputLabel className="control-filter"  id="groupcellsby">Group cells by</InputLabel>                      
+                        <InputLabel className="control-filter"  id="groupcellsby">Group cells by</InputLabel>                      
                             <Select  className="control-filter"
                             labelId="selected_attrs"
                             id="selected_attrs"
@@ -263,7 +264,7 @@ class GeneExpPlotMenuComponent extends Component {
                                 )
                             })}
                             </Select>
-                        </FormControl>
+                    </FormControl>
                     :
                     <span/>
                         }
