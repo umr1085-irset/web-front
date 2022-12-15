@@ -224,7 +224,7 @@ class GeneExpPlotMenuComponent extends Component {
             <MDBCol md="3" className="pb-2 border-right">
                 <MDBRow>
                     <MDBCol className="ml-4">
-                        <InputLabel className="control-filter"  id="selected_attrs" style={{fontSize: "0.75em"}}>Display type thomas</InputLabel>
+                        <InputLabel className="control-filter"  id="selected_attrs" style={{fontSize: "0.75em"}}>Display type thomas2</InputLabel>
                         {display_type.map((type,idxt) =>
                                 <ButtonGroup className="mb-2" key={this.props.name+"_col1_r1_col2"+idxt} size="small">
                                     <Tooltip title={type} aria-label={type} key={type+"_col1_r1_col2_tool"+idxt}>
@@ -239,7 +239,7 @@ class GeneExpPlotMenuComponent extends Component {
                     <MDBCol className="ml-4">
                     {this.state.chart_type === "scatter"?
                     <h1>Formulaire</h1>
-                    console.log(this.state)
+                    //console.log(this.state)
                     :
                     <span/>
                         }
