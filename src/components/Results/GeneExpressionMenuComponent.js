@@ -64,6 +64,7 @@ class GeneExpPlotMenuComponent extends Component {
         chart_type: "",
         genes:[],
         url:"/api/v1/dataset/genes/",
+        reductions: this.props.reductions
     };
     this.handleDelete = this.handleDelete.bind(this)
     this.updateGraph = this.updateGraph.bind(this)
@@ -244,7 +245,6 @@ class GeneExpPlotMenuComponent extends Component {
                     <MDBCol className="ml-4">
                     {this.state.chart_type === "scatter"?
                     <h1>Formulaire</h1>
-                    //console.log(this.state)
                     :
                     <span/>
                         }
