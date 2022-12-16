@@ -64,7 +64,6 @@ class GeneExpPlotMenuComponent extends Component {
         chart_type: "",
         genes:[],
         url:"/api/v1/dataset/genes/",
-        reductions: this.props.dataset
     };
     this.handleDelete = this.handleDelete.bind(this)
     this.updateGraph = this.updateGraph.bind(this)
@@ -170,6 +169,8 @@ class GeneExpPlotMenuComponent extends Component {
         console.log('2')
         console.log(this)
         console.log(this.state)
+        console.log(this.props)
+        console.log(props)
     }
 
     componentWillReceiveProps(nextProps) {
