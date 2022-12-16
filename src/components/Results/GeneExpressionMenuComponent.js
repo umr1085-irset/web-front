@@ -64,7 +64,7 @@ class GeneExpPlotMenuComponent extends Component {
         chart_type: "",
         genes:[],
         url:"/api/v1/dataset/genes/",
-        reductions: this.props.reductions
+        reductions: this.props.dataset
     };
     this.handleDelete = this.handleDelete.bind(this)
     this.updateGraph = this.updateGraph.bind(this)
