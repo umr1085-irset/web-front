@@ -92,6 +92,7 @@ class GeneExpPlotMenuComponent extends Component {
 
     componentDidMount() {
         this.setState({chart_type:this.props.chart_type,filters:this.props.filters,selector:this.props.filters,selected_attrs:this.props.attrs})
+        console.log('1')
         console.log(this.state)
     }
     
@@ -166,6 +167,7 @@ class GeneExpPlotMenuComponent extends Component {
         })
         this.getSelectedGenes(this.props.loom,this.props.selector,this.state.method)
         this.getGenes(this.props.loom,this.props.selector)
+        console.log('2')
         console.log(this)
         console.log(this.state)
     }
