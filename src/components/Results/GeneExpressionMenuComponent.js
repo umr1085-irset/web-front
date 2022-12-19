@@ -203,7 +203,7 @@ class GeneExpPlotMenuComponent extends Component {
     }
 
     render() {
-        
+        console.log(this.props)
         const KeysToIconDisplay = {
             scatter:ScatterPlotIcon,
             hexbin:HexbinIcon,
