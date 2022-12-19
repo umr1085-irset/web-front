@@ -168,9 +168,6 @@ class GeneExpPlotMenuComponent extends Component {
         this.getGenes(this.props.loom,this.props.selector)
         console.log('2')
         console.log(this)
-        console.log(this.state)
-        console.log(this.props)
-        console.log(props)
     }
 
     componentWillReceiveProps(nextProps) {
