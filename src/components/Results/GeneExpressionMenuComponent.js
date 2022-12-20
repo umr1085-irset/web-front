@@ -43,6 +43,7 @@ import ViolinIcon from "../../assets/Icons/ViolinPlot";
 import Chip from '@material-ui/core/Chip';
 import update from 'immutability-helper';
 
+import ReductionSelector from './ReductionSelector';
 
 
 class GeneExpPlotMenuComponent extends Component {
@@ -63,6 +64,7 @@ class GeneExpPlotMenuComponent extends Component {
         method:"relevant",
         chart_type: "",
         genes:[],
+        reductions:[],
         url:"/api/v1/dataset/genes/",
     };
     this.handleDelete = this.handleDelete.bind(this)
@@ -88,12 +90,6 @@ class GeneExpPlotMenuComponent extends Component {
           })
         )
       }
-
-    componentDidMount() {
-        this.setState({chart_type:this.props.chart_type,filters:this.props.filters,selector:this.props.filters,selected_attrs:this.props.attrs})
-        console.log('1')
-        console.log(this.state)
-    }
     
     async getSelectedGenes(id,selector,method){
         const genes={
@@ -155,7 +151,7 @@ class GeneExpPlotMenuComponent extends Component {
         }
         
     }
-    componentDidMount() {
+    async componentDidMount() {
         this.setState({
             display_type:this.props.display_type,
             chart_type:this.props.chart_type,
@@ -163,6 +159,7 @@ class GeneExpPlotMenuComponent extends Component {
             selected_attrs:this.props.selected_attrs,
             attrs:this.props.attrs,
             scale:this.props.scale,
+            reductions:this.props.reductions
         })
         this.getSelectedGenes(this.props.loom,this.props.selector,this.state.method)
         this.getGenes(this.props.loom,this.props.selector)
@@ -201,6 +198,16 @@ class GeneExpPlotMenuComponent extends Component {
         this.props.callbackUpdateGraph("chart_type",chart)
         this.setState({chart_type: chart });
     }
+
+    callbackUpdateReduc = (reduc) => {
+        this.setState({collapseID: "",reduc:reduc})
+        this.state.filters.reduction = reduc
+        this.props.setStateParent({
+            selector: update(this.props.selector, {
+                reduction:{$push: reduc},
+            }),
+        });
+      }
 
     render() {
         console.log(this.props)
@@ -244,7 +251,8 @@ class GeneExpPlotMenuComponent extends Component {
                 <MDBRow>
                     <MDBCol className="ml-4">
                     {this.state.chart_type === "scatter"?
-                    <h1>Formulaire</h1>
+                    //<h1>Formulaire</h1>
+                    <ReductionSelector reduc={reductions} callbackUpdateGraphReduc={this.callbackUpdateReduc} name={this.props.name} />
                     :
                     <span/>
                         }
