@@ -299,7 +299,7 @@ class GeneExpPlotMenuComponent extends Component {
                             onChange={this.handleChangeGeneSelection}
                             >
                             <MenuItem value="relevant" >Relevant genes</MenuItem>
-                            <MenuItem value="variance" >Most variable genes</MenuItem>
+                            <MenuItem value="variance" >Most variable genes!!!</MenuItem>
                             <MenuItem value="custom" >My selection</MenuItem>
                             </Select>
 
