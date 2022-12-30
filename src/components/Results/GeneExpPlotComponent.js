@@ -30,7 +30,7 @@ class GeneExpPlotComponent extends Component {
           filters:{
             ra:{},
             ca:{},
-            reduction:{}
+            reduction:''
           },
           selector:{
             ra:{},
@@ -45,7 +45,7 @@ class GeneExpPlotComponent extends Component {
       }
 
     componentDidMount() {
-        this.setState({chart_type:this.props.chart_type,filters:this.props.filters,selector:this.props.filters,selected_attrs:this.props.attrs})
+        this.setState({chart_type:this.props.chart_type,filters:this.props.filters,selector:this.props.filters,selected_attrs:this.props.attrs,reductions:this.props.reductions})
     }
     componentWillReceiveProps(nextProps) {
       if( nextProps.filters !== this.props.filters || nextProps.chart_type !== this.state.chart_type){
@@ -80,7 +80,7 @@ class GeneExpPlotComponent extends Component {
         <div>
           <MDBRow>
             <MDBCol md="12">
-              <GeneExpPlotMenuComponent scale={this.props.scale} loom={this.props.loom} display_type={this.props.display_type} chart_type={this.state.chart_type} selector={this.state.selector} filters={this.state.filters} selected_attrs={this.props.selected_attrs} attrs={this.props.all_attrs} setStateParent={(p, cb) => this.setState(p, cb)} callbackUpdateGraph={this.callbackUpdateGraph}/>
+              <GeneExpPlotMenuComponent scale={this.props.scale} loom={this.props.loom} display_type={this.props.display_type} chart_type={this.state.chart_type} selector={this.state.selector} filters={this.state.filters} selected_attrs={this.props.selected_attrs} attrs={this.props.all_attrs} reductions={this.state.reductions} setStateParent={(p, cb) => this.setState(p, cb)} callbackUpdateGraph={this.callbackUpdateGraph}/>
             </MDBCol>
           </MDBRow>
           <Divider />
