@@ -251,8 +251,8 @@ class GeneExpPlotMenuComponent extends Component {
                 <MDBRow>
                     <MDBCol className="ml-4">
                     {this.state.chart_type === "scatter"?
-                    <h1>TOHOMAS<h1/>
-                    <ReductionSelector reduc={reductions} callbackUpdateGraphReduc={this.callbackUpdateReduc} name={this.props.name} />
+                    <h1>THOMAS</h1>
+                    //<ReductionSelector reduc={reductions} callbackUpdateGraphReduc={this.callbackUpdateReduc} name={this.props.name} />
                     :
                     <span/>
                         }
@@ -264,7 +264,7 @@ class GeneExpPlotMenuComponent extends Component {
                      {this.state.chart_type === "violin" || this.state.chart_type === "dot"?
                     <FormControl className="control-filter"> 
                         <InputLabel className="control-filter"  id="groupcellsby">Group cells by</InputLabel>                      
-                            <Select  className="control-filter"
+                        <Select  className="control-filter"
                             labelId="selected_attrs"
                             id="selected_attrs"
 		                    value={this.state.selected_attrs}
@@ -276,7 +276,7 @@ class GeneExpPlotMenuComponent extends Component {
                                     <MenuItem key={"mn_a_"+a_idx} value={attr} >  {attr}</MenuItem>
                                 )
                             })}
-                            </Select>
+                        </Select>
                     </FormControl>
                     :
                     <span/>
