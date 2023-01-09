@@ -251,6 +251,7 @@ class GeneExpPlotMenuComponent extends Component {
                 <MDBRow>
                     <MDBCol className="ml-4">
                     {this.state.chart_type === "scatter"?
+                    <h1>TOHOMAS<h1/>
                     <ReductionSelector reduc={reductions} callbackUpdateGraphReduc={this.callbackUpdateReduc} name={this.props.name} />
                     :
                     <span/>
