@@ -163,8 +163,12 @@ class GeneExpPlotMenuComponent extends Component {
         })
         this.getSelectedGenes(this.props.loom,this.props.selector,this.state.method)
         this.getGenes(this.props.loom,this.props.selector)
-        console.log('2')
+        console.log('this')
         console.log(this)
+        console.log('this.props')
+        console.log(this.props)
+        console.log('this.reductions')
+        console.log(this.reductions)
     }
 
     componentWillReceiveProps(nextProps) {
@@ -237,7 +241,7 @@ class GeneExpPlotMenuComponent extends Component {
             <MDBCol md="3" className="pb-2 border-right">
                 <MDBRow>
                     <MDBCol className="ml-4">
-                        <InputLabel className="control-filter"  id="selected_attrs" style={{fontSize: "0.75em"}}>Display type thomas2</InputLabel>
+                        <InputLabel className="control-filter"  id="selected_attrs" style={{fontSize: "0.75em"}}>Display type</InputLabel>
                         {display_type.map((type,idxt) =>
                                 <ButtonGroup className="mb-2" key={this.props.name+"_col1_r1_col2"+idxt} size="small">
                                     <Tooltip title={type} aria-label={type} key={type+"_col1_r1_col2_tool"+idxt}>
