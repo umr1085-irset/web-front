@@ -66,6 +66,7 @@ class GeneExpPlotMenuComponent extends Component {
         genes:[],
         reductions:[],
         url:"/api/v1/dataset/genes/",
+        anchorEl:null
     };
     this.handleDelete = this.handleDelete.bind(this)
     this.updateGraph = this.updateGraph.bind(this)
@@ -128,7 +129,12 @@ class GeneExpPlotMenuComponent extends Component {
         }
     };
 
-
+    handleClick = (event) => {
+        this.setState({anchorEl:event.currentTarget});
+      };
+    handleClose = () => {
+        this.setState({anchorEl:null});
+      };
 
     handleChangeAttributes = (event) => {
         this.setState({selected_attrs: event.target.value });
@@ -257,15 +263,15 @@ class GeneExpPlotMenuComponent extends Component {
                     <MDBCol className="ml-4">
                     {this.state.chart_type === "scatter"?
                     <MDBCol md="2">
-                        <Button id="button2" disableRipple style={{ textTransform: 'capitalize' }} aria-controls="simple-menu-reduc"  aria-haspopup="true" onClick={this.handleClick2}>
+                        <Button id="button2" disableRipple style={{ textTransform: 'capitalize' }} aria-controls="simple-menu-reduc"  aria-haspopup="true" onClick={this.handleClick}>
                         Method<MDBIcon className="ml-2" icon="angle-down"/>
                         </Button>
                         <Menu 
                             id="simple-menu-reduc"
-                            anchorEl={this.state.anchorEl2}
+                            anchorEl={this.state.anchorEl}
                             keepMounted
-                            open={Boolean(this.state.anchorEl2)}
-                            onClose={this.handleClose2}
+                            open={Boolean(this.state.anchorEl)}
+                            onClose={this.handleClose}
                             MenuListProps={{
                             'aria-labelledby': 'button2',
                             }}
@@ -273,7 +279,7 @@ class GeneExpPlotMenuComponent extends Component {
                             <MenuItem style={{ backgroundColor: "white" }}
                             onMouseEnter={(e) => e.target.style.backgroundColor= '#ffffff'}
                             onMouseLeave={(e) => e.target.style.backgroundColor = '#ffffff'}
-                            onClick={this.handleClose2}
+                            onClick={this.handleClose}
                             >
                             <ReductionSelector reduc={reductions} callbackUpdateGraphReduc={this.callbackUpdateReduc} name={this.props.name} />
                             </MenuItem>
