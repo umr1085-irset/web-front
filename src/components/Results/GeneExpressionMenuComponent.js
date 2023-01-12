@@ -256,12 +256,12 @@ class GeneExpPlotMenuComponent extends Component {
                     <MDBCol className="ml-4">
                     {this.state.chart_type === "scatter"?
                     <FormControl className="control-filter"> 
-                        <InputLabel className="control-filter"  id="groupcellsby">Group cells by</InputLabel>                      
+                        <InputLabel className="control-filter"  id="selectreduction">Reduction</InputLabel>                      
                         <Select  className="control-filter"
-                            labelId="selected_attrs"
-                            id="selected_attrs"
-                            value={this.state.selected_attrs}
-                            defaultValue="Group cells by"
+                            labelId="selected_reduction"
+                            id="selected_reduction"
+                            value={this.state.reductions}
+                            defaultValue="Reduction"
                             onChange={this.handleChangeAttributes}
                             >
                             {attributes.map(function(attr,a_idx){
