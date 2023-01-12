@@ -234,6 +234,7 @@ class GeneExpPlotMenuComponent extends Component {
             chroms = meta['Chromosome']['values']
         }
         
+        const reductions = this.props.reductions
  
         return (
             <div className="mb-3">
@@ -255,11 +256,32 @@ class GeneExpPlotMenuComponent extends Component {
                 <MDBRow>
                     <MDBCol className="ml-4">
                     {this.state.chart_type === "scatter"?
-                    //<h1>THOMAS</h1>
-                    <ReductionSelector reduc={this.props.reductions} callbackUpdateGraphReduc={this.callbackUpdateReduc} name={this.props.name} />
+                    <MDBCol md="2">
+                        <Button id="button2" disableRipple style={{ textTransform: 'capitalize' }} aria-controls="simple-menu-reduc"  aria-haspopup="true" onClick={this.handleClick2}>
+                        Method<MDBIcon className="ml-2" icon="angle-down"/>
+                        </Button>
+                        <Menu 
+                            id="simple-menu-reduc"
+                            anchorEl={this.state.anchorEl2}
+                            keepMounted
+                            open={Boolean(this.state.anchorEl2)}
+                            onClose={this.handleClose2}
+                            MenuListProps={{
+                            'aria-labelledby': 'button2',
+                            }}
+                        >
+                            <MenuItem style={{ backgroundColor: "white" }}
+                            onMouseEnter={(e) => e.target.style.backgroundColor= '#ffffff'}
+                            onMouseLeave={(e) => e.target.style.backgroundColor = '#ffffff'}
+                            onClick={this.handleClose2}
+                            >
+                            <ReductionSelector reduc={reductions} callbackUpdateGraphReduc={this.callbackUpdateReduc} name={this.props.name} />
+                            </MenuItem>
+                        </Menu>
+                    </MDBCol>
                     :
                     <span/>
-                        }
+                    }
                     </MDBCol>
                 </MDBRow>
 
