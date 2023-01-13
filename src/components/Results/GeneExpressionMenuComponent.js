@@ -262,28 +262,22 @@ class GeneExpPlotMenuComponent extends Component {
                 <MDBRow>
                     <MDBCol className="ml-4">
                     {this.state.chart_type === "scatter"?
-                    <MDBCol md="2">
-                        <Button id="button2" disableRipple style={{ textTransform: 'capitalize' }} aria-controls="simple-menu-reduc"  aria-haspopup="true" onClick={this.handleClick}>
-                        Method<MDBIcon className="ml-2" icon="angle-down"/>
-                        </Button>
-                        <Menu 
-                            id="simple-menu-reduc"
-                            anchorEl={this.state.anchorEl}
-                            keepMounted
-                            open={Boolean(this.state.anchorEl)}
-                            onClose={this.handleClose}
-                            MenuListProps={{
-                            'aria-labelledby': 'button2',
-                            }}
+                    <FormControl className="control-filter"> 
+                    <InputLabel className="control-filter"  id="select_red">Method</InputLabel>                      
+                    <Select  className="control-filter"
+                        labelId="reductions"
+                        id="reductions"
+                        value={this.state.reductions}
+                        defaultValue="Method"
+                        onChange={this.handleChangeAttributes}
                         >
-                            <MenuItem style={{ backgroundColor: "white" }}
-                            onMouseEnter={(e) => e.target.style.backgroundColor= '#ffffff'}
-                            onMouseLeave={(e) => e.target.style.backgroundColor = '#ffffff'}
-                            onClick={this.handleClose}>
-                            <ReductionSelector reduc={this.props.reductions} callbackUpdateGraphReduc={this.callbackUpdateReduc} name={this.props.name} />
-                            </MenuItem>
-                        </Menu>
-                    </MDBCol>
+                        {attributes.map(function(red,red_idx){
+                            return(
+                                <MenuItem key={"mn_a_"+red_idx} value={red} >  {red}</MenuItem>
+                            )
+                        })}
+                    </Select>
+                </FormControl>
                     :
                     <span/>
                     }
