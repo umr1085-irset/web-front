@@ -140,7 +140,7 @@ class GeneExpPlotMenuComponent extends Component {
             //this.props.callbackUpdateGraph("reduction",event.target.value)
         } else {
             console.log('something else selected!!')
-            console.log(event.target,value)
+            console.log(event.target.value)
             this.props.callbackUpdateGraph("reduction",event.target.value)
             //this.props.callbackUpdateGraph("chart_type","scatter")
             //this.props.callbackUpdateGraph("reduction",event.target.value)
