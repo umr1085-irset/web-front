@@ -66,7 +66,6 @@ class GeneExpPlotMenuComponent extends Component {
         genes:[],
         reductions:[],
         url:"/api/v1/dataset/genes/",
-        anchorEl:null
     };
     this.handleDelete = this.handleDelete.bind(this)
     this.updateGraph = this.updateGraph.bind(this)
@@ -129,16 +128,13 @@ class GeneExpPlotMenuComponent extends Component {
         }
     };
 
-    handleClick = (event) => {
-        this.setState({anchorEl:event.currentTarget});
-      };
-    handleClose = () => {
-        this.setState({anchorEl:null});
-      };
-
     handleChangeAttributes = (event) => {
         this.setState({selected_attrs: event.target.value });
         this.props.callbackUpdateGraph("selected_attrs",event.target.value)
+    };
+    handleChangeReduction = (event) => {
+        this.setState({reduction: event.target.value });
+        this.props.callbackUpdateGraph("reduction",event.target.value)
     };
     handleChange = (event) => {
         console.log(event.target.checked)
@@ -268,12 +264,12 @@ class GeneExpPlotMenuComponent extends Component {
                         labelId="reductions"
                         id="reductions"
                         value={this.state.reductions}
-                        defaultValue="Method"
-                        onChange={this.handleChangeAttributes}
+                        defaultValue="spatial"
+                        onChange={this.handleChangeReduction}
                         >
-                        {attributes.map(function(red,red_idx){
+                        {reductions.map(function(red,red_idx){
                             return(
-                                <MenuItem key={"mn_a_"+red_idx} value={red} >  {red}</MenuItem>
+                                <MenuItem key={"mn_r_"+red_idx} value={red} >  {red}</MenuItem>
                             )
                         })}
                     </Select>
