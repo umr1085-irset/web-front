@@ -279,9 +279,8 @@ class GeneExpPlotMenuComponent extends Component {
                             <MenuItem style={{ backgroundColor: "white" }}
                             onMouseEnter={(e) => e.target.style.backgroundColor= '#ffffff'}
                             onMouseLeave={(e) => e.target.style.backgroundColor = '#ffffff'}
-                            onClick={this.handleClose}
-                            >
-                            <ReductionSelector reduc={reductions} callbackUpdateGraphReduc={this.callbackUpdateReduc} name={this.props.name} />
+                            onClick={this.handleClose}>
+                            <ReductionSelector reduc={this.props.reductions} callbackUpdateGraphReduc={this.callbackUpdateReduc} name={this.props.name} />
                             </MenuItem>
                         </Menu>
                     </MDBCol>
