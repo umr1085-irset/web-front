@@ -131,10 +131,18 @@ class GeneExpPlotMenuComponent extends Component {
     handleChangeAttributes = (event) => {
         this.setState({selected_attrs: event.target.value });
         this.props.callbackUpdateGraph("selected_attrs",event.target.value)
-    };
+    };   
     handleChangeReduction = (event) => {
         this.setState({reduction: event.target.value });
-        this.props.callbackUpdateGraph("reduction",event.target.value)
+        if (event.target.value=='spatial'){
+            console.log('spatial selected!!')
+            //this.props.callbackUpdateGraph("chart_type","blank_spatial?")
+            //this.props.callbackUpdateGraph("reduction",event.target.value)
+        } else {
+            console.log('something else selected!!')
+            //this.props.callbackUpdateGraph("chart_type","scatter")
+            //this.props.callbackUpdateGraph("reduction",event.target.value)
+        }
     };
     handleChange = (event) => {
         console.log(event.target.checked)
@@ -264,7 +272,7 @@ class GeneExpPlotMenuComponent extends Component {
                         labelId="reductions"
                         id="reductions"
                         value={this.state.reductions}
-                        defaultValue="spatial"
+                        defaultValue="Method"
                         onChange={this.handleChangeReduction}
                         >
                         {reductions.map(function(red,red_idx){
