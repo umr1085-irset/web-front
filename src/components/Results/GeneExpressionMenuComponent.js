@@ -140,12 +140,14 @@ class GeneExpPlotMenuComponent extends Component {
             //this.props.callbackUpdateGraph("reduction",event.target.value)
         } else {
             console.log('something else selected!!')
+            console.log(event.target,value)
+            this.props.callbackUpdateGraph("reduction",event.target.value)
             //this.props.callbackUpdateGraph("chart_type","scatter")
             //this.props.callbackUpdateGraph("reduction",event.target.value)
         }
     };
     handleChange = (event) => {
-        console.log(event.target.checked)
+        //console.log(event.target.checked)
         this.setState({ ...this.state, [event.target.name]: event.target.checked });
         this.props.callbackUpdateGraph("scale",event.target.checked)
     };
@@ -173,12 +175,6 @@ class GeneExpPlotMenuComponent extends Component {
         })
         this.getSelectedGenes(this.props.loom,this.props.selector,this.state.method)
         this.getGenes(this.props.loom,this.props.selector)
-        console.log('this')
-        console.log(this)
-        console.log('this.props')
-        console.log(this.props)
-        console.log('this.reductions')
-        console.log(this.reductions)
     }
 
     componentWillReceiveProps(nextProps) {
@@ -224,7 +220,7 @@ class GeneExpPlotMenuComponent extends Component {
       }
 
     render() {
-        console.log(this.props)
+        //console.log(this.props)
         const KeysToIconDisplay = {
             scatter:ScatterPlotIcon,
             hexbin:HexbinIcon,
