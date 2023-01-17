@@ -57,7 +57,8 @@ class GeneExpPlotMenuComponent extends Component {
         },
         filters:{
         ra:{},
-        ca:{}
+        ca:{},
+        reduction:''
         },
         input:"",
         scale: false,
