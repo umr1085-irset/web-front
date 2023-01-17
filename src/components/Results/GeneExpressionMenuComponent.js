@@ -206,14 +206,13 @@ class GeneExpPlotMenuComponent extends Component {
         });
       }
 
-    async getDataPlot(url,id,style,attrs,menu,filters){
+    async getDataPlot(url,id,style,attrs,filters){
         this.setState({loading:true});
 	
         const plotData={
           id:id,
           style:style,
           attrs:attrs,
-          menu:menu,
           filters:filters
         }
         await trackPromise(
@@ -224,7 +223,6 @@ class GeneExpPlotMenuComponent extends Component {
               chart:response.data.chart,
               style:response.data.style,
               options:response.data.options,
-              genes_menu:response.data.genes_menu,
               loading:false});
           })
           .catch(error => {
@@ -244,13 +242,12 @@ class GeneExpPlotMenuComponent extends Component {
         console.log('3')
         //this.callbackUpdateReduc(event.target.value);
         //console.log('3.5')
-        console.log(this.props.url)
+        console.log(this.props.url) // undefined
         console.log(this.props.loom)
         console.log(this.state.chart_type)
         console.log(this.state.attrs)
-        console.log(this.props.menu)
         console.log(this.state.filters)
-        this.getDataPlot(this.props.url,this.props.loom,this.state.chart_type,this.state.attrs,this.props.menu,this.state.filters)
+        this.getDataPlot(this.state.url,this.props.loom,this.state.chart_type,this.state.attrs,this.state.filters)
         console.log('4')
         //if (event.target.value=='spatial'){
         //    console.log('spatial selected!!')
