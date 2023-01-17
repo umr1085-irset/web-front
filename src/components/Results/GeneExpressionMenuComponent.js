@@ -236,7 +236,7 @@ class GeneExpPlotMenuComponent extends Component {
     handleChangeReduction = (event) => {
         console.log(event.target.value)
         this.setState({reduction: event.target.value });
-        this.callbackUpdateReduc(event.target.value);
+        //this.callbackUpdateReduc(event.target.value);
         this.getDataPlot(this.props.url,this.props.loom,this.state.chart_type,this.state.attrs,this.props.menu,this.state.filters)
         //if (event.target.value=='spatial'){
         //    console.log('spatial selected!!')
