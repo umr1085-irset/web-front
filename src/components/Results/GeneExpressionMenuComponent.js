@@ -199,7 +199,7 @@ class GeneExpPlotMenuComponent extends Component {
         this.setState({collapseID: "",reduc:reduc})
         this.state.filters.reduction = reduc
         this.props.setStateParent({
-            selector: update(this.props.selector, {
+            selector: update(this.state.selector, { //this.props
                 reduction:{$push: reduc},
             }),
         });
@@ -235,9 +235,16 @@ class GeneExpPlotMenuComponent extends Component {
 
     handleChangeReduction = (event) => {
         console.log(event.target.value)
-        this.setState({reduction: event.target.value });
-        //this.callbackUpdateReduc(event.target.value);
+        //this.setState({reduction: event.target.value });
+        console.log('1')
+        //this.state.filters.reduction = event.target.value
+        console.log('2')
+        //this.setState({collapseID: "",reduc:event.target.value})
+        console.log('3')
+        this.callbackUpdateReduc(event.target.value);
+        console.log('3.5')
         this.getDataPlot(this.props.url,this.props.loom,this.state.chart_type,this.state.attrs,this.props.menu,this.state.filters)
+        console.log('4')
         //if (event.target.value=='spatial'){
         //    console.log('spatial selected!!')
         //    this.props.callbackUpdateGraph("chart_type","scatter")
