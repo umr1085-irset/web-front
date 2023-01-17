@@ -131,19 +131,6 @@ class GeneExpPlotMenuComponent extends Component {
     handleChangeAttributes = (event) => {
         this.setState({selected_attrs: event.target.value });
         this.props.callbackUpdateGraph("selected_attrs",event.target.value)
-    };   
-    handleChangeReduction = (event) => {
-        this.setState({reduction: event.target.value });
-        console.log(event.target.value)
-        if (event.target.value=='spatial'){
-            console.log('spatial selected!!')
-            this.props.callbackUpdateGraph("chart_type","scatter")
-            this.props.callbackUpdateGraph("reduction",event.target.value)
-        } else {
-            console.log('something else selected!!')
-            this.props.callbackUpdateGraph("chart_type","scatter")
-            this.props.callbackUpdateGraph("reduction",event.target.value)
-        }
     };
     handleChange = (event) => {
         //console.log(event.target.checked)
@@ -217,6 +204,51 @@ class GeneExpPlotMenuComponent extends Component {
             }),
         });
       }
+
+    async getDataPlot(url,id,style,attrs,menu,filters){
+        this.setState({loading:true});
+	
+        const plotData={
+          id:id,
+          style:style,
+          attrs:attrs,
+          menu:menu,
+          filters:filters
+        }
+        await trackPromise(
+          axios.post(url,plotData)
+          .then(response => {
+            //console.log(response.data.options)
+            this.setState({
+              chart:response.data.chart,
+              style:response.data.style,
+              options:response.data.options,
+              genes_menu:response.data.genes_menu,
+              loading:false});
+          })
+          .catch(error => {
+            toastOnError("Error loading dataset LOOMNOCARD");
+            //console.log(filters)
+          })
+        )
+      }
+
+    handleChangeReduction = (event) => {
+        console.log(event.target.value)
+        this.setState({reduction: event.target.value });
+        this.callbackUpdateReduc(event.target.value);
+        this.getDataPlot(this.props.url,this.props.loom,this.state.chart_type,this.state.attrs,this.props.menu,this.state.filters)
+        //if (event.target.value=='spatial'){
+        //    console.log('spatial selected!!')
+        //    this.props.callbackUpdateGraph("chart_type","scatter")
+        //    this.props.callbackUpdateGraph("reduction",event.target.value)
+        //} else {
+        //    console.log('something else selected!!')
+        //    this.state.filters.reduction = event.target.value
+        //    this.props.callbackUpdateGraph("chart_type","scatter")
+        //    this.props.callbackUpdateGraph("reduction",event.target.value)
+        //}
+    };
 
     render() {
         //console.log(this.props)
