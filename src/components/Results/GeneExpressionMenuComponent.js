@@ -67,6 +67,7 @@ class GeneExpPlotMenuComponent extends Component {
         genes:[],
         reductions:[],
         url:"/api/v1/dataset/genes/",
+        anchorEl:null,
     };
     this.handleDelete = this.handleDelete.bind(this)
     this.updateGraph = this.updateGraph.bind(this)
@@ -206,13 +207,14 @@ class GeneExpPlotMenuComponent extends Component {
         });
       }
 
-    async getDataPlot(url,id,style,attrs,filters){
+    async getDataPlot(url,id,style,attrs,menu,filters){
         this.setState({loading:true});
 	
         const plotData={
           id:id,
           style:style,
           attrs:attrs,
+          menu:menu,
           filters:filters
         }
         await trackPromise(
@@ -223,6 +225,7 @@ class GeneExpPlotMenuComponent extends Component {
               chart:response.data.chart,
               style:response.data.style,
               options:response.data.options,
+              genes_menu:response.data.genes_menu,
               loading:false});
           })
           .catch(error => {
@@ -260,6 +263,20 @@ class GeneExpPlotMenuComponent extends Component {
         //    this.props.callbackUpdateGraph("reduction",event.target.value)
         //}
     };
+
+    handleClick = (event) => {
+        this.setState({anchorEl:event.currentTarget});
+      };
+
+    handleClose = () => {
+        this.setState({anchorEl:null});
+    };
+
+    callbackUpdateGraphReduc = (reduc) => { 
+        this.setState({collapseID: "",reduc:reduc})
+        this.state.filters.reduction = reduc
+        this.getDataPlot(this.props.url,this.props.loom,this.state.chart_type,this.state.attrs,this.props.menu,this.state.filters)
+      }
 
     render() {
         //console.log(this.props)
@@ -304,22 +321,29 @@ class GeneExpPlotMenuComponent extends Component {
                 <MDBRow>
                     <MDBCol className="ml-4">
                     {this.state.chart_type === "scatter"?
-                    <FormControl className="control-filter"> 
-                    <InputLabel className="control-filter"  id="select_red">Method</InputLabel>                      
-                    <Select  className="control-filter"
-                        labelId="reductions"
-                        id="reductions"
-                        value={this.state.reductions}
-                        defaultValue="Method"
-                        onChange={this.handleChangeReduction}
+                    <MDBCol md="2">
+                        <Button id="button" disableRipple style={{ textTransform: 'capitalize' }} aria-controls="simple-menu-reduc"  aria-haspopup="true" onClick={this.handleClick}>
+                            Method<MDBIcon className="ml-2" icon="angle-down" />
+                        </Button>
+                        <Menu 
+                        id="simple-menu-reduc"
+                        anchorEl={this.state.anchorEl}
+                        keepMounted
+                        open={Boolean(this.state.anchorEl)}
+                        onClose={this.handleClose}
+                        MenuListProps={{
+                            'aria-labelledby': "button",
+                        }}
                         >
-                        {reductions.map(function(red,red_idx){
-                            return(
-                                <MenuItem key={"mn_r_"+red_idx} value={red} >  {red}</MenuItem>
-                            )
-                        })}
-                    </Select>
-                </FormControl>
+                            <MenuItem style={{ backgroundColor: "white" }}
+                            onMouseEnter={(e) => e.target.style.backgroundColor= '#ffffff'}
+                            onMouseLeave={(e) => e.target.style.backgroundColor = '#ffffff'}
+                            onClick={this.handleClose}
+                            >
+                                <ReductionSelector reduc={reductions} callbackUpdateGraphReduc={this.callbackUpdateGraphReduc} name={this.props.name} />
+                            </MenuItem>
+                        </Menu>
+                    </MDBCol>
                     :
                     <span/>
                     }
