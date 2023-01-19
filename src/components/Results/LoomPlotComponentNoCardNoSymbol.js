@@ -144,9 +144,6 @@ class LoomPlotComponentCardNoSymbol extends Component {
 
         this.setState({collapseID: "",reduc:reduc})
         this.state.filters.reduction = reduc
-        console.log('loomnono')
-        console.log(this.props.urls)
-        console.log(this.props.menu)
         this.getDataPlot(this.props.url,this.props.loom,this.state.chart_type,this.state.attrs,this.props.menu,this.state.filters)
       }
 
