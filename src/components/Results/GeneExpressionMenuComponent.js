@@ -209,8 +209,9 @@ class GeneExpPlotMenuComponent extends Component {
       }
 
     async getDataPlot(url,id,style,attrs,menu,filters){
+        console.log('1.1')
         this.setState({loading:true});
-	
+        console.log('1.2')
         const plotData={
           id:id,
           style:style,
@@ -218,6 +219,7 @@ class GeneExpPlotMenuComponent extends Component {
           menu:menu,
           filters:filters
         }
+        console.log('1.3')
         await trackPromise(
           axios.post(url,plotData)
           .then(response => {
@@ -245,14 +247,18 @@ class GeneExpPlotMenuComponent extends Component {
     };
 
     callbackUpdateGraphReduc = (reduc) => { 
+        console.log('1')
         this.setState({collapseID: "",reduc:reduc})
+        console.log('2')
         this.state.filters.reduction = reduc
+        console.log('3')
         console.log(this.props.url)
         console.log(this.props.loom)
         console.log(this.state.chart_type)
         console.log(this.state.attrs)
         console.log(this.props.menu)
         console.log(this.state.filters)
+        console.log('4')
         this.getDataPlot(this.props.url,this.props.loom,this.state.chart_type,this.state.attrs,this.props.menu,this.state.filters)
       }
 
