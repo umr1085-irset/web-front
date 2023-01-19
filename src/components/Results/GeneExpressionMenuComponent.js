@@ -23,7 +23,8 @@ import {Spinner} from '../Loading/LoadingComponent'
 import Switch from '@material-ui/core/Switch';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 
-import { MDBCol, MDBRow } from "mdbreact";
+import { MDBCol, MDBIcon, MDBRow } from "mdbreact";
+import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
