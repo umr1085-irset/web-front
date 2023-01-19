@@ -92,11 +92,11 @@ class LoomPlotComponentCard extends Component {
 
       async componentDidMount() {
           this.setState({chart_type:this.props.chart_type,filters:this.props.filters,attrs:this.props.attrs})
-          console.log(this.props.url)
-          console.log(this.props.loom)
-          console.log(this.props.chart_type)
-          console.log(this.props.attrs)
-          console.log(this.props.menu)
+          //console.log(this.props.url)
+          //console.log(this.props.loom)
+          //console.log(this.props.chart_type)
+          //console.log(this.props.attrs)
+          //console.log(this.props.menu)
           this.getDataPlot(this.props.url,this.props.loom,this.props.chart_type,this.props.attrs,this.props.menu,this.props.filters)
       }
       async componentWillReceiveProps(nextProps) {
