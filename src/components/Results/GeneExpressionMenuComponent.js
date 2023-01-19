@@ -242,7 +242,7 @@ class GeneExpPlotMenuComponent extends Component {
         console.log('3')
         //this.callbackUpdateReduc(event.target.value);
         //console.log('3.5')
-        console.log(this.props.url) // undefined
+        console.log(this.state.url) // undefined
         console.log(this.props.loom)
         console.log(this.state.chart_type)
         console.log(this.state.attrs)
