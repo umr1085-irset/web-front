@@ -75,6 +75,7 @@ class LoomPlotComponentCard extends Component {
         await trackPromise(
           axios.post(url,plotData)
           .then(response => {
+            console.log('t')
             console.log(response.data.options)
             this.setState({
               chart:response.data.chart,
