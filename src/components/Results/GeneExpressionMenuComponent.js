@@ -64,7 +64,7 @@ class GeneExpPlotMenuComponent extends Component {
         input:"",
         scale: false,
         method:"relevant",
-        chart_type: "",
+        chart_type: "scatter",
         genes:[],
         reductions:[],
         url:"/api/v1/dataset/genes/",
@@ -291,9 +291,7 @@ class GeneExpPlotMenuComponent extends Component {
 
                 <MDBRow>
                     <MDBCol className="ml-4">
-                    {this.props.chart_type ===  "violin" || this.props.chart_type === "dot" || this.props.chart_type === "density"?
-                    <span/>
-                    :
+                    {this.state.chart_type === "scatter"?
                     <MDBCol md="2">
                         <Button id="button" disableRipple style={{ textTransform: 'capitalize' }} aria-controls="simple-menu-reduc"  aria-haspopup="true" onClick={this.handleClick}>
                             Method<MDBIcon className="ml-2" icon="angle-down" />
@@ -317,6 +315,9 @@ class GeneExpPlotMenuComponent extends Component {
                             </MenuItem>
                         </Menu>
                     </MDBCol>
+                    :
+                    <span/>
+                    }
                     </MDBCol>
                 </MDBRow>
 
