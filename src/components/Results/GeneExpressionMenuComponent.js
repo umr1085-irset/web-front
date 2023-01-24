@@ -64,7 +64,7 @@ class GeneExpPlotMenuComponent extends Component {
         input:"",
         scale: false,
         method:"relevant",
-        chart_type: "scatter",
+        chart_type: "",
         genes:[],
         reductions:[],
         url:"/api/v1/dataset/genes/",
@@ -230,7 +230,7 @@ class GeneExpPlotMenuComponent extends Component {
           })
           .catch(error => {
             toastOnError("Error loading dataset LOOMNOCARD");
-            console.log(filters)
+            console.log(error)
           })
         )
       }
