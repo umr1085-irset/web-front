@@ -217,6 +217,8 @@ class GeneExpPlotMenuComponent extends Component {
           menu:menu,
           filters:filters
         }
+        console.log('menu')
+        console.log(plotData)
         await trackPromise(
           axios.post(url,plotData)
           .then(response => {

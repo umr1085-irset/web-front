@@ -72,6 +72,8 @@ class LoomPlotComponentCard extends Component {
           menu:menu,
           filters:filters
         }
+        console.log('nocard')
+        console.log(plotData)
         await trackPromise(
           axios.post(url,plotData)
           .then(response => {
