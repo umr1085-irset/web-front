@@ -31,10 +31,11 @@ class GenomicDisplayComponent extends Component {
             chart:null,
             selected_attrs:"",
             chart_type: "pie",
+            reduction:'',
             selector:{
               ra:{},
               ca:{}
-            }
+            },
           };
       }
 
@@ -66,13 +67,13 @@ class GenomicDisplayComponent extends Component {
       }
 
       async componentDidMount() {
-          this.setState({chart_type:this.props.chart_type,scale:this.props.scale,selector:this.props.selector,selected_attrs:this.props.selected_attrs})
+          this.setState({chart_type:this.props.chart_type,scale:this.props.scale,selector:this.props.selector,selected_attrs:this.props.selected_attrs,selector:this.props.filters})
           this.getDataPlot(this.props.url,this.props.loom,this.props.chart_type,this.props.selected_attrs,this.props.selector)
       }
 
       componentWillReceiveProps(nextProps) {
         if( nextProps.chart_type !== this.props.chart_type || nextProps.selected_attrs !== this.props.selected_attrs  ){
-          this.setState({chart_type:nextProps.chart_type,scale:this.props.scale,selector:this.props.selector,selected_attrs:nextProps.selected_attrs})
+          this.setState({chart_type:nextProps.chart_type,scale:this.props.scale,selector:this.props.selector,selected_attrs:nextProps.selected_attrs,selector:nextProps.filters})
           this.getDataPlot(this.props.url,this.props.loom,nextProps.chart_type,nextProps.selected_attrs,this.props.selector)
         }
         
