@@ -59,8 +59,8 @@ class GeneExpPlotMenuComponent extends Component {
         filters:{
         ra:{},
         ca:{},
-        reduction:''
         },
+        reduction:''
         input:"",
         scale: false,
         method:"relevant",
@@ -69,7 +69,7 @@ class GeneExpPlotMenuComponent extends Component {
         reductions:[],
         url:"/api/v1/dataset/genes/",
         anchorEl:null,
-    };
+      };
     this.handleDelete = this.handleDelete.bind(this)
     this.updateGraph = this.updateGraph.bind(this)
     }
@@ -200,7 +200,7 @@ class GeneExpPlotMenuComponent extends Component {
 
     callbackUpdateReduc = (reduc) => {
         this.setState({collapseID: "",reduc:reduc})
-        this.state.filters.reduction = reduc
+        this.setState({reduction: reduc });
         this.props.setStateParent({
             selector: update(this.state.selector, { //this.props
                 reduction:{$push: reduc},
@@ -219,7 +219,7 @@ class GeneExpPlotMenuComponent extends Component {
     callbackUpdateGraphReduc = (reduc) => { 
         this.setState({collapseID: "",reduc:reduc})
         this.props.callbackUpdateGraph("reduction",reduc)
-        this.state.filters.reduction = reduc
+        this.setState({reduction: reduc });
       }
 
     render() {
