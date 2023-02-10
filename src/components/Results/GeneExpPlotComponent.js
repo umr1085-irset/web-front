@@ -27,10 +27,10 @@ class GeneExpPlotComponent extends Component {
         super(props);
         this.state = {
           loading:true,
+          reduction:'',
           filters:{
             ra:{},
-            ca:{},
-            reduction:''
+            ca:{}
           },
           selector:{
             ra:{},
@@ -57,8 +57,7 @@ class GeneExpPlotComponent extends Component {
     callbackUpdateGraph = (key,val) => {
       console.log('callbackupdategraph')
       console.log(key,val)
-      //this.setState({[key]:val})
-      this.setState({filters[key]:val})
+      this.setState({reduction:val})
       console.log(this.state)
     }
 
@@ -93,7 +92,7 @@ class GeneExpPlotComponent extends Component {
                 this.state.selector.ra.Symbol?
                 element:null
                 :
-                <GenomicDisplayComponent url={this.props.url} loom={this.props.loom} type={this.props.chart_type} scale={this.state.scale} chart_type={this.state.chart_type} selector={this.state.selector} selected_attrs={this.state.selected_attrs} filters={this.state.filters} style={{ height: 800}} />
+                <GenomicDisplayComponent url={this.props.url} loom={this.props.loom} type={this.props.chart_type} scale={this.state.scale} chart_type={this.state.chart_type} selector={this.state.selector} selected_attrs={this.state.selected_attrs} reduction={this.state.reduction} style={{ height: 800}} />
               }     
             </MDBCol>
           </MDBRow>
