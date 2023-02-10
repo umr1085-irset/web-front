@@ -73,7 +73,7 @@ class GenomicDisplayComponent extends Component {
       }
 
       componentWillReceiveProps(nextProps) {
-        if( nextProps.chart_type !== this.props.chart_type || nextProps.selected_attrs !== this.props.selected_attrs  ){
+        if( nextProps.chart_type !== this.props.chart_type || nextProps.selected_attrs !== this.props.selected_attrs || nextProps.reduction !== this.props.reduction  ){
           this.setState({chart_type:nextProps.chart_type,scale:this.props.scale,selector:this.props.selector,selected_attrs:nextProps.selected_attrs,reduction:nextProps.reduction})
           this.getDataPlot(this.props.url,this.props.loom,nextProps.chart_type,nextProps.selected_attrs,this.props.selector,nextProps.reduction)
         }
