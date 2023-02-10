@@ -208,35 +208,6 @@ class GeneExpPlotMenuComponent extends Component {
         });
       }
 
-    async getDataPlot(url,id,style,attrs,menu,filters){
-        this.setState({loading:true});
-        const plotData={
-          id:id,
-          style:style,
-          attrs:attrs,
-          menu:menu,
-          filters:filters
-        }
-        console.log('menu')
-        console.log(plotData)
-        await trackPromise(
-          axios.post(url,plotData)
-          .then(response => {
-            console.log(response.data.options)
-            this.setState({
-              chart:response.data.chart,
-              style:response.data.style,
-              options:response.data.options,
-              genes_menu:response.data.genes_menu,
-              loading:false});
-          })
-          .catch(error => {
-            toastOnError("Error loading dataset LOOMNOCARD");
-            console.log(error)
-          })
-        )
-      }
-
     handleClick = (event) => {
         this.setState({anchorEl:event.currentTarget});
       };
@@ -247,8 +218,8 @@ class GeneExpPlotMenuComponent extends Component {
 
     callbackUpdateGraphReduc = (reduc) => { 
         this.setState({collapseID: "",reduc:reduc})
+        this.props.callbackUpdateGraph("reduction",reduc)
         this.state.filters.reduction = reduc
-        this.getDataPlot(this.props.url,this.props.loom,this.state.chart_type,this.state.attrs,this.props.menu,this.state.filters)
       }
 
     render() {

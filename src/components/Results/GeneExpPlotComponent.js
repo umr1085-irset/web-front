@@ -54,7 +54,8 @@ class GeneExpPlotComponent extends Component {
         this.setState({chart_type:nextProps.chart_type})
       }
     }
-    callbackUpdateGraph = (key,val) => { 
+    callbackUpdateGraph = (key,val) => {
+      console.log('callbackupdategraph')
       console.log(key,val)
       this.setState({[key]:val})
     }
