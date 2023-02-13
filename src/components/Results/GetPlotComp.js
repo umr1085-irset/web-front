@@ -40,6 +40,9 @@ class GetPlotComponent extends Component {
       async getDataPlot(url,id,style,attrs,filters,symbol,reduction){
         this.setState({loading:true});
         filters['reduction'] = reduction
+        console.log('###################')
+        console.log(filters)
+        console.log('###################')
         var plotData = {}
         if(style==='violin' || style==='density'){
           plotData={
@@ -79,7 +82,7 @@ class GetPlotComponent extends Component {
 
       componentWillReceiveProps(nextProps) {
         if( nextProps.filters !== this.props.filters || nextProps.attrs !== this.props.attrs || nextProps.type !== this.props.type  || nextProps.gene !== this.props.gene || nextProps.reduction !== this.props.reduction  ){
-          this.getDataPlot(this.props.url,this.props.id,nextProps.type,nextProps.attrs,nextProps.filters,nextProps.gene,this.props.reduction)
+          this.getDataPlot(this.props.url,this.props.id,nextProps.type,nextProps.attrs,nextProps.filters,nextProps.gene,nextProps.reduction)
         }
         
       }
