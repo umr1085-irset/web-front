@@ -60,7 +60,7 @@ class GeneExpPlotMenuComponent extends Component {
         ra:{},
         ca:{},
         },
-        reduction:''
+        reduction:'',
         input:"",
         scale: false,
         method:"relevant",
