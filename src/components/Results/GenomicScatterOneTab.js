@@ -76,6 +76,7 @@ export default function VerticalTabs(props) {
     setValue(newValue);
   };
   const { selector, url, loom, selected_attrs, scale, reduction, type, ...other } = props;
+  console.log(reduction)
   return (
     <div className={classes.root}>
       <Tabs
