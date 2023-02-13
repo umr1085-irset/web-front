@@ -218,8 +218,8 @@ class GeneExpPlotMenuComponent extends Component {
 
     callbackUpdateGraphReduc = (reduc) => { 
         this.setState({collapseID: "",reduc:reduc})
-        this.props.callbackUpdateGraph("reduction",reduc)
         this.setState({reduction: reduc });
+        this.props.callbackUpdateGraph("reduction",reduc)
       }
 
     render() {

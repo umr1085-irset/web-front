@@ -48,7 +48,7 @@ class GeneExpPlotComponent extends Component {
         this.setState({chart_type:this.props.chart_type,filters:this.props.filters,selector:this.props.filters,selected_attrs:this.props.attrs,reductions:this.props.reductions,reduction:this.props.reduction})
     }
     componentWillReceiveProps(nextProps) {
-      if( nextProps.filters !== this.props.filters || nextProps.chart_type !== this.state.chart_type){
+      if( nextProps.filters !== this.props.filters || nextProps.chart_type !== this.state.chart_type || nextProps.reduction !== this.state.reduction){
         this.setState({reduction:nextProps.reduction})
         this.setState({reductions:nextProps.reductions})
         this.setState({filters:nextProps.filters})
