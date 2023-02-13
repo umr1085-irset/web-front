@@ -69,10 +69,10 @@ class GeneExpPlotComponent extends Component {
       const element = (
         <MDBRow>
           <MDBCol md="6" sm="12" className="colDivider">
-            <VerticalTabs selector={this.state.selector} type={this.state.chart_type} url={this.props.url} loom={this.props.loom} selected_attrs={this.state.selected_attrs}  scale={this.props.scale} />
+            <VerticalTabs selector={this.state.selector} type={this.state.chart_type} url={this.props.url} loom={this.props.loom} selected_attrs={this.state.selected_attrs}  scale={this.props.scale} reduction={this.state.reduction}/>
           </MDBCol>
           <MDBCol md="6" sm="12">
-            <VerticalTabs selector={this.state.selector} type={this.state.chart_type} url={this.props.url} loom={this.props.loom} selected_attrs={this.state.selected_attrs}  scale={this.props.scale} />
+            <VerticalTabs selector={this.state.selector} type={this.state.chart_type} url={this.props.url} loom={this.props.loom} selected_attrs={this.state.selected_attrs}  scale={this.props.scale} reduction={this.state.reduction}/>
           </MDBCol>
         </MDBRow>
       )

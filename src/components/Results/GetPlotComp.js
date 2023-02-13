@@ -37,8 +37,9 @@ class GetPlotComponent extends Component {
         };
       }
 
-      async getDataPlot(url,id,style,attrs,filters,symbol){
+      async getDataPlot(url,id,style,attrs,filters,symbol,reduction){
         this.setState({loading:true});
+        filters['reduction'] = reduction
         var plotData = {}
         if(style==='violin' || style==='density'){
           plotData={
