@@ -64,7 +64,7 @@ class GeneExpPlotMenuComponent extends Component {
         input:"",
         scale: false,
         method:"relevant",
-        chart_type: "",
+        chart_type: "scatter",
         genes:[],
         reductions:[],
         url:"/api/v1/dataset/genes/",
