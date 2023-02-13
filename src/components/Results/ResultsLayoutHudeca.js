@@ -159,7 +159,7 @@ class ResultsLayout extends Component {
                             <CardContent>
                                 <MDBRow>
                                     <MDBCol md="12">
-                                        <GeneExpPlotComponent display_type={['scatter','density','dot','violin']} reductions={dataset.reductions} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="scatter" attrs={dataset.metadata.filters_keys.ca[0]}  all_attrs={dataset.metadata.filters_keys}  meta={dataset.metadata.filters}   name="C4"/>
+                                        <GeneExpPlotComponent display_type={['scatter','density','dot','violin']} reduction={this.state.filters.reduction} reductions={dataset.reductions} loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="scatter" attrs={dataset.metadata.filters_keys.ca[0]}  all_attrs={dataset.metadata.filters_keys}  meta={dataset.metadata.filters}   name="C4"/>
                                   
                                     </MDBCol>
                                 </MDBRow>
