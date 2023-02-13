@@ -339,6 +339,7 @@ getMuiTheme = () => createMuiTheme({
           data={rows}
           columns={columns}
           options={options}
+          count={100}
         />
   	</ThemeProvider>
     );
