@@ -295,6 +295,8 @@ getMuiTheme = () => createMuiTheme({
          filterType: 'dropdown',
 	 expandableRows: true,
 	 expandableRowsHeader: false,
+         rowsPerPage: 100,
+         elevation: 0,
 	 renderExpandableRow: (rowData, rowMeta) => {
          //console.log(rowData, rowMeta);
 	 const colSpan = rowData.length + 1;
@@ -314,8 +316,6 @@ getMuiTheme = () => createMuiTheme({
           data={rows}
           columns={columns}
           options={options}
-          elevation={0}
-          count={100}
         />
 	   </ThemeProvider>
   
