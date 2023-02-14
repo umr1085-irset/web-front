@@ -331,7 +331,8 @@ getMuiTheme = () => createMuiTheme({
        const options = {
          print: false,
          download: false,
-	 selectableRows: 'none',
+	       selectableRows: 'none',
+         rowsPerPage: 100
        };
     return (
         <ThemeProvider theme={this.getMuiTheme()} >
@@ -339,7 +340,6 @@ getMuiTheme = () => createMuiTheme({
           data={rows}
           columns={columns}
           options={options}
-          count={100}
         />
   	</ThemeProvider>
     );
