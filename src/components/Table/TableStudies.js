@@ -293,8 +293,8 @@ getMuiTheme = () => createMuiTheme({
          download: false,
          selectableRows:'none',
          filterType: 'dropdown',
-	       expandableRows: true,
-	       expandableRowsHeader: false,
+	 expandableRows: true,
+	 expandableRowsHeader: false,
          rowsPerPage: 100,
          elevation: 0,
 	 renderExpandableRow: (rowData, rowMeta) => {
