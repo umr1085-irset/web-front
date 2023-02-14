@@ -331,7 +331,7 @@ getMuiTheme = () => createMuiTheme({
        const options = {
          print: false,
          download: false,
-	       selectableRows: 'none',
+	 selectableRows: 'none',
          rowsPerPage: 100
        };
     return (
