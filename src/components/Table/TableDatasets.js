@@ -88,6 +88,7 @@ getMuiTheme = () => createMuiTheme({
           filter: true,
           sort: true,
           display: false,
+          reverse: true
          }
         },
         {
