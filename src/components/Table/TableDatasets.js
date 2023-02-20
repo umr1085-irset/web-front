@@ -328,19 +328,19 @@ getMuiTheme = () => createMuiTheme({
        //  },
        ];
 
-       //const options = {
-       //  print: false,
-       //  download: false,
-	     //  selectableRows: 'none',
-       //};
        const options = {
-        filter: true,
-        filterType: 'dropdown',
-        responsive: 'vertical',
-        sortOrder: {
+         print: false,
+         download: false,
+	       selectableRows: 'none',
+         filter: true,
+         filterType: 'dropdown',
+         responsive: 'vertical',
+         sortOrder: {
           name: 'Title',
-          direction: 'asc'}
+          direction: 'asc'
+         }
        };
+       
     return (
         <ThemeProvider theme={this.getMuiTheme()} >
         <MUIDataTable 
