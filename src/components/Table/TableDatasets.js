@@ -328,10 +328,18 @@ getMuiTheme = () => createMuiTheme({
        //  },
        ];
 
+       //const options = {
+       //  print: false,
+       //  download: false,
+	     //  selectableRows: 'none',
+       //};
        const options = {
-         print: false,
-         download: false,
-	 selectableRows: 'none',
+        filter: true,
+        filterType: 'dropdown',
+        responsive: 'vertical',
+        sortOrder: {
+          name: 'Title',
+          direction: 'desc'}
        };
     return (
         <ThemeProvider theme={this.getMuiTheme()} >
