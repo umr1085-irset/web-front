@@ -332,13 +332,13 @@ getMuiTheme = () => createMuiTheme({
          print: false,
          download: false,
 	       selectableRows: 'none',
-         filter: true,
-         filterType: 'dropdown',
-         responsive: 'vertical',
-         sortOrder: {
-          name: 'Title',
-          direction: 'asc'
-         }
+         //filter: true,
+         //filterType: 'dropdown',
+         //responsive: 'vertical',
+         //sortOrder: {
+         // name: 'Title',
+         // direction: 'asc'
+         //}
        };
        
     return (
