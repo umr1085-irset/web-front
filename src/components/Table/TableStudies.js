@@ -69,7 +69,7 @@ getMuiTheme = () => createMuiTheme({
          label: "Id",
          options: {
           filter: false,
-          sort: false,
+          sort: true,
           display: false,
          }
         },
