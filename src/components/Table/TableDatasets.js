@@ -339,7 +339,7 @@ getMuiTheme = () => createMuiTheme({
         responsive: 'vertical',
         sortOrder: {
           name: 'Title',
-          direction: 'desc'}
+          direction: 'asc'}
        };
     return (
         <ThemeProvider theme={this.getMuiTheme()} >
