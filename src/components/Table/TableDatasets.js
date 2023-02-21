@@ -336,10 +336,10 @@ getMuiTheme = () => createMuiTheme({
          //filter: true,
          //filterType: 'dropdown',
          //responsive: 'vertical',
-         //sortOrder: {
-         // name: 'Title',
-         // direction: 'asc'
-         //}
+         sortOrder: {
+          name: 'datasetId',
+          direction: 'desc'
+          }
        };
        
     return (
