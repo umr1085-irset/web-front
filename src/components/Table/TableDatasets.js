@@ -332,14 +332,7 @@ getMuiTheme = () => createMuiTheme({
        const options = {
          print: false,
          download: false,
-	       selectableRows: 'none',
-         //filter: true,
-         //filterType: 'dropdown',
-         //responsive: 'vertical',
-         sortOrder: {
-          name: 'datasetId',
-          direction: 'desc'
-          }
+	       selectableRows: 'none'
        };
        
     return (
