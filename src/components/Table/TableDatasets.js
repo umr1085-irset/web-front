@@ -336,7 +336,7 @@ getMuiTheme = () => createMuiTheme({
          filterType: 'dropdown',
          responsive: 'vertical',
          sortOrder: {
-           name: 'datasetId',
+           name: 'title',
            direction: 'desc'
          }
        };
