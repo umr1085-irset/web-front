@@ -333,6 +333,12 @@ getMuiTheme = () => createMuiTheme({
          print: false,
          download: false,
 	       selectableRows: 'none',
+         rowsPerPage: 100,
+
+         sortOrder: {
+            name: 'datasetId',
+            direction: 'desc'
+          },
        };
        
     return (
