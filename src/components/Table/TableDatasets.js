@@ -334,10 +334,10 @@ getMuiTheme = () => createMuiTheme({
 	       selectableRows: 'none',
          rowsPerPage: 100,
 
-         sortOrder: {
-            name: 'datasetId',
-            direction: 'desc'
-          },
+         //sortOrder: {
+         //   name: 'datasetId',
+         //   direction: 'desc'
+         // },
        };
        
     return (
