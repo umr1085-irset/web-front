@@ -49,7 +49,7 @@ class LoomPlotComponentCardNoSymbol extends Component {
           filters:{
             ca:{},
             reduction: ''
-        },
+          },
           anchorEl:null,
           anchorEl2:null,
           attrs:"",

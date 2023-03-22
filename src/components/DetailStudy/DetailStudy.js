@@ -157,9 +157,9 @@ class DetailStudyPage extends Component {
                                                     <Link to={"/dataset/"+data.datasetId}><Button key={"display_btn"+idx} color="primary" size="medium" startIcon={<ScatterPlotTwoToneIcon />} variant="outlined"> Visualize </Button></Link>
                                             </td>
                                             <td key={"download_"+idx} align="right" className="border-bottom border-top-0" width="64">
-					    {/*                                         <Button onClick={() => {this.downloadDataset(data.datasetId)}} variant="contained" color="primary" size="medium" startIcon={<GetAppOutlinedIcon /> }  key={"download_btn"+idx}>
-                                           Download
-                                     </Button> */}
+					    	<Button onClick={() => {this.downloadDataset(data.datasetId)}} variant="contained" color="primary" size="medium" startIcon={<GetAppOutlinedIcon /> }  key={"download_btn"+idx}>
+                                           		Download
+						</Button>
                                             </td>
                                         </tr>
                                     )
