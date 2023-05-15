@@ -57,7 +57,7 @@ class GeneExpPlotComponent extends Component {
       }
     }
     callbackUpdateGraph = (key,val) => {
-      console.log(key,val)
+      //console.log(key,val)
       this.setState({[key]:val})
     }
 
@@ -88,7 +88,7 @@ class GeneExpPlotComponent extends Component {
           <Divider />
           <MDBRow>
             <MDBCol md="12">
-              {this.state.chart_type==="scatter" || this.state.chart_type==="violin" || this.state.chart_type==="density" || this.state.chart_type==="hexabin" ?
+              {this.state.chart_type==="scatter" || this.state.chart_type==="violin" || this.state.chart_type==="density" || this.state.chart_type==="hexbin" ?
                 this.state.selector.ra.Symbol?
                 element:null
                 :

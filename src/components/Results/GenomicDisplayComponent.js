@@ -40,7 +40,7 @@ class GenomicDisplayComponent extends Component {
       }
 
       async getDataPlot(url,id,style,attrs,filters,reduction){
-	console.log(attrs);
+	//console.log(attrs);
   filters['reduction'] = reduction
         if(attrs){
           this.setState({loading:true,chart:null});
@@ -69,14 +69,14 @@ class GenomicDisplayComponent extends Component {
 
       async componentDidMount() {
           this.setState({chart_type:this.props.chart_type,scale:this.props.scale,selector:this.props.selector,selected_attrs:this.props.selected_attrs,reduction:this.props.reduction})
-          console.log(this.props.reduction)
+          //console.log(this.props.reduction)
           this.getDataPlot(this.props.url,this.props.loom,this.props.chart_type,this.props.selected_attrs,this.props.selector,this.props.reduction)
       }
 
       componentWillReceiveProps(nextProps) {
         if( nextProps.chart_type !== this.props.chart_type || nextProps.selected_attrs !== this.props.selected_attrs || nextProps.reduction !== this.props.reduction  ){
           this.setState({chart_type:nextProps.chart_type,scale:this.props.scale,selector:this.props.selector,selected_attrs:nextProps.selected_attrs,reduction:nextProps.reduction})
-          console.log(nextProps.reduction)
+          //console.log(nextProps.reduction)
           this.getDataPlot(this.props.url,this.props.loom,nextProps.chart_type,nextProps.selected_attrs,this.props.selector,nextProps.reduction)
         }
         
