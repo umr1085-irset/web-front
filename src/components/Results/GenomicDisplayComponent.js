@@ -92,7 +92,7 @@ class GenomicDisplayComponent extends Component {
         violin:PlotComponent,
         hexbin:PlotComponent,
         dot:PlotComponent,
-	density:PlotComponent
+	      density:PlotComponent
       };
       return (
           <MDBRow>
