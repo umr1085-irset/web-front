@@ -44,7 +44,8 @@ class GetPlotComponent extends Component {
         console.log(filters)
         console.log('###################')
         var plotData = {}
-        if(style==='violin' || style==='density'){
+        
+        if(style==='violin'){
           plotData={
             id:id,
             style:style,
