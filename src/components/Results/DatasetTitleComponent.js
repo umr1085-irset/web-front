@@ -29,6 +29,12 @@ class DatasetTitleComponent extends Component {
 
   render() {
       const dataset = this.props.dataset
+      if(dataset.metadata.cell_number_light==null){
+        const cell_num = dataset.metadata.cell_number
+      }
+      else{
+        const cell_num = dataset.metadata.cell_number_light
+      }
 	//console.log(dataset)
     return (
 	<Box>
@@ -39,7 +45,7 @@ class DatasetTitleComponent extends Component {
                           
                           <Typography variant="h2"> {dataset.title} 
 	    <Box className="MuiTypography-colorTextSecondary" style={{ fontSize: "0.9rem", display: "inline"}}>  {dataset.metadata.cell_number} {dataset.metadata.col_name} | {dataset.metadata.gene_number} {dataset.metadata.row_name}</Box>
-        <Box className="MuiTypography-colorTextSecondary" style={{ fontSize: "0.9rem", display: "inline"}}> <br>Representative {dataset.metadata.col_name}: {dataset.metadata.cell_number_light} out of {dataset.metadata.cell_number}</Box>
+        <Box className="MuiTypography-colorTextSecondary" style={{ fontSize: "0.9rem", display: "inline"}}> Representative {dataset.metadata.col_name}: {cell_num} out of {dataset.metadata.cell_number}</Box>
 	    </Typography>
                         
 	                 
