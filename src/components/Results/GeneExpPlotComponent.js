@@ -27,10 +27,10 @@ class GeneExpPlotComponent extends Component {
         super(props);
         this.state = {
           loading:true,
+          reduction:'',
           filters:{
             ra:{},
-            ca:{},
-            reduction:{}
+            ca:{}
           },
           selector:{
             ra:{},
@@ -45,17 +45,19 @@ class GeneExpPlotComponent extends Component {
       }
 
     componentDidMount() {
-        this.setState({chart_type:this.props.chart_type,filters:this.props.filters,selector:this.props.filters,selected_attrs:this.props.attrs})
+        this.setState({chart_type:this.props.chart_type,filters:this.props.filters,selector:this.props.filters,selected_attrs:this.props.attrs,reductions:this.props.reductions,reduction:this.props.reduction})
     }
     componentWillReceiveProps(nextProps) {
-      if( nextProps.filters !== this.props.filters || nextProps.chart_type !== this.state.chart_type){
+      if( nextProps.filters !== this.props.filters || nextProps.chart_type !== this.state.chart_type || nextProps.reduction !== this.state.reduction){
+        this.setState({reduction:nextProps.reduction})
+        this.setState({reductions:nextProps.reductions})
         this.setState({filters:nextProps.filters})
         this.setState({selector:nextProps.filters})
         this.setState({chart_type:nextProps.chart_type})
       }
     }
-    callbackUpdateGraph = (key,val) => { 
-      console.log(key,val)
+    callbackUpdateGraph = (key,val) => {
+      //console.log(key,val)
       this.setState({[key]:val})
     }
 
@@ -69,10 +71,10 @@ class GeneExpPlotComponent extends Component {
       const element = (
         <MDBRow>
           <MDBCol md="6" sm="12" className="colDivider">
-            <VerticalTabs selector={this.state.selector} type={this.state.chart_type} url={this.props.url} loom={this.props.loom} selected_attrs={this.state.selected_attrs}  scale={this.props.scale} />
+            <VerticalTabs selector={this.state.selector} type={this.state.chart_type} url={this.props.url} loom={this.props.loom} selected_attrs={this.state.selected_attrs}  scale={this.props.scale} reduction={this.state.reduction}/>
           </MDBCol>
           <MDBCol md="6" sm="12">
-            <VerticalTabs selector={this.state.selector} type={this.state.chart_type} url={this.props.url} loom={this.props.loom} selected_attrs={this.state.selected_attrs}  scale={this.props.scale} />
+            <VerticalTabs selector={this.state.selector} type={this.state.chart_type} url={this.props.url} loom={this.props.loom} selected_attrs={this.state.selected_attrs}  scale={this.props.scale} reduction={this.state.reduction}/>
           </MDBCol>
         </MDBRow>
       )
@@ -80,17 +82,17 @@ class GeneExpPlotComponent extends Component {
         <div>
           <MDBRow>
             <MDBCol md="12">
-              <GeneExpPlotMenuComponent scale={this.props.scale} loom={this.props.loom} display_type={this.props.display_type} chart_type={this.state.chart_type} selector={this.state.selector} filters={this.state.filters} selected_attrs={this.props.selected_attrs} attrs={this.props.all_attrs} setStateParent={(p, cb) => this.setState(p, cb)} callbackUpdateGraph={this.callbackUpdateGraph}/>
+              <GeneExpPlotMenuComponent scale={this.props.scale} loom={this.props.loom} display_type={this.props.display_type} chart_type={this.state.chart_type} selector={this.state.selector} filters={this.state.filters} selected_attrs={this.props.selected_attrs} attrs={this.props.all_attrs} reductions={this.state.reductions} setStateParent={(p, cb) => this.setState(p, cb)} callbackUpdateGraph={this.callbackUpdateGraph}/>
             </MDBCol>
           </MDBRow>
           <Divider />
           <MDBRow>
             <MDBCol md="12">
-              {this.state.chart_type==="scatter" || this.state.chart_type==="violin" || this.state.chart_type==="density" ?
+              {this.state.chart_type==="scatter" || this.state.chart_type==="violin" || this.state.chart_type==="density" || this.state.chart_type==="hexbin" ?
                 this.state.selector.ra.Symbol?
                 element:null
                 :
-                <GenomicDisplayComponent url={this.props.url} loom={this.props.loom} type={this.props.chart_type} scale={this.state.scale} chart_type={this.state.chart_type} selector={this.state.selector} selected_attrs={this.state.selected_attrs} style={{ height: 800}} />
+                <GenomicDisplayComponent url={this.props.url} loom={this.props.loom} type={this.props.chart_type} scale={this.state.scale} chart_type={this.state.chart_type} selector={this.state.selector} selected_attrs={this.state.selected_attrs} reduction={this.state.reduction} style={{ height: 800}} />
               }     
             </MDBCol>
           </MDBRow>

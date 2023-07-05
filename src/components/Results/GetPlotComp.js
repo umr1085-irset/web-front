@@ -37,10 +37,15 @@ class GetPlotComponent extends Component {
         };
       }
 
-      async getDataPlot(url,id,style,attrs,filters,symbol){
+      async getDataPlot(url,id,style,attrs,filters,symbol,reduction){
         this.setState({loading:true});
+        filters['reduction'] = reduction
+        console.log('###################')
+        console.log(filters)
+        console.log('###################')
         var plotData = {}
-        if(style==='violin' || style==='density'){
+        
+        if(style==='violin'){
           plotData={
             id:id,
             style:style,
@@ -72,12 +77,13 @@ class GetPlotComponent extends Component {
       }
 
       async componentDidMount() {
-          this.getDataPlot(this.props.url,this.props.id,this.props.type,this.props.attrs,this.props.filters,this.props.gene)
+          this.getDataPlot(this.props.url,this.props.id,this.props.type,this.props.attrs,this.props.filters,this.props.gene, this.props.reduction)
+          console.log(this.props.reduction)
       }
 
       componentWillReceiveProps(nextProps) {
-        if( nextProps.filters !== this.props.filters || nextProps.attrs !== this.props.attrs || nextProps.type !== this.props.type  || nextProps.gene !== this.props.gene  ){
-          this.getDataPlot(this.props.url,this.props.id,nextProps.type,nextProps.attrs,nextProps.filters,nextProps.gene)
+        if( nextProps.filters !== this.props.filters || nextProps.attrs !== this.props.attrs || nextProps.type !== this.props.type  || nextProps.gene !== this.props.gene || nextProps.reduction !== this.props.reduction  ){
+          this.getDataPlot(this.props.url,this.props.id,nextProps.type,nextProps.attrs,nextProps.filters,nextProps.gene,nextProps.reduction)
         }
         
       }
