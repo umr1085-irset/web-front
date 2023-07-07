@@ -54,7 +54,11 @@ class DatasetTitleComponent extends Component {
                     </MDBCol>
         </MDBRow>
         <MDBRow>
+        <MDBCol md="12">
+        <Typography variant="h2">
         <Box className="MuiTypography-colorTextSecondary" style={{ fontSize: "0.9rem", display: "inline"}}>{representative_cell_num}</Box>
+        </Typography>
+        </MDBCol>
         </MDBRow>
 
 
