@@ -59,6 +59,11 @@ class ResultsLayout extends Component {
 
   render() {
       const dataset = this.props.dataset
+      if(dataset.metadata.cell_number_light==null){
+            var col_tot_value = dataset.metadata.cell_number
+      } else{
+            var col_tot_value =dataset.metadata.cell_number_light
+      }
       
     return (
         <div>    
@@ -83,7 +88,7 @@ class ResultsLayout extends Component {
                     
                     <Card className="card-chart">
                         <CardHeader 
-	    		title={ <StatisticsComponent loom={dataset.loom.id}  col_name={dataset.metadata.col_name} url="/api/v1/dataset/statistics/" filters={this.state.filters} col_tot={dataset.metadata.cell_number} /> }
+	    		title={ <StatisticsComponent loom={dataset.loom.id}  col_name={dataset.metadata.col_name} url="/api/v1/dataset/statistics/" filters={this.state.filters} col_tot={col_tot_value} /> }
 			action={
                             <IconButton
                                 id="togglerMO"

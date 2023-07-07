@@ -43,7 +43,6 @@ class DatasetTitleComponent extends Component {
                           
                           <Typography variant="h2"> {dataset.title} 
 	    <Box className="MuiTypography-colorTextSecondary" style={{ fontSize: "0.9rem", display: "inline"}}>  {dataset.metadata.cell_number} {dataset.metadata.col_name} | {dataset.metadata.gene_number} {dataset.metadata.row_name}</Box>
-        <Box className="MuiTypography-colorTextSecondary" style={{ fontSize: "0.9rem", display: "inline"}}>{representative_cell_num}</Box>
 	    </Typography>
                         
 	                 
