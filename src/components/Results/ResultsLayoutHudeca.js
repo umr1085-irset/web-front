@@ -116,7 +116,7 @@ class ResultsLayout extends Component {
             <MDBRow>
                 <MDBCol md="12">
                     <Card className="card-chart">
-                        <CardHeader title={  "Cell proximity representation"}
+                        <CardHeader title={  "Dimensionality reduction"}
 	    			action={
                             <IconButton
                                 id="togglerSO"
