@@ -32,7 +32,7 @@ class DatasetTitleComponent extends Component {
     if(dataset.metadata.cell_number_light==null){
         var representative_cell_num = ""//dataset.metadata.cell_number
     } else{
-        var representative_cell_num = "Representative cells: "+dataset.metadata.cell_number_light.toString()+" out of "+dataset.metadata.cell_number.toString()
+        var representative_cell_num = "Representative "+dataset.metadata.col_name+": "+dataset.metadata.cell_number_light.toString()+" out of "+dataset.metadata.cell_number.toString()
     }
     return (
 	<Box>
@@ -52,7 +52,12 @@ class DatasetTitleComponent extends Component {
                     <MDBCol md="2">
                         {dataset.rel_datasets.datasets.length?  <Box>RELATED DATASETS <ExpandMoreIcon fontSize="large" id="togglerdatasets"/></Box>:<p></p>}
                     </MDBCol>
-                </MDBRow>
+        </MDBRow>
+        <MDBRow>
+        <Box className="MuiTypography-colorTextSecondary" style={{ fontSize: "0.9rem", display: "inline"}}>{representative_cell_num}</Box>
+        </MDBRow>
+
+
 
                  
 	    </MDBContainer>
