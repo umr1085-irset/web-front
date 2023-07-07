@@ -59,10 +59,10 @@ class ResultsLayout extends Component {
 
   render() {
       const dataset = this.props.dataset
-      if(dataset.metadata.row_name.endsWith('s')){
-        var row_name = dataset.metadata.row_name.slice(0,-1)
+      if(dataset.metadata.cell_number_light==null){
+            var col_tot_value = dataset.metadata.cell_number
       } else{
-        var row_name = dataset.metadata.row_name
+            var col_tot_value =dataset.metadata.cell_number_light
       }
       
     return (
@@ -88,7 +88,7 @@ class ResultsLayout extends Component {
                     
                     <Card className="card-chart">
                         <CardHeader 
-	    		title={ <StatisticsComponent loom={dataset.loom.id}  col_name={dataset.metadata.col_name} url="/api/v1/dataset/statistics/" filters={this.state.filters} col_tot={dataset.metadata.cell_number} /> }
+	    		title={ <StatisticsComponent loom={dataset.loom.id}  col_name={dataset.metadata.col_name} url="/api/v1/dataset/statistics/" filters={this.state.filters} col_tot={col_tot_value} /> }
 			action={
                             <IconButton
                                 id="togglerMO"
@@ -150,7 +150,7 @@ class ResultsLayout extends Component {
             <MDBRow>
                 <MDBCol md="12">
                     <Card className="card-chart">
-                        <CardHeader title={row_name+" expression"}  action={
+                        <CardHeader title="Expression"  action={
                             <IconButton
                                 id="togglerGE"
                                 aria-label="show more"

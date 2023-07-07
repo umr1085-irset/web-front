@@ -68,7 +68,7 @@ class StatisticsComponent extends Component {
 	? <Spinner/>
 	: <Box style={{ display: "inline" }} >
   
-     Nb {col_name} :  {col_val}/ <span style={{ fontSize: 10 }}> {col_tot} </span> ({percent_col}%)
+     Percentage of filtered {col_name}: {percent_col}% ({col_val}/{col_tot})
             </Box> }
         </Box>
 
