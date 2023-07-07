@@ -29,16 +29,13 @@ class DatasetTitleComponent extends Component {
 
   render() {
     const dataset = this.props.dataset
-    //console.log(dataset)
-    //console.log(dataset.metadata.cell_number_light)
-    //if(dataset.metadata.cell_number_light==null){
-    //    const cell_num = dataset.metadata.cell_number
-    //}
-    //else{
-    //    const cell_num = dataset.metadata.cell_number_light
-    //}
-	//console.log(dataset)
-    //console.log(cell_num)
+    console.log(dataset)
+    console.log(dataset.metadata.cell_number_light)
+    if(dataset.metadata.cell_number_light==null){
+        var representative_cell_num = ""//dataset.metadata.cell_number
+    } else{
+        var representative_cell_num = "Representative cells: "+dataset.metadata.cell_number_light.toString()+" out of "+dataset.metadata.cell_number.toString()
+    }
     return (
 	<Box>
 
@@ -48,7 +45,7 @@ class DatasetTitleComponent extends Component {
                           
                           <Typography variant="h2"> {dataset.title} 
 	    <Box className="MuiTypography-colorTextSecondary" style={{ fontSize: "0.9rem", display: "inline"}}>  {dataset.metadata.cell_number} {dataset.metadata.col_name} | {dataset.metadata.gene_number} {dataset.metadata.row_name}</Box>
-        
+        <Box className="MuiTypography-colorTextSecondary" style={{ fontSize: "0.9rem", display: "inline"}}>{representative_cell_num}</Box>
 	    </Typography>
                         
 	                 
