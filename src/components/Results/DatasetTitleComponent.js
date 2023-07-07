@@ -29,8 +29,6 @@ class DatasetTitleComponent extends Component {
 
   render() {
     const dataset = this.props.dataset
-    console.log(dataset)
-    console.log(dataset.metadata.cell_number_light)
     if(dataset.metadata.cell_number_light==null){
         var representative_cell_num = ""//dataset.metadata.cell_number
     } else{
