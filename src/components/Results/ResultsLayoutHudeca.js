@@ -59,6 +59,11 @@ class ResultsLayout extends Component {
 
   render() {
       const dataset = this.props.dataset
+      if(dataset.metadata.row_name.endsWith('s')){
+        var row_name = dataset.metadata.row_name.slice(0,-1)
+      } else{
+        var row_name = dataset.metadata.row_name
+      }
       
     return (
         <div>    
@@ -116,7 +121,7 @@ class ResultsLayout extends Component {
             <MDBRow>
                 <MDBCol md="12">
                     <Card className="card-chart">
-                        <CardHeader title={  "Cell proximity representation"}
+                        <CardHeader title={  "Dimensionality reduction"}
 	    			action={
                             <IconButton
                                 id="togglerSO"
@@ -145,7 +150,7 @@ class ResultsLayout extends Component {
             <MDBRow>
                 <MDBCol md="12">
                     <Card className="card-chart">
-                        <CardHeader title={dataset.metadata.row_name+" expression"}  action={
+                        <CardHeader title={row_name+" expression"}  action={
                             <IconButton
                                 id="togglerGE"
                                 aria-label="show more"
