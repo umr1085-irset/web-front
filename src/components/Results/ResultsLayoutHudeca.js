@@ -136,10 +136,10 @@ class ResultsLayout extends Component {
                             <CardContent className="spatialCollapse">
                                 <MDBRow>
                                     <MDBCol md="6" className="colDivider spatialCollapse">
-                                        <LoomPlotComponentNoCard className="spatialCollapse" default_display={dataset.default_display} reductions={dataset.reductions} display_type={['scatter','density']}  loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="scatter" attrs={dataset.metadata.filters_keys.ca[0]} all_attrs={dataset.metadata.filters_keys} name="C4"></LoomPlotComponentNoCard>
+                                        <LoomPlotComponentNoCard className="spatialCollapse" default_display={dataset.default_display} reductions={dataset.reductions} display_type={['scatter']}  loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="scatter" attrs={dataset.metadata.filters_keys.ca[0]} all_attrs={dataset.metadata.filters_keys} name="C4"></LoomPlotComponentNoCard>
                                     </MDBCol>
                                     <MDBCol md="6" className="spatialCollapse">
-                                        <LoomPlotComponentNoCard className="spatialCollapse" default_display={dataset.default_display} reductions={dataset.reductions} display_type={['scatter','density']}  loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="scatter" attrs={dataset.metadata.filters_keys.ca[1]} all_attrs={dataset.metadata.filters_keys}   name="C5"></LoomPlotComponentNoCard>
+                                        <LoomPlotComponentNoCard className="spatialCollapse" default_display={dataset.default_display} reductions={dataset.reductions} display_type={['scatter']}  loom={dataset.loom.id} url="/api/v1/dataset/attributes/" filters={this.state.filters} chart_type="scatter" attrs={dataset.metadata.filters_keys.ca[1]} all_attrs={dataset.metadata.filters_keys}   name="C5"></LoomPlotComponentNoCard>
                                     </MDBCol>
                                 </MDBRow>
                             </CardContent>
