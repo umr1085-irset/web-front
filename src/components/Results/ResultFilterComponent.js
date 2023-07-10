@@ -117,7 +117,7 @@ class ResultsFilterLayout extends Component {
 	    		<MDBRow>
 	    		 <MDBCol md="4">
                             <FormControl className="control-filter align-middle">
-                                <InputLabel className="control-filter align-middle" id="demo-simple-select-label2">Cell metadata</InputLabel>
+                                <InputLabel className="control-filter align-middle" id="demo-simple-select-label2">Metadata</InputLabel>
                                 <Select className="control-filter"
                                     labelId="demo-simple-select-label2"
                                     id="demo-simple-select2"

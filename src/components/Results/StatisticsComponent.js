@@ -63,12 +63,12 @@ class StatisticsComponent extends Component {
       const percent_col = Math.round((col_val/col_tot)*100)
 
     return (
-	<Box> CELL REPARTITION OVERVIEW   --    
+	<Box> DATASET OVERVIEW   --    
             {this.state.loading
 	? <Spinner/>
 	: <Box style={{ display: "inline" }} >
   
-     Nb {col_name} :  {col_val}/ <span style={{ fontSize: 10 }}> {col_tot} </span> ({percent_col}%)
+     Percentage of filtered {col_name}: {percent_col}% ({col_val}/{col_tot})
             </Box> }
         </Box>
 

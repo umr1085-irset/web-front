@@ -72,10 +72,12 @@ class LoomPlotComponentCard extends Component {
           menu:menu,
           filters:filters
         }
+        console.log('nocard')
+        console.log(plotData)
         await trackPromise(
           axios.post(url,plotData)
           .then(response => {
-            //console.log(response.data.options)
+            console.log(response.data.options)
             this.setState({
               chart:response.data.chart,
               style:response.data.style,
@@ -85,7 +87,7 @@ class LoomPlotComponentCard extends Component {
           })
           .catch(error => {
             toastOnError("Error loading dataset LOOMNOCARD");
-            //console.log(filters)
+            console.log(filters)
           })
         )
       }
@@ -100,7 +102,6 @@ class LoomPlotComponentCard extends Component {
           this.getDataPlot(this.props.url,this.props.loom,this.state.chart_type,this.state.attrs,this.props.menu,nextProps.filters)
         }
       }
-
       
       state = {
         collapseID: ""
@@ -143,7 +144,6 @@ class LoomPlotComponentCard extends Component {
       }
 
       callbackUpdateGraphReduc = (reduc) => { 
-
         this.setState({collapseID: "",reduc:reduc})
         this.state.filters.reduction = reduc
         this.getDataPlot(this.props.url,this.props.loom,this.state.chart_type,this.state.attrs,this.props.menu,this.state.filters)
