@@ -18,6 +18,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import GraphSelector from './GraphSelector'
 import GraphSelectorLight from './GraphSelectorLight'
+import GraphSelectorLightAttributeOnly from './GraphSelectorLightAttributeOnly'
 import ReductionSelector from './ReductionSelector'
 
 import { toastOnError } from "../../utils/Utils";
