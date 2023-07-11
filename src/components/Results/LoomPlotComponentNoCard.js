@@ -224,7 +224,7 @@ class LoomPlotComponentCard extends Component {
                 >
                     {this.state.genes_menu? 
                       <GraphSelector chart_type={this.state.chart_type} filters={this.state.filters} genes_menu={this.state.genes_menu} setStateParent={(p, cb) => this.setState(p, cb)}/> : 
-                      <GraphSelectorLight display_type={this.props.display_type} chart_type={this.state.chart_type} filters={this.state.filters} selected_attrs={this.state.attrs} attrs={this.props.all_attrs} callbackUpdateGraph={this.callbackUpdateGraph} name={this.props.name}/>
+                      <GraphSelectorLightAttributeOnly display_type={this.props.display_type} chart_type={this.state.chart_type} filters={this.state.filters} selected_attrs={this.state.attrs} attrs={this.props.all_attrs} callbackUpdateGraph={this.callbackUpdateGraph} name={this.props.name}/>
                     }
                 </MenuItem>
            
