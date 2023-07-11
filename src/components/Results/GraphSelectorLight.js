@@ -24,7 +24,7 @@ class GraphSelectorLight extends Component {
       let tagList = attributes.map((attribute,idx)  => 
         <MDBCol  key={this.props.name+"_2_col1_btn"+idx}>
             <MDBRow middle key={this.props.name+"_2_col1_r1"+idx}>
-                    <Button onClick={(e) => this.updateGraph(attribute,'scatter')}  id={this.props.name+"_2_btn"+idx} >{attribute}</Button>
+                    <Button onClick={(e) => this.updateGraph(attribute,'scatter')}  id={this.props.name+"_2_btn"+idx} style={{ textTransform: 'capitalize' }}>{attribute}</Button>
              </MDBRow>
          
         </MDBCol>        
