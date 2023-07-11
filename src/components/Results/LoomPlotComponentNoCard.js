@@ -177,7 +177,7 @@ class LoomPlotComponentCard extends Component {
               :
               <MDBCol md="2">
               <Button id="button2" disableRipple style={{ textTransform: 'capitalize' }} aria-controls="simple-menu-reduc"  aria-haspopup="true" onClick={this.handleClick2}>
-              Method<MDBIcon className="ml-2" icon="angle-down" />
+              {this.state.reduction}<MDBIcon className="ml-2" icon="angle-down" />
               </Button>
               <Menu 
                 id="simple-menu-reduc"
