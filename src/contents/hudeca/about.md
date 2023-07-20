@@ -23,6 +23,6 @@ Data are stored according to two different modalities:
 
 ### Submitting data to UncoVer
 
-Please contact us if you would like to submit your datasets to UncoVer. [contact us](mailto:frederic.chalmel@inserm.fr) 
+Please [contact us](mailto:frederic.chalmel@inserm.fr) if you would like to submit your datasets to UncoVer.  
 
 
