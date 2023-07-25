@@ -32,7 +32,6 @@ class TableComponent extends Component {
     const KeysToTable ={
       studies:StudyTable,
       datasets:DatasetTable,
-      genomebrowser:GenomeBrowserTable
     }
     const rows = this.props.data
     return (

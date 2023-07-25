@@ -18,6 +18,8 @@
 */
 import React, { Component } from "react";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles"; 
+import {Spinner} from '../../components/Loading/LoadingComponent'
+
 import { Link } from "react-router-dom";
 import MUIDataTable from "mui-datatables";
 import { Button,} from '@material-ui/core';
@@ -28,8 +30,31 @@ import { Box } from "@material-ui/core";
 class TableGenomeBrowserComponent extends Component {
   constructor(props) {
     super(props);
+    this.state ={
+      loading:true,
+      species:null
+    };
   }
   
+  async getGenomeData(){
+    this.setState({loading:true})
+    const url = "/api/v1/public/genomebrowser";
+    await trackPromise(
+      axios.get(url)
+      .then(response => {
+        this.setState({
+            species:response.data,
+            loading:false});
+      })
+      .catch(error => {
+        toastOnError("Error loading genome browser list");
+      })
+    )
+  }
+
+async componentDidMount() {
+    this.getGenomeData()
+}
 
 getMuiTheme = () => createMuiTheme({
     overrides: {
@@ -99,11 +124,13 @@ getMuiTheme = () => createMuiTheme({
         };
         return (
             <ThemeProvider theme={this.getMuiTheme()} >
-            <MUIDataTable 
-                data={rows}
-                columns={columns}
-                options={options}
-            />
+              {this.state.loading ? <Spinner/> :
+                <MUIDataTable 
+                    data={rows}
+                    columns={columns}
+                    options={options}
+                />
+              }
   	</ThemeProvider>
     );
   }
