@@ -39,8 +39,9 @@ class TableGenomeBrowserComponent extends Component {
   }
   
   async getGenomeData(){
+    console.log('there')
     this.setState({loading:true})
-    const url = "/api/v1/public/genomebrowser";
+    const url = "/api/v1/public/genomebrowser";\
     await trackPromise(
       axios.get(url)
       .then(response => {
@@ -54,43 +55,43 @@ class TableGenomeBrowserComponent extends Component {
     )
   }
 
-async componentDidMount() {
-    this.getGenomeData()
-}
+  async componentDidMount() {
+      this.getGenomeData()
+  }
 
-getMuiTheme = () => createMuiTheme({
-    overrides: {
-	 MuiPaper: {
-	       elevation4: {
-		       boxShadow: "none"
-		    },
-		
-	 },
-         MUIDataTableBodyCell: {
-	          root: {
-               fontSize: "0.8rem",
-	       color: "black",
-	          }
+  getMuiTheme = () => createMuiTheme({
+      overrides: {
+    MuiPaper: {
+          elevation4: {
+            boxShadow: "none"
+          },
+      
+    },
+          MUIDataTableBodyCell: {
+              root: {
+                fontSize: "0.8rem",
+          color: "black",
+              }
 
-	        },
-	    MUIDataTableHeadCell: {
-		 fixedHeader: {
-	         backgroundColor: "#FAFAFA",
-	         textTransform: "uppercase",
-	         fontSize: "0.7em"
-		}
-	    },
-	    MUIDataTableSelectCell : {
-		    
-		    headerCell: {
-	             background: "#DFEFEE",
-		     backgroundColor: "#DFEFEE"
-			}
-		  }
+            },
+        MUIDataTableHeadCell: {
+      fixedHeader: {
+            backgroundColor: "#FAFAFA",
+            textTransform: "uppercase",
+            fontSize: "0.7em"
+      }
+        },
+        MUIDataTableSelectCell : {
+          
+          headerCell: {
+                background: "#DFEFEE",
+          backgroundColor: "#DFEFEE"
         }
-  })
+        }
+          }
+    })
     
-    render() {
+  render() {
         const rows = this.props.rows
         const columns = [
         {
