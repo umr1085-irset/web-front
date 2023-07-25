@@ -47,33 +47,33 @@ class TableDatasetsComponent extends Component {
 
 getMuiTheme = () => createMuiTheme({
     overrides: {
-	 MuiPaper: {
-	       elevation4: {
-		       boxShadow: "none"
-		    },
-		
-	 },
+     MuiPaper: {
+           elevation4: {
+               boxShadow: "none"
+            },
+        
+     },
          MUIDataTableBodyCell: {
-	          root: {
+              root: {
                fontSize: "0.8rem",
-	       color: "black",
-	          }
+           color: "black",
+              }
 
-	        },
-	    MUIDataTableHeadCell: {
-		 fixedHeader: {
-	         backgroundColor: "#FAFAFA",
-	         textTransform: "uppercase",
-	         fontSize: "0.7em"
-		}
-	    },
-	    MUIDataTableSelectCell : {
-		    
-		    headerCell: {
-	             background: "#DFEFEE",
-		     backgroundColor: "#DFEFEE"
-			}
-		  }
+            },
+        MUIDataTableHeadCell: {
+         fixedHeader: {
+             backgroundColor: "#FAFAFA",
+             textTransform: "uppercase",
+             fontSize: "0.7em"
+        }
+        },
+        MUIDataTableSelectCell : {
+            
+            headerCell: {
+                 background: "#DFEFEE",
+             backgroundColor: "#DFEFEE"
+            }
+          }
         }
   })
 
@@ -87,12 +87,7 @@ getMuiTheme = () => createMuiTheme({
          options: {
           filter: true,
           sort: false,
-          display: true,
-           customBodyRender: (value, tableMeta, updateValue) => (
-              value.join(", ")
-            )
-          }
-         },
+          display: false,
          }
         },
         {
@@ -107,12 +102,12 @@ getMuiTheme = () => createMuiTheme({
                 <Box style={{width:200, maxWidth:240}}><Link to={"/dataset/"+this.props.rows[rowIndex].datasetId} className="primary">
                     {this.props.rows[rowIndex].title}
                 </Link></Box>
-		      
+              
               );
             }
           }
         },
-      	      
+              
         {
          name: "loomColInfo",
          label: "Nb",
@@ -140,11 +135,11 @@ getMuiTheme = () => createMuiTheme({
           options: {
            filter: true,
            sort: false,
-	   display: true,
+       display: true,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
-        /*	
+        /*  
             customBodyRenderLite: (dataIndex, rowIndex) => {
               return (
                 <span>
@@ -199,7 +194,7 @@ getMuiTheme = () => createMuiTheme({
          options: {
           filter: true,
           sort: false,
-	  display: false,
+      display: false,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -207,7 +202,7 @@ getMuiTheme = () => createMuiTheme({
         },
 
 
-	      {
+          {
           name:"sex",
           label: "Sex",
           options: {
@@ -254,7 +249,7 @@ getMuiTheme = () => createMuiTheme({
           options: {
            filter: true,
            sort: false,
-		  display: true,
+          display: true,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -281,7 +276,7 @@ getMuiTheme = () => createMuiTheme({
           options: {
            filter: true,
            sort: false,
-	   display: true,
+       display: true,
            customBodyRender: (value, tableMeta, updateValue) => (
               value.join(", ")
             )
@@ -317,7 +312,7 @@ getMuiTheme = () => createMuiTheme({
           }
          },
 
-	//         {
+    //         {
         //  name: "id",
         //  label: "Download",
         //  options: {
@@ -337,7 +332,7 @@ getMuiTheme = () => createMuiTheme({
        const options = {
          print: false,
          download: false,
-	 selectableRows: 'none',
+     selectableRows: 'none',
        };
     return (
         <ThemeProvider theme={this.getMuiTheme()} >
@@ -346,7 +341,7 @@ getMuiTheme = () => createMuiTheme({
           columns={columns}
           options={options}
         />
-  	</ThemeProvider>
+    </ThemeProvider>
     );
   }
 }
