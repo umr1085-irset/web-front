@@ -41,7 +41,7 @@ class TableGenomeBrowserComponent extends Component {
   async getGenomeData(){
     console.log('there')
     this.setState({loading:true})
-    const url = "/api/v1/public/genomebrowser";\
+    const url = "/api/v1/public/genomebrowser";
     await trackPromise(
       axios.get(url)
       .then(response => {
