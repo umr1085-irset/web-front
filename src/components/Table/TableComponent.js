@@ -20,6 +20,7 @@ import React, { Component } from "react";
 
 import StudyTable from './TableStudies'
 import DatasetTable from './TableDatasets'
+import GenomeBrowserTable from './TableGenomeBrowser'
 
 
 class TableComponent extends Component {
@@ -31,6 +32,7 @@ class TableComponent extends Component {
     const KeysToTable ={
       studies:StudyTable,
       datasets:DatasetTable,
+      genomebrowser:GenomeBrowserTable
     }
     const rows = this.props.data
     return (

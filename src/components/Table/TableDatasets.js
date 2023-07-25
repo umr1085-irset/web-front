@@ -87,7 +87,12 @@ getMuiTheme = () => createMuiTheme({
          options: {
           filter: true,
           sort: false,
-          display: false,
+          display: true,
+           customBodyRender: (value, tableMeta, updateValue) => (
+              value.join(", ")
+            )
+          }
+         },
          }
         },
         {
