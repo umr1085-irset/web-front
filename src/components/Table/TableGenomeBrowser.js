@@ -19,6 +19,7 @@
 import React, { Component } from "react";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles"; 
 import {Spinner} from '../../components/Loading/LoadingComponent'
+import { withRouter  } from "react-router-dom";
 
 import { Link } from "react-router-dom";
 import MUIDataTable from "mui-datatables";
@@ -126,17 +127,27 @@ class TableGenomeBrowserComponent extends Component {
             selectableRows: 'none',
         };
         return (
-            <ThemeProvider theme={this.getMuiTheme()} >
-              {this.state.loading ? <Spinner/> :
-                <MUIDataTable 
-                    data={rows}
-                    columns={columns}
-                    options={options}
-                />
-              }
-  	</ThemeProvider>
+          <ThemeProvider theme={this.getMuiTheme()} >
+            {this.state.loading ? <Spinner/> :
+              <MUIDataTable 
+                  data={rows}
+                  columns={columns}
+                  options={options}
+              />
+            }
+          </ThemeProvider>
+            // <Box>
+            //   <Box ml="1%">	
+            //     <Breadcrumbs/> 
+            //   </Box>
+            //   <Paper>
+            //     <Box mx={4} mb={4} mt={-2}>
+            //       {this.state.loading ? <Spinner/> : <TableComponent data={this.state.data} filters={this.state.filters} type={this.props.match.params.browse_by} />}
+            //     </Box>
+            //   </Paper>
+            // </Box>
     );
   }
 }
 
-export default TableGenomeBrowserComponent;
+export default withRouter(TableGenomeBrowserComponent);
