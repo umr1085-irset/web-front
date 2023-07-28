@@ -40,15 +40,19 @@ class TableGenomeBrowserComponent extends Component {
   }
   
   async getGenomeData(){
-    console.log('there')
     this.setState({loading:true})
+    console.log('1')
     const url = "/api/v1/public/genomebrowser";
+    console.log('2')
     await trackPromise(
+      console.log('3')
       axios.get(url)
       .then(response => {
+        console.log('4')
         this.setState({
             species:response.data,
             loading:false});
+        console.log('5')
       })
       .catch(error => {
         toastOnError("Error loading genome browser list");
