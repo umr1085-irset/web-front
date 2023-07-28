@@ -101,9 +101,9 @@ class TableGenomeBrowserComponent extends Component {
                 filter: true,
                 sort: false,
                 display: true,
-                customBodyRender: (value, tableMeta, updateValue) => (
-                    value.join(", ")
-                )
+                //customBodyRender: (value, tableMeta, updateValue) => (
+                //    value.join(", ")
+                //)
             }
         },
         {
@@ -113,9 +113,9 @@ class TableGenomeBrowserComponent extends Component {
                 filter: true,
                 sort: false,
                 display: true,
-                customBodyRender: (value, tableMeta, updateValue) => (
-                    value.join(", ")
-                )
+                //customBodyRender: (value, tableMeta, updateValue) => (
+                //    value.join(", ")
+                //)
             }
         }
         ];
