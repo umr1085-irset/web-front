@@ -41,9 +41,7 @@ class TableGenomeBrowserComponent extends Component {
   
   async getGenomeData(){
     this.setState({loading:true})
-    console.log('1')
     const url = "/api/v1/public/genomebrowser";
-    console.log('2')
     await trackPromise(
       axios.get(url)
       .then(response => {
@@ -64,20 +62,18 @@ class TableGenomeBrowserComponent extends Component {
   }
 
   getMuiTheme = () => createMuiTheme({
-      overrides: {
-    MuiPaper: {
-          elevation4: {
-            boxShadow: "none"
-          },
-      
-    },
-          MUIDataTableBodyCell: {
-              root: {
-                fontSize: "0.8rem",
+    overrides: {
+      MuiPaper: {
+        elevation4: {
+          boxShadow: "none"
+        },
+      },
+      MUIDataTableBodyCell: {
+        root: {
+          fontSize: "0.8rem",
           color: "black",
-              }
-
-            },
+        }
+      },
         MUIDataTableHeadCell: {
       fixedHeader: {
             backgroundColor: "#FAFAFA",
@@ -97,6 +93,7 @@ class TableGenomeBrowserComponent extends Component {
     
   render() {
         const rows = this.props.rows
+        console.log(rows)
         const columns = [
         {
             name: "genome",
@@ -105,9 +102,9 @@ class TableGenomeBrowserComponent extends Component {
                 filter: true,
                 sort: false,
                 display: true,
-                //customBodyRender: (value, tableMeta, updateValue) => (
-                //    value.join(", ")
-                //)
+                customBodyRender: (value, tableMeta, updateValue) => (
+                  value.join(", ")
+                )
             }
         },
         {
@@ -117,9 +114,9 @@ class TableGenomeBrowserComponent extends Component {
                 filter: true,
                 sort: false,
                 display: true,
-                //customBodyRender: (value, tableMeta, updateValue) => (
-                //    value.join(", ")
-                //)
+                customBodyRender: (value, tableMeta, updateValue) => (
+                  value.join(", ")
+                )
             }
         }
         ];
@@ -149,6 +146,20 @@ class TableGenomeBrowserComponent extends Component {
             //     </Box>
             //   </Paper>
             // </Box>
+
+            // displayTable = (KeysToTable,key,rows) =>{
+            //   return React.createElement(KeysToTable[key],{rows: rows})
+            // }
+            // render() {
+            //   const KeysToTable ={
+            //     studies:StudyTable,
+            //     datasets:DatasetTable,
+            //   }
+            //   const rows = this.props.data
+            //   return (
+            //       <div>
+            //         {this.displayTable(KeysToTable,this.props.type,rows)}
+            //       </div>
     );
   }
 }
