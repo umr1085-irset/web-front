@@ -93,7 +93,7 @@ class TableGenomeBrowserComponent extends Component {
     
   render() {
         const rows = this.props.rows
-        console.log(rows)
+        console.log(this.props.rows)
         const columns = [
         {
             name: "genome",
