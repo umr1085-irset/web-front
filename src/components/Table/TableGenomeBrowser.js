@@ -103,9 +103,16 @@ class TableGenomeBrowserComponent extends Component {
                 filter: true,
                 sort: false,
                 display: true,
-                customBodyRender: (value, tableMeta, updateValue) => (
-                  value.join(", ")
-                )
+                // customBodyRender: (value, tableMeta, updateValue) => (
+                //   value.join(", ")
+                // )
+                customBodyRenderLite: (dataIndex, rowIndex) => {
+                  return (
+                    
+                    <Box style={{width:200, maxWidth:240}}>{this.state.species[rowIndex].name}</Box>
+                  
+                  );
+                // }
             }
         },
         {
@@ -115,9 +122,16 @@ class TableGenomeBrowserComponent extends Component {
                 filter: true,
                 sort: false,
                 display: true,
-                customBodyRender: (value, tableMeta, updateValue) => (
-                  value.join(", ")
-                )
+                // customBodyRender: (value, tableMeta, updateValue) => (
+                //   value.join(", ")
+                // )
+                customBodyRenderLite: (dataIndex, rowIndex) => {
+                  return (
+                    
+                    <Box style={{width:200, maxWidth:240}}>{this.props.rows[rowIndex].short}</Box>
+                  
+                  );
+                }
             }
         }
         ];
