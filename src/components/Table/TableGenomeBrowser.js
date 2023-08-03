@@ -112,7 +112,7 @@ class TableGenomeBrowserComponent extends Component {
                     <Box style={{width:200, maxWidth:240}}>{this.state.species[rowIndex].name}</Box>
                   
                   );
-                // }
+                }
             }
         },
         {
