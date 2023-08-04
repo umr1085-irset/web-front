@@ -149,7 +149,7 @@ class TableGenomeBrowserComponent extends Component {
                   
                   //<Box style={{width:200, maxWidth:240}}>{this.state.species[rowIndex].short}</Box>
                   //<a class="btn btn-info"href="{{species[rowIndex].rgv_url}}">
-                  <Button variant="contained" href={rows[rowIndex].rgv_url}>
+                  <Button variant="contained" color='primary' href={rows[rowIndex].rgv_url}>
                     <i class="fa fa-external-link-alt" aria-hidden="true"></i>
                   </Button>
                 );
