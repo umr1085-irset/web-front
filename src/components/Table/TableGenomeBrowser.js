@@ -93,7 +93,7 @@ class TableGenomeBrowserComponent extends Component {
     
   render() {
         //const rows = this.props.rows
-        const rows = this.state.species
+        const species = this.state.species
         console.log(this.state)
         const columns = [
         {
@@ -109,7 +109,7 @@ class TableGenomeBrowserComponent extends Component {
                 customBodyRenderLite: (dataIndex, rowIndex) => {
                   return (
                     
-                    <Box style={{width:200, maxWidth:240}}>{this.state.species[rowIndex].name}</Box>
+                    <Box style={{width:200, maxWidth:240}}>{species[rowIndex].name}</Box>
                   
                   );
                 }
@@ -128,12 +128,34 @@ class TableGenomeBrowserComponent extends Component {
                 customBodyRenderLite: (dataIndex, rowIndex) => {
                   return (
                     
-                    <Box style={{width:200, maxWidth:240}}>{this.state.species[rowIndex].short}</Box>
+                    <Box style={{width:200, maxWidth:240}}>{species[rowIndex].base_rgv_url}</Box>
                   
                   );
                 }
             }
-        }
+        },
+        {
+          name: "jbrowse",
+          label: "RGV Genome Browser",
+          options: {
+              filter: true,
+              sort: false,
+              display: true,
+              // customBodyRender: (value, tableMeta, updateValue) => (
+              //   value.join(", ")
+              // )
+              customBodyRenderLite: (dataIndex, rowIndex) => {
+                return (
+                  
+                  //<Box style={{width:200, maxWidth:240}}>{this.state.species[rowIndex].short}</Box>
+                  //<a class="btn btn-info"href="{{species[rowIndex].rgv_url}}">
+                  <Button variant="contained" href="{{species[rowIndex].rgv_url}}">
+                    <i class="fa fa-external-link-alt" aria-hidden="true"></i>
+                  </Button>
+                );
+              }
+          }
+      }
         ];
 
         const options = {
