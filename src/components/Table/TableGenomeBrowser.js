@@ -109,7 +109,8 @@ class TableGenomeBrowserComponent extends Component {
                 customBodyRenderLite: (dataIndex, rowIndex) => {
                   return (
                     
-                    <Box style={{width:200, maxWidth:240}}>{rows[rowIndex].name}</Box>
+                    //<Box style={{width:200, maxWidth:240}}>{rows[rowIndex].name}</Box>
+                    <img src={rows[rowIndex].image} height="50" title={rows[rowIndex].name} alt={rows[rowIndex].name}></img>
                   
                   );
                 }
