@@ -225,7 +225,7 @@ class TableGenomeBrowserComponent extends Component {
                 <tbody>
                   {% for specie in rows %}
                   <tr style="text-align:center;">
-                    <td><img src={map1.get(rows[rowIndex].short)} height="50" title="{{specie.name}}" alt="{{specie.name}}"></td>
+                    <td><img src={map1.get(specie.short)} height="50" title="{{specie.name}}" alt="{{specie.name}}"></td>
                     <td><a href="{{specie.ucsc_url}}">{{specie.short}}</a></td>
                     <td>
                       <a class="btn btn-info select_study"href="{{specie.rgv_url}}">
