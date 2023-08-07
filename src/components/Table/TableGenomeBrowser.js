@@ -30,6 +30,16 @@ import { trackPromise } from 'react-promise-tracker';
 
 import { Box } from "@material-ui/core";
 
+import susScr3 from '../../assets/img/species/susScr3.png'
+import rn6 from '../../assets/img/species/rn6.png'
+import rheMac8 from '../../assets/img/species/rheMac8.png'
+import mm10 from '../../assets/img/species/mm10.png'
+import hg38 from '../../assets/img/species/hg38.png'
+import galGal5 from '../../assets/img/species/galGal5.png'
+import danRer10 from '../../assets/img/species/danRer10.png'
+import canFam3 from '../../assets/img/species/canFam3.png'
+import bosTau8 from '../../assets/img/species/bosTau8.png'
+
 class TableGenomeBrowserComponent extends Component {
   constructor(props) {
     super(props);
@@ -110,8 +120,9 @@ class TableGenomeBrowserComponent extends Component {
                   return (
                     
                     //<Box style={{width:200, maxWidth:240}}>{rows[rowIndex].name}</Box>
-                    <img src={rows[rowIndex].image} height="50" title={rows[rowIndex].name} alt={rows[rowIndex].name}></img>
-                  
+                    //<img src={window[rows[rowIndex].short]} height="50" title={rows[rowIndex].name} alt={rows[rowIndex].name}></img>
+                    <img src={window[rows[rowIndex].short]} height="50" title={rows[rowIndex].name} alt={rows[rowIndex].name}></img>
+
                   );
                 }
             }
