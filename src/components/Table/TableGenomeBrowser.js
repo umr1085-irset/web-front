@@ -29,7 +29,8 @@ import { toastOnError } from "../../utils/Utils";
 import { trackPromise } from 'react-promise-tracker';
 
 import { Box } from "@material-ui/core";
-import { MDBCol, MDBIcon, MDBRow } from "mdbreact";
+import { MDBCol, MDBIcon, MDBRow, MDBContainer} from "mdbreact";
+
 
 import susScr3 from '../../assets/img/species/susScr3.png'
 import rn6 from '../../assets/img/species/rn6.png'
@@ -194,17 +195,7 @@ class TableGenomeBrowserComponent extends Component {
             search: false
         };
 
-        const container = document.getElementById('title');
-        const title = ReactDOM.createRoot(container);
-        const title2 = ReactDOM.createRoot(container);
-        title.render(<h2><i class="fa fa-indent"></i> Genome browser</h2>);
-        title2.render(<p>Current Genomes </p>)
-
         return (
-          //<Box ml={2} mr={2}></Box>
-          //<h2><i class="fa fa-indent"></i> Genome browser</h2>
-          //<p> Current Genomes </p>
-          
           <MDBRow>
             <MDBCol md="1"></MDBCol>
             <MDBCol md="10">
