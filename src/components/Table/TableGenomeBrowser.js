@@ -105,6 +105,18 @@ class TableGenomeBrowserComponent extends Component {
         const rows = this.state.species
         //const species = this.state.species
         console.log(this.state)
+
+        const map1 = new Map();
+        map1.set('susScr3',susScr3);
+        map1.set('rn6',rn6);
+        map1.set('rheMac8',rheMac8);
+        map1.set('mm10',mm10);
+        map1.set('hg38',hg38);
+        map1.set('galGal5',galGal5);
+        map1.set('danRer10',danRer10);
+        map1.set('canFam3',canFam3);
+        map1.set('bosTau8',bosTau8);
+
         const columns = [
         {
             name: "genome",
@@ -121,7 +133,7 @@ class TableGenomeBrowserComponent extends Component {
                     
                     //<Box style={{width:200, maxWidth:240}}>{rows[rowIndex].name}</Box>
                     //<img src={window[rows[rowIndex].short]} height="50" title={rows[rowIndex].name} alt={rows[rowIndex].name}></img>
-                    <img src={window[rows[rowIndex].short]} height="50" title={rows[rowIndex].name} alt={rows[rowIndex].name}></img>
+                    <img src={map1.get(rows[rowIndex].short)} height="50" title={rows[rowIndex].name} alt={rows[rowIndex].name}></img>
 
                   );
                 }
