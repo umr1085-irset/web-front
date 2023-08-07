@@ -74,6 +74,9 @@ class TableGenomeBrowserComponent extends Component {
   getMuiTheme = () => createMuiTheme({
     overrides: {
       MuiPaper: {
+        root: {
+          textTransform: "uppercase"
+        },
         elevation4: {
           boxShadow: "none"
         },
@@ -85,11 +88,17 @@ class TableGenomeBrowserComponent extends Component {
         }
       },
         MUIDataTableHeadCell: {
-      fixedHeader: {
-            backgroundColor: "#FAFAFA",
-            textTransform: "uppercase",
-            fontSize: "0.7em"
-      }
+          root: {
+            textTransform: "uppercase"
+        },
+        toolButton: {
+          justifyContent: 'center'
+        },
+        fixedHeader: {
+              backgroundColor: "#FAFAFA",
+              textTransform: "uppercase",
+              fontSize: "0.7em"
+        }
         },
         MUIDataTableSelectCell : {
           
