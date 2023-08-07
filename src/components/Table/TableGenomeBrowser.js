@@ -29,6 +29,7 @@ import { toastOnError } from "../../utils/Utils";
 import { trackPromise } from 'react-promise-tracker';
 
 import { Box } from "@material-ui/core";
+import { MDBCol, MDBIcon, MDBRow } from "mdbreact";
 
 import susScr3 from '../../assets/img/species/susScr3.png'
 import rn6 from '../../assets/img/species/rn6.png'
@@ -191,17 +192,22 @@ class TableGenomeBrowserComponent extends Component {
             selectableRows: 'none',
         };
         return (
-          <Box ml={2} mr={2}>
-            <ThemeProvider theme={this.getMuiTheme()} >
-              {this.state.loading ? <Spinner/> :
-                <MUIDataTable 
-                    data={rows}
-                    columns={columns}
-                    options={options}
-                />
-              }
-            </ThemeProvider>
-          </Box>
+          //<Box ml={2} mr={2}></Box>
+          <MDBRow>
+            <MDBCol md="2"></MDBCol>
+            <MDBCol md="8">
+              <ThemeProvider theme={this.getMuiTheme()} >
+                {this.state.loading ? <Spinner/> :
+                  <MUIDataTable 
+                      data={rows}
+                      columns={columns}
+                      options={options}
+                  />
+                }
+              </ThemeProvider>
+            </MDBCol>
+            <MDBCol md="2"></MDBCol>
+          
             // <Box>
             //   <Box ml="1%">	
             //     <Breadcrumbs/> 
