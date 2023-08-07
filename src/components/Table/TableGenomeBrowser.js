@@ -74,6 +74,9 @@ class TableGenomeBrowserComponent extends Component {
   getMuiTheme = () => createMuiTheme({
     overrides: {
       MuiPaper: {
+        root: {
+          textTransform: "none"
+        },
         elevation4: {
           boxShadow: "none"
         },
