@@ -207,7 +207,7 @@ class TableGenomeBrowserComponent extends Component {
               </ThemeProvider>
             </MDBCol>
             <MDBCol md="2"></MDBCol>
-          
+          </MDBRow>
             // <Box>
             //   <Box ml="1%">	
             //     <Breadcrumbs/> 
