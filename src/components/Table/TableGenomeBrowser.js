@@ -121,6 +121,8 @@ class TableGenomeBrowserComponent extends Component {
         {
             name: "genome",
             label: "Genome",
+            align: "center",
+            headerAlign: "center",
             options: {
                 filter: true,
                 sort: false,
@@ -130,9 +132,7 @@ class TableGenomeBrowserComponent extends Component {
                 // )
                 customBodyRenderLite: (dataIndex, rowIndex) => {
                   return (
-                    
-                    //<Box style={{width:200, maxWidth:240}}>{rows[rowIndex].name}</Box>
-                    //<img src={window[rows[rowIndex].short]} height="50" title={rows[rowIndex].name} alt={rows[rowIndex].name}></img>
+
                     <img src={map1.get(rows[rowIndex].short)} height="50" title={rows[rowIndex].name} alt={rows[rowIndex].name}></img>
 
                   );
