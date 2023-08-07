@@ -191,15 +191,17 @@ class TableGenomeBrowserComponent extends Component {
             selectableRows: 'none',
         };
         return (
-          <ThemeProvider theme={this.getMuiTheme()} >
-            {this.state.loading ? <Spinner/> :
-              <MUIDataTable 
-                  data={rows}
-                  columns={columns}
-                  options={options}
-              />
-            }
-          </ThemeProvider>
+          <Box ml={2} mr={2}>
+            <ThemeProvider theme={this.getMuiTheme()} >
+              {this.state.loading ? <Spinner/> :
+                <MUIDataTable 
+                    data={rows}
+                    columns={columns}
+                    options={options}
+                />
+              }
+            </ThemeProvider>
+          </Box>
             // <Box>
             //   <Box ml="1%">	
             //     <Breadcrumbs/> 
