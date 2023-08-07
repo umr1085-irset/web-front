@@ -189,11 +189,22 @@ class TableGenomeBrowserComponent extends Component {
         const options = {
             print: false,
             download: false,
+            filter: false,
             selectableRows: 'none',
+            search: false
         };
+
+        const container = document.getElementById('title');
+        const title = ReactDOM.createRoot(container);
+        const title2 = ReactDOM.createRoot(container);
+        title.render(<h2><i class="fa fa-indent"></i> Genome browser</h2>);
+        title2.render(<p>Current Genomes </p>)
+
         return (
           //<Box ml={2} mr={2}></Box>
-
+          //<h2><i class="fa fa-indent"></i> Genome browser</h2>
+          //<p> Current Genomes </p>
+          
           <MDBRow>
             <MDBCol md="1"></MDBCol>
             <MDBCol md="10">
