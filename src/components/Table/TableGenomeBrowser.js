@@ -29,7 +29,6 @@ import { toastOnError } from "../../utils/Utils";
 import { trackPromise } from 'react-promise-tracker';
 
 import { Box } from "@material-ui/core";
-import { DataGrid, GridColDef } from "@material-ui/x-data-grid";
 
 import susScr3 from '../../assets/img/species/susScr3.png'
 import rn6 from '../../assets/img/species/rn6.png'
@@ -122,8 +121,6 @@ class TableGenomeBrowserComponent extends Component {
         {
             name: "genome",
             label: "Genome",
-            align: "center",
-            headerAlign: "center",
             options: {
                 filter: true,
                 sort: false,
