@@ -194,50 +194,21 @@ class TableGenomeBrowserComponent extends Component {
         return (
           //<Box ml={2} mr={2}></Box>
 
-          // <MDBRow>
-          //   <MDBCol md="2"></MDBCol>
-          //   <MDBCol md="8">
-          //     <ThemeProvider theme={this.getMuiTheme()} >
-          //       {this.state.loading ? <Spinner/> :
-          //         <MUIDataTable 
-          //             data={rows}
-          //             columns={columns}
-          //             options={options}
-          //         />
-          //       }
-          //     </ThemeProvider>
-          //   </MDBCol>
-          //   <MDBCol md="2"></MDBCol>
-          // </MDBRow>
-
-          <div class="container">
-            <h2><i class="fa fa-indent"></i> Genome browser</h2>
-            <p> Current Genomes </p>
-            <div class="table-responsive-xl">
-              <table class="table table-hover">
-                <thead>
-                  <tr style="text-align:center;">
-                    <th scope="col">Genome</th>
-                    <th scope="col">UCSC genome release</th>
-                    <th scope="col">RGV genome browser</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {% for specie in rows %}
-                  <tr style="text-align:center;">
-                    <td><img src={map1.get(specie.short)} height="50" title="{{specie.name}}" alt="{{specie.name}}"></td>
-                    <td><a href="{{specie.ucsc_url}}">{{specie.short}}</a></td>
-                    <td>
-                      <a class="btn btn-info select_study"href="{{specie.rgv_url}}">
-                        <i class="fa fa-external-link-alt" aria-hidden="true"></i>
-                      </a>
-                    </td>
-                  </tr>
-                  {% endfor %}
-                </tbody>
-              </table>
-            </div>
-          </div>
+          <MDBRow>
+            <MDBCol md="1"></MDBCol>
+            <MDBCol md="10">
+              <ThemeProvider theme={this.getMuiTheme()} >
+                {this.state.loading ? <Spinner/> :
+                  <MUIDataTable 
+                      data={rows}
+                      columns={columns}
+                      options={options}
+                  />
+                }
+              </ThemeProvider>
+            </MDBCol>
+            <MDBCol md="1"></MDBCol>
+          </MDBRow>
     );
   }
 }
