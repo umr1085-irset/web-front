@@ -136,9 +136,9 @@ class TableGenomeBrowserComponent extends Component {
                 display: true,
                 customBodyRenderLite: (dataIndex, rowIndex) => {
                   return (
-                    <div style="text-align: center;">
-                      <img src={map1.get(rows[rowIndex].short)} height="50" title={rows[rowIndex].name} alt={rows[rowIndex].name}></img>
-                      </div>
+
+                    <img src={map1.get(rows[rowIndex].short)} height="50" title={rows[rowIndex].name} alt={rows[rowIndex].name}></img>
+
                   );
                 }
             }
@@ -152,11 +152,11 @@ class TableGenomeBrowserComponent extends Component {
                 display: true,
                 customBodyRenderLite: (dataIndex, rowIndex) => {
                   return (
-                    <div style="text-align: center;">
-                      <Box style={{width:200, maxWidth:240}}>
-                        <a href={rows[rowIndex].ucsc_url} target="_blank">{rows[rowIndex].short}</a>
-                      </Box>
-                    </div>
+                    
+                    <Box style={{width:200, maxWidth:240}}>
+                      <a href={rows[rowIndex].ucsc_url} target="_blank">{rows[rowIndex].short}</a>
+                    </Box>
+                  
                   );
                 }
             }
@@ -168,17 +168,19 @@ class TableGenomeBrowserComponent extends Component {
               filter: true,
               sort: false,
               display: true,
+              align: 'center',
+              headerAlign: 'center',
               customBodyRenderLite: (dataIndex, rowIndex) => {
                 return (
-                  <div style="text-align: center;">
-                    <Button variant="contained" color='primary' href={rows[rowIndex].rgv_url} target="_blank">
-                      <i class="fa fa-external-link-alt" aria-hidden="true"></i>
-                    </Button>
-                  </div>
+                  
+                  <Button variant="contained" color='primary' href={rows[rowIndex].rgv_url} target="_blank">
+                    <i class="fa fa-external-link-alt" aria-hidden="true"></i>
+                  </Button>
+
                 );
               }
           }
-      }
+      },
         ];
 
         const options = {
