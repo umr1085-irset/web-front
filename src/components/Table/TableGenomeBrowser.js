@@ -99,7 +99,6 @@ class TableGenomeBrowserComponent extends Component {
           fixedHeader: {
             backgroundColor: "#FAFAFA",
             textTransform: "none",
-            textAlign: 'center',
             fontSize: "0.7em"
           }
         },
@@ -206,14 +205,12 @@ class TableGenomeBrowserComponent extends Component {
               <MDBCol md="10">
                 <ThemeProvider theme={this.getMuiTheme()} >
                   {this.state.loading ? <Spinner/> :
-                    <div style={{textAlign: "center"}}>
-                      <MUIDataTable 
-                          title={"Current genomes"}
-                          data={rows}
-                          columns={columns}
-                          options={options}
-                      />
-                    </div>
+                    <MUIDataTable 
+                        title={"Current genomes"}
+                        data={rows}
+                        columns={columns}
+                        options={options}
+                    />
                   }
                 </ThemeProvider>
               </MDBCol>
