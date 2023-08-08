@@ -80,6 +80,17 @@ class TableGenomeBrowserComponent extends Component {
   })
 
   getMuiTheme = () => createMuiTheme({
+    components: {
+      MuiButton: {
+        styleOverrides: {
+          root: {
+            fontFamily: 'poppins',
+            justifyContent: 'center',
+            fontWeight: 'bold',
+          },
+        },
+      },
+    },
     overrides: {
       MuiPaper: {
         root: {
@@ -100,15 +111,15 @@ class TableGenomeBrowserComponent extends Component {
             justifyContent: 'center'
           },
           fixedHeader: {
-                backgroundColor: "#FAFAFA",
-                textTransform: "none",
-                fontSize: "0.7em"
+            backgroundColor: "#FAFAFA",
+            textTransform: "none",
+            fontSize: "0.7em"
           }
         },
         MUIDataTableSelectCell : {
           headerCell: {
-                background: "#DFEFEE",
-          backgroundColor: "#DFEFEE"
+            background: "#DFEFEE",
+            backgroundColor: "#DFEFEE"
         }
       }
     }
