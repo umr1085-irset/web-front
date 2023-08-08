@@ -73,6 +73,14 @@ class TableGenomeBrowserComponent extends Component {
       this.getGenomeData()
   }
 
+  getMuiThemeh2 = () => createMuiTheme({
+    typography: {
+      h2: {
+        textTransform: "none"
+      },
+    },
+  })
+
   getMuiTheme = () => createMuiTheme({
     overrides: {
       MuiPaper: {
@@ -110,7 +118,6 @@ class TableGenomeBrowserComponent extends Component {
     
   render() {
         const rows = this.state.species
-        //const species = this.state.species
         console.log(this.state)
 
         const map1 = new Map();
@@ -132,9 +139,6 @@ class TableGenomeBrowserComponent extends Component {
                 filter: true,
                 sort: false,
                 display: true,
-                // customBodyRender: (value, tableMeta, updateValue) => (
-                //   value.join(", ")
-                // )
                 customBodyRenderLite: (dataIndex, rowIndex) => {
                   return (
 
@@ -151,9 +155,6 @@ class TableGenomeBrowserComponent extends Component {
                 filter: true,
                 sort: false,
                 display: true,
-                // customBodyRender: (value, tableMeta, updateValue) => (
-                //   value.join(", ")
-                // )
                 customBodyRenderLite: (dataIndex, rowIndex) => {
                   return (
                     
@@ -172,14 +173,9 @@ class TableGenomeBrowserComponent extends Component {
               filter: true,
               sort: false,
               display: true,
-              // customBodyRender: (value, tableMeta, updateValue) => (
-              //   value.join(", ")
-              // )
               customBodyRenderLite: (dataIndex, rowIndex) => {
                 return (
                   
-                  //<Box style={{width:200, maxWidth:240}}>{this.state.species[rowIndex].short}</Box>
-                  //<a class="btn btn-info"href="{{species[rowIndex].rgv_url}}">
                   <Button variant="contained" color='primary' href={rows[rowIndex].rgv_url} target="_blank">
                     <i class="fa fa-external-link-alt" aria-hidden="true"></i>
                   </Button>
@@ -203,10 +199,12 @@ class TableGenomeBrowserComponent extends Component {
             <MDBRow>
               <MDBCol md="1"></MDBCol>
               <MDBCol>
-                <Typography variant="h2"><i class="fa fa-indent" sx={{ textTransform: 'none'}}></i> Genome Browser</Typography>
+                <ThemeProvider theme={this.getMuiThemeh2()}>
+                  <Typography variant="h2"><i class="fa fa-indent"></i> Genome Browser</Typography>
+                </ThemeProvider>
               </MDBCol>
             </MDBRow>
-
+            <br/>
             <MDBRow>
               <MDBCol md="1"></MDBCol>
               <MDBCol md="10">
