@@ -30,7 +30,7 @@ import { trackPromise } from 'react-promise-tracker';
 
 import { Box } from "@material-ui/core";
 import { MDBCol, MDBIcon, MDBRow, MDBContainer} from "mdbreact";
-
+import Typography from '@material-ui/core/Typography';
 
 import susScr3 from '../../assets/img/species/susScr3.png'
 import rn6 from '../../assets/img/species/rn6.png'
