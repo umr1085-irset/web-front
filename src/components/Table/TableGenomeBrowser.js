@@ -168,7 +168,7 @@ class TableGenomeBrowserComponent extends Component {
               filter: true,
               sort: false,
               display: true,
-              align: 'center',
+              //align: 'center',
               headerAlign: 'center',
               customBodyRenderLite: (dataIndex, rowIndex) => {
                 return (
