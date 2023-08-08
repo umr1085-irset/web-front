@@ -158,7 +158,7 @@ class TableGenomeBrowserComponent extends Component {
                   return (
                     
                     <Box style={{width:200, maxWidth:240}}>
-                      <a href={rows[rowIndex].ucsc_url}>{rows[rowIndex].short}</a>
+                      <a href={rows[rowIndex].ucsc_url} target="_blank">{rows[rowIndex].short}</a>
                     </Box>
                   
                   );
@@ -193,6 +193,7 @@ class TableGenomeBrowserComponent extends Component {
             print: false,
             download: false,
             filter: false,
+            viewColumns: false,
             selectableRows: 'none',
             search: false
         };
