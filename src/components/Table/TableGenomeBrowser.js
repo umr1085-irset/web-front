@@ -199,22 +199,30 @@ class TableGenomeBrowserComponent extends Component {
         };
 
         return (
-          <MDBRow>
-            <MDBCol md="1"></MDBCol>
-            <MDBCol md="10">
-              <ThemeProvider theme={this.getMuiTheme()} >
-                {this.state.loading ? <Spinner/> :
-                  <MUIDataTable 
-                      title={"Genome Browser"}
-                      data={rows}
-                      columns={columns}
-                      options={options}
-                  />
-                }
-              </ThemeProvider>
-            </MDBCol>
-            <MDBCol md="1"></MDBCol>
-          </MDBRow>
+          <>
+            <MDBRow>
+              <MDBCol>       
+                <Typography variant="h2"><i class="fa fa-indent"></i>Genome Browser</Typography>
+              </MDBCol>
+            </MDBRow>
+
+            <MDBRow>
+              <MDBCol md="1"></MDBCol>
+              <MDBCol md="10">
+                <ThemeProvider theme={this.getMuiTheme()} >
+                  {this.state.loading ? <Spinner/> :
+                    <MUIDataTable 
+                        title={"Current genomes"}
+                        data={rows}
+                        columns={columns}
+                        options={options}
+                    />
+                  }
+                </ThemeProvider>
+              </MDBCol>
+              <MDBCol md="1"></MDBCol>
+            </MDBRow>
+          </>
     );
   }
 }
