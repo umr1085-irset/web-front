@@ -99,7 +99,7 @@ class TableGenomeBrowserComponent extends Component {
           fixedHeader: {
             backgroundColor: "#FAFAFA",
             textTransform: "none",
-            textAlign: 'center'
+            textAlign: 'center',
             fontSize: "0.7em"
           }
         },
