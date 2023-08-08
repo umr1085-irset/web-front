@@ -157,7 +157,9 @@ class TableGenomeBrowserComponent extends Component {
                 customBodyRenderLite: (dataIndex, rowIndex) => {
                   return (
                     
-                    <Box style={{width:200, maxWidth:240}}>{rows[rowIndex].short}</Box>
+                    <Box style={{width:200, maxWidth:240}}>
+                      <a href={rows[rowIndex].ucsc_url}>{rows[rowIndex].short}</a>
+                    </Box>
                   
                   );
                 }
