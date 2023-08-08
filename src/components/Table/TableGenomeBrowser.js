@@ -202,6 +202,7 @@ class TableGenomeBrowserComponent extends Component {
               <ThemeProvider theme={this.getMuiTheme()} >
                 {this.state.loading ? <Spinner/> :
                   <MUIDataTable 
+                      title={"Genome Browser"}
                       data={rows}
                       columns={columns}
                       options={options}
