@@ -195,11 +195,13 @@ class TableGenomeBrowserComponent extends Component {
         return (
           <>
             <MDBRow>
-              <MDBCol md="1"></MDBCol>
+              
               <MDBCol>
+                <div class="d-flex justify-content-center">
                 <ThemeProvider theme={this.getMuiThemeh2()}>
                   <Typography variant="h4"><i class="fa fa-indent"></i> Genome Browser</Typography>
                 </ThemeProvider>
+                </div>
               </MDBCol>
             </MDBRow>
             <br/>
