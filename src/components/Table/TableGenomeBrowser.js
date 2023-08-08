@@ -201,8 +201,9 @@ class TableGenomeBrowserComponent extends Component {
         return (
           <>
             <MDBRow>
-              <MDBCol>       
-                <Typography variant="h2"><i class="fa fa-indent"></i>Genome Browser</Typography>
+              <MDBCol md="1"></MDBCol>
+              <MDBCol>
+                <Typography variant="h2"><i class="fa fa-indent" sx={{ textTransform: 'none'}}></i> Genome Browser</Typography>
               </MDBCol>
             </MDBRow>
 
