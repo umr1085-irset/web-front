@@ -79,18 +79,7 @@ class TableGenomeBrowserComponent extends Component {
     },
   })
 
-  getMuiTheme = () => createMuiTheme({
-    components: {
-      MuiButton: {
-        styleOverrides: {
-          root: {
-            fontFamily: 'poppins',
-            justifyContent: 'center',
-            fontWeight: 'bold',
-          },
-        },
-      },
-    },
+  getMuiTheme = () => createMuiTheme({  
     overrides: {
       MuiPaper: {
         root: {
@@ -107,12 +96,10 @@ class TableGenomeBrowserComponent extends Component {
         }
       },
         MUIDataTableHeadCell: {
-          toolButton: {
-            justifyContent: 'center'
-          },
           fixedHeader: {
             backgroundColor: "#FAFAFA",
             textTransform: "none",
+            textAlign: 'center'
             fontSize: "0.7em"
           }
         },
@@ -219,12 +206,14 @@ class TableGenomeBrowserComponent extends Component {
               <MDBCol md="10">
                 <ThemeProvider theme={this.getMuiTheme()} >
                   {this.state.loading ? <Spinner/> :
-                    <MUIDataTable 
-                        title={"Current genomes"}
-                        data={rows}
-                        columns={columns}
-                        options={options}
-                    />
+                    <div style={{textAlign: "center"}}>
+                      <MUIDataTable 
+                          title={"Current genomes"}
+                          data={rows}
+                          columns={columns}
+                          options={options}
+                      />
+                    </div>
                   }
                 </ThemeProvider>
               </MDBCol>
