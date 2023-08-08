@@ -75,9 +75,7 @@ class TableGenomeBrowserComponent extends Component {
 
   getMuiThemeh2 = () => createMuiTheme({
     typography: {
-      h2: {
-        textTransform: "none"
-      },
+      textTransform: "none"
     },
   })
 
@@ -112,9 +110,9 @@ class TableGenomeBrowserComponent extends Component {
                 background: "#DFEFEE",
           backgroundColor: "#DFEFEE"
         }
-        }
-          }
-    })
+      }
+    }
+  })
     
   render() {
         const rows = this.state.species
@@ -200,7 +198,7 @@ class TableGenomeBrowserComponent extends Component {
               <MDBCol md="1"></MDBCol>
               <MDBCol>
                 <ThemeProvider theme={this.getMuiThemeh2()}>
-                  <Typography variant="h2"><i class="fa fa-indent"></i> Genome Browser</Typography>
+                  <Typography variant="h4"><i class="fa fa-indent"></i> Genome Browser</Typography>
                 </ThemeProvider>
               </MDBCol>
             </MDBRow>
