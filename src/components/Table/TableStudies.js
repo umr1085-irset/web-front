@@ -81,8 +81,8 @@ getMuiTheme = () => createMuiTheme({
             sort: false,
             customBodyRenderLite: (dataIndex, rowIndex) => {
               return (
-                <Box style={{width:250, maxWidth:370}}><Link to={"/study/"+this.props.rows[rowIndex].studyId} className="primary">
-                    {this.props.rows[rowIndex].title}
+                <Box style={{width:250, maxWidth:370}}><Link to={"/study/"+this.props.rows[dataIndex].studyId} className="primary">
+                    {this.props.rows[dataIndex].title}
                 </Link></Box>
               );
             }
@@ -257,8 +257,8 @@ getMuiTheme = () => createMuiTheme({
 
             customBodyRenderLite: (dataIndex, rowIndex) => {
               return (
-                <a href={"https://pubmed.ncbi.nlm.nih.gov/"+this.props.rows[rowIndex].pmids} className="primary" target="_blank">
-                    {this.props.rows[rowIndex].articlefull}
+                <a href={"https://pubmed.ncbi.nlm.nih.gov/"+this.props.rows[dataIndex].pmids} className="primary" target="_blank">
+                    {this.props.rows[dataIndex].articlefull}
                 </a>
               );
             }
@@ -276,8 +276,8 @@ getMuiTheme = () => createMuiTheme({
    
             customBodyRenderLite: (dataIndex, rowIndex) => {
               return (
-               <a href={"https://pubmed.ncbi.nlm.nih.gov/"+this.props.rows[rowIndex].pmids} className="primary" target="_blank">
-                    {this.props.rows[rowIndex].pmids}
+               <a href={"https://pubmed.ncbi.nlm.nih.gov/"+this.props.rows[dataIndex].pmids} className="primary" target="_blank">
+                    {this.props.rows[dataIndex].pmids}
                 </a>
               );
             }

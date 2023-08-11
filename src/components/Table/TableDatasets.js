@@ -99,8 +99,8 @@ getMuiTheme = () => createMuiTheme({
             customBodyRenderLite: (dataIndex, rowIndex) => {
               return (
                 
-                <Box style={{width:200, maxWidth:240}}><Link to={"/dataset/"+this.props.rows[rowIndex].datasetId} className="primary">
-                    {this.props.rows[rowIndex].title}
+                <Box style={{width:200, maxWidth:240}}><Link to={"/dataset/"+this.props.rows[dataIndex].datasetId} className="primary">
+                    {this.props.rows[dataIndex].title}
                 </Link></Box>
 		      
               );
