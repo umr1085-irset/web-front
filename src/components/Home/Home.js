@@ -25,6 +25,9 @@ const styles = {
 		display: 'block',
 		margin: 'auto auto',
 	 },
+	 boxCentered: {
+		textAlign:'center'
+	 },
 	title: {
 		color: '#00A99D'
 	},
@@ -46,7 +49,6 @@ const styles = {
 		paddingRight:8,
 
 	},
-
 	itemText1: {
 		backgroundColor: '#000000',
 		paddingTop:2,
@@ -93,7 +95,7 @@ function HomeContent() {
 
 	<Box bgcolor='white'>
 			<img src={logo} height="210" title={'RGVlogo'} style={styles.imgCentered}></img>
-			<Box mt={10}  mx="30%" >
+			<Box mt={0}  mx="30%" style={styles.boxCentered}>
 				<Typography variant="body1" gutterBottom>
 					Get access to a database gathering datasets about repro-genomics and use our interactive viewer to explore cell populations and marker genes.
 				</Typography>
