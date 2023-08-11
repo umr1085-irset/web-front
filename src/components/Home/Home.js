@@ -12,17 +12,17 @@ import { withRouter, Link } from "react-router-dom";
 
 
 const styles = {
-	//    imgContainer: {
-	// 	    maxHeight: 520,
-	// 	   	minHeight: 500,
-	// 	   	height: 500,
-	// 	        backgroundImage: `url(${bgImg})`,
-	// 	        backgroundPosition: 'top',
-	// 	   	padding: 0
-	// 	      },
-	//     title: {
-	// 	    color: '#00A99D'
-	//     },
+	   imgContainer: {
+		    maxHeight: 520,
+		   	minHeight: 500,
+		   	height: 500,
+		        backgroundImage: `url(${logo})`,
+		        backgroundPosition: 'top',
+		   	padding: 0
+		      },
+	    title: {
+		    color: '#00A99D'
+	    },
 	    featureList: {
 		      listStyle: 'none',
 		      paddingLeft: 0,
@@ -50,7 +50,7 @@ const styles = {
 		   paddingRight: 8
 	   },
 	   itemText2: {
-		   backgroundColor: '##000000',
+		   backgroundColor: '#000000',
 		   paddingTop:2,
 		   paddingLeft: 8,
 		   paddingRight: 8
@@ -85,8 +85,7 @@ function HomeContent() {
 	 <Box>
 
 <Paper variant="outlined">
-	<Box mt={17}  mx="30%" >   		
-  	<img src={logo} title='RGVlogo' height=""></img> 
+	<Box mt={17}  mx="30%" >
 
     <Typography variant="body1" gutterBottom>
 	Get access to a database gathering datasets about repro-genomics and use our interactive viewer to explore cell populations and marker genes.
@@ -101,7 +100,7 @@ function HomeContent() {
 	             
 </Box>	 <Box style={styles.butBot}>
 	<Link to="/view/studies">
-	  <Button variant="contained" color="#d90101" size="large" style={styles.largeButton}>Browse available studies</Button>
+	  <Button variant="contained" color="primary" size="large" style={styles.largeButton}>Browse available studies</Button>
 	  </Link>
 	 </Box>
 	  </Paper>
