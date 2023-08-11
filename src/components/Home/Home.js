@@ -12,9 +12,10 @@ import { withRouter, Link } from "react-router-dom";
 
 const styles = {
 	   imgContainer: {
-		    maxHeight: 520,
-		   	minHeight: 500,
-		   	height: 500,
+		    //maxHeight: 520,
+		   	//minHeight: 500,
+		   	//height: 500,
+			width: '100%',
 			backgroundImage: `url(${logo})`,
 			backgroundSize: 'cover',
 			backgroundPosition: 'top',
@@ -69,6 +70,7 @@ const styles = {
 			minWidth: "100%",
 			fontSize: "1rem",
 			backgroundColor: "#3f50b5",
+			color: '#ffffff'
 			//contrastText: "#fff"
 		},
 	    butBot: {
