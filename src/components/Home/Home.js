@@ -85,7 +85,7 @@ function HomeContent() {
 	 <Box>
 
 <Paper variant="outlined">
-  <Box>   		
+	<Box mt={17}  mx="30%" >   		
   	<img src={logo} title='RGVlogo' height=""></img> 
 
     <Typography variant="body1" gutterBottom>
@@ -101,7 +101,7 @@ function HomeContent() {
 	             
 </Box>	 <Box style={styles.butBot}>
 	<Link to="/view/studies">
-	  <Button variant="contained" color="primary" size="large" style={styles.largeButton}>Browse available studies</Button>
+	  <Button variant="contained" color="#d90101" size="large" style={styles.largeButton}>Browse available studies</Button>
 	  </Link>
 	 </Box>
 	  </Paper>
