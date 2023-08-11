@@ -71,7 +71,7 @@ const styles = {
 			fontSize: "1rem",
 			backgroundColor: "#3f50b5",
 			color: '#ffffff'
-			//contrastText: "#fff"
+			//contrastText: "#ffffff"
 		},
 	    butBot: {
 		    position: "relative",
@@ -88,7 +88,8 @@ function HomeContent() {
 
 	<Box>
 		<Paper variant="outlined" style={styles.imgContainer}>
-			<Box mt={50}  mx="30%" >
+		</Paper>
+			<Box mt={10}  mx="30%" >
 				<Typography variant="body1" gutterBottom>
 					Get access to a database gathering datasets about repro-genomics and use our interactive viewer to explore cell populations and marker genes.
 				</Typography>
@@ -105,7 +106,7 @@ function HomeContent() {
 				<Button variant="contained" size="large" style={styles.largeButton}>Browse available studies</Button>
 				</Link>
 			</Box>
-		</Paper>
+		
 	</Box>
  
   );
