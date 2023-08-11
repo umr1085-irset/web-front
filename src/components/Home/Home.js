@@ -9,7 +9,7 @@ import {Grid,  List, Box, Paper, Card, CardContent, Button, ButtonGroup} from '@
 import logo from '../../assets/logo/RGVLogo_home_crop.png'
 
 import { withRouter, Link } from "react-router-dom";
-import { createTheme, createColor } from "@material-ui/core/styles"; 
+import { createTheme } from "@material-ui/core/styles"; 
 
 const { palette } = createTheme();
 const { augmentColor } = palette;
