@@ -9,16 +9,6 @@ import {Grid,  List, Box, Paper, Card, CardContent, Button, ButtonGroup} from '@
 import logo from '../../assets/logo/RGVLogo_home_crop.png'
 
 import { withRouter, Link } from "react-router-dom";
-import { createTheme } from "@material-ui/core/styles"; 
-
-const { palette } = createTheme();
-const { augmentColor } = palette;
-const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
-const theme = createTheme({
-  palette: {
-    main: createColor('#3f51b5')
-  },
-});
 
 const styles = {
 	   imgContainer: {
@@ -76,8 +66,9 @@ const styles = {
 		minHeight: 50,
 		maxHeight: 50,
 		minWidth: "100%",
-		fontSize: "1rem"
-		   },
+		fontSize: "1rem",
+		backgroundColor: "#3f50b5"
+		},
 	    butBot: {
 		    position: "relative",
 		    bottom:0,
@@ -109,7 +100,7 @@ function HomeContent() {
 	             
 </Box>	 <Box style={styles.butBot}>
 	<Link to="/view/studies">
-	  <Button variant="contained" color="main" size="large" style={styles.largeButton}>Browse available studies</Button>
+	  <Button variant="contained" size="large" style={styles.largeButton}>Browse available studies</Button>
 	  </Link>
 	 </Box>
 	  </Paper>
