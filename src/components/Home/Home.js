@@ -11,84 +11,87 @@ import logo from '../../assets/logo/RGVLogo_home_crop.png'
 import { withRouter, Link } from "react-router-dom";
 
 const styles = {
-	   imgContainer: {
-		    //maxHeight: 520,
-		   	//minHeight: 500,
-		   	//height: 500,
-			width: '100%',
-			backgroundImage: `url(${logo})`,
-			backgroundSize: 'cover',
-			backgroundPosition: 'top',
-		   	padding: 0
+	box: {
+		bgcolor: "#ffffff"
+	},
+	imgContainer: {
+		//maxHeight: 520,
+		//minHeight: 500,
+		//height: 500,
+		width: '100%',
+		backgroundImage: `url(${logo})`,
+		backgroundSize: 'cover',
+		backgroundPosition: 'top',
+		padding: 0
+	},
+	title: {
+		color: '#00A99D'
+	},
+	featureList: {
+			listStyle: 'none',
+			paddingLeft: 0,
 		},
-	    title: {
-		    color: '#00A99D'
-	    },
-	    featureList: {
-		      listStyle: 'none',
-		      paddingLeft: 0,
-		   },
-	    itemList: {
-		    color: 'white',
-		    fontSize: "1.2rem",
-		    textTransform: 'uppercase',
-		    marginBottom: 10,
-	    },
-	    itemText: {
-		    backgroundColor: '#000000',
-		    paddingTop: 2,
-		    paddingBottom: 2,
-		    paddingLeft:8,
-		    paddingRight:8,
+	itemList: {
+		color: 'white',
+		fontSize: "1.2rem",
+		textTransform: 'uppercase',
+		marginBottom: 10,
+	},
+	itemText: {
+		backgroundColor: '#000000',
+		paddingTop: 2,
+		paddingBottom: 2,
+		paddingLeft:8,
+		paddingRight:8,
 
-	    },
+	},
 
-	   itemText1: {
-		   backgroundColor: '#000000',
-		   paddingTop:2,
-		   paddingBottom:2,
-		   paddingLeft: 8,
-		   paddingRight: 8
-	   },
-	   itemText2: {
-		   backgroundColor: '#000000',
-		   paddingTop:2,
-		   paddingLeft: 8,
-		   paddingRight: 8
-	   },
-	    browse: {
-			padding: 0,
-			marginTop: 8
+	itemText1: {
+		backgroundColor: '#000000',
+		paddingTop:2,
+		paddingBottom:2,
+		paddingLeft: 8,
+		paddingRight: 8
+	},
+	itemText2: {
+		backgroundColor: '#000000',
+		paddingTop:2,
+		paddingLeft: 8,
+		paddingRight: 8
+	},
+	browse: {
+		padding: 0,
+		marginTop: 8
+	},
+	textBrowse: {
+		paddingTop: 14,
+		marginLeft: "8%"
 		},
-	    textBrowse: {
-			paddingTop: 14,
-			marginLeft: "8%"
-		 },
-	    largeButton: {
-			minHeight: 50,
-			maxHeight: 50,
-			minWidth: "100%",
-			fontSize: "1rem",
-			backgroundColor: "#3f50b5",
-			color: '#ffffff'
-			//contrastText: "#ffffff"
-		},
-	    butBot: {
-		    position: "relative",
-		    bottom:0,
-		    marginTop: 100
-	    }
-	  };
+	largeButton: {
+		minHeight: 50,
+		maxHeight: 50,
+		minWidth: "100%",
+		fontSize: "1rem",
+		backgroundColor: "#3f50b5",
+		color: '#ffffff'
+		//contrastText: "#ffffff"
+	},
+	butBot: {
+		position: "relative",
+		bottom:0,
+		marginTop: 100
+	}
+};
 
-
+//<Paper variant="outlined" style={styles.imgContainer}>
+//</Paper>
 
 function HomeContent() {
 	
   return (
 
-	<Box>
-		<Paper variant="outlined" style={styles.imgContainer}>
-		</Paper>
+	<Box style={styles.box}>
+			<img src={logo} height="210" title={'RGVlogo'}></img>
 			<Box mt={10}  mx="30%" >
 				<Typography variant="body1" gutterBottom>
 					Get access to a database gathering datasets about repro-genomics and use our interactive viewer to explore cell populations and marker genes.
