@@ -12,17 +12,17 @@ import { withRouter, Link } from "react-router-dom";
 
 
 const styles = {
-	   imgContainer: {
-		    maxHeight: 520,
-		   	minHeight: 500,
-		   	height: 500,
-		        backgroundImage: `url(${bgImg})`,
-		        backgroundPosition: 'top',
-		   	padding: 0
-		      },
-	    title: {
-		    color: '#00A99D'
-	    },
+	//    imgContainer: {
+	// 	    maxHeight: 520,
+	// 	   	minHeight: 500,
+	// 	   	height: 500,
+	// 	        backgroundImage: `url(${bgImg})`,
+	// 	        backgroundPosition: 'top',
+	// 	   	padding: 0
+	// 	      },
+	//     title: {
+	// 	    color: '#00A99D'
+	//     },
 	    featureList: {
 		      listStyle: 'none',
 		      paddingLeft: 0
