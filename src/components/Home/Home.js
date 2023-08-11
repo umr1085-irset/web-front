@@ -11,9 +11,6 @@ import logo from '../../assets/logo/RGVLogo_home_crop.png'
 import { withRouter, Link } from "react-router-dom";
 
 const styles = {
-	box: {
-		bgcolor: "#ffffff"
-	},
 	imgContainer: {
 		//maxHeight: 520,
 		//minHeight: 500,
@@ -90,7 +87,7 @@ function HomeContent() {
 	
   return (
 
-	<Box style={styles.box}>
+	<Box bgcolor='white'>
 			<img src={logo} height="210" title={'RGVlogo'}></img>
 			<Box mt={10}  mx="30%" >
 				<Typography variant="body1" gutterBottom>
