@@ -26,14 +26,12 @@ const styles = {
 	    featureList: {
 		      listStyle: 'none',
 		      paddingLeft: 0,
-			  display: 'inline-block'
 		   },
 	    itemList: {
 		    color: 'white',
 		    fontSize: "1.2rem",
 		    textTransform: 'uppercase',
 		    marginBottom: 10,
-		    float: 'left'
 	    },
 	    itemText: {
 		    backgroundColor: '#000000',
