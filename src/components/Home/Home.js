@@ -95,7 +95,7 @@ function HomeContent() {
 
 	<Box bgcolor='white'>
 			<img src={logo} height="210" title={'RGVlogo'} style={styles.imgCentered}></img>
-			<Box mt={0}  mx="30%" style={styles.boxCentered}>
+			<Box mt={5}  mx="0%" style={styles.boxCentered}>
 				<Typography variant="body1" gutterBottom>
 					Get access to a database gathering datasets about repro-genomics and use our interactive viewer to explore cell populations and marker genes.
 				</Typography>
