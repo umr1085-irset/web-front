@@ -15,8 +15,9 @@ const styles = {
 		    maxHeight: 520,
 		   	minHeight: 500,
 		   	height: 500,
-		        backgroundImage: `url(${logo})`,
-		        backgroundPosition: 'top',
+			backgroundImage: `url(${logo})`,
+			backgroundRepeat  : 'no-repeat',
+			backgroundPosition: 'top',
 		   	padding: 0
 		},
 	    title: {
@@ -85,7 +86,7 @@ function HomeContent() {
 	 <Box>
 
 <Paper variant="outlined" style={styles.imgContainer}>
-	<Box mt={17}  mx="30%" >
+	<Box mt={25}  mx="30%" >
 
     <Typography variant="body1" gutterBottom>
 	Get access to a database gathering datasets about repro-genomics and use our interactive viewer to explore cell populations and marker genes.
