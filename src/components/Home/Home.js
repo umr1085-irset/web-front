@@ -12,11 +12,10 @@ import { withRouter, Link } from "react-router-dom";
 
 const styles = {
 	   imgContainer: {
-		    maxHeight: 520,
-		   	minHeight: 500,
-		   	height: 500,
+		    maxHeight: 220,
+		   	minHeight: 200,
+		   	height: 210,
 			backgroundImage: `url(${logo})`,
-			//backgroundRepeat  : 'no-repeat',
 			backgroundSize: 'cover',
 			backgroundPosition: 'top',
 		   	padding: 0
