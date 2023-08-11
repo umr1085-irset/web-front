@@ -20,6 +20,7 @@ import React, { Component } from "react";
 
 import StudyTable from './TableStudies'
 import DatasetTable from './TableDatasets'
+import GenomeBrowserTable from './TableGenomeBrowser'
 
 
 class TableComponent extends Component {

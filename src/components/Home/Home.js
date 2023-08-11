@@ -5,112 +5,115 @@ import Collapse from '@material-ui/core/Collapse';
 import { emphasize, withStyles, makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import {Grid,  List, Box, Paper, Card, CardContent, Button, ButtonGroup} from '@material-ui/core';
-import bgImg from '../../assets/img/Home_bg2.jpg' // relative path to image 
+//import bgImg from '../../assets/img/Home_bg2.jpg' // relative path to image 
+import logo from '../../assets/logo/RGVLogo_home_crop.png'
 
 import { withRouter, Link } from "react-router-dom";
 
-
 const styles = {
-	   imgContainer: {
-		        maxHeight: 520,
-		   	minHeight: 500,
-		   	height: 500,
-		        backgroundImage: `url(${bgImg})`,
-		        backgroundPosition: 'top',
-		   	padding: 0
-		      },
-	    title: {
-		    color: '#00A99D'
-	    },
-	    featureList: {
-		      listStyle: 'none',
-		      paddingLeft: 0
-		   },
-	    itemList: {
-		    color: 'white',
-		    fontSize: "1.2rem",
-		    textTransform: 'uppercase',
-		    marginBottom: 10,
-		    
-	    },
-	    itemText: {
-		    backgroundColor: '#6767c5',
-		    paddingTop: 2,
-		    paddingBottom: 2,
-		    paddingLeft:8,
-		    paddingRight:8
-	    },
+	imgContainer: {
+		//maxHeight: 520,
+		//minHeight: 500,
+		//height: 500,
+		width: '100%',
+		backgroundImage: `url(${logo})`,
+		backgroundSize: 'cover',
+		backgroundPosition: 'top',
+		padding: 0
+	},
+	imgCentered: {
+		display: 'block',
+		margin: 'auto auto',
+	 },
+	 boxCentered: {
+		textAlign:'center'
+	 },
+	title: {
+		color: '#00A99D'
+	},
+	featureList: {
+			listStyle: 'none',
+			paddingLeft: 0,
+		},
+	itemList: {
+		color: 'white',
+		fontSize: "1.2rem",
+		textTransform: 'uppercase',
+		marginBottom: 10,
+	},
+	itemText: {
+		backgroundColor: '#000000',
+		paddingTop: 2,
+		paddingBottom: 2,
+		paddingLeft:8,
+		paddingRight:8,
 
-	   itemText1: {
-		   backgroundColor: '#ecc405',
-		   paddingTop:2,
-		   paddingBottom:2,
-		   paddingLeft: 8,
-		   paddingRight: 8
-	   },
-	   itemText2: {
-		   backgroundColor: '#bde486',
-		   paddingTop:2,
-		   paddingLeft: 8,
-		   paddingRight: 8
-	   },
-	    browse: {
+	},
+	itemText1: {
+		backgroundColor: '#000000',
+		paddingTop:2,
+		paddingBottom:2,
+		paddingLeft: 8,
+		paddingRight: 8
+	},
+	itemText2: {
+		backgroundColor: '#000000',
+		paddingTop:2,
+		paddingLeft: 8,
+		paddingRight: 8
+	},
+	browse: {
 		padding: 0,
 		marginTop: 8
-		},
-	    textBrowse: {
+	},
+	textBrowse: {
 		paddingTop: 14,
 		marginLeft: "8%"
-		 },
-	    largeButton: {
+		},
+	largeButton: {
 		minHeight: 50,
 		maxHeight: 50,
 		minWidth: "100%",
-		fontSize: "1rem"
-		   },
-	    butBot: {
-		    position: "relative",
-		    bottom:0,
-		    marginTop: 100
-	    }
-	  };
+		fontSize: "1rem",
+		backgroundColor: "#3f50b5",
+		color: '#ffffff'
+		//contrastText: "#ffffff"
+	},
+	butBot: {
+		position: "relative",
+		bottom:0,
+		marginTop: 100
+	}
+};
 
-
+//<Paper variant="outlined" style={styles.imgContainer}>
+//</Paper>
 
 function HomeContent() {
 	
   return (
 
-	 <Box>
-
-<Paper variant="outlined" style={styles.imgContainer}>
-  <Box mt={17}  mx="30%" >   		
-   <Typography variant="h2"  style={styles.title}>
-                  Repro-Genomics Viewer (RGV)
-   </Typography>
-	  
-    <Typography variant="body1" gutterBottom>
-	Get access to a database gathering datasets about repro-genomics and use our interactive viewer to explore cell populations and marker genes.
-     </Typography>
-	  <br />
-	  
-      <ul style={styles.featureList}>
-	  <li style={styles.itemList}><span style={styles.itemText}>Visualize repartition by cell and gene metadata</span></li>
-	  <li style={styles.itemList}><span style={styles.itemText1} >Filter cells according to multiple parameters</span></li>
-	  <li style={styles.itemList}><span style={styles.itemText2}>Compare gene expression &amp; discover marker genes </span></li>
-      </ul>
-	             
-</Box>	 <Box style={styles.butBot}>
-	<Link to="/view/studies">
-	  <Button variant="contained" color="primary" size="large" style={styles.largeButton}>Browse available studies</Button>
-	  </Link>
-	 </Box>
-	  </Paper>
-
-
-
-
-</Box>	
+	<Box bgcolor='white'>
+			<img src={logo} height="210" title={'RGVlogo'} style={styles.imgCentered}></img>
+			<Box mt={10}  mx="0%" style={styles.boxCentered}>
+				<Typography variant="body1" gutterBottom>
+					Get access to a database gathering datasets about repro-genomics and use our interactive viewer to explore cell populations and marker genes.
+				</Typography>
+				<br />
+				
+				<ul style={styles.featureList}>
+				<li style={styles.itemList}><span style={styles.itemText}>Visualize repartition by cell and gene metadata</span></li>
+				<li style={styles.itemList}><span style={styles.itemText1} >Filter cells according to multiple parameters</span></li>
+				<li style={styles.itemList}><span style={styles.itemText2}>Compare gene expression &amp; discover marker genes </span></li>
+				</ul>      
+			</Box>	 
+			<Box style={styles.butBot}>
+				<Link to="/view/studies">
+				<Button variant="contained" size="large" style={styles.largeButton}>Browse available studies</Button>
+				</Link>
+			</Box>
+		
+	</Box>
  
   );
 }

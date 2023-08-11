@@ -27,6 +27,7 @@ import AboutPage from '../views/About'
 import DataPage from '../views/Data'
 import StudyPage from '../views/Study'
 import ResultPage from '../views/Results'
+import TableGenomeBrowserComponent from '../components/Table/TableGenomeBrowser'
 
 import AboutContent from "../contents/hudeca/about.md"
 import InstitutionContent from "../contents/hudeca/institutions.md"
@@ -153,6 +154,14 @@ var routes = [
     name: "Study",
     icon: "tim-icons icon-single-02",
     component: ResultPage,
+    layout: "/hudeca",
+    requireAuth: false,
+  },
+  {
+    path: "/genomebrowser",
+    name: "Genome Browser",
+    icon: "tim-icons icon-single-02",
+    component: TableGenomeBrowserComponent,
     layout: "/hudeca",
     requireAuth: false,
   },
