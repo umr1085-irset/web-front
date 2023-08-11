@@ -12,9 +12,9 @@ import { withRouter, Link } from "react-router-dom";
 
 const styles = {
 	   imgContainer: {
-		    maxHeight: 220,
-		   	minHeight: 200,
-		   	height: 210,
+		    maxHeight: 520,
+		   	minHeight: 500,
+		   	height: 500,
 			backgroundImage: `url(${logo})`,
 			backgroundSize: 'cover',
 			backgroundPosition: 'top',
@@ -86,7 +86,7 @@ function HomeContent() {
 
 	<Box>
 		<Paper variant="outlined" style={styles.imgContainer}>
-			<Box mt={25}  mx="30%" >
+			<Box mt={50}  mx="30%" >
 				<Typography variant="body1" gutterBottom>
 					Get access to a database gathering datasets about repro-genomics and use our interactive viewer to explore cell populations and marker genes.
 				</Typography>
