@@ -25,32 +25,34 @@ const styles = {
 	//     },
 	    featureList: {
 		      listStyle: 'none',
-		      paddingLeft: 0
+		      paddingLeft: 0,
+			  display: inline-block
 		   },
 	    itemList: {
 		    color: 'white',
 		    fontSize: "1.2rem",
 		    textTransform: 'uppercase',
 		    marginBottom: 10,
-		    
+		    float: left
 	    },
 	    itemText: {
-		    backgroundColor: '#6767c5',
+		    backgroundColor: '#000000',
 		    paddingTop: 2,
 		    paddingBottom: 2,
 		    paddingLeft:8,
-		    paddingRight:8
+		    paddingRight:8,
+
 	    },
 
 	   itemText1: {
-		   backgroundColor: '#ecc405',
+		   backgroundColor: '#000000',
 		   paddingTop:2,
 		   paddingBottom:2,
 		   paddingLeft: 8,
 		   paddingRight: 8
 	   },
 	   itemText2: {
-		   backgroundColor: '#bde486',
+		   backgroundColor: '##000000',
 		   paddingTop:2,
 		   paddingLeft: 8,
 		   paddingRight: 8
@@ -85,8 +87,8 @@ function HomeContent() {
 	 <Box>
 
 <Paper variant="outlined">
-  <Box mt={17}  mx="30%" >   		
-  	<img src={logo} title='RGVlogo'></img> 
+  <Box>   		
+  	<img src={logo} title='RGVlogo' height=""></img> 
 
     <Typography variant="body1" gutterBottom>
 	Get access to a database gathering datasets about repro-genomics and use our interactive viewer to explore cell populations and marker genes.
