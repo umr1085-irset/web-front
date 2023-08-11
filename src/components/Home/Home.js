@@ -9,6 +9,16 @@ import {Grid,  List, Box, Paper, Card, CardContent, Button, ButtonGroup} from '@
 import logo from '../../assets/logo/RGVLogo_home_crop.png'
 
 import { withRouter, Link } from "react-router-dom";
+import createMuiTheme from '@material-ui/core/styles'
+
+const themeWhiteText = createMuiTheme({
+    palette: {
+        primary: {
+            main: "#3f50b5",
+            contrastText: "#ffffff",
+        }
+    }
+});
 
 const styles = {
 	   imgContainer: {
@@ -16,7 +26,8 @@ const styles = {
 		   	minHeight: 500,
 		   	height: 500,
 			backgroundImage: `url(${logo})`,
-			backgroundRepeat  : 'no-repeat',
+			//backgroundRepeat  : 'no-repeat',
+			backgroundSize: 'cover',
 			backgroundPosition: 'top',
 		   	padding: 0
 		},
@@ -69,7 +80,7 @@ const styles = {
 			minWidth: "100%",
 			fontSize: "1rem",
 			backgroundColor: "#3f50b5",
-			contrastText: "#fff"
+			//contrastText: "#fff"
 		},
 	    butBot: {
 		    position: "relative",
@@ -102,7 +113,9 @@ function HomeContent() {
 	             
 </Box>	 <Box style={styles.butBot}>
 	<Link to="/view/studies">
+	<ThemeProvider theme={themeWhiteText}>
 	  <Button variant="contained" size="large" style={styles.largeButton}>Browse available studies</Button>
+	</ThemeProvider>
 	  </Link>
 	 </Box>
 	  </Paper>
