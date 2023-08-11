@@ -5,14 +5,15 @@ import Collapse from '@material-ui/core/Collapse';
 import { emphasize, withStyles, makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
 import {Grid,  List, Box, Paper, Card, CardContent, Button, ButtonGroup} from '@material-ui/core';
-import bgImg from '../../assets/img/Home_bg2.jpg' // relative path to image 
+//import bgImg from '../../assets/img/Home_bg2.jpg' // relative path to image 
+import logo from '../../assets/logo/RGVLogo_home_crop.png'
 
 import { withRouter, Link } from "react-router-dom";
 
 
 const styles = {
 	   imgContainer: {
-		        maxHeight: 520,
+		    maxHeight: 520,
 		   	minHeight: 500,
 		   	height: 500,
 		        backgroundImage: `url(${bgImg})`,
@@ -83,12 +84,10 @@ function HomeContent() {
 
 	 <Box>
 
-<Paper variant="outlined" style={styles.imgContainer}>
+<Paper variant="outlined">
   <Box mt={17}  mx="30%" >   		
-   <Typography variant="h2"  style={styles.title}>
-                  Repro-Genomics Viewer (RGV)
-   </Typography>
-	  
+  	<img src={logo} title='RGVlogo'></img> 
+
     <Typography variant="body1" gutterBottom>
 	Get access to a database gathering datasets about repro-genomics and use our interactive viewer to explore cell populations and marker genes.
      </Typography>
