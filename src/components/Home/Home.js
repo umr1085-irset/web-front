@@ -9,16 +9,6 @@ import {Grid,  List, Box, Paper, Card, CardContent, Button, ButtonGroup} from '@
 import logo from '../../assets/logo/RGVLogo_home_crop.png'
 
 import { withRouter, Link } from "react-router-dom";
-import createMuiTheme from '@material-ui/core/styles'
-
-const themeWhiteText = createMuiTheme({
-    palette: {
-        primary: {
-            main: "#3f50b5",
-            contrastText: "#ffffff",
-        }
-    }
-});
 
 const styles = {
 	   imgContainer: {
@@ -95,35 +85,27 @@ function HomeContent() {
 	
   return (
 
-	 <Box>
-
-<Paper variant="outlined" style={styles.imgContainer}>
-	<Box mt={25}  mx="30%" >
-
-    <Typography variant="body1" gutterBottom>
-	Get access to a database gathering datasets about repro-genomics and use our interactive viewer to explore cell populations and marker genes.
-     </Typography>
-	  <br />
-	  
-      <ul style={styles.featureList}>
-	  <li style={styles.itemList}><span style={styles.itemText}>Visualize repartition by cell and gene metadata</span></li>
-	  <li style={styles.itemList}><span style={styles.itemText1} >Filter cells according to multiple parameters</span></li>
-	  <li style={styles.itemList}><span style={styles.itemText2}>Compare gene expression &amp; discover marker genes </span></li>
-      </ul>
-	             
-</Box>	 <Box style={styles.butBot}>
-	<Link to="/view/studies">
-	<ThemeProvider theme={themeWhiteText}>
-	  <Button variant="contained" size="large" style={styles.largeButton}>Browse available studies</Button>
-	</ThemeProvider>
-	  </Link>
-	 </Box>
-	  </Paper>
-
-
-
-
-</Box>	
+	<Box>
+		<Paper variant="outlined" style={styles.imgContainer}>
+			<Box mt={25}  mx="30%" >
+				<Typography variant="body1" gutterBottom>
+					Get access to a database gathering datasets about repro-genomics and use our interactive viewer to explore cell populations and marker genes.
+				</Typography>
+				<br />
+				
+				<ul style={styles.featureList}>
+				<li style={styles.itemList}><span style={styles.itemText}>Visualize repartition by cell and gene metadata</span></li>
+				<li style={styles.itemList}><span style={styles.itemText1} >Filter cells according to multiple parameters</span></li>
+				<li style={styles.itemList}><span style={styles.itemText2}>Compare gene expression &amp; discover marker genes </span></li>
+				</ul>      
+			</Box>	 
+			<Box style={styles.butBot}>
+				<Link to="/view/studies">
+				<Button variant="contained" size="large" style={styles.largeButton}>Browse available studies</Button>
+				</Link>
+			</Box>
+		</Paper>
+	</Box>
  
   );
 }
