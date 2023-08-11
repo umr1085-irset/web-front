@@ -9,13 +9,16 @@ import {Grid,  List, Box, Paper, Card, CardContent, Button, ButtonGroup} from '@
 import logo from '../../assets/logo/RGVLogo_home_crop.png'
 
 import { withRouter, Link } from "react-router-dom";
-import { createTheme } from '@mui/material/styles'
+import { createTheme, createColor } from "@material-ui/core/styles"; 
 
+const { palette } = createTheme();
+const { augmentColor } = palette;
+const createColor = (mainColor) => augmentColor({ color: { main: mainColor } });
 const theme = createTheme({
-	palette: {
-		main: '#3f50b5'
-	}
-})
+  palette: {
+    main: createColor('#3f51b5')
+  },
+});
 
 const styles = {
 	   imgContainer: {
