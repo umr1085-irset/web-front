@@ -9,7 +9,13 @@ import {Grid,  List, Box, Paper, Card, CardContent, Button, ButtonGroup} from '@
 import logo from '../../assets/logo/RGVLogo_home_crop.png'
 
 import { withRouter, Link } from "react-router-dom";
+import { createTheme } from '@mui/material/styles'
 
+const theme = createTheme({
+	palette: {
+		main: '#3f50b5'
+	}
+})
 
 const styles = {
 	   imgContainer: {
@@ -19,7 +25,7 @@ const styles = {
 		        backgroundImage: `url(${logo})`,
 		        backgroundPosition: 'top',
 		   	padding: 0
-		      },
+		},
 	    title: {
 		    color: '#00A99D'
 	    },
@@ -84,7 +90,7 @@ function HomeContent() {
 
 	 <Box>
 
-<Paper variant="outlined">
+<Paper variant="outlined" style={styles.imgContainer}>
 	<Box mt={17}  mx="30%" >
 
     <Typography variant="body1" gutterBottom>
@@ -100,7 +106,7 @@ function HomeContent() {
 	             
 </Box>	 <Box style={styles.butBot}>
 	<Link to="/view/studies">
-	  <Button variant="contained" color="primary" size="large" style={styles.largeButton}>Browse available studies</Button>
+	  <Button variant="contained" color="main" size="large" style={styles.largeButton}>Browse available studies</Button>
 	  </Link>
 	 </Box>
 	  </Paper>
