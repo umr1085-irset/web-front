@@ -56,19 +56,20 @@ const styles = {
 		   paddingRight: 8
 	   },
 	    browse: {
-		padding: 0,
-		marginTop: 8
+			padding: 0,
+			marginTop: 8
 		},
 	    textBrowse: {
-		paddingTop: 14,
-		marginLeft: "8%"
+			paddingTop: 14,
+			marginLeft: "8%"
 		 },
 	    largeButton: {
-		minHeight: 50,
-		maxHeight: 50,
-		minWidth: "100%",
-		fontSize: "1rem",
-		backgroundColor: "#3f50b5"
+			minHeight: 50,
+			maxHeight: 50,
+			minWidth: "100%",
+			fontSize: "1rem",
+			backgroundColor: "#3f50b5",
+			contrastText: "#fff"
 		},
 	    butBot: {
 		    position: "relative",
