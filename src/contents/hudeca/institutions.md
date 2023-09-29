@@ -29,7 +29,7 @@ The aim of SciLicium is to reduce the "gap" between people who produce multi-omi
 ............................
 
 
-### About Genouest
+### About GenOuest
 
 GenOuest BioInformatics facility is hosted at INRIA Rennes-Bretagne Atlantique and IRISA. It is a member of IFB (Institut Français de Bioinformatique) and a member of Biogenouest. GenOuest is an IBiSA platform and it is recognized by INRA CNOC as a strategic regional platform.
 [Learn more](https://www.genouest.org) 
